@@ -142,3 +142,13 @@ Estado: primer bloque U1–U6 en desarrollo; el nivel no está publicado. Fecha:
 - Ejemplos originales; entradas `not_checked`, cotejo individual CEFR-J y validación nativa pendientes. Se conserva el esquema runtime, `mc`/`order`, `available:false`, IndexedDB v1 y backup JSON v3.
 
 - Corrección tras CI U35–U38: cuatro términos (`once`, `twice`, `competition`, `today`) coincidían con A1; se sustituyeron por `on one occasion`, `on two occasions`, `contest` y `so far today`, ajustando ejemplos y frases modelo.
+
+
+## Bloque final U39–U40 — 27 de noviembre de 2026
+
+- U39: relaciones y vida social; phrasal verbs frecuentes y patrones con gerundio/infinitivo.
+- U40: evaluación final integrada A2, sin vocabulario nuevo; recupera transporte, salud, hogar, trabajo, experiencias, relaciones y cláusulas relativas.
+- Dos unidades, 10 lecciones, 40 ejercicios y 22 entradas nuevas en U39; U40 añade 0.
+- Contenido A2 U1–U40 completo en la rama: 40 unidades, 200 lecciones, 800 ejercicios y 792 entradas léxicas previstas. U10/U20/U30/U40 son repasos sin vocabulario.
+- Manifiesto y test amplían la carga hasta U40 y comprueban 792 targets únicos, referencias de repaso y ausencia de solapamiento exacto con A1. CI pendiente.
+- Entradas nuevas not_checked; cotejo individual CEFR-J y validación nativa pendientes. Inglés permanece available:false y «Próximamente»; sin cambios de esquema, IndexedDB v1 o backup JSON v3.

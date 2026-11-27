@@ -73,7 +73,7 @@ const data=[
 ["Responsabilidad y retrospectiva","Explica consecuencias, responsabilidades y oportunidades perdidas.","Regret doing, take responsibility for y in hindsight ayudan a evaluar decisiones.",[16,17,18,19,20,21],"We missed an opportunity to negotiate a better price."]
 ],bank:["He might have misunderstood the deadline.","They couldn't have completed the audit in one day.","The email could conceivably have gone to the wrong address.","We could have avoided the delay with better planning.","I would have helped if I had known."]},
 {n:13,title:"Obligación, necesidad y ausencia de obligación",desc:"Distingue obligación externa, necesidad práctica, recomendación, permiso y ausencia de obligación en registros formales y cotidianos.",grammar:"Must, have to, need to, be required to, be obliged to, should, ought to, don't have to, needn't y mustn't.",trap:["Don't have to no significa mustn't","You don't have to attend (no es obligatorio). You mustn't attend (está prohibido). La diferencia cambia por completo el mensaje."],rows:[
-["be required to","estar obligado a / ser requisito","The company is obliged to report the incident.","Se exige que los solicitantes proporcionen dos referencias."],
+["be required to","estar obligado a / ser requisito","Applicants are required to provide two references.","Se exige que los solicitantes proporcionen dos referencias."],
 ["be obliged to","estar obligado a","The company is obliged to report the incident.","La empresa está obligada a informar del incidente."],
 ["have to","tener que","We have to submit the form by Friday.","Tenemos que entregar el formulario antes del viernes."],
 ["need to","necesitar","You need to update your contact details.","Necesitas actualizar tus datos de contacto."],

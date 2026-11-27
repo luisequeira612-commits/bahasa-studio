@@ -725,3 +725,12 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Inventario curricular: 40 unidades, 200 lecciones, 400 entradas léxicas, 800 ejercicios (400 `order` de unidad + 400 `mc` de lección). La progresión permanece secuencial: B2 U1 exige completar B1; no se alteró el progreso del usuario.
 - Sin cambios a IndexedDB v1 ni backup JSON v3; sin nuevas dependencias, audio, backend ni servicios de red. Vocabulario permanece `not_checked`; no afirmar validación nativa ni certificación MCER.
 - Según la hoja de ruta vigente, el siguiente idioma previsto es inglés desde A1/cero para hispanohablantes; no se inicia en esta actualización.
+
+## 2026-11-27 — Corrección de audio y consulta por toque en PT-BR
+
+- En `fix/pt-br-audio-tap-translation`, el inventario del repositorio no contiene clips en `audio/pt-BR/`; PT-BR usa `speechSynthesis` directamente, prioriza voz `pt-BR` y acepta `pt-PT` solo como respaldo. Añadida frase de prueba «olá». Indonesio conserva su reproducción Piper y su fallback actual.
+- `AudioEngine` usa locales de voz configurados por idioma y no intenta MP3 inexistentes para cursos con `audioMode: speechSynthesis`. UI de audio, diccionario, ayuda de Palabras nuevas, Tutor y botón de audio de frases pasan a usar idioma activo. El diccionario usa el adaptador neutral `text/translation/example`.
+- La consulta por toque ya generaba candidatos desde vocabulario adaptado al idioma activo; se elimina la condición que ocultaba el audio de frase en idiomas distintos de indonesio. Se añade prueba funcional simulada de PT-BR: «olá» → «hola», «bom dia» → «buenos días» y apertura de la burbuja.
+- La generación de lecciones IA conserva su esquema legacy de indonesio y ahora se bloquea explícitamente para otros cursos en vez de generar unidades mal etiquetadas. El fallback local del Tutor no muestra reglas indonesias cuando el curso activo es portugués.
+- Archivos previstos: `audio-engine.js`, `language-manager.js`, `types/guardi.d.ts`, `index.html`, `package.json`, `tests/audio-engine.test.cjs`, `tests/language-config-validation.test.cjs`, `tests/indonesian-language-markup.test.cjs`, `tests/pt-br-audio-tap.test.cjs`, `MEMORY.md`. Sin cambios a IndexedDB v1, backup JSON v3, currículo, datos de progreso, dependencias ni Service Worker.
+- Pendiente: CI completo y verificación visual en navegador/dispositivo; no afirmar sonido real en el dispositivo hasta comprobarlo con una voz instalada. No fusionar antes de CI verde y revisión de los archivos.

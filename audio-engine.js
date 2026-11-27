@@ -101,7 +101,7 @@ window.AudioEngine = {
         if (language.voiceStatus === 'configured') {
             const active = this.selectedVoice || this.activeLanguageVoice;
             status.textContent = 'La app incluye grabaciones Piper para ' + languageName +
-                '. Voz del dispositivo disponible como respaldo' + (active ? ': ' + active.name : '.') + '.';
+                '. Voz del dispositivo disponible como respaldo' + (active ? ': ' + active.name : '') + '.';
         } else {
             status.textContent = 'Si falta una grabación, el navegador intentará reproducir la frase en ' +
                 languageName + ' con una voz compatible del dispositivo.';

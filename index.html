@@ -20667,7 +20667,8 @@ Requisitos:
                 const language = LanguageManager.getActiveLanguage();
                 const locale = LanguageManager.getLocale(language) || 'und';
                 let html = '';
-                getUniqueLearningVocabulary().forEach(word => {
+                getUniqueLearningVocabulary().forEach(rawWord => {
+                    const word = CurriculumLoader.adaptVocabulary(rawWord, language);
                     if (!word || !word.text || !word.translation) return;
                     const example = word.example || '';
                     const exampleTranslation = word.exampleTranslation || '';

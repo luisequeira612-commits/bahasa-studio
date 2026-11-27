@@ -1,6 +1,6 @@
 # Inglés americano B1 — fuentes, plan y trazabilidad
 
-**Estado:** temario completo aprobado por el usuario el 27 de noviembre de 2026. Implementación en bloques pequeños; U1–U20 están authored en cinco bloques apilados. El nivel permanece sin publicar.
+**Estado:** temario completo aprobado por el usuario el 27 de noviembre de 2026. Implementación en bloques pequeños; U1–U24 están authored en seis bloques apilados. El nivel permanece sin publicar.
 
 ## Estructura aprobada
 - 52 unidades, 5 lecciones explícitas por unidad y 20 ejercicios por unidad: 260 lecciones y 1.040 ejercicios al completar el nivel.
@@ -136,3 +136,12 @@
 - Auditoría estática de B1: 396/396 targets únicos. Comparación de los targets U17–U19 contra los inventarios A1/A2: sin coincidencias exactas. Entradas nuevas `not_checked`; no se presenta como certificación CEFR ni validación nativa.
 - Manifiesto y tests amplían la carga a U20. Inglés continúa `available:false`; sin cambios a IndexedDB v1, backup JSON v3, dependencias ni otros idiomas.
 - Primera CI de U17–U20 detectó dos coincidencias exactas con A1/A2 en U18 (`once`, `ahead of time`); sustituidas por `once the paperwork is complete` y `well ahead of schedule`, con ejemplos y traducciones alineados. Nueva CI pendiente.
+
+
+## Bloque U21–U24 — inglés americano B1
+- U21: obligación, responsabilidad y expectativas; U22: permisos y peticiones corteses; U23: deducción y certeza en el presente; U24: modales en pasado y arrepentimiento.
+- Añade 4 unidades de contenido, 20 lecciones, 80 ejercicios y 88 entradas nuevas (22 por unidad).
+- Acumulado U1–U24: 24 unidades, 120 lecciones, 480 ejercicios y 484 entradas nuevas. U10 y U20 siguen siendo repasos sin vocabulario nuevo.
+- Vocabulario nuevo `not_checked`; los controles automáticos verifican estructura y coincidencias exactas, no certifican nivel CEFR ni naturalidad nativa. Inglés continúa `available:false` hasta completar B1 y sus gates.
+- Sin cambios a IndexedDB v1, backup JSON v3, dependencias, audio, red ni otros idiomas.
+- Primera CI de U21–U24 detectó coincidencias A1/A2 en U21/U22; se cambiaron a `be entrusted with`, `would you be so kind as to` e `I would appreciate it if`, con ejemplos y traducciones actualizados. Nueva CI pendiente.

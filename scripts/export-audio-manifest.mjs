@@ -135,9 +135,9 @@ async function loadLocalizedLevels(languageCode, curriculumPaths) {
         const blockSource = await readFile(blockPath, 'utf8');
         const blockSandbox = { window: {} };
         vm.runInNewContext(blockSource, blockSandbox, { filename: blockPath, timeout: 5000 });
-        const blocks = blockSandbox.window.GUARDI_CURRICULUM_BLOCKS?.[languageCode]?.[levelId];
-        if (!blocks?.units) throw new Error(`Missing ${languageCode}/${levelId} block data in ${block.path}`);
-        units.push(...blocks.units);
+        const blockData = blockSandbox.window.GUARDI_CURRICULUM_BLOCKS?.[languageCode]?.[levelId]?.[block.id];
+        if (!blockData?.units) throw new Error(`Missing ${languageCode}/${levelId}/${block.id} block data in ${block.path}`);
+        units.push(...blockData.units);
       }
       if (!units.length) throw new Error(`No units loaded for ${languageCode}/${levelId}`);
       levels.push({ id: levelId, units });

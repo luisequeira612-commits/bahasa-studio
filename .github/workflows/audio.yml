@@ -44,7 +44,9 @@ jobs:
         run: |
           total=$(du -sb audio | cut -f1)
           echo "Audio total: $total bytes"
-          test "$total" -lt 1073741824
+          echo "Audio total (MiB): $(awk -v bytes="$total" 'BEGIN { printf "%.2f", bytes / 1048576 }')"
+          # Keep a 500 MiB safety budget for the complete static audio library.
+          test "$total" -lt 524288000
           while IFS= read -r file; do
             test "$(stat -c%s "$file")" -lt 104857600
           done < <(find audio -type f)

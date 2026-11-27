@@ -791,3 +791,6 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Inventario A2 U1–U30 previsto: 594 entradas nuevas; U10, U20 y U30 son repasos. El manifiesto y el contrato automatizado se amplían a U30 y comparan el inventario contra A1.
 - CI de este bloque pendiente. Entradas `not_checked`; cotejo individual CEFR-J pendiente. Inglés sigue `available:false`; sin cambios a IndexedDB v1, backup JSON v3, dependencias, POS/audio, PT-BR ni otros idiomas. No fusionar ni publicar sin aprobación expresa.
 - Fuente: `units-27-30.js`, rama `feat/en-us-a2-u27-u30-v2`, tests y docs; 26 nov 2026.
+
+
+- 27 nov 2026: La primera regresión de PR #907 detectó que el contrato de inventario A2 seguía cargando U1–U26 aunque el manifiesto ya anunciaba U1–U30 (528 encontrados frente a 594 esperados). Se corrigió el rango del test para cargar 30 unidades; no se relajó ninguna aserción. Reejecución CI pendiente.

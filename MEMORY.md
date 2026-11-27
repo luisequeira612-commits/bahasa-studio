@@ -91,3 +91,19 @@ test('English A1 vocabulary introduces no duplicate targets across U1-U12',async
 - 6 unidades, 5 lecciones, 22 términos nuevos y 20 ejercicios por unidad. Manifiesto y pruebas amplían inventario a U1–U24; mantener en unavailable/«Próximamente».
 - Esta PR depende de #893 → #892 → #891. Retargetear a main y repetir CI solo después de integrar manualmente las anteriores; no fusionar sin aprobación expresa.
 - Vocabulario not_checked; sin POS/audio ni cambios a IndexedDB v1, backup JSON v3 u otros idiomas. Auditoría estática de los cuatro bloques: 528 entradas en U1–U24 y 0 targets duplicados.
+
+## 2026-11-26 — Inglés A1 U25–U30 en PR apilada
+- Rama feat/en-us-a1-u25-u30 y PR prevista U25–U30: indicaciones; dinero/compras; some/any y contables/incontables; cantidades; restaurante; U30 repaso integrador sin vocabulario nuevo.
+- U25–U29 tienen 22 entradas nuevas cada una; U30 tiene 0 y recicla IDs anteriores. Cada unidad mantiene 5 lecciones y 20 ejercicios. Manifiesto y prueba estructural amplían inventario hasta U1–U30.
+- Esta PR depende de #894 → #893 → #892 → #891. Integrar manualmente en orden, retargetear a main y repetir CI; no fusionar sin aprobación expresa.
+- Mantener inglés unavailable/«Próximamente», vocabulario not_checked, sin POS/audio ni cambios a IndexedDB v1, backup JSON v3 u otros idiomas.
+
+## 2026-11-26 — Corrección de CI en bloque U25–U30
+- La primera regresión de PR #895 (#45912981997) falló por un error sintáctico en la construcción de ejercicios de repaso U30: faltaba cerrar una cadena en la lista de opciones.
+- Corregido en esta rama con la cadena de commit 319f750331b663f3bbb802317da27fe371f4ca9d; se corrigió también el título del test para dejar claro que U30–U32 son repasos sin palabras nuevas.
+- CI del nuevo head pendiente de repetición; no declarar el bloque listo hasta regresión y typecheck verdes.
+
+## 2026-11-26 — Auditoría de referencias de repaso
+- Se corrigieron IDs de vocabulario reciclado en U30 (box/class: U6 v05/v06) y U31–U32 (listen: U1 v18).
+- Auditoría estática de los 46 IDs de reviewVocabIds: todos resuelven al target esperado. Inventario léxico sigue en 638 entradas únicas y cero duplicados.
+- PR #895 en head 3a738748ed0c3a8bbaaae3ad3b689b08c518dd97: regresión #45913948547 y typecheck #45913948597 success; calidad offline success. Cero fallos CI en el head actual.

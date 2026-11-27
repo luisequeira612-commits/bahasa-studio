@@ -19094,7 +19094,6 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                 if (selector) selector.disabled = false;
                 const t = SYLLABUS[CustomLessons.pos];
                 el.innerHTML = t ? `<strong>Siguiente tema:</strong> ${t.split('|')[0]}` : 'Temario completado 🎉 Elige un tema propio para seguir.';
-                const selector = document.getElementById('syllabusSelector');
                 if (selector) {
                     const selected = selector.value;
                     if (selector.options.length !== SYLLABUS.length) {

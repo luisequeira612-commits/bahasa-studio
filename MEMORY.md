@@ -1,3 +1,11 @@
+## 2026-11-27 — Ajuste de regresión de audio Piper
+- La regresión anterior falló únicamente en una aserción histórica que exigía literalmente la ruta MP3 antigua. `AudioEngine` ahora consulta primero `audio/manifest.json` por idioma + hash y conserva la ruta local como respaldo; la prueba se actualizó para verificar ese comportamiento.
+- Type checks del head anterior: success. La regresión fallida no implicó un error del generador ni del currículo.
+- Siguiente paso: validar CI del ajuste; después ejecutar la generación Piper y medir el tamaño real antes de ampliar voces a los demás idiomas.
+- No modificar IndexedDB v1, backup JSON v3 ni introducir backend/servicios de pago.
+
+Fuente: Actions #45961301234, `tests/regression.test.cjs` y `audio-engine.js`; 27 nov 2026.
+
 ## 2026-11-27 — Corrección de audio y etiquetas del curso PT-BR (en PR)
 
 - Rama `fix/pt-br-audio-language-labels`: si falta un MP3 del idioma activo, `AudioEngine` solicita al navegador una voz usando el locale del curso aunque `getVoices()` no haya enumerado voces; acepta voces `pt-PT` como respaldo compatible con `pt-BR`, sin usar voces de otro idioma.

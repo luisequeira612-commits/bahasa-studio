@@ -1,3 +1,10 @@
+## 2026-11-27 — Diagnóstico estricto del currículo PT-BR en exportación de audio
+- La generación real del run #45962301907 creó 127 MP3 nuevos, reutilizó 2.265 y exportó 2.392 textos, todos `id`; el registro indicó `pt-BR: 0`. El tamaño final de esa ejecución fue 15,99 MiB de MP3 y 27,49 MiB para `audio/`; validación de límites success. El commit automático falló por push no-fast-forward porque el workflow antiguo partió de un SHA anterior al avance de la rama.
+- La prueba `all-language export` del run #45962348707 falló específicamente porque no encontró entradas `pt-BR`. Se endureció `loadLocalizedLevels()` para no silenciar índices/manifiestos/bloques ausentes y se añadieron mensajes de diagnóstico de registro y unidades por nivel. Esto hará visible la causa exacta en el siguiente CI/generador.
+- Workflow actualizado en `.github/workflows/audio.yml` para rebase antes del push; run #45962332154 quedó queued. No se considera completada la biblioteca hasta generar PT-BR, verificar manifiesto y confirmar publicación del commit de audio.
+
+Fuente: Actions #45962301907/#45962348707/#45962332154; logs del job `generate` y tests; 27 nov 2026.
+
 ## 2026-11-27 — Metadato locale uniforme en exportación multilingüe
 - La prueba nueva de `--all-languages` detectó que los registros de indonesio conservaban el formato del exportador histórico sin `locale`, mientras los registros localizados tampoco añadían ese campo. Se corrigió `buildAllLanguageManifest()` para leer los locales desde `LanguageManager` y adjuntarlos a todas las entradas.
 - El test de exportación multilingüe del run #45962348707 marcó fallo en `Run Indonesian audio manifest export tests`; se está obteniendo el log completo al finalizar el job. El cambio correctivo está en commit `4c5d6ec7f751c166fe4fc95635e882d26fce2ee7`; CI nuevo pendiente.

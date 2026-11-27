@@ -1,3 +1,12 @@
+## 2026-11-27 — Corrección de audio y etiquetas del curso PT-BR (en PR)
+
+- Rama `fix/pt-br-audio-language-labels`: si falta un MP3 del idioma activo, `AudioEngine` solicita al navegador una voz usando el locale del curso aunque `getVoices()` no haya enumerado voces; acepta voces `pt-PT` como respaldo compatible con `pt-BR`, sin usar voces de otro idioma.
+- El mensaje de consulta de palabras y la etiqueta accesible del selector se actualizan al idioma activo; el estado de audio ya no afirma que todos los cursos incluyen grabaciones Piper cuando no están configuradas.
+- Pruebas añadidas/actualizadas en `tests/audio-engine.test.cjs` para locale PT-BR sin voz enumerada, voz PT-PT y etiquetas dinámicas. CI pendiente; PR sin fusionar por instrucción del dueño.
+- Sin cambios a contenido curricular, traducciones/pronunciación, IndexedDB v1, backup JSON v3, dependencias ni progreso.
+
+Fuente: solicitud del dueño del 27 nov 2026; `audio-engine.js`, `tests/audio-engine.test.cjs` y `.github/workflows/regression.yml`.
+
 ## 2026-11-26 — Diversidad PT-BR B2 U37–U40
 
 - U37–U40 convierten sus 40 actividades de banco de unidad a `order`; las 40 actividades de lección permanecen `mc`.

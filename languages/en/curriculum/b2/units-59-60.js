@@ -4,7 +4,7 @@ const rows=[
 ["to synthesize different viewpoints","sintetizar diferentes puntos de vista","The presenter synthesized different viewpoints before making a recommendation.","El ponente sintetizó diferentes puntos de vista antes de hacer una recomendación."],
 ["to defend a position","defender una postura","You should be able to defend your position with evidence.","Deberías poder defender tu postura con pruebas."],
 ["to respond to a challenge","responder a un desafío","The speaker responded to the challenge calmly.","El ponente respondió al desafío con calma."],
-["to negotiate a compromise","negociar un compromiso","The teams negotiated a compromise that both could accept.","Los equipos negociaron un compromiso que ambos podían aceptar."],
+["to negotiate a compromise","negociar un acuerdo intermedio","The teams negotiated a compromise that both could accept.","Los equipos negociaron un acuerdo intermedio que ambos podían aceptar."],
 ["to summarize a complex issue","resumir un asunto complejo","She summarized the issue in a few clear sentences.","Ella resumió el asunto en unas pocas frases claras."],
 ["to adapt one's message","adaptar el propio mensaje","Effective communicators adapt their message to the audience.","Los comunicadores eficaces adaptan su mensaje al público."],
 ["to anticipate objections","anticipar objeciones","A strong proposal anticipates likely objections.","Una propuesta sólida anticipa las objeciones probables."],
@@ -41,7 +41,7 @@ const unit59={unitNumber:59,id:"en_b2_u59",title:"Unidad 59: Integrated communic
 const refs=[
 ["en_b2_u51_v01","to put forward a hypothesis","plantear una hipótesis","The paper puts forward a hypothesis about language exposure."],
 ["en_b2_u52_v01","executive summary","resumen ejecutivo","The executive summary outlines the main findings and recommendations."],
-["en_b2_u53_v01","to reach a compromise","llegar a un compromiso","Both sides were willing to reach a compromise."],
+["en_b2_u53_v01","to reach a compromise","llegar a un acuerdo intermedio","Both sides were willing to reach a compromise."],
 ["en_b2_u54_v01","to chair a meeting","presidir una reunión","Maria will chair the meeting this afternoon."],
 ["en_b2_u55_v01","to lodge a complaint","presentar una queja formal","Customers can lodge a complaint through the online form."],
 ["en_b2_u56_v01","to verify a source","verificar una fuente","Readers should verify a source before sharing the claim."],

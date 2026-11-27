@@ -1,6 +1,6 @@
 # Inglés americano B1 — fuentes, plan y trazabilidad
 
-**Estado:** temario completo aprobado por el usuario el 27 de noviembre de 2026. Implementación en bloques pequeños; U1–U36 están authored en nueve bloques apilados. El nivel permanece sin publicar.
+**Estado:** temario completo aprobado por el usuario el 27 de noviembre de 2026. Implementación en bloques pequeños; U1–U40 están authored en diez bloques apilados. El nivel permanece sin publicar.
 
 ## Estructura aprobada
 - 52 unidades, 5 lecciones explícitas por unidad y 20 ejercicios por unidad: 260 lecciones y 1.040 ejercicios al completar el nivel.
@@ -170,3 +170,12 @@
 - Acumulado U1–U36: 36 unidades, 180 lecciones, 720 ejercicios y 726 entradas nuevas. U10, U20 y U30 son repasos sin vocabulario nuevo.
 - Deduplicación estática B1: 726/726 targets únicos. U33–U36 comparadas contra A1/A2; `ask if` se sustituyó por `inquire whether` tras detectar una coincidencia A2. `at the time` se sustituyó por `during that period` para evitar duplicado interno.
 - Entradas nuevas `not_checked`; no es certificación CEFR ni revisión nativa. Inglés continúa `available:false` hasta completar B1 y sus gates. Sin cambios a IndexedDB v1, backup JSON v3, dependencias, audio, red ni otros idiomas.
+
+
+## Bloque U37–U40 — inglés americano B1
+- U37: causative have/get something done en reparaciones y servicios; U38: wish/if only para deseos presentes, arrepentimientos y cambios esperados; U39: concesión y contraste; U40: Review IV sin vocabulario nuevo.
+- Añade 3 unidades de contenido con 66 entradas nuevas (22 por unidad) y una unidad de repaso con cinco lecciones; 4 unidades, 20 lecciones y 80 ejercicios en total.
+- Acumulado U1–U40: 40 unidades, 200 lecciones, 800 ejercicios y 792 entradas nuevas. U10, U20, U30 y U40 son repasos sin vocabulario nuevo.
+- U40 reutiliza IDs de U33–U39 y no crea vocabulario. Los bancos y las cinco lecciones conservan los tipos `mc` y `order` del runtime actual.
+- Deduplicación estática: U37–U39 aportan 66 targets, únicos entre sí y sin coincidencias exactas con A1/A2 ni U1–U36. `have something repaired` se sustituyó por `get an appliance repaired` al detectar reutilización exacta en U28. La CI repetirá la comprobación sobre el inventario completo. Entradas nuevas `not_checked`; no se afirma cotejo individual CEFR-J, naturalidad nativa ni certificación MCER.
+- Inglés continúa `available:false` hasta completar U52 y sus gates. Sin cambios a IndexedDB v1, backup JSON v3, dependencias, audio, red ni otros idiomas.

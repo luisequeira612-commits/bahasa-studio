@@ -885,3 +885,10 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - La biblioteca completa todavía no está generada ni verificada en GitHub Actions. No declarar audio PT-BR funcional hasta generar los archivos y pasar CI; después se probará en GitHub Pages antes de continuar con las lecciones de inglés B2.
 - No modificar IndexedDB v1, backup JSON v3 ni introducir backend/servicios de pago.
 - Fuente: PR #942 y cambios de la rama `fix/pt-br-audio-language-labels`, 27 nov 2026.
+
+
+## 2026-11-27 — Bootstrap de inventarios offline para el precache
+- La regresión del head `31ae982` confirmó que los tests principales y TypeScript pasaban, pero `Run resilient service worker install tests` fallaba porque el Service Worker ya precargaba `audio/manifest-multilingual.json`, `audio/pt-BR/manifest.json` y `audio/pt-BR/metadata.json` antes de que la generación los creara.
+- Se añadieron los tres archivos bootstrap con estructuras válidas vacías (sin inventar clips ni hashes). El generador los sustituirá con los inventarios y huellas SHA-256 reales al terminar.
+- La generación completa sigue pendiente: la ejecución antigua #45962876912 aún estaba sintetizando; no se cuenta como publicada hasta confirmar PT-BR, tamaños, inventarios y commit automático. PR #942 sigue abierta y sin fusionar.
+- Fuente: Actions #45964229991, tests/service-worker-install.test.cjs, service-worker.js y commits bootstrap #3777c6a/#ab1a610/#bd394e8; 27 nov 2026.

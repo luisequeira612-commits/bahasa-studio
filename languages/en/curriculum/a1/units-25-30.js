@@ -42,7 +42,7 @@ const reviewUnit=()=>{
  ['Lección 4: Familia y relaciones','Describe familiares con adjetivos posesivos.','Combina posesivo + familiar: my mother, his brother.',[6,7,10,11],'My mother is here.'],
  ['Lección 5: La casa y lo que hay','Describe habitaciones y muebles con there is/are.','There is + singular; there are + plural. Reutiliza demostrativos y posesivos.',[13,14,15,16,17],'There is a sofa in the bedroom.']
  ];
- const lessons=specs.map(s=>{const selected=s[3].map(i=>refs[i]);return {title:s[0],objective:s[1],grammar:s[2],vocabIds:[],reviewVocabIds:selected.map(w=>w.id),exercises:[mc(selected[0],'¿Qué significa «'+selected[0].target+'»?',[selected[0].esp,'otra opción','una opción diferente']),order(selected[1],'Ordena la frase.',s[4])]};});
+ const lessons=specs.map(s=>{const selected=s[3].map(i=>refs[i]);return {title:s[0],objective:s[1],grammar:s[2],vocabIds:[],reviewVocabIds:selected.map(w=>w.id),exercises:[mc(selected[0],'¿Qué significa «'+selected[0].target+'»?',[selected[0].esp,selected[2].esp,selected[3].esp]),order(selected[1],'Ordena la frase.',s[4])]};});
  const exercises=[];
  for(let i=0;i<5;i++)exercises.push(mc(refs[i],'Repasa el significado de «'+refs[i].target+'».',[refs[i].esp,refs[(i+5)%refs.length].esp,refs[(i+10)%refs.length].esp]));
  const models=['This house is big.','My mother is here.','His brother is here.','Her mother is here.','Our house is big.'];

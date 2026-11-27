@@ -93,3 +93,14 @@ Estado: primer bloque U1–U6 en desarrollo; el nivel no está publicado. Fecha:
 - 4 unidades, 20 lecciones, 80 ejercicios y 88 entradas léxicas nuevas. Auditoría estática: 88 targets únicos, sin duplicados internos ni coincidencias exactas con los 440 targets A2 U1–U22. La comparación con los 638 targets A1 queda cubierta por el test automatizado de CI.
 - El manifiesto y los tests se amplían hasta U26. Entradas not_checked; cotejo individual CEFR-J pendiente. Ejemplos originales; no se afirma validación nativa ni certificación MCER.
 - Se conserva el esquema runtime y los tipos mc/order; sin POS/audio, dependencias ni cambios de almacenamiento. Inglés continúa available:false y «Próximamente».
+
+
+## Bloque U23–U26 — 26 de noviembre de 2026
+
+- U23: peticiones y ofrecimientos corteses con can/could/may y fórmulas indirectas.
+- U24: condiciones y consecuencias con first conditional, unless, otherwise y medidas preventivas.
+- U25: recipientes y medidas para cuantificar alimentos contables e incontables.
+- U26: cuantificadores y proporciones en compras y consumo.
+- Cuatro unidades, 20 lecciones y 80 ejercicios; 88 entradas nuevas (22 por unidad). Total A2 U1–U26: 528 entradas nuevas; U10 y U20 siguen como repasos sin vocabulario.
+- Revisión de duplicados exactos contra A1 y A2 anterior; ejemplos originales. Entradas nuevas `not_checked`; cotejo individual CEFR-J y validación nativa pendientes.
+- Se conserva el esquema runtime, los tipos `mc`/`order`, inglés `available:false`, IndexedDB v1, backup JSON v3 y el resto de idiomas sin cambios.

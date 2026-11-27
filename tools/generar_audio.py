@@ -30,7 +30,7 @@ def export_texts() -> list[dict]:
 
 def download_piper_model(model_id: str, model_path: str, revision: str, cache_dir: Path) -> tuple[Path, Path]:
     base = f"https://huggingface.co/rhasspy/piper-voices/resolve/{revision}/{model_path}"
-    voice_dir = cache_dir / model_path
+    voice_dir = cache_dir / revision / model_path
     voice_dir.mkdir(parents=True, exist_ok=True)
     stem = model_id
     onnx = voice_dir / f"{stem}.onnx"

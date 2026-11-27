@@ -1,3 +1,10 @@
+## 2026-11-27 — Pruebas directas de manifiesto y fallback por idioma
+- Se añadieron pruebas de `AudioEngine` que comprueban que, con el manifiesto cargado, se reproduce exactamente el archivo indicado por `audio/manifest.json`; si no existe entrada para el texto/idioma, no intenta una ruta huérfana y usa TTS del locale activo.
+- La corrección del nombre de archivo del modelo Piper está en ejecución en Actions #45962301907; `Install Piper and ffmpeg` success y `Generate missing multilingual audio` en curso al registrar. El run fue disparado por el commit `3e96f2d`; el workflow actualizado para rebase antes del push se disparó por `a9783cd` en run #45962332154, queued.
+- Nuevas pruebas añadidas en commit `ed552b2387e2fa6eafc32b9d87f93b702041dc89`; CI del head actualizado pendiente.
+
+Fuente: `tests/audio-engine.test.cjs`, `.github/workflows/audio.yml`, Actions #45962301907/#45962332154; 27 nov 2026.
+
 ## 2026-11-27 — Robustez del commit automático de audio
 - El workflow ahora incluye `.github/workflows/audio.yml` en sus propios paths de activación y, antes de publicar clips, hace `git fetch`, `git rebase origin/$GITHUB_REF_NAME` y `git push origin HEAD:$branch`. Esto evita un push no-fast-forward si el branch avanzó mientras Piper generaba clips.
 - La primera generación tras corregir el nombre de archivo está en ejecución en Actions #45962301907 (commit de evento `3e96f2d`). Como el workflow anterior no rebasaba, esa ejecución puede fallar al publicar si el branch avanzó durante la generación; la siguiente ejecución usará la versión robusta y reutilizará los audios ya generados.

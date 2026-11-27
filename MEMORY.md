@@ -1,3 +1,9 @@
+## 2026-11-26 — Inglés en-US B1 U41–U44 en preparación
+- Rama `feat/en-us-b1-u41-u44`, apilada sobre U1–U40. U41 discourse markers; U42 causa y propósito; U43 preguntas indirectas y question tags; U44 so/such/too/enough e intensificadores.
+- Bloque: 4 unidades de contenido, 88 entradas nuevas, 20 lecciones y 80 ejercicios. Acumulado U1–U44: 880 entradas únicas, 220 lecciones y 880 ejercicios; repasos U10/U20/U30/U40.
+- Auditoría estática previa: 88/88 targets únicos y cero coincidencias exactas con A1/A2 o U1–U40. CI pendiente; entradas `not_checked`; inglés sigue `available:false`.
+- Sin cambios a IndexedDB v1, backup JSON v3, dependencias, audio, red ni otros idiomas. Fuente: `EN_US_B1_SOURCES.md`, manifiesto, currículo y tests; 26 nov 2026.
+
 ## 2026-11-26 — Inglés en-US B1 U37–U40 integrado en rama de trabajo
 - Rama `feat/en-us-b1-u37-u40`, apilada sobre U1–U36. U37 causative have/get something done; U38 wish/if only; U39 concesión y contraste; U40 Review IV sin vocabulario nuevo.
 - Bloque: 3 unidades de contenido, 66 entradas nuevas, 15 lecciones; repaso U40 con 5 lecciones y cero entradas. Total bloque: 4 unidades, 20 lecciones y 80 ejercicios. Acumulado U1–U40: 792 entradas únicas, 200 lecciones y 800 ejercicios; repasos U10/U20/U30/U40.

@@ -123,7 +123,7 @@ const data=[
 ["to fall short of","no alcanzar","The final result fell short of expectations.","El resultado final no alcanzó las expectativas."],
 ["to exceed expectations","superar las expectativas","The service has exceeded expectations so far.","El servicio ha superado las expectativas hasta ahora."],
 ["to meet expectations","cumplir las expectativas","The candidate met most of the requirements.","El candidato cumplió la mayoría de los requisitos."],
-["to anticipate","prever / anticipar","We anticipate a gradual increase in demand.","Prevemos un aumento gradual de la demanda."],
+["to foresee","prever","We foresee a gradual increase in demand.","Prevemos un aumento gradual de la demanda."],
 ["to be subject to change","estar sujeto a cambios","All dates are subject to change.","Todas las fechas están sujetas a cambios."]
 ],lessons:[
 ["Probabilidad con adjetivos","Formula predicciones usando likely, unlikely y estructuras con be.","Be likely/unlikely to + infinitivo; it is likely that + oración.",[0,1,2,3],"The new policy is likely to reduce costs."],

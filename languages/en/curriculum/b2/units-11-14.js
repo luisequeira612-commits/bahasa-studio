@@ -103,7 +103,7 @@ const data=[
 ["Lenguaje normativo y cumplimiento","Interpreta cláusulas y reglas en contextos profesionales.","At one's discretion, unless otherwise stated, in accordance with y comply with son frecuentes en normas y políticas.",[16,17,18,19,20,21],"A valid ID is necessary for entry."]
 ],bank:["You mustn't disclose confidential information.","You don't have to print the document.","You needn't wait for me.","Customers are under no obligation to renew.","Staff are expected to arrive on time."]},
 {n:14,title:"Probabilidad, certeza y expectativa",desc:"Gradúa afirmaciones, interpreta probabilidades y comunica expectativas sin confundir evidencia, predicción y certeza.",grammar:"Adjetivos y adverbios de probabilidad; likely, unlikely, bound, certain, probable; probability phrases y patrones con infinitivo o that-clause.",trap:["Likely y probably no siguen el mismo patrón","It is likely that prices will rise / Prices are likely to rise. Probably suele modificar la cláusula: Prices will probably rise."],rows:[
-["likely to","probable que","The team is unlikely to finish today.","Es probable que la nueva política reduzca los costos."],
+["likely to","probable que","Prices are likely to rise next quarter.","Es probable que la nueva política reduzca los costos."],
 ["unlikely to","poco probable que","The team is unlikely to finish today.","Es poco probable que el equipo termine hoy."],
 ["highly likely","muy probable","A delay is highly likely given the weather.","Es muy probable que haya un retraso dadas las condiciones meteorológicas."],
 ["almost certain to","casi seguro que","The changes are almost certain to affect smaller firms.","Es casi seguro que los cambios afectarán a las empresas pequeñas."],

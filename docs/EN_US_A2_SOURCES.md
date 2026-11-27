@@ -129,3 +129,14 @@ Estado: primer bloque U1–U6 en desarrollo; el nivel no está publicado. Fecha:
 - Ejemplos originales; entradas `not_checked`, cotejo individual CEFR-J y validación nativa pendientes. Se conserva el esquema runtime, `mc`/`order`, `available:false`, IndexedDB v1 y backup JSON v3.
 
 - Corrección tras CI: `train station` y `personal item` coincidían exactamente con vocabulario A1; se sustituyeron por `rail terminal` y `overhead bag`. El test de regresión completo sigue siendo el criterio de aceptación.
+
+
+## Bloque U35–U38 — 27 de noviembre de 2026
+
+- U35: trabajo, estudios y progreso; because/so y can/could.
+- U36: experiencias de vida con present perfect ever/never.
+- U37: acciones recientes y períodos abiertos con just/already/yet, since/for y contraste inicial con past simple.
+- U38: defining relative clauses con who/which/that para identificar personas, lugares y objetos.
+- Cuatro unidades, 20 lecciones, 80 ejercicios y 88 entradas nuevas. Total A2 U1–U38: 770 entradas; U10/U20/U30 son repasos sin vocabulario.
+- Auditoría estática: 770 targets únicos en A2; CI verifica además ausencia de coincidencias con A1 y referencias de ejercicios.
+- Ejemplos originales; entradas `not_checked`, cotejo individual CEFR-J y validación nativa pendientes. Se conserva el esquema runtime, `mc`/`order`, `available:false`, IndexedDB v1 y backup JSON v3.

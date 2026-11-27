@@ -243,6 +243,7 @@ test('all ten Piper voices are pinned and their model cards are preserved for at
   assert.match(generator, /inventory_path = ROOT \/ "audio" \/ code \/ "manifest\.json"/);
   assert.match(generator, /metadata_path = ROOT \/ "audio" \/ code \/ "metadata\.json"/);
   assert.match(generator, /sha256_file/);
+  assert.match(generator, /ROOT \/ "audio" \/ "index\.json"/);
   const workflow = await readFile(path.join(root, '.github/workflows/audio.yml'), 'utf8');
   assert.match(workflow, /piper-tts==1\.8\.0/);
 });

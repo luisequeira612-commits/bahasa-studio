@@ -74,7 +74,7 @@ const data=[
 ],bank:["He might have misunderstood the deadline.","They couldn't have completed the audit in one day.","The email could conceivably have gone to the wrong address.","We could have avoided the delay with better planning.","I would have helped if I had known."]},
 {n:13,title:"Obligación, necesidad y ausencia de obligación",desc:"Distingue obligación externa, necesidad práctica, recomendación, permiso y ausencia de obligación en registros formales y cotidianos.",grammar:"Must, have to, need to, be required to, be obliged to, should, ought to, don't have to, needn't y mustn't.",trap:["Don't have to no significa mustn't","You don't have to attend (no es obligatorio). You mustn't attend (está prohibido). La diferencia cambia por completo el mensaje."],rows:[
 ["be required to","estar obligado a / ser requisito","Applicants are required to provide two references.","Se exige que los solicitantes proporcionen dos referencias."],
-["be obliged to","estar obligado a","The company is obliged to report the incident.","La empresa está obligada a informar del incidente."],
+["be obliged to","estar obligado a","Applicants are required to provide two references.","La empresa está obligada a informar del incidente."],
 ["have to","tener que","We have to submit the form by Friday.","Tenemos que entregar el formulario antes del viernes."],
 ["need to","necesitar","You need to update your contact details.","Necesitas actualizar tus datos de contacto."],
 ["must","deber","All visitors must sign in at reception.","Todos los visitantes deben registrarse en recepción."],
@@ -104,7 +104,7 @@ const data=[
 ],bank:["You mustn't disclose confidential information.","You don't have to print the document.","You needn't wait for me.","Customers are under no obligation to renew.","Staff are expected to arrive on time."]},
 {n:14,title:"Probabilidad, certeza y expectativa",desc:"Gradúa afirmaciones, interpreta probabilidades y comunica expectativas sin confundir evidencia, predicción y certeza.",grammar:"Adjetivos y adverbios de probabilidad; likely, unlikely, bound, certain, probable; probability phrases y patrones con infinitivo o that-clause.",trap:["Likely y probably no siguen el mismo patrón","It is likely that prices will rise / Prices are likely to rise. Probably suele modificar la cláusula: Prices will probably rise."],rows:[
 ["likely to","probable que","Prices are likely to rise next quarter.","Es probable que la nueva política reduzca los costos."],
-["unlikely to","poco probable que","The team is unlikely to finish today.","Es poco probable que el equipo termine hoy."],
+["unlikely to","poco probable que","Prices are likely to rise next quarter.","Es poco probable que el equipo termine hoy."],
 ["highly likely","muy probable","A delay is highly likely given the weather.","Es muy probable que haya un retraso dadas las condiciones meteorológicas."],
 ["almost certain to","casi seguro que","The changes are almost certain to affect smaller firms.","Es casi seguro que los cambios afectarán a las empresas pequeñas."],
 ["bound to","seguro que / destinado a","Someone is bound to notice the difference.","Alguien seguramente notará la diferencia."],

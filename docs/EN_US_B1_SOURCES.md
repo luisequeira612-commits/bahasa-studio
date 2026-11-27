@@ -105,3 +105,10 @@
 - Auditoría CI inicial de U1–U8 detectó seis coincidencias exactas con A1/A2 en U6/U8: `playground`, `classmate`, `supervisor`, `assignment`, `scholarship`, `study group`. Sustituidas por `play area`, `school friend`, `team lead`, `coursework`, `tuition waiver`, `study session`; se reejecutará la regresión para confirmar que no quedan solapamientos.
 
 - Corrección tras la segunda ejecución de CI: dos sustituciones habían quedado aplicadas accidentalmente en U5 en vez de U6. Se restauraron `plot twist` y `storyline` en U5 y se aplicaron `play area` y `school friend` a U6. Nueva regresión pendiente.
+
+
+## Bloque U9–U12 — 27 de noviembre de 2026
+- U9: secuencia y ritmo narrativo; U10: repaso I sin vocabulario nuevo; U11: planes, predicciones y decisiones futuras; U12: future continuous.
+- 4 unidades, 20 lecciones, 80 ejercicios; 66 entradas nuevas (U9/U11/U12, 22 cada una), U10 tiene `vocab: []` y referencias de repaso a vocabulario anterior. B1 U1–U12 acumula 242 entradas únicas.
+- Manifiesto y tests cubren U1–U12, la unidad de repaso con cero vocabulario nuevo y referencias cruzadas a IDs B1 anteriores. Auditoría estática interna: 242/242 únicos.
+- Nuevas entradas `not_checked`; sin revisión nativa ni certificación CEFR. CI pendiente.

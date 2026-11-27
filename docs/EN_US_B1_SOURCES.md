@@ -1,6 +1,6 @@
 # Inglés americano B1 — fuentes, plan y trazabilidad
 
-**Estado:** temario completo aprobado por el usuario el 27 de noviembre de 2026. Implementación en bloques pequeños; U1–U28 están authored en siete bloques apilados. El nivel permanece sin publicar.
+**Estado:** temario completo aprobado por el usuario el 27 de noviembre de 2026. Implementación en bloques pequeños; U1–U32 están authored en ocho bloques apilados. El nivel permanece sin publicar.
 
 ## Estructura aprobada
 - 52 unidades, 5 lecciones explícitas por unidad y 20 ejercicios por unidad: 260 lecciones y 1.040 ejercicios al completar el nivel.
@@ -153,3 +153,11 @@
 - Acumulado U1–U28: 28 unidades, 140 lecciones, 560 ejercicios y 572 entradas nuevas. U10 y U20 siguen siendo repasos sin vocabulario nuevo.
 - Deduplicación estática B1: 572/572 targets únicos. U25–U28 comparadas contra A1/A2 sin coincidencias exactas tras cambiar `make progress` por `show steady improvement`. Vocabulario `not_checked`; no es certificación CEFR ni revisión nativa.
 - Inglés continúa `available:false` hasta completar B1 y sus gates. Sin cambios a IndexedDB v1, backup JSON v3, dependencias, audio, red ni otros idiomas.
+
+
+## Bloque U29–U32 — inglés americano B1
+- U29: phrasal verbs, separabilidad y partículas; U30: Review III sin vocabulario nuevo; U31: relative clauses definitorias/no definitorias; U32: whose/where/when y omisión del relativo.
+- Añade 3 unidades de contenido (66 entradas, 15 lecciones) y un repaso de 5 lecciones sin vocabulario nuevo. Total del bloque: 4 unidades, 20 lecciones y 80 ejercicios.
+- Acumulado U1–U32: 32 unidades, 160 lecciones, 640 ejercicios y 638 entradas nuevas. U10, U20 y U30 son repasos sin vocabulario nuevo.
+- Deduplicación estática B1: 638/638 targets únicos. U29–U32 comparadas contra A1/A2; tres solapamientos de phrasal verbs fueron reemplazados por `take on`, `look back on` y `break off`, sin coincidencias exactas en los inventarios A1/A2.
+- Entradas nuevas `not_checked`; sin certificación CEFR ni revisión nativa. Inglés continúa `available:false` hasta completar B1 y sus gates. Sin cambios a IndexedDB v1, backup JSON v3, dependencias, audio, red ni otros idiomas.

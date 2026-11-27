@@ -1,6 +1,6 @@
 # Inglés americano B1 — fuentes, plan y trazabilidad
 
-**Estado:** temario completo aprobado por el usuario el 27 de noviembre de 2026. Implementación en bloques pequeños; U1–U40 están authored en diez bloques apilados. El nivel permanece sin publicar.
+**Estado:** temario completo aprobado por el usuario el 27 de noviembre de 2026. Implementación en bloques pequeños; U1–U44 están authored en once bloques apilados. El nivel permanece sin publicar.
 
 ## Estructura aprobada
 - 52 unidades, 5 lecciones explícitas por unidad y 20 ejercicios por unidad: 260 lecciones y 1.040 ejercicios al completar el nivel.
@@ -179,3 +179,11 @@
 - U40 reutiliza IDs de U33–U39 y no crea vocabulario. Los bancos y las cinco lecciones conservan los tipos `mc` y `order` del runtime actual.
 - Deduplicación estática: U37–U39 aportan 66 targets, únicos entre sí y sin coincidencias exactas con A1/A2 ni U1–U36. `have something repaired` se sustituyó por `get an appliance repaired` al detectar reutilización exacta en U28. La CI repetirá la comprobación sobre el inventario completo. Entradas nuevas `not_checked`; no se afirma cotejo individual CEFR-J, naturalidad nativa ni certificación MCER.
 - Inglés continúa `available:false` hasta completar U52 y sus gates. Sin cambios a IndexedDB v1, backup JSON v3, dependencias, audio, red ni otros idiomas.
+
+
+## Bloque U41–U44 — inglés americano B1
+- U41: discourse markers para adición, contraste, resultado y reformulación; U42: causa y propósito; U43: indirect questions y question tags; U44: so/such/too/enough e intensificadores.
+- Añade 4 unidades de contenido, 88 entradas nuevas, 20 lecciones y 80 ejercicios.
+- Acumulado U1–U44: 44 unidades, 220 lecciones, 880 ejercicios y 880 entradas nuevas. Los repasos sin vocabulario nuevo son U10, U20, U30 y U40.
+- Deduplicación estática: 88/88 targets únicos; sin coincidencias exactas con A1/A2 ni U1–U40. La CI repetirá la comparación sobre el inventario completo.
+- Entradas nuevas `not_checked`; sin cotejo individual CEFR-J, revisión nativa ni certificación MCER. Inglés continúa `available:false` hasta completar U52 y los gates de publicación. Sin cambios a IndexedDB v1, backup JSON v3, dependencias, audio, red ni otros idiomas.

@@ -6,7 +6,8 @@ Estado: primer bloque U1–U6 en desarrollo; el nivel no está publicado. Fecha:
 
 - **CEFR-J Wordlist v1.6** — referencia de nivel y selección léxica. La página oficial informa 1.411 entradas por categoría gramatical y 1.352 headwords de referencia para A2. La lista distingue categorías gramaticales y niveles; esos recuentos no equivalen a palabras que deban enseñarse en este curso.
   - https://cefr-j.org/download_eng.html
-  - Cita: The CEFR-J Wordlist Version 1.6. Compiled by Yukio Tono, Tokyo University of Foreign Studies. Retrieved from https://cefr-j.org/data/CEFRJ_wordlist_ver1.6.zip on 2026-11-26.
+  - Fuente oficial consultada el 2026-11-26: https://cefr-j.org/download_eng.html; la página enlaza el archivo ZIP CEFR-J Wordlist v1.6.
+  - La descarga directa del ZIP no se pudo procesar en esta revisión; por tanto, no se afirma que los 132 lemas se hayan cotejado individualmente contra la hoja A2.
   - La lista original no se copia ni se redistribuye en el repositorio. La trazabilidad individual de cada lema frente a la hoja A2 queda pendiente; por eso todas las entradas siguen not_checked.
 - **CEFR-J Grammar Profile, Teacher's Version v20200220** — referencia para la progresión gramatical. No se copian sus tablas ni se presentan las unidades como equivalentes certificados del perfil.
   - https://cefr-j.org/download_eng.html

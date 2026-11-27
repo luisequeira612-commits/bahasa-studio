@@ -146,7 +146,7 @@ window.AudioEngine = {
         const area = document.getElementById('exerciseArea');
         if (area && typeof area.querySelectorAll === 'function') {
             area.querySelectorAll('p').forEach(paragraph => {
-                if (/Toca una palabra en indonesio para consultar su significado sin salir de la lección\./i.test(paragraph.textContent || '')) {
+                if (/Toca una palabra en .+? para consultar su significado sin salir de la lección\./i.test(paragraph.textContent || '')) {
                     paragraph.textContent = '💡 Toca una palabra en ' + languageName +
                         ' para consultar su significado sin salir de la lección.';
                 }

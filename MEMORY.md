@@ -825,3 +825,7 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Manifiesto y prueba amplían el alcance a U40; CI, unicidad total y comparación con A1 pendientes al registrar esta nota.
 - Vocabulario not_checked; cotejo individual CEFR-J pendiente. Sin cambios a IndexedDB v1, backup JSON v3, dependencias, POS/audio, PT-BR ni otros idiomas. Inglés sigue available:false; no fusionar ni publicar sin aprobación expresa.
 - Fuente: PR #912, units-39-40.js, manifest, tests y docs; 27 nov 2026.
+
+
+## 2026-11-27 — Inglés en-US B1 aprobado; U1–U4 en implementación
+- El usuario aprobó el temario B1 de 52 unidades (260 lecciones, 1.040 ejercicios; repasos U10/U20/U30/U40/U50/U52). Rama `feat/en-us-b1-u01-u04`, apilada sobre el head verde de A2 PR #912. Primer bloque: U1 present perfect/past simple; U2 ever/never/just/already/yet; U3 present perfect continuous; U4 past perfect. 4 unidades, 20 lecciones, 80 ejercicios y 88 entradas nuevas. Tests verifican estructura, referencias y deduplicación contra A1/A2. Todas `not_checked`; inglés `available:false`; sin cambios a IndexedDB v1, backup JSON v3, dependencias u otros idiomas. PR y CI pendientes; no fusionar/publicar sin aprobación expresa. Fuente: decisión del usuario y rama B1, 27 nov 2026.

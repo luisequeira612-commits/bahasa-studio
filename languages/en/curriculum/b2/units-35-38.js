@@ -91,7 +91,7 @@ lessons:[
 {n:38,title:"Implicature e indirectness: significado implícito y cortesía",desc:"Interpreta significados implícitos, peticiones indirectas, reservas y respuestas diplomáticas según el contexto.",grammar:"Pragmatic inference, indirect requests, understatement, polite refusal and context-dependent meaning; literal wording may differ from intended force.",trap:"That's an interesting idea can be sincere or politely reserved depending on tone and context. Do not infer a hidden meaning without contextual evidence.",rows:[
 ["I was wondering if","me preguntaba si","I was wondering if you could send the details today.","Me preguntaba si podrías enviar los detalles hoy."],
 ["would you mind","te importaría","Would you mind closing the window?","¿Te importaría cerrar la ventana?"],
-["it's not ideal","no es lo ideal","The timing is not ideal, but we can make it work.","El momento no es lo ideal, pero podemos hacerlo funcionar."],
+["it's not ideal","no es lo ideal","The timing is not ideal, but we can make it work.","El momento no es ideal, pero podemos hacer que funcione."],
 ["I'm not sure that's the best approach","no estoy seguro de que sea el mejor enfoque","I'm not sure that's the best approach given the deadline.","No estoy seguro de que sea el mejor enfoque teniendo en cuenta el plazo."],
 ["that's one way of looking at it","esa es una forma de verlo","That's one way of looking at it, although there are other factors.","Esa es una forma de verlo, aunque hay otros factores."],
 ["with all due respect","con todo respeto","With all due respect, I don't think the figures are comparable.","Con todo respeto, no creo que las cifras sean comparables."],

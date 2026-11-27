@@ -86,3 +86,5 @@
 - La comparación completa se repetirá sobre el nuevo head; no se considera aprobado el bloque hasta que la regresión y el resto de CI terminen en verde.
 
 - Segundo pase CI: persistía una única coincidencia exacta con A1/A2 (`in the meantime`); se sustituyó por `in the interim`. Repetir regresión completa sobre el head actualizado.
+
+- El pase de deduplicación contra A1/A2 ya es verde (88 targets únicos sin solapamiento exacto). La siguiente regresión encontró solo una expectativa errónea en el test: `loadUnits` devuelve `totalUnits: 52` (tamaño completo del nivel), no 4 (unidades authored). Se corrigió la aserción; repetir CI.

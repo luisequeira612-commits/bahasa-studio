@@ -814,3 +814,11 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Auditoría estática: 770 targets únicos en A2. Manifiesto y test se amplían a U38 y comprueban también solapamiento con A1.
 - CI pendiente. Entradas `not_checked`; cotejo individual CEFR-J pendiente. Sin cambios a IndexedDB v1, backup JSON v3, dependencias, POS/audio, PT-BR ni otros idiomas. No fusionar ni publicar sin aprobación expresa.
 - Fuente: rama `feat/en-us-a2-u35-u38-v2`, currículo, tests y docs; 27 nov 2026.
+
+
+## 2026-11-27 — Inglés en-US A2 U39–U40 (bloque final)
+- Rama `feat/en-us-a2-u39-u40`, apilada sobre PR #912. U39 cubre phrasal verbs sociales y patrones gerundio/infinitivo; U40 es evaluación final integrada sin vocabulario nuevo.
+- Bloque final: 2 unidades, 10 lecciones, 40 ejercicios y 22 entradas nuevas. Inventario A2 U1–U40 previsto: 792 entradas; U10/U20/U30/U40 no introducen vocabulario nuevo.
+- Manifiesto y test se amplían a U40; la prueba verifica las 792 entradas únicas, ausencia de solapamiento A1, referencias y disponibilidad `false`.
+- CI pendiente. Entradas `not_checked`; cotejo individual CEFR-J pendiente. Sin cambios a IndexedDB v1, backup JSON v3, dependencias, POS/audio, PT-BR ni otros idiomas. No fusionar ni publicar sin aprobación expresa.
+- Fuente: rama `feat/en-us-a2-u39-u40`, currículo, tests y docs; 27 nov 2026.

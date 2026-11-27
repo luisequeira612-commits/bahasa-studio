@@ -25,9 +25,9 @@ const rows=[
 ["a clearly defined set of responsibilities","un conjunto de responsabilidades claramente definido","Each team needs a clearly defined set of responsibilities.","Cada equipo necesita un conjunto de responsabilidades claramente definido."]
 ];
 const lessons=[
-["Premodificadores y orden","Organiza adjetivos, adverbios y nombres antes del sustantivo sin crear secuencias confusas.","Los premodificadores suelen ir antes del núcleo; los adverbios como rapidly y carefully modifican adjetivos o participios.",[0,1,2,3],"The rapidly changing economic climate requires flexible planning."],
-["Postmodificación con frases y relativas","Añade información después del núcleo mediante frases preposicionales y cláusulas reducidas.","Of-phrases, participle clauses y relative clauses amplían el sustantivo; coloca el modificador junto a su referente.",[4,5,6,7],"The evidence gathered during the investigation was presented to the panel."],
-["Sustantivos abstractos y precisión","Usa grupos nominales densos para resumir conceptos, procesos y evaluaciones.","Nominalizaciones como analysis, impact y decision permiten condensar ideas; no sacrifiques claridad por densidad.",[8,9,10,11],"The report includes a detailed analysis of consumer behavior."],
+["Premodificadores y orden","Organiza adjetivos, adverbios y nombres antes del sustantivo sin crear secuencias confusas.","Los premodificadores suelen ir antes del núcleo; los adverbios como rapidly y carefully modifican adjetivos o participios.",[0,1,2,3],"A newly appointed regional director will oversee the expansion."],
+["Postmodificación con frases y relativas","Añade información después del núcleo mediante frases preposicionales y cláusulas reducidas.","Of-phrases, participle clauses y relative clauses amplían el sustantivo; coloca el modificador junto a su referente.",[4,5,6,7],"A widely held assumption turned out to be incorrect."],
+["Sustantivos abstractos y precisión","Usa grupos nominales densos para resumir conceptos, procesos y evaluaciones.","Nominalizaciones como analysis, impact y decision permiten condensar ideas; no sacrifiques claridad por densidad.",[8,9,10,11],"The highly controversial policy decision prompted public debate."],
 ["Complementos y relaciones complejas","Expresa causas, alcance, relaciones y requisitos dentro de grupos nominales.","Los complementos con of, between, to y caused by especifican relaciones; comprueba qué sustantivo gobierna la preposición.",[12,13,14,15],"We need to identify the underlying causes of the problem."],
 ["Densidad informativa con claridad","Integra modificadores y complementos en lenguaje académico y profesional.","Un grupo nominal complejo debe tener un núcleo identificable; divide la frase si los modificadores dificultan la comprensión.",[16,17,18,19,20,21],"The measures necessary to prevent recurrence were included in the report."]
 ];
@@ -43,7 +43,7 @@ const reviewRefs=[
 ["en_b2_u22_v01","to have something repaired","mandar a reparar algo","I had my laptop repaired last week."],
 ["en_b2_u23_v02","having finished","habiendo terminado","Having finished the report, she sent it to the director."],
 ["en_b2_u24_v02","the report submitted yesterday","el informe presentado ayer","The report submitted yesterday contains updated figures."],
-["en_b2_u25_v03","what matters most is","lo que más importa es","What matters most is how we respond."],
+["en_b2_u25_v03","what is crucial is","lo crucial es","What is crucial is how we respond."],
 ["en_b2_u26_v01","rarely do we see","rara vez vemos","Rarely do we see such a rapid improvement."],
 ["en_b2_u27_v01","as for","en cuanto a","As for the budget, we need another estimate."],
 ["en_b2_u28_v03","I hope so","eso espero","Will the delivery arrive today? I hope so."],
@@ -54,7 +54,7 @@ const reviewLessons=[
 ["Participios y relativas reducidas","Condensa información temporal, activa y pasiva.","Present/perfect participle clauses and reduced relative clauses.",[2,3],"The report submitted yesterday contains updated figures."],
 ["Énfasis mediante clefts e inversión","Destaca información y reconoce patrones de inversión.","It-clefts, what-clefts and inversion after negative adverbials.",[4,5],"Rarely do we see such a rapid improvement."],
 ["Tema y sustitución","Organiza el discurso y evita repeticiones innecesarias.","Fronting, topicalisation, so/not substitution and auxiliary agreement.",[6,7],"Will the delivery arrive today? I hope so."],
-["Síntesis de sintaxis compleja","Integra estructuras complejas en una explicación profesional.","Choose a structure according to focus, register and information flow.",[1,4,8],"What matters most is how we respond."]
+["Síntesis de sintaxis compleja","Integra estructuras complejas en una explicación profesional.","Choose a structure according to focus, register and information flow.",[1,4,8],"What is crucial is how we respond."]
 ];
 const reviewObjects=reviewLessons.map(l=>({title:l[0],objective:l[1],grammar:l[2],vocabIds:[],reviewVocabIds:l[3].map(i=>reviewRefs[i][0]),exercises:[{vocabId:reviewRefs[l[3][0]][0],type:"mc",prompt:"Repasa «"+reviewRefs[l[3][0]][1]+"».",options:[reviewRefs[l[3][0]][2],reviewRefs[(l[3][0]+1)%reviewRefs.length][2],reviewRefs[(l[3][0]+2)%reviewRefs.length][2]],answer:0,explanation:"Recuperación de estructuras de U21–U29."},(()=>{const correctOrder=l[4].replace(/[.,!?;:]/g,"").trim().split(/\s+/).filter(Boolean);let w=correctOrder.length>1?correctOrder.slice(1).concat(correctOrder.slice(0,1)):correctOrder.slice();if(w.join(" ")===correctOrder.join(" "))w=correctOrder.slice().reverse();return {vocabId:reviewRefs[l[3][Math.min(1,l[3].length-1)]][0],type:"order",prompt:"Ordena la frase.",words:w,correctOrder,explanation:"Reconstruye la estructura y reconoce su función discursiva."};})()]}));
 const reviewBank=reviewRefs.slice(4,9).map(v=>v[3]);

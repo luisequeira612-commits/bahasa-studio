@@ -31,6 +31,7 @@ test('el diccionario usa vocabulario y locale neutrales del curso activo', () =>
     const renderer = html.slice(start, end);
     assert.match(renderer, /const language = LanguageManager\.getActiveLanguage\(\)/);
     assert.match(renderer, /const locale = LanguageManager\.getLocale\(language\)/);
+    assert.match(renderer, /CurriculumLoader\.adaptVocabulary\(rawWord, language\)/);
     assert.match(renderer, /word\.text/);
     assert.match(renderer, /word\.translation/);
     assert.match(renderer, /word\.example/);

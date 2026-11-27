@@ -75,6 +75,8 @@ function createEngine(options = {}) {
         spoken,
         createdAudio,
         statuses,
+        hint,
+        languageTrigger,
         setAvailableVoices(voices) { availableVoices = voices; },
         get cancelCalls() { return cancelCalls; }
     };

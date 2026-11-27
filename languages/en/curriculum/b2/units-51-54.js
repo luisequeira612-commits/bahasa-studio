@@ -103,7 +103,7 @@ lessons:[
 ["to summarize the discussion","resumir el debate","Let me summarize the discussion so far.","Permítanme resumir el debate hasta ahora."],
 ["to reach a decision","tomar una decisión","We need to reach a decision before the deadline.","Tenemos que tomar una decisión antes del plazo."],
 ["to defer a decision","aplazar una decisión","The chair decided to defer the decision until Friday.","La presidencia decidió aplazar la decisión hasta el viernes."],
-["to raise a point","plantear un punto","I'd like to raise one final point.","Me gustaría plantear un último punto."],
+["to raise a point","plantear una cuestión","I'd like to raise one final point.","Me gustaría plantear una última cuestión."],
 ["to clarify the agenda","aclarar la agenda","Could we clarify the agenda before starting?","¿Podríamos aclarar la agenda antes de empezar?"],
 ["to keep to the schedule","ceñirse al horario","We need to keep to the schedule today.","Hoy tenemos que ceñirnos al horario."],
 ["to run over time","pasarse del tiempo previsto","The presentation ran over time by ten minutes.","La presentación se pasó diez minutos del tiempo previsto."],

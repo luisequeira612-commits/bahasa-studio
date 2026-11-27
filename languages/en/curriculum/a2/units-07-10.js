@@ -38,8 +38,8 @@ lessons:[
 ['Lesiones leves','Describe lesiones y partes del cuerpo afectadas.','Usa have/had + lesión y pasado simple para el resultado.',[5,6,7,8,9],'She had a bruise on her arm.'],
 ['Dolor y molestias','Explica cómo se sentía una lesión.','Was/were + adjetivo para describir estados pasados.',[10,11,12,13],'My knee was sore after the fall.'],
 ['Primeros auxilios','Describe cómo alguien atendió una lesión.','Usa pasado continuo para acciones de fondo y pasado simple para la intervención.',[14,15,16],'He was bleeding, so we used a bandage.'],
-['Resultados y recuperación','Cuenta qué casi ocurrió y cómo terminó la situación.','Nearly y almost expresan que algo estuvo a punto de suceder.',[17,18,19,20,21],'Fortunately, he recovered quickly.']],
-bank:['I was walking when I slipped on the wet floor.','She tripped over a stone while she was running.','He hurt his ankle during the game.','We gave him first aid after the accident.','Fortunately, nobody was hurt.']},
+['Resultados y recuperación','Cuenta qué casi ocurrió y cómo terminó la situación.','Nearly y almost expresan que algo estuvo a punto de suceder.',[17,18,19,20,21],'I nearly fell when the bus stopped.']],
+bank:['The injury was not serious.','She had a bruise on her arm.','He hurt his ankle during the game.','I hurt my wrist when I was carrying a box.','She hit her elbow on the door.']},
 {n:8,title:'Secuenciar relatos y viajes',desc:'Organiza experiencias pasadas en orden y cuenta viajes con información sobre recorridos, alojamiento y visitas.',grammar:'Usa first of all, afterwards, later on y at last para ordenar acontecimientos. Combina los conectores con pasado simple.',trap:['Orden temporal','First of all, we checked in. Afterwards, we went sightseeing. Finally, we returned to the hotel.'],rows:[
 ['first of all','antes que nada','First of all, we bought the tickets.','Antes que nada, compramos los boletos.'],
 ['afterwards','después','We visited the museum and afterwards had lunch.','Visitamos el museo y después almorzamos.'],
@@ -65,26 +65,26 @@ bank:['I was walking when I slipped on the wet floor.','She tripped over a stone
 ['check out','dejar la habitación','We checked out early on Sunday.','Dejamos la habitación temprano el domingo.']],
 lessons:[
 ['Conectores de secuencia','Ordena los primeros y últimos acontecimientos de un relato.','First of all introduce el inicio; afterwards y later on indican pasos posteriores.',[0,1,2,3,4],'First of all, we bought the tickets. Afterwards, we left.'],
-['Inicio y final de un viaje','Describe qué hiciste al principio y hacia el final.','At the beginning y towards the end sitúan etapas del relato.',[5,6,7,8],'At the beginning, we went sightseeing.'],
+['Inicio y final de un viaje','Describe qué hiciste al principio y hacia el final.','At the beginning y towards the end sitúan etapas del relato.',[5,6,7,8],'Towards the end, we visited the old market.'],
 ['Recorridos y guías','Habla de visitas, recorridos y materiales de orientación.','Usa pasado simple para contar qué hizo el guía o el turista.',[9,10,11,12],'Our tour guide used a guidebook.'],
 ['Trayecto y destino','Explica cuánto duró un viaje y cuál era el destino.','Journey y destination son sustantivos; departure y arrival nombran momentos.',[13,14,15,16],'Our journey ended at the destination.'],
-['Alojamiento','Cuenta cómo te registraste y dejaste el alojamiento.','Check in y check out son expresiones verbales de viaje.',[17,18,19,20,21],'We checked in at noon and checked out on Sunday.']],
-bank:['First of all, we checked in at the hotel.','Afterwards, we went sightseeing with a tour guide.','The journey to our destination took five hours.','Our departure was early, but our arrival was late.','We checked out after staying overnight.']},
+['Alojamiento','Cuenta cómo te registraste y dejaste el alojamiento.','Check in y check out son expresiones verbales de viaje.',[17,18,19,20,21],'Our arrival was later than expected.']],
+bank:['At the beginning, the town was quiet.','Towards the end, we visited the old market.','We went sightseeing every morning.','The guided tour lasted two hours.','A tourist asked us for directions.']},
 {n:9,title:'Infancia y cambios personales',desc:'Compara hábitos y estados de la infancia con la vida actual usando used to.',grammar:'Used to + verbo base expresa hábitos o estados pasados que ya no son habituales. En preguntas y negativas se usa did/didn’t use to.',trap:['Used to no es el pasado de be used to','I used to play outside. / I did not use to have a phone. Después de did usa use to, sin -d.'],rows:[
 ['childhood','infancia','My childhood was very happy.','Mi infancia fue muy feliz.'],
 ['teenager','adolescente','As a teenager, I loved music.','Cuando era adolescente, me encantaba la música.'],
 ['teenage','adolescente / juvenil','She has many teenage memories.','Ella tiene muchos recuerdos de su adolescencia.'],
-['grow up','crecer','I grew up in a small town.','Crecí en un pueblo pequeño.'],
+['grow up','crecer','As a teenager, I loved music.','Crecí en un pueblo pequeño.'],
 ['upbringing','crianza','His upbringing was very strict.','Su crianza fue muy estricta.'],
 ['schoolmate','compañero de escuela','I met an old schoolmate yesterday.','Ayer me encontré con un antiguo compañero de escuela.'],
 ['playground','patio de juegos','We used to play in the playground.','Solíamos jugar en el patio de juegos.'],
 ['nursery','guardería','My brother went to nursery at age three.','Mi hermano fue a la guardería a los tres años.'],
 ['primary school','escuela primaria','I started primary school in August.','Empecé la escuela primaria en agosto.'],
 ['secondary school','escuela secundaria','She changed schools in secondary school.','Ella cambió de escuela en secundaria.'],
-['cartoon','dibujo animado','We used to watch cartoons after school.','Solíamos ver dibujos animados después de la escuela.'],
+['cartoon','dibujo animado','I started secondary school when I was twelve.','Solíamos ver dibujos animados después de la escuela.'],
 ['comic book','historieta / cómic','He collected comic books as a child.','Coleccionaba cómics cuando era niño.'],
 ['outdoor game','juego al aire libre','Our favorite outdoor game was hide-and-seek.','Nuestro juego favorito al aire libre era el escondite.'],
-['family tradition','tradición familiar','Sunday lunch was a family tradition.','El almuerzo del domingo era una tradición familiar.'],
+['family tradition','tradición familiar','My first teacher was strict.','El almuerzo del domingo era una tradición familiar.'],
 ['old-fashioned','anticuado','My parents had an old-fashioned radio.','Mis padres tenían una radio anticuada.'],
 ['strict','estricto / estricta','My first teacher was strict.','Mi primer maestro era estricto.'],
 ['naughty','travieso / traviesa','I was a naughty child sometimes.','A veces era un niño travieso.'],
@@ -98,8 +98,8 @@ lessons:[
 ['Escuela y compañeros','Describe la escuela y las personas que conocías.','Did not use to + verbo base para hábitos que no existían.',[4,5,6,7],'I used to meet my schoolmates at the playground.'],
 ['Juegos y entretenimiento','Compara juegos y actividades de antes.','Used to puede describir acciones repetidas en el pasado.',[8,9,10,11],'We used to watch cartoons after school.'],
 ['Costumbres familiares','Describe tradiciones y normas de la infancia.','Was/were + adjetivo para estados pasados; used to para costumbres.',[12,13,14,15],'Sunday lunch was a family tradition.'],
-['Personalidad y recuerdos','Explica cómo eras y cómo has cambiado.','En preguntas usa Did + sujeto + use to + verbo.',[16,17,18,19,20,21],'Did you use to be shy?']],
-bank:['I used to play in the playground after school.','My childhood was different from my life now.','We used to watch cartoons on Saturday mornings.','My parents were strict, but I was a happy child.','Did you use to collect comic books?']}
+['Personalidad y recuerdos','Explica cómo eras y cómo has cambiado.','En preguntas usa Did + sujeto + use to + verbo.',[16,17,18,19,20,21],'I am more confident now.']],
+bank:['I met an old schoolmate yesterday.','We used to play in the playground.','My brother went to nursery at age three.','I started primary school in August.','She changed schools in secondary school.']}
 ];
 const units=data.map(makeUnit);
 const mcReview=(id,target,translation)=>({vocabId:id,type:'mc',prompt:'¿Qué significa «'+target+'»?',options:[translation,'otra opción','una opción diferente'],answer:0,explanation:'Recupera vocabulario de unidades anteriores.'});

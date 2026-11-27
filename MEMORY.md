@@ -749,3 +749,11 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Inventario A2 U1–U14: 286 entradas nuevas (U10 es repaso sin vocabulario). Auditoría estática: 88 targets únicos en el bloque, sin coincidencias exactas con A1 (638 targets) ni A2 U1–U10 (198 targets).
 - Vocabulario permanece `not_checked`; cotejo individual CEFR-J pendiente. Manifiesto ampliado a U14; inglés continúa `available:false` y «Próximamente». Sin cambios de almacenamiento, dependencias ni otros idiomas.
 - Fuente: rama `feat/en-us-a2-u11-u14`, archivos curriculares y tests; 27 nov 2026.
+
+
+## 2026-11-27 — Inglés en-US A2 U15–U18
+- Rama `feat/en-us-a2-u15-u18` iniciada desde el head CI-verde de PR #902.
+- Bloque U15–U18: 4 unidades, 20 lecciones, 88 entradas léxicas y 80 ejercicios. Temas: contraste de futuros y cambios de viaje; comparativos; superlativos; igualdad/diferencia y too/enough.
+- Total A2 U1–U18: 374 entradas nuevas; U10 es repaso sin vocabulario. Entradas nuevas `not_checked`; cotejo CEFR-J individual pendiente.
+- Inglés continúa `available:false`; sin cambios a IndexedDB v1, backup JSON v3, dependencias, PT-BR ni otros idiomas.
+- Fuente: rama `feat/en-us-a2-u15-u18`, currículum, pruebas y docs; 27 nov 2026.

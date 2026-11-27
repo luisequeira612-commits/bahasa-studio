@@ -1,3 +1,15 @@
+## 2026-11-26 — Inglés en-US B1 U49–U52 authored; temario completo
+- Rama `feat/en-us-b1-u49-u52`, apilada sobre U1–U48. U49 comunicación profesional; U50 Review V; U51 argumentar/negociar/resolver problemas; U52 B1 Final Check.
+- Bloque: 2 unidades de contenido, 44 entradas nuevas, 10 lecciones de contenido; U50 y U52 son repasos/evaluaciones con cero vocabulario. Total bloque: 4 unidades, 20 lecciones y 80 ejercicios. Acumulado U1–U52: 1.012 entradas, 260 lecciones y 1.040 ejercicios; repasos U10/U20/U30/U40/U50/U52.
+- El temario de inglés B1 está authored hasta U52. Auditoría estática del bloque y CI pendiente; vocabulario `not_checked`; inglés sigue `available:false` hasta integración y gates finales.
+- Sin cambios a IndexedDB v1, backup JSON v3, dependencias, audio, red ni otros idiomas. Fuente: `EN_US_B1_SOURCES.md`, manifiesto, currículo y tests; 26 nov 2026.
+
+## 2026-11-26 — Inglés en-US B1 U45–U48 en preparación
+- Rama `feat/en-us-b1-u45-u48`, apilada sobre U1–U44. U45 formación de adverbios/adjetivos; U46 artículos/determinantes y cuantificadores; U47 word formation; U48 collocations y dependent prepositions.
+- Bloque: 4 unidades de contenido, 88 entradas nuevas, 20 lecciones y 80 ejercicios. Acumulado U1–U48: 968 entradas únicas, 240 lecciones y 960 ejercicios; repasos U10/U20/U30/U40.
+- Auditoría estática previa: 88/88 targets únicos y cero coincidencias exactas con A1/A2 o U1–U44. CI pendiente; entradas `not_checked`; inglés sigue `available:false`.
+- Sin cambios a IndexedDB v1, backup JSON v3, dependencias, audio, red ni otros idiomas. Fuente: `EN_US_B1_SOURCES.md`, manifiesto, currículo y tests; 26 nov 2026.
+
 ## 2026-11-26 — Inglés en-US B1 U41–U44 en preparación
 - Rama `feat/en-us-b1-u41-u44`, apilada sobre U1–U40. U41 discourse markers; U42 causa y propósito; U43 preguntas indirectas y question tags; U44 so/such/too/enough e intensificadores.
 - Bloque: 4 unidades de contenido, 88 entradas nuevas, 20 lecciones y 80 ejercicios. Acumulado U1–U44: 880 entradas únicas, 220 lecciones y 880 ejercicios; repasos U10/U20/U30/U40.

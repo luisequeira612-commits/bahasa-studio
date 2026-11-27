@@ -953,3 +953,10 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - La regresión del commit de PR `8e6e432` seguía en ejecución al registrar esta nota (workflow #4415); type checks pasó. No se ha probado aún la reproducción real en GitHub Pages ni se ha fusionado la PR #942.
 - Se actualizó la descripción de PR #942 con estas cifras y el estado real.
 - Fuente: GitHub Actions #45964968625 y árbol Git de `fix/pt-br-audio-language-labels`, 27 nov 2026.
+
+
+## 2026-11-27 — Alinear la prueba de inventario con el nuevo manifiesto Piper
+- La primera regresión tras generar el lote falló en `tests/audio-manifest.test.mjs`: comparaba todos los MP3 nuevos de `audio/id/` contra el antiguo `audio/index.json` (2.268 IDs), aunque el manifiesto Piper ahora incluye 2.392 clips ID al sumar respuestas/ejercicios interactivos y B2.
+- No se debe ampliar ni reescribir el índice legado `audio/index.json`, porque mantiene su propio contrato para el audio preexistente. La prueba ahora compara los MP3 generados con los IDs de `audio/manifest.json` cuando existe el inventario Piper, y mantiene el índice legado como fallback en ramas antiguas.
+- Cambio de prueba registrado en commit `753a541`; requiere CI nuevo. No se ha fusionado PR #942 ni se ha probado aún GitHub Pages.
+- Fuente: Regression workflow #45966347954, job test, error en `tests/audio-manifest.test.mjs`; 27 nov 2026.

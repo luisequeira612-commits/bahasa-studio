@@ -2,7 +2,7 @@
 
 - Rama `fix/pt-br-audio-language-labels`: si falta un MP3 del idioma activo, `AudioEngine` solicita al navegador una voz usando el locale del curso aunque `getVoices()` no haya enumerado voces; acepta voces `pt-PT` como respaldo compatible con `pt-BR`, sin usar voces de otro idioma.
 - El mensaje de consulta de palabras y la etiqueta accesible del selector se actualizan al idioma activo; el estado de audio ya no afirma que todos los cursos incluyen grabaciones Piper cuando no están configuradas.
-- Pruebas añadidas/actualizadas en `tests/audio-engine.test.cjs` para las seis palabras iniciales PT-BR, locale sin voz enumerada, voz PT-PT y cambio de idioma en las etiquetas. `tests/browser-e2e.test.cjs` actualizado para reflejar el estado honesto del respaldo TTS; test añadido para impedir que PT-BR use una voz indonesia como fallback. CI pendiente; PR sin fusionar.
+- Pruebas añadidas/actualizadas en `tests/audio-engine.test.cjs` para las seis palabras iniciales PT-BR, locale sin voz enumerada, voz PT-PT y cambio de idioma en las etiquetas. `tests/browser-e2e.test.cjs` actualizado para reflejar el estado honesto del respaldo TTS; test añadido para impedir que PT-BR use una voz indonesia como fallback. Se ajustó otra aserción E2E para distinguir correctamente grabaciones Piper configuradas de fallback TTS. CI pendiente; PR sin fusionar.
 - Sin cambios a contenido curricular, traducciones/pronunciación, IndexedDB v1, backup JSON v3, dependencias ni progreso.
 
 Fuente: solicitud del dueño del 27 nov 2026; `audio-engine.js`, `tests/audio-engine.test.cjs` y `.github/workflows/regression.yml`.

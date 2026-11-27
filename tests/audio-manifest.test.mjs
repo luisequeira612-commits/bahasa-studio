@@ -202,6 +202,13 @@ test('all-language export follows the central language registry and includes eve
     const languages = new Set(entries.map((entry) => entry.language));
     assert.ok(languages.has('id'), 'Indonesian course must be exported');
     assert.ok(languages.has('pt-BR'), 'Brazilian Portuguese course must be discovered from LanguageManager');
+    for (const level of ['A1', 'A2', 'B1', 'B2']) {
+      assert.ok(entries.some((entry) => entry.language === 'pt-BR' &&
+        entry.sources.some((source) => source.level === level)),
+      'Portuguese ' + level + ' texts must be exported');
+    }
+    assert.ok(entries.some((entry) => entry.language === 'pt-BR' && entry.text.toLowerCase() === 'olá'),
+      'the initial Portuguese greeting must be included');
     assert.ok(entries.every((entry) => entry.language && entry.locale && entry.text && entry.sources.length > 0));
     assert.equal(new Set(entries.map((entry) => entry.language + ':' + entry.id)).size, entries.length,
       'audio text IDs must be unique within each language');

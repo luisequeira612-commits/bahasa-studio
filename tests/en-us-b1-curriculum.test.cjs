@@ -97,3 +97,24 @@ test('B1 U1-U4 lesson multiple-choice distractors use real unit vocabulary', asy
     }
   }
 });
+
+test('B1 U13-U17 vocabulary uses natural American English and precise Spanish', async () => {
+  const { units } = await loader().loadUnits('en', 'B1', Array.from({ length: 52 }, (_, i) => i + 1));
+  const expected = [
+    [13, 'be about to', 'estar a punto de', 'The crew was about to start the test.', 'El equipo estaba a punto de iniciar la prueba.'],
+    [13, 'final preparations', 'preparativos finales', 'The staff is making the final preparations for the opening.', 'El personal está haciendo los preparativos finales para la inauguración.'],
+    [14, 'hard to predict', 'difícil de predecir', 'Future demand is hard to predict.', 'La demanda futura es difícil de predecir.'],
+    [14, 'confidence is growing', 'la confianza está aumentando', 'Confidence is growing as more results become available.', 'La confianza está aumentando a medida que se conocen más resultados.'],
+    [14, 'a slim chance', 'una pequeña posibilidad', 'There is still a slim chance of reaching an agreement.', 'Todavía hay una pequeña posibilidad de llegar a un acuerdo.'],
+    [16, 'follow your passion', 'seguir tu pasión', 'If he had the chance, he would follow his passion for design.', 'Si tuviera la oportunidad, seguiría su pasión por el diseño.'],
+    [17, 'with the understanding that', 'con el compromiso de que', 'The keys can be borrowed with the understanding that they are returned today.', 'Las llaves se pueden prestar con el compromiso de devolverlas hoy.'],
+  ];
+  for (const [unitNumber, target, gloss, example, translation] of expected) {
+    const unit = units.find((item) => item.unitNumber === unitNumber);
+    const word = unit?.vocab?.find((item) => item.target === target);
+    assert.ok(word, 'expected B1 vocabulary target must exist: U' + unitNumber + ' ' + target);
+    assert.equal(word.esp, gloss, 'Spanish gloss must match U' + unitNumber + ' ' + target);
+    assert.equal(word.ex, example, 'English example must match U' + unitNumber + ' ' + target);
+    assert.equal(word.exEsp, translation, 'Spanish example must match U' + unitNumber + ' ' + target);
+  }
+});

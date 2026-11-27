@@ -29,7 +29,7 @@ test('all B1 Spanish translation-selection prompts use statement punctuation',as
  for(const unit of units){
   const exercises=[...(unit.exercises??[]),...(unit.lessons??[]).flatMap(lesson=>lesson.exercises??[])];
   for(const exercise of exercises){
-   if(/^Elige la traducción de «[^»]+»\\?$/.test(exercise.prompt??'')){
+   if(/^Elige la traducción de «[^»]+»\?$/.test(exercise.prompt??'')){
     invalid.push({unit:unit.unitNumber,vocabId:exercise.vocabId,prompt:exercise.prompt});
    }
   }

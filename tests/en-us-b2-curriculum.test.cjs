@@ -364,3 +364,30 @@ test('English B2 U19–U20 cover their targets and keep review examples aligned'
       .replace(/[.,!?;:]/g, '').trim().split(/\s+/));
   }
 });
+
+
+test('English B2 U10 and U30 review lesson and unit banks match their source vocabulary', () => {
+  const units = loadB2();
+  const allVocabulary = units.flatMap((unit) => Array.from(unit.vocab || []));
+  for (const number of [10, 30]) {
+    const unit = units.find((item) => item.unitNumber === number);
+    assert.ok(unit);
+    for (const lesson of unit.lessons) {
+      const exercise = Array.from(lesson.exercises || []).find((item) => item.type === 'order');
+      assert.ok(exercise);
+      assert.equal(exercise.vocabId, lesson.reviewVocabIds[1]);
+      const word = allVocabulary.find((item) => item.id === exercise.vocabId);
+      assert.ok(word);
+      assert.deepEqual(Array.from(exercise.correctOrder), word.ex
+        .replace(/[.,!?;:]/g, '').trim().split(/\s+/));
+    }
+    const bankExercises = Array.from(unit.exercises || []).filter((item) => item.type === 'order');
+    assert.equal(bankExercises.length, 5);
+    for (const exercise of bankExercises) {
+      const word = allVocabulary.find((item) => item.id === exercise.vocabId);
+      assert.ok(word);
+      assert.deepEqual(Array.from(exercise.correctOrder), word.ex
+        .replace(/[.,!?;:]/g, '').trim().split(/\s+/));
+    }
+  }
+});

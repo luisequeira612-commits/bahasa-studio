@@ -1,3 +1,11 @@
+## 2026-11-26 — Inglés en-US B1 U13–U16 en preparación
+- Primera CI de PR #919 encontró una repetición exacta de `be set to` entre U11 y U13; U13 se cambió a `be penciled in for` y se actualizaron traducción, ejemplo y ejercicios. Auditoría estática del acumulado B1 U1–U16: 330/330 targets únicos; nueva CI pendiente.
+- Segunda revisión estática de U13–U16 contra A1/A2 encontró `at short notice` y `check the details`; sustituidos por `on short notice` (en-US) y `verify the figures`, con traducciones y ejemplos alineados. Repetir CI integral.
+- Rama `feat/en-us-b1-u13-u16`, apilada sobre PR #917 (head base `87318e02000cab6a078bde53742629726529fe24`). Añade U13 eventos inminentes/planes previstos, U14 predicciones y certeza, U15 first conditional y consecuencias, U16 second conditional e hipótesis.
+- Bloque: 4 unidades, 20 lecciones, 80 ejercicios y 88 entradas nuevas; acumulado B1 U1–U16: 330 entradas únicas previstas (U10 es repaso sin vocabulario). Manifiesto y contrato ampliados a U16.
+- Todas las entradas nuevas `not_checked`; CI de este bloque pendiente. Inglés permanece `available:false`; no tocar IndexedDB v1, backup JSON v3, dependencias ni otros idiomas. No fusionar ni publicar hasta completar las verificaciones y el gate acordado.
+- Fuente: rama `feat/en-us-b1-u13-u16`, currículo, tests y docs; 26 nov 2026.
+
 ## 2026-11-26 — Diversidad PT-BR B2 U37–U40
 
 - U37–U40 convierten sus 40 actividades de banco de unidad a `order`; las 40 actividades de lección permanecen `mc`.

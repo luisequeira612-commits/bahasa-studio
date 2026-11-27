@@ -27,8 +27,8 @@ const defs=[
 lessons:[
 ["It-clefts: foco y contraste","Destaca el elemento que explica o identifica una situación.","It + be + foco + that/who; usa who para personas y that para cosas o situaciones.",[0,1,2,3],"It was the timing that caused the problem."],
 ["Foco temporal y causal","Resalta cuándo o por qué ocurrió algo.","It was not until + time/clause + that; it is precisely because + clause + that.",[4,5,6,7],"It was not until Monday that we received a reply."],
-["What-clefts","Presenta una acción, necesidad o evaluación como foco informativo.","What + clause + be + focus; what funciona como aquello que se identifica.",[8,9,10,11],"What we need is a clear decision."],
-["Clefts para evaluación","Organiza opiniones y preocupaciones con énfasis controlado.","What concerns/surprises me is...; evita usar una cleft si el énfasis no aporta contraste.",[12,13,14,15],"What concerns me is the lack of preparation."],
+["What-clefts","Presenta una acción, necesidad o evaluación como foco informativo.","What + clause + be + focus; what funciona como aquello que se identifica.",[8,9,10,11],"What happened was that the file had been deleted."],
+["Clefts para evaluación","Organiza opiniones y preocupaciones con énfasis controlado.","What concerns/surprises me is...; evita usar una cleft si el énfasis no aporta contraste.",[12,13,14,15],"What makes it difficult is the limited time available."],
 ["Énfasis integrado","Combina foco, contraste y síntesis en argumentos.","Contrasta it-cleft con what-cleft; el foco debe coincidir con la información que quieres corregir o destacar.",[16,17,18,19,20,21],"What the report shows is a steady decline."]]},
 {n:26,title:"Inversion after negative adverbials",desc:"Emplea inversión auxiliar-sujeto después de expresiones negativas o restrictivas para dar énfasis y controlar el registro.",grammar:"Negative/restrictive adverbial + auxiliary + subject + main verb; past simple uses did; present simple uses do/does.",trap:"Rarely do we see such results. No sooner had we arrived than it started. No uses inversión cuando el adverbial no está al inicio.",rows:[
 ["rarely do we see","rara vez vemos","Rarely do we see such a rapid improvement.","Rara vez vemos una mejora tan rápida."],
@@ -55,9 +55,9 @@ lessons:[
 ["not until the end was","no fue hasta el final cuando","Not until the end was the real reason revealed.","No fue hasta el final cuando se reveló la verdadera razón."]],
 lessons:[
 ["Adverbios de frecuencia negativos","Invierte auxiliar y sujeto para enfatizar frecuencia excepcional.","Rarely, seldom y never al inicio requieren inversión; conserva el tiempo verbal correcto.",[0,1,2,3],"Rarely do we see such a rapid improvement."],
-["Hardly, scarcely y no sooner","Expresa dos sucesos consecutivos con inversión y conectores temporales.","Hardly/scarcely + past perfect + when; no sooner + past perfect + than.",[4,5,6,7],"No sooner had she arrived than the meeting began."],
-["Restricciones y prohibiciones","Da énfasis formal a límites y prohibiciones.","Under no circumstances, at no point, in no way y on no account requieren inversión.",[8,9,10,11],"Under no circumstances should personal data be shared."],
-["Only y not until","Resalta condiciones o momentos que hacen posible un resultado.","Only after/when/then + inversion; not until al inicio también requiere inversión en la principal.",[12,13,14,15],"Only after the review did the errors become clear."],
+["Not until y restricciones temporales","Enfatiza límites temporales y restricciones mediante inversión auxiliar-sujeto.","Not until al inicio exige inversión en la cláusula principal; at no point y under no circumstances también requieren inversión.",[4,5,6,7],"Not until the meeting ended did we understand the impact."],
+["Only y estructuras de énfasis","Destaca condiciones, conocimiento limitado y relaciones contrastivas.","Only after/when + inversión; little did y not only...but also enfatizan información.",[8,9,10,11],"Only after the review did the errors become clear."],
+["Inversión negativa y de exclusividad","Refuerza afirmaciones con expresiones negativas o restrictivas al inicio.","In no way, nowhere else, not once y only then requieren inversión; el auxiliar depende del tiempo.",[12,13,14,15],"Not once did he apologize for the mistake."],
 ["Inversión en discurso formal","Integra inversión para destacar consecuencias y argumentos.","Only by + -ing, little did I know y not only...but also; revisa el auxiliar según el tiempo.",[16,17,18,19,20,21],"Only by working together can we solve the problem."]]},
 {n:27,title:"Fronting y topicalisation",desc:"Coloca información al inicio para establecer tema, contraste o marco discursivo sin perder la estructura gramatical.",grammar:"Fronted object/complement/adverbial; topicalisation; fronted negative or evaluative phrase; preserve subject-verb agreement and required inversion only where triggered.",trap:"This issue, we can deal with later (topicalised object). Into the room came the manager (locative inversion, literary). No toda frase inicial exige inversión.",rows:[
 ["as for","en cuanto a","As for the budget, we need another estimate.","En cuanto al presupuesto, necesitamos otra estimación."],
@@ -113,9 +113,9 @@ lessons:[
 ["than expected","de lo esperado","The process took longer than expected.","El proceso tardó más de lo esperado."]],
 lessons:[
 ["So y not como sustitutos","Responde y expresa opiniones sin repetir toda la proposición.","Think/hope/suppose + so/not; so sustituye una afirmación y not una negativa o duda.",[0,1,2,3],"Will the delivery arrive today? I hope so."],
-["Respuestas de acuerdo","Expresa coincidencia positiva y negativa con auxiliares.","So + auxiliary + subject; neither/nor + auxiliary + subject. El auxiliar coincide con el tiempo y la persona.",[4,5,6,7],"I enjoy working outdoors, and so do I."],
-["Do so y sustitución nominal","Evita repetir verbos y sustantivos ya mencionados.","Do so sustituye una acción; one/ones sustituye un sustantivo contable mencionado.",[8,9,10,11],"If you need to update the file, please do so today."],
-["Referencia y alternativas","Retoma opciones o proposiciones sin repetirlas.","The former/the latter solo son claros cuando hay dos referentes; if so/if not retoman una condición.",[12,13,14,15],"We could call or email; the latter is more convenient."],
+["Suposición, negación y sustitución","Responde con matices de acuerdo, duda o negación y evita repetir proposiciones o nombres.","Suppose/think + so/not; do so sustituye una acción y one/ones sustituye un sustantivo contable.",[4,5,6,7],"Will they extend the deadline? I don't think so."],
+["Referencia y condiciones alternativas","Retoma opciones o proposiciones y presenta condiciones sin repetirlas.","The former/the latter retoman dos referentes; if so/if not retoman una condición.",[8,9,10,11],"We could call or email; the latter is more convenient."],
+["Acuerdo y relaciones paralelas","Expresa coincidencia y compara elementos sin repetir la proposición completa.","So/neither/nor + auxiliary + subject; the same goes for y as much as enlazan información paralela.",[12,13,14,15],"They're concerned about the delay, and so am I."],
 ["Elipsis en comparación y discurso","Integra omisión y sustitución para mejorar la fluidez.","As did, than expected y the same goes for permiten evitar repeticiones; conserva un referente claro.",[16,17,18,19,20,21],"The first group improved, as did the second."]]}
 ];
 function build(d){
@@ -123,7 +123,7 @@ function build(d){
  const mc=(w,opts)=>{const correct=opts[0];const match=String(w.id).match(/v(\d+)$/);const offset=match?Number(match[1])%opts.length:1;const options=opts.slice(offset).concat(opts.slice(0,offset));return {vocabId:w.id,type:"mc",prompt:"¿Qué significa «"+w.target+"»?",options,answer:options.indexOf(correct),explanation:"Elige la equivalencia que conserva el sentido en contexto."};};
  const order=(w,s)=>{const correctOrder=s.replace(/[.,!?;:]/g,"").trim().split(/\s+/).filter(Boolean);let words=correctOrder.length>1?correctOrder.slice(1).concat(correctOrder.slice(0,1)):correctOrder.slice();if(words.join(" ")===correctOrder.join(" "))words=correctOrder.slice().reverse();return {vocabId:w.id,type:"order",prompt:"Ordena la frase.",words,correctOrder,explanation:"Reconstruye la frase y observa el patrón sintáctico."};};
  const lessons=d.lessons.map(l=>({title:l[0],objective:l[1],grammar:l[2],vocabIds:l[3].map(i=>vocab[i].id),reviewVocabIds:[],exercises:[mc(vocab[l[3][0]],[vocab[l[3][0]].esp,vocab[(l[3][0]+7)%22].esp,vocab[(l[3][0]+14)%22].esp]),order(vocab[l[3][1]],l[4])]}));
- const bank=d.lessons.map(l=>l[4]),exercises=[];
+ const bank=vocab.slice(5,10).map(w=>w.ex),exercises=[];
  for(let i=0;i<5;i++){const w=vocab[i];exercises.push(mc(w,[w.esp,vocab[(i+8)%22].esp,vocab[(i+15)%22].esp]));}
  for(let i=0;i<5;i++)exercises.push(order(vocab[i+5],bank[i]));
  return {unitNumber:d.n,id:"en_b2_u"+d.n,title:"Unidad "+d.n+": "+d.title,desc:d.desc,grammar:d.grammar,trap:{title:"Control del énfasis y la estructura",detail:d.trap},vocab,lessons,exercises};

@@ -11,7 +11,7 @@ const definitions=[
 ["to be thought to","se cree que","The painting is thought to date from the 18th century.","Se cree que la pintura data del siglo XVIII."],
 ["to be alleged to","se alega que","The company is alleged to have concealed the losses.","Se alega que la empresa ocultó las pérdidas."],
 ["to be known to","se sabe que","The drug is known to cause mild side effects.","Se sabe que el medicamento causa efectos secundarios leves."],
-["to be believed to have","se cree que ha","The bridge is believed to have been built in 1890.","Se cree que el puente fue construido en 1890."],
+["to be believed to have","se cree que fue / ha sido","The bridge is believed to have been built in 1890.","Se cree que el puente fue construido en 1890."],
 ["is reported to be","se informa que es","The area is reported to be safe for visitors.","Se informa que la zona es segura para los visitantes."],
 ["to be understood to","se entiende que","The agreement is understood to include a review clause.","Se entiende que el acuerdo incluye una cláusula de revisión."],
 ["to claim","afirmar / alegar","The witness claims to have seen the vehicle.","El testigo afirma haber visto el vehículo."],
@@ -50,7 +50,7 @@ lessons:[
 ["to have access restored","hacer que se restablezca el acceso","They had access restored within an hour.","Consiguieron que se restableciera el acceso en una hora."],
 ["to get a refund issued","conseguir que emitan un reembolso","She got a refund issued after contacting support.","Consiguió que emitieran un reembolso después de contactar con soporte."],
 ["to have a claim assessed","mandar a evaluar una reclamación","We had the insurance claim assessed independently.","Mandamos a evaluar la reclamación del seguro de forma independiente."],
-["to get the job done","lograr que se haga el trabajo","We have a tight deadline, but we'll get the job done.","Tenemos un plazo ajustado, pero terminaremos el trabajo."],
+["to get the job done","lograr terminar el trabajo","We have a tight deadline, but we'll get the job done.","Tenemos un plazo ajustado, pero lograremos terminar el trabajo."],
 ["to have something stolen","que te roben algo","He had his wallet stolen on the train.","Le robaron la cartera en el tren."],
 ["to get caught in","verse atrapado en","They got caught in a sudden storm.","Quedaron atrapados en una tormenta repentina."]],
 lessons:[
@@ -58,7 +58,7 @@ lessons:[
 ["Mantenimiento y cuidado personal","Habla de revisiones, arreglos y servicios personales.","El objeto recibe la acción: have the brakes checked, get your eyes tested.",[4,5,6,7],"They finally got the heating fixed."],
 ["Experiencias y resultados","Expresa acciones encargadas y resultados que se consiguen.","Have/get + object + past participle; el contexto aclara quién encarga el servicio.",[8,9,10,11],"I need to get my eyes tested."],
 ["Causativa con persona","Indica quién realiza una tarea por encargo.","Have + person + base verb; get + person + to-infinitive. No uses to después de have en este patrón.",[12,13,14,15],"I'll get the manager to look into the complaint."],
-["Causativa y experiencias no deseadas","Distingue servicios voluntarios de sucesos que afectan al sujeto.","Have something done también puede describir experiencias negativas: have something stolen; get caught in no es causativa.",[16,17,18,19,20,21],"She got a refund issued after contacting support."]]},
+["Causativa y experiencias no deseadas","Distingue servicios voluntarios de sucesos que afectan al sujeto.","Have something done también puede describir experiencias negativas: have something stolen; get caught in no es causativa.",[16,17,18,19,20,21],"He had his wallet stolen on the train."]]},
 {n:23,title:"Participle clauses: reducción y condensación",desc:"Condensa información temporal, causal, condicional y descriptiva mediante participios sin perder claridad.",grammar:"Present participle (-ing) para acciones simultáneas/causa; past participle para pasiva; perfect participle (having + past participle) para anterioridad.",trap:"El sujeto implícito de la participle clause debe coincidir con el sujeto de la oración principal. Evita dangling participles.",rows:[
 ["while waiting","mientras esperaba","While waiting for the train, I reviewed my notes.","Mientras esperaba el tren, repasé mis notas."],
 ["having finished","habiendo terminado","Having finished the report, she sent it to the director.","Después de terminar el informe, se lo envió al director."],

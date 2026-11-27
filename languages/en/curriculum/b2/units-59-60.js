@@ -1,0 +1,65 @@
+(function(root){
+'use strict';
+const rows=[
+["to synthesize different viewpoints","sintetizar diferentes puntos de vista","The presenter synthesized different viewpoints before making a recommendation.","El ponente sintetizó diferentes puntos de vista antes de hacer una recomendación."],
+["to defend a position","defender una postura","You should be able to defend your position with evidence.","Deberías poder defender tu postura con pruebas."],
+["to respond to a challenge","responder a un desafío","The speaker responded to the challenge calmly.","El ponente respondió al desafío con calma."],
+["to negotiate a compromise","negociar un compromiso","The teams negotiated a compromise that both could accept.","Los equipos negociaron un compromiso que ambos podían aceptar."],
+["to summarize a complex issue","resumir un asunto complejo","She summarized the issue in a few clear sentences.","Ella resumió el asunto en unas pocas frases claras."],
+["to adapt one's message","adaptar el propio mensaje","Effective communicators adapt their message to the audience.","Los comunicadores eficaces adaptan su mensaje al público."],
+["to anticipate objections","anticipar objeciones","A strong proposal anticipates likely objections.","Una propuesta sólida anticipa las objeciones probables."],
+["to acknowledge uncertainty","reconocer la incertidumbre","The report acknowledges uncertainty in the estimates.","El informe reconoce la incertidumbre de las estimaciones."],
+["to draw on multiple sources","basarse en varias fuentes","The analysis draws on multiple sources of evidence.","El análisis se basa en varias fuentes de evidencia."],
+["to reach an informed decision","tomar una decisión fundamentada","The committee needs time to reach an informed decision.","El comité necesita tiempo para tomar una decisión fundamentada."],
+["to communicate a recommendation","comunicar una recomendación","The team communicated its recommendation to senior management.","El equipo comunicó su recomendación a la alta dirección."],
+["to justify a course of action","justificar una línea de acción","The director justified the course of action with clear evidence.","El director justificó la línea de acción con pruebas claras."],
+["to clarify a misunderstanding","aclarar un malentendido","They clarified the misunderstanding before it escalated.","Aclararon el malentendido antes de que empeorara."],
+["to manage competing priorities","gestionar prioridades contrapuestas","The role requires the ability to manage competing priorities.","El puesto requiere la capacidad de gestionar prioridades contrapuestas."],
+["to maintain a constructive dialogue","mantener un diálogo constructivo","Both sides agreed to maintain a constructive dialogue.","Ambas partes acordaron mantener un diálogo constructivo."],
+["to evaluate the implications","evaluar las implicaciones","We must evaluate the implications before implementing the change.","Debemos evaluar las implicaciones antes de implementar el cambio."],
+["to present a balanced case","presentar un argumento equilibrado","The report presents a balanced case for reform.","El informe presenta argumentos equilibrados a favor de la reforma."],
+["to revise a recommendation","revisar una recomendación","The panel revised its recommendation after the consultation.","El comité revisó su recomendación después de la consulta."],
+["to reach a shared understanding","llegar a un entendimiento común","The meeting helped the groups reach a shared understanding.","La reunión ayudó a los grupos a llegar a un entendimiento común."],
+["to communicate with precision","comunicarse con precisión","Professionals need to communicate with precision under pressure.","Los profesionales necesitan comunicarse con precisión bajo presión."],
+["to reflect on the outcome","reflexionar sobre el resultado","The team will reflect on the outcome and identify lessons.","El equipo reflexionará sobre el resultado e identificará aprendizajes."],
+["to take an evidence-based approach","adoptar un enfoque basado en pruebas","The organization takes an evidence-based approach to policy.","La organización adopta un enfoque basado en pruebas para sus políticas."]
+];
+const lessonDefs=[
+["Síntesis y perspectivas","Integra información de fuentes y posturas distintas sin perder matices.","Synthesize viewpoints, draw on sources y summarize complex issues sin borrar desacuerdos relevantes.",[0,1,2,3],"The presenter synthesized different viewpoints before making a recommendation."],
+["Argumentación y respuesta","Defiende una postura y responde a objeciones con evidencia.","Defend a position, respond to a challenge y anticipate objections estructuran el intercambio.",[4,5,6,7],"A strong proposal anticipates likely objections."],
+["Decisiones y recomendaciones","Justifica decisiones y comunica recomendaciones fundamentadas.","Informed decision, communicate a recommendation y justify a course of action separan decisión, comunicación y fundamento.",[8,9,10,11],"The committee needs time to reach an informed decision."],
+["Colaboración y gestión","Resuelve malentendidos y gestiona prioridades sin romper el diálogo.","Clarify a misunderstanding, manage competing priorities y maintain constructive dialogue apoyan colaboración profesional.",[12,13,14,15],"Both sides agreed to maintain a constructive dialogue."],
+["Comunicación integrada y reflexión","Combina evaluación, precisión, revisión y aprendizaje posterior.","Present a balanced case, revise a recommendation y reflect on the outcome completan un ciclo comunicativo.",[16,17,18,19,20,21],"The organization takes an evidence-based approach to policy."]
+];
+const vocab=rows.map((r,i)=>({id:"en_b2_u59_v"+String(i+1).padStart(2,"0"),target:r[0],esp:r[1],ex:r[2],exEsp:r[3],verification:{status:"not_checked",sources:[]}}));
+const mc=(w,opts)=>({vocabId:w.id,type:"mc",prompt:"¿Qué significa «"+w.target+"»?",options:opts,answer:0,explanation:"Elige la interpretación que corresponde al objetivo comunicativo."});
+const order=(w,s)=>{const words=s.split(" ");return {vocabId:w.id,type:"order",prompt:"Ordena la frase.",words,correctOrder:words.slice(),explanation:"Reconstruye la oración y observa cómo se integran las destrezas."};};
+const lessons=lessonDefs.map(l=>({title:l[0],objective:l[1],grammar:l[2],vocabIds:l[3].map(i=>vocab[i].id),reviewVocabIds:[],exercises:[mc(vocab[l[3][0]],[vocab[l[3][0]].esp,vocab[(l[3][0]+7)%22].esp,vocab[(l[3][0]+14)%22].esp]),order(vocab[l[3][1]],l[4])]}));
+const exercises=[];for(let i=0;i<5;i++)exercises.push(mc(vocab[i],[vocab[i].esp,vocab[(i+8)%22].esp,vocab[(i+15)%22].esp]));
+for(let i=0;i<5;i++)exercises.push(order(vocab[i+5],lessonDefs[i][4]));
+const unit59={unitNumber:59,id:"en_b2_u59",title:"Unidad 59: Integrated communication — comunicación integrada",desc:"Integra debate, síntesis, negociación, evaluación y comunicación profesional para defender posturas y llegar a decisiones fundamentadas.",grammar:"Integrated receptive and productive communication; synthesis, evidence-based argument, negotiation, clarification and reflection.",trap:{title:"Integrar sin simplificar en exceso",detail:"Una síntesis debe conservar los matices esenciales y atribuir correctamente las ideas. Una decisión fundamentada reconoce evidencia, incertidumbre y consecuencias."},vocab,lessons,exercises};
+const refs=[
+["en_b2_u51_v01","to put forward a hypothesis","plantear una hipótesis","The paper puts forward a hypothesis about language exposure."],
+["en_b2_u52_v01","executive summary","resumen ejecutivo","The executive summary outlines the main findings and recommendations."],
+["en_b2_u53_v01","to reach a compromise","llegar a un compromiso","Both sides were willing to reach a compromise."],
+["en_b2_u54_v01","to chair a meeting","presidir una reunión","Maria will chair the meeting this afternoon."],
+["en_b2_u55_v01","to lodge a complaint","presentar una queja formal","Customers can lodge a complaint through the online form."],
+["en_b2_u56_v01","to verify a source","verificar una fuente","Readers should verify a source before sharing the claim."],
+["en_b2_u57_v01","to consist of","constar de","The process consists of four main stages."],
+["en_b2_u58_v01","a coherent line of argument","una línea argumental coherente","The essay develops a coherent line of argument."],
+["en_b2_u59_v01","to synthesize different viewpoints","sintetizar diferentes puntos de vista","The presenter synthesized different viewpoints before making a recommendation."]
+];
+const reviewDefs=[
+["Discusión y evidencia","Recupera hipótesis, evidencia y evaluación académica.","Academic discussion, evidence, cautious interpretation and research limits.",[0,1],"The paper puts forward a hypothesis about language exposure."],
+["Informes y negociación","Integra propuestas, opciones y acuerdos profesionales.","Reports, recommendations, negotiation and formal terms.",[2,3],"Both sides were willing to reach a compromise."],
+["Conflicto y alfabetización mediática","Evalúa quejas, fuentes y credibilidad de información.","Complaint handling, source verification, bias and misinformation.",[4,5],"Readers should verify a source before sharing the claim."],
+["Procesos y escritura extensa","Explica procedimientos y redacta textos cohesionados.","Process description, extended writing, evidence and revision.",[6,7],"The essay develops a coherent line of argument."],
+["Comprobación final integrada","Demuestra autonomía para sintetizar, argumentar y comunicarse con precisión.","Integrated B2 communication across academic, professional and everyday contexts.",[7,8],"The presenter synthesized different viewpoints before making a recommendation."]
+];
+const reviewLessons=reviewDefs.map(l=>({title:l[0],objective:l[1],grammar:l[2],vocabIds:[],reviewVocabIds:l[3].map(i=>refs[i][0]),exercises:[{vocabId:refs[l[3][0]][0],type:"mc",prompt:"Repasa «"+refs[l[3][0]][1]+"».",options:[refs[l[3][0]][2],"una expresión de certeza absoluta","un conector de contraste"],answer:0,explanation:"Recuperación integrada de U51–U59."},(()=>{const w=l[4].split(" ");return {vocabId:refs[l[3][Math.min(1,l[3].length-1)]][0],type:"order",prompt:"Ordena la frase.",words:w,correctOrder:w.slice(),explanation:"Reconstruye la oración y comprueba su función comunicativa."};})()]}));
+const reviewExercises=refs.slice(0,5).map(v=>({vocabId:v[0],type:"mc",prompt:"Repasa «"+v[1]+"».",options:[v[2],"una expresión de obligación pasada","una metáfora de progreso"],answer:0,explanation:"Actividad de recuperación final de B2."}));
+for(let i=0;i<5;i++){const w=reviewDefs[i][4].split(" ");reviewExercises.push({vocabId:refs[i+4][0],type:"order",prompt:"Ordena la frase.",words:w,correctOrder:w.slice(),explanation:"Reconstruye la frase de repaso."});}
+const unit60={unitNumber:60,id:"en_b2_u60",title:"Unidad 60: B2 Final Check — comprobación final",desc:"Repasa U51–U59 y comprueba la comunicación integrada de nivel B2. No introduce vocabulario nuevo.",grammar:"Final integrated review: academic discussion, reports, negotiation, meetings, conflict resolution, media literacy, process explanation, extended writing and synthesis.",trap:{title:"Autonomía y precisión",detail:"Demuestra que puedes comprender y producir mensajes extensos, justificar una postura, negociar, evaluar fuentes y adaptar el registro. Este repaso no constituye una certificación oficial ni garantiza equivalencia con un examen externo."},vocab:[],lessons:reviewLessons,exercises:reviewExercises};
+root.GUARDI_CURRICULUM_BLOCKS=root.GUARDI_CURRICULUM_BLOCKS||{};root.GUARDI_CURRICULUM_BLOCKS.en=root.GUARDI_CURRICULUM_BLOCKS.en||{};root.GUARDI_CURRICULUM_BLOCKS.en.B2=root.GUARDI_CURRICULUM_BLOCKS.en.B2||{};
+root.GUARDI_CURRICULUM_BLOCKS.en.B2["59-60"]={units:[unit59,unit60]};
+})(typeof window!=="undefined"?window:globalThis);

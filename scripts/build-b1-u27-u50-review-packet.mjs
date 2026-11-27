@@ -12,7 +12,7 @@ const FENCE = String.fromCharCode(96).repeat(3);
 
 export function selectB1ReviewUnits(curriculum) {
   return (curriculum?.units ?? []).flatMap((unit) => {
-    const match = String(unit?.id ?? '').match(/^b1_u(\d+)$/i);
+    const match = String(unit?.id ?? '').match(/^en_b1_u(\d+)$/i);
     if (!match) return [];
     const number = Number(match[1]);
     return number >= RANGE[0] && number <= RANGE[1] ? [{ number, unit }] : [];

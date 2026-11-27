@@ -213,6 +213,9 @@ def main() -> None:
             "revision": config[code]["revision"],
             "piper_version": PIPER_VERSION,
             "model_card": "./audio/voices/" + code + "/MODEL_CARD",
+            "model_license": "See MODEL_CARD for voice and dataset terms",
+            "model_license_url": "./audio/voices/" + code + "/MODEL_CARD",
+            "model_attribution": "Consult MODEL_CARD for source dataset and required attribution",
             "formats": ["mp3"],
             "audio_hashes": audio_hashes
         })

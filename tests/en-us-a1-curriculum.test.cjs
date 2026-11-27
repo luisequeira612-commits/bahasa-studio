@@ -111,7 +111,7 @@ test('English A1 lesson distractors use real, distinct vocabulary across all uni
    assert.equal(exercise.options.length,3,unit.id+' should have three choices');
    assert.equal(new Set(exercise.options).size,3,unit.id+' has duplicate answer choices');
    assert.equal(exercise.options[exercise.answer],target.esp,unit.id+' correct option must match the target gloss');
-   assert.ok(exercise.options.every(option=>glosses.has(option)),unit.id+' contains a distractor outside the authored A1 vocabulary');
+   for(const option of exercise.options) assert.ok(glosses.has(option),unit.id+' contains a distractor outside the authored A1 vocabulary: '+option+' for '+exercise.prompt);
    assert.ok(!exercise.options.includes('otra opción')&&!exercise.options.includes('una opción diferente'),unit.id+' contains a placeholder distractor');
   }
  }

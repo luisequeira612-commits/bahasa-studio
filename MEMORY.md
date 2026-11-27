@@ -1,3 +1,10 @@
+## 2026-11-27 — Limpieza final de MP3 huérfanos completada
+- Corrección de la nota anterior: el generador ya incluía limpieza de MP3 cuyo hash no aparece en el inventario del idioma. El run #45967211472 la ejecutó y eliminó los 3 MP3 huérfanos que seguían en `audio/id/`; ya no se conservan huérfanos.
+- Git tree actual: 5,002 MP3 activos + 2,268 OPUS legados = 7,279 archivos bajo `audio/`; MP3 38.99 MiB; carpeta `audio/` 53.40 MiB. Los inventarios son ID 2,392 y PT-BR 2,610, con SHA-256 completos.
+- La segunda ejecución reutilizó los 5,002 clips y limpió el directorio; no volvió a sintetizar.
+
+Fuente: Actions #45967211472, `tools/generar_audio.py` limpieza por `expected_ids`, Git tree de la rama; 27 nov 2026.
+
 ## 2026-11-27 — CI automático para ramas fix
 - GitHub devolvió `action_required` sin jobs para los checks `pull_request` del PR #942 (workflow approval gate). No hay una acción de aprobación de workflow disponible en el conector; los runs de `push` sí se ejecutan normalmente.
 - Para no bloquear la validación, `regression.yml` y `typecheck.yml` ahora también ejecutan en `push` a `fix/**` además de `main`. Se conserva el trigger `pull_request`; el push de esta rama produce los checks sin requerir aprobación manual.

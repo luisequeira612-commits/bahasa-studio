@@ -822,3 +822,5 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Manifiesto y test se amplían a U40; la prueba verifica las 792 entradas únicas, ausencia de solapamiento A1, referencias y disponibilidad `false`.
 - CI pendiente. Entradas `not_checked`; cotejo individual CEFR-J pendiente. Sin cambios a IndexedDB v1, backup JSON v3, dependencias, POS/audio, PT-BR ni otros idiomas. No fusionar ni publicar sin aprobación expresa.
 - Fuente: rama `feat/en-us-a2-u39-u40`, currículo, tests y docs; 27 nov 2026.
+
+- 27 nov 2026: Auditoría estática del inventario final encontró cuatro solapamientos exactos en U39 (give up, look forward to, keep in touch, put off). Se sustituyeron por stick with, be excited about, stay connected y push back; se actualizaron ejemplos y frases modelo. Inventario A2 vuelve a 792 targets únicos sin duplicados exactos internos; CI debe confirmar también ausencia de solapamiento con A1.

@@ -47,3 +47,15 @@ Estado: primer bloque U1–U6 en desarrollo; el nivel no está publicado. Fecha:
 - U7–U9 añaden 66 targets; 5 lecciones explícitas y 20 ejercicios por unidad. U10 tiene 5 lecciones y 20 ejercicios, con 0 entradas nuevas.
 - El bloque añade 66 targets sin duplicados internos ni coincidencias exactas con A1 o A2 U1–U6. Total A2 U1–U10: 198 entradas nuevas.
 - Vocabulario not_checked; trazabilidad individual CEFR-J pendiente. No POS/audio, ni cambios de almacenamiento o disponibilidad.
+
+
+## Bloque U11–U14 — 27 de noviembre de 2026
+
+- U11: intenciones, metas y preparativos con be going to.
+- U12: predicciones, decisiones espontáneas, promesas y ofrecimientos con will/won't.
+- U13: acuerdos y citas organizadas con presente continuo de futuro.
+- U14: posibilidad e incertidumbre con may/might y condiciones.
+- 4 unidades, 20 lecciones explícitas, 88 entradas nuevas y 80 ejercicios.
+- Los 88 targets son únicos dentro del bloque y no coinciden exactamente con los 638 targets A1 ni con los 198 targets A2 U1–U10.
+- Total A2 U1–U14: 286 entradas nuevas; U10 continúa como repaso sin vocabulario.
+- Vocabulario not_checked; cotejo individual CEFR-J pendiente. Sin POS/audio ni cambios al runtime.

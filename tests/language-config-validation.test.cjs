@@ -71,3 +71,18 @@ test('language validation rejects missing required metadata and malformed catalo
     assert.ok(result.errors.includes('locale_required'));
     assert.equal(manager.validateLanguageCatalog(null).valid, false);
 });
+
+test('Brazilian Portuguese declares speech synthesis and a validated pt-PT fallback', () => {
+    const manager = createManager();
+    const portuguese = manager.getLanguage('pt-BR');
+    assert.equal(portuguese.audioMode, 'speechSynthesis');
+    assert.deepEqual(Array.from(portuguese.voiceFallbackLocales), ['pt-PT']);
+    assert.equal(portuguese.testPhrase, 'olá');
+    const invalid = manager.validateLanguageConfig({
+        ...portuguese,
+        audioMode: 'remote-service',
+        voiceFallbackLocales: ['../id']
+    });
+    assert.ok(invalid.errors.includes('audioMode_invalid'));
+    assert.ok(invalid.errors.includes('voiceFallbackLocales_invalid'));
+});

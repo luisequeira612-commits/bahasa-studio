@@ -95,7 +95,7 @@ lessons:[
 ["according to the findings","según los hallazgos","According to the findings, access remains unequal.","Según los hallazgos, el acceso sigue siendo desigual."],
 ["to highlight","destacar","The article highlights the need for clearer guidance.","El artículo destaca la necesidad de orientaciones más claras."],
 ["to emphasize","enfatizar","The researcher emphasizes the role of early intervention.","El investigador enfatiza el papel de la intervención temprana."],
-["to acknowledge","reconocer","The authors acknowledge that the sample was limited.","Los autores reconocen que la muestra era limitada."],
+["to recognize","reconocer","The authors recognize that the sample was limited.","Los autores reconocen que la muestra era limitada."],
 ["to challenge the assumption","cuestionar la suposición","The evidence challenges the assumption that price determines quality.","Las pruebas cuestionan la suposición de que el precio determina la calidad."],
 ["to draw attention to","llamar la atención sobre","The review draws attention to an overlooked issue.","La revisión llama la atención sobre un asunto pasado por alto."],
 ["to outline","esbozar / resumir","The introduction outlines the main stages of the process.","La introducción resume las etapas principales del proceso."],

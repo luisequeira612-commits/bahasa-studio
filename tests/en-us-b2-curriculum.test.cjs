@@ -228,3 +228,27 @@ test('English B2 U1 sentence-building bank matches each target vocabulary ID', (
       .replace(/[.,!?;:]/g, '').trim().split(/\s+/));
   }
 });
+
+
+test('English B2 U40 review sentence bank keeps each example paired with its source vocabulary', () => {
+  const unit = loadB2().find((item) => item.unitNumber === 40);
+  assert.ok(unit);
+  const orderExercises = Array.from(unit.exercises || []).filter((exercise) => exercise.type === 'order');
+  const expected = [
+    ['to put forward an argument', 'The researchers put forward an argument for stricter standards.'],
+    ['to acknowledge an objection', 'We should acknowledge the objection before responding.'],
+    ['to pick up on that', "I'd like to pick up on that point about costs."],
+    ['I was wondering if', 'I was wondering if you could send the details today.'],
+    ['to be in a position to', 'We are now in a position to make a final recommendation.'],
+  ];
+  assert.equal(orderExercises.length, expected.length);
+  for (let index = 0; index < expected.length; index += 1) {
+    const [target, sentence] = expected[index];
+    const vocabulary = loadB2().flatMap((item) => Array.from(item.vocab || []))
+      .find((word) => word.target === target);
+    assert.ok(vocabulary, 'review target must exist: ' + target);
+    assert.equal(orderExercises[index].vocabId, vocabulary.id);
+    assert.deepEqual(Array.from(orderExercises[index].correctOrder), sentence
+      .replace(/[.,!?;:]/g, '').trim().split(/\s+/));
+  }
+});

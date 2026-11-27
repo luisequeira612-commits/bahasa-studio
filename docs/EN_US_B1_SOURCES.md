@@ -79,3 +79,8 @@
 - Los targets se comparan con los inventarios completos A1 y A2. Todas las entradas comienzan `not_checked`; no se afirma cotejo individual CEFR-J ni validación nativa.
 - El motor actual no evalúa escucha real, pronunciación, habla ni redacción libre. No se añaden POS/audio, campos runtime, tipos de ejercicio ni dependencias.
 - Inglés permanece `available:false). No cambiar IndexedDB v1, backup JSON v3, PT-BR ni otros idiomas.
+
+
+## Corrección tras la primera regresión — 27 de noviembre de 2026
+- La primera ejecución automatizada detectó 25 coincidencias exactas con el inventario A1/A2 en U1–U4. Se sustituyeron los targets coincidentes por alternativas y se alinearon sus ejemplos, traducciones, frases modelo y ejercicios de banco.
+- La comparación completa se repetirá sobre el nuevo head; no se considera aprobado el bloque hasta que la regresión y el resto de CI terminen en verde.

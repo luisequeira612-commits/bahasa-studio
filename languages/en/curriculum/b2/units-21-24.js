@@ -23,7 +23,7 @@ const definitions=[
 ["to be required to","ser requerido / tener que","Applicants are required to provide two references.","Se requiere que los solicitantes proporcionen dos referencias."],
 ["to be permitted to","tener permiso para","Visitors are not permitted to enter this section.","Los visitantes no tienen permitido entrar en esta sección."],
 ["to be deemed","considerarse","The proposal was deemed unsuitable for the project.","La propuesta se consideró inadecuada para el proyecto."],
-["to come to light","salir a la luz","Further details came to light during the inquiry.","Surgieron más detalles durante la investigación."]],
+["to emerge","surgir","Further details emerged during the inquiry.","Surgieron más detalles durante la investigación."]],
 lessons:[
 ["Reporting impersonal con it","Introduce afirmaciones sin presentar una fuente como protagonista.","It + passive reporting verb + that-clause; usa believed, reported, assumed y expected según la certeza o la fuente.",[0,1,2,3],"It has been reported that several roads remain closed."],
 ["Pasiva personal con infinitivo","Coloca el tema de la afirmación como sujeto de la oración.","Subject + be + reporting verb + to-infinitive; usa to have + participle para anterioridad.",[4,5,6,7],"The painting is thought to date from the 18th century."],

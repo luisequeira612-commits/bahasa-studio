@@ -2623,5 +2623,5 @@
   "model_card": "./audio/voices/pt-BR/MODEL_CARD",
   "model_license": "See MODEL_CARD for voice and dataset terms",
   "model_license_url": "./audio/voices/pt-BR/MODEL_CARD",
-  "model_attribution": "Consult MODEL_CARD for source dataset and required attribution"
+  "model_attribution": "Piper Brazilian Portuguese Faber voice"
 }

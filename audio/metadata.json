@@ -7,7 +7,7 @@
   "model": "id_ID-news_tts-medium",
   "model_license": "See MODEL_CARD for voice and dataset terms",
   "model_license_url": "./audio/voices/id/MODEL_CARD",
-  "model_attribution": "Consult MODEL_CARD for source dataset and required attribution",
+  "model_attribution": "Piper Indonesian news_tts voice",
   "audio_hashes": {
     "00205de28847": "43348423836de93b9c747198ce3a08d86c6bea9f6d965b0bf6d50c0c7e809b34",
     "0031e0d6b60e": "06dad3fe0742844086cb8bdb26420a70dc424ad715e8e95b3267357a8cf608b4",

@@ -117,6 +117,8 @@ test('B2 uses only existing exercise types with valid answer structures', () => 
         assert.ok(Array.isArray(exercise.words) && exercise.words.length >= 2);
         assert.ok(Array.isArray(exercise.correctOrder));
         assert.deepEqual(Array.from(exercise.words).sort(), Array.from(exercise.correctOrder).sort());
+        assert.notDeepEqual(Array.from(exercise.words), Array.from(exercise.correctOrder),
+          unit.id + ' sentence-building tokens must be shuffled');
       } else {
         assert.fail('Unsupported B2 exercise type: ' + exercise.type);
       }

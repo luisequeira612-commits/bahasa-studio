@@ -292,3 +292,21 @@ test('English B2 U49–U50 and U59–U60 keep review lessons aligned with their 
       .replace(/[.,!?;:]/g, '').trim().split(/\s+/));
   }
 });
+
+
+test('English B2 U16 inverted-conditional lessons cover all targets and use matching examples', () => {
+  const unit = loadB2().find((item) => item.unitNumber === 16);
+  assert.ok(unit);
+  const lessonIds = unit.lessons.flatMap((lesson) => Array.from(lesson.vocabIds || []));
+  assert.equal(lessonIds.length, 22);
+  assert.equal(new Set(lessonIds).size, 22);
+  for (const lesson of unit.lessons) {
+    const orderExercise = Array.from(lesson.exercises || []).find((exercise) => exercise.type === 'order');
+    assert.ok(orderExercise);
+    assert.equal(orderExercise.vocabId, lesson.vocabIds[1]);
+    const word = unit.vocab.find((item) => item.id === orderExercise.vocabId);
+    assert.ok(word);
+    assert.deepEqual(Array.from(orderExercise.correctOrder), word.ex
+      .replace(/[.,!?;:]/g, '').trim().split(/\s+/));
+  }
+});

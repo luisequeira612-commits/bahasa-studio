@@ -72,7 +72,7 @@ lessons:[
 ["I see your point","entiendo tu punto","I see your point, but I have a different concern.","Entiendo tu punto, pero tengo otra preocupación."],
 ["just to clarify","solo para aclarar","Just to clarify, are we meeting in person?","Solo para aclarar, ¿nos reuniremos en persona?"],
 ["could you expand on that","podrías ampliar eso","Could you expand on that last point?","¿Podrías ampliar ese último punto?"],
-["to put someone right","corregir a alguien","I don't want to put you right, but the date has changed.","No quiero corregirte, pero la fecha ha cambiado."],
+["to correct someone","corregir a alguien","I don't mean to correct you, but the date has changed.","No quiero corregirte, pero la fecha ha cambiado."],
 ["actually","en realidad","Actually, the figures were updated this morning.","En realidad, las cifras se actualizaron esta mañana."],
 ["anyway","en fin / de todos modos","Anyway, we should decide what to do next.","En fin, deberíamos decidir qué hacer después."],
 ["by the way","por cierto","By the way, have you received the revised draft?","Por cierto, ¿has recibido el borrador revisado?"],

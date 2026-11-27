@@ -125,7 +125,7 @@ const makeUnit=d=>{
  const lessons=d.lessons.map((l,j)=>({title:l[0],objective:l[1],grammar:l[2],vocabIds:l[3].map(i=>vocab[i].id),reviewVocabIds:[],exercises:[mc(vocab[l[3][0]],[vocab[l[3][0]].esp,vocab[(l[3][0]+7)%22].esp,vocab[(l[3][0]+14)%22].esp]),order(vocab[l[3][1]],l[4])]}));
  const exercises=[];
  for(let i=0;i<5;i++){const w=vocab[i];exercises.push(mc(w,[w.esp,vocab[(i+8)%22].esp,vocab[(i+15)%22].esp]));}
- for(let i=0;i<5;i++){const w=vocab[i+5];exercises.push(order(w,d.lessons[i][4]));}
+ for(let i=0;i<5;i++){const w=vocab[i+5];exercises.push(order(w,w.ex));}
  return {unitNumber:d.n,id:"en_b2_u"+d.n,title:"Unidad "+d.n+": "+d.title,desc:d.desc,grammar:d.grammar,trap:{title:"Precisión y uso",detail:d.trap},vocab,lessons,exercises};
 };
 root.GUARDI_CURRICULUM_BLOCKS=root.GUARDI_CURRICULUM_BLOCKS||{};

@@ -147,8 +147,9 @@ window.AudioEngine = {
         if (area && typeof area.querySelectorAll === 'function') {
             area.querySelectorAll('p').forEach(paragraph => {
                 if (/Toca una palabra en .+? para consultar su significado sin salir de la lección\./i.test(paragraph.textContent || '')) {
-                    paragraph.textContent = '💡 Toca una palabra en ' + languageName +
+                    const localizedHint = '💡 Toca una palabra en ' + languageName +
                         ' para consultar su significado sin salir de la lección.';
+                    if (paragraph.textContent !== localizedHint) paragraph.textContent = localizedHint;
                 }
             });
         }

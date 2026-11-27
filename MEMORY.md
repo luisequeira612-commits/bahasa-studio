@@ -1,5 +1,6 @@
 ## 2026-11-27 — Texto de ayuda de lección independiente del idioma
 - Tras la prueba manual del usuario, el audio PT-BR quedó confirmado como funcional. Se detectó que el texto de ayuda bajo «Palabras nuevas» aún decía «en indonesio»; se corrigió a una instrucción neutral para todos los cursos y se añadió una prueba de regresión específica.
+- 2026-11-27 — El primer CI de PR #943 detectó dos aserciones antiguas en `tests/regression.test.cjs` que exigían literalmente la frase «en indonesio». Se actualizaron ambas para exigir la indicación neutral y rechazar el texto antiguo; se mantiene la prueba de traducción segura y la prueba específica de neutralidad. Reejecutar CI antes de integrar.
 - Pendiente: CI del PR y despliegue de Pages; el usuario confirmó audio PT-BR, por lo que después de publicar se puede retomar inglés B2.
 
 ## 2026-11-27 — Limpieza final de MP3 huérfanos completada

@@ -6,7 +6,7 @@ const order=(w,s)=>{const words=s.split(' ');return {vocabId:w.id,type:'order',p
 const makeUnit=d=>{const words=mk(d.n,d.rows);const lessons=d.lessons.map(s=>({title:s[0],objective:s[1],grammar:s[2],vocabIds:s[3].map(i=>words[i].id),reviewVocabIds:[],exercises:[mc(words[s[3][0]],'¿Qué significa «'+words[s[3][0]].target+'»?',[words[s[3][0]].esp,'otra opción','una opción diferente']),order(words[s[3][1]],s[4])]}));const exercises=[];for(let i=0;i<5;i++)exercises.push(mc(words[i],'Elige la traducción de «'+words[i].target+'»',[words[i].esp,words[(i+7)%22].esp,words[(i+13)%22].esp]));for(let i=0;i<5;i++)exercises.push(order(words[5+i],d.bank[i]));return {unitNumber:d.n,id:'en_a2_u'+d.n,title:'Unidad '+d.n+': '+d.title,desc:d.desc,grammar:d.grammar,trap:{title:d.trap[0],detail:d.trap[1]},vocab:words,lessons,exercises};};
 const data=[
 {n:31,title:'Transporte y desplazamientos',desc:'Pregunta por rutas, horarios y conexiones, y sigue instrucciones para moverte por estaciones y aeropuertos.',grammar:'Usa at para puntos concretos (at the station), on para viajar en ciertos medios (on the bus) y get on/get off para subir y bajar. Change platforms y miss a connection describen cambios y conexiones.',trap:['At, on y get on no son intercambiables','At the airport señala un lugar; on the bus indica el medio; get on the bus expresa la acción de subir.'],rows:[
-['platform number','número de andén','Check the platform number on your ticket.','Comprueba el número de andén en tu boleto.'],
+['track number','número de vía','Check the track number on your ticket.','Comprueba el número de vía en tu boleto.'],
 ['departure board','panel de salidas','The departure board shows a delay.','El panel de salidas muestra un retraso.'],
 ['arrival time','hora de llegada','The arrival time is printed on the ticket.','La hora de llegada está impresa en el boleto.'],
 ['terminal gate','puerta de embarque','Our terminal gate is near the café.','Nuestra puerta de embarque está cerca de la cafetería.'],
@@ -22,9 +22,9 @@ const data=[
 ['get off','bajarse de','Get off at the next station.','Bájate en la próxima estación.'],
 ['change platforms','cambiar de andén','We need to change platforms for the express train.','Tenemos que cambiar de andén para tomar el tren expreso.'],
 ['miss a connection','perder una conexión','We may miss a connection if the bus is late.','Podríamos perder una conexión si el autobús llega tarde.'],
-['carry-on bag','equipaje de mano','Keep your carry-on bag under the seat.','Guarda tu equipaje de mano debajo del asiento.'],
+['personal item','artículo personal','Keep your personal item under the seat.','Guarda tu artículo personal debajo del asiento.'],
 ['luggage allowance','franquicia de equipaje','Check the luggage allowance before packing.','Comprueba la franquicia de equipaje antes de hacer la maleta.'],
-['boarding pass','tarjeta de embarque','Show your boarding pass at the gate.','Muestra tu tarjeta de embarque en la puerta.'],
+['gate number','número de puerta','The gate number is on your boarding pass.','El número de puerta está en tu tarjeta de embarque.'],
 ['security check','control de seguridad','The security check may take twenty minutes.','El control de seguridad puede tardar veinte minutos.'],
 ['delayed service','servicio retrasado','The delayed service will arrive shortly.','El servicio retrasado llegará pronto.'],
 ['cancelled service','servicio cancelado','A cancelled service may affect your plans.','Un servicio cancelado puede afectar tus planes.']],
@@ -69,7 +69,7 @@ bank:['The lost property office is near the exit.','The ticket inspector checked
 ['muscle pain','dolor muscular','I have got muscle pain in my legs.','Tengo dolor muscular en las piernas.'],
 ['sunburn','quemadura solar','He has got sunburn on his shoulders.','Él tiene quemaduras solares en los hombros.'],
 ['blister','ampolla','I have got a blister on my heel.','Tengo una ampolla en el talón.'],
-['bandage','vendaje','Cover the cut with a bandage.','Cubre el corte con un vendaje.'],
+['gauze pad','gasa','Cover the cut with a gauze pad.','Cubre el corte con una gasa.'],
 ['ice pack','bolsa de hielo','Put an ice pack on your ankle.','Ponte una bolsa de hielo en el tobillo.'],
 ['thermometer','termómetro','Use a thermometer to check your temperature.','Usa un termómetro para comprobar tu temperatura.'],
 ['check-up','revisión médica','I need a check-up this month.','Necesito una revisión médica este mes.'],
@@ -78,7 +78,7 @@ bank:['The lost property office is near the exit.','The ticket inspector checked
 ['allergic reaction','reacción alérgica','A rash can be an allergic reaction.','Un sarpullido puede ser una reacción alérgica.'],
 ['side effect','efecto secundario','Ask about a possible side effect.','Pregunta por un posible efecto secundario.'],
 ['health insurance','seguro médico','Does your health insurance cover this visit?','¿Tu seguro médico cubre esta consulta?']],
-lessons:[['Molestias comunes','Describe congestión, secreción nasal y otros síntomas.','Have got/has got + sustantivo o adjetivo para describir molestias.',[0,1,2,3],'I have got a runny nose.'],['Lesiones y dolor','Explica lesiones leves y molestias musculares.','Have got/has got para síntomas; swollen y sprained describen lesiones.',[4,5,6,7],'My ankle is swollen after the walk.'],['Dolor y quemaduras','Describe dolor de muelas, oído, músculos y quemaduras solares.','Have got + nombre del dolor: a toothache, an earache, muscle pain.',[8,9,10,11],'She has got an earache.'],['Primeros cuidados','Explica cómo cuidar una herida o una lesión leve.','Imperativos para instrucciones; put an ice pack on...',[12,13,14,15],'Cover the cut with a bandage.'],['Consulta y seguimiento','Habla de revisiones, citas y cobertura médica.','Need to + verbo base expresa necesidad; should ofrece consejo.',[16,17,18,19,20,21],'I have a medical appointment tomorrow.']],
+lessons:[['Molestias comunes','Describe congestión, secreción nasal y otros síntomas.','Have got/has got + sustantivo o adjetivo para describir molestias.',[0,1,2,3],'I have got a runny nose.'],['Lesiones y dolor','Explica lesiones leves y molestias musculares.','Have got/has got para síntomas; swollen y sprained describen lesiones.',[4,5,6,7],'My ankle is swollen after the walk.'],['Dolor y quemaduras','Describe dolor de muelas, oído, músculos y quemaduras solares.','Have got + nombre del dolor: a toothache, an earache, muscle pain.',[8,9,10,11],'She has got an earache.'],['Primeros cuidados','Explica cómo cuidar una herida o una lesión leve.','Imperativos para instrucciones; put an ice pack on...',[12,13,14,15],'Cover the cut with a gauze pad.'],['Consulta y seguimiento','Habla de revisiones, citas y cobertura médica.','Need to + verbo base expresa necesidad; should ofrece consejo.',[16,17,18,19,20,21],'I have a medical appointment tomorrow.']],
 bank:['My ankle is swollen after the walk.','He has got a sprained wrist.','I have got a backache after work.','I have got a toothache today.','She has got an earache.']},
 {n:34,title:'Tareas domésticas y phrasal verbs',desc:'Describe tareas habituales en casa con phrasal verbs frecuentes para encender, ordenar, limpiar y organizar objetos.',grammar:'Muchos phrasal verbs combinan verbo y partícula: turn on/off, put away, tidy up. Con un objeto pronombre, este suele ir entre el verbo y la partícula: turn it off, put them away.',trap:['El pronombre suele colocarse en medio','Turn off the light / turn it off. Put away the books / put them away.'],rows:[
 ['turn on','encender','Turn on the kitchen light.','Enciende la luz de la cocina.'],

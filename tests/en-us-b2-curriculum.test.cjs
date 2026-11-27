@@ -81,6 +81,16 @@ test('B2 vocabulary is unique, complete, and absent from all six review units', 
   }
   for (const unit of contentUnits) {
     assert.equal(unit.vocab.length, 22, unit.id + ' must add 22 new vocabulary targets');
+    const lessonVocabularyIds = unit.lessons.flatMap((lesson) => Array.from(lesson.vocabIds || []));
+    assert.equal(lessonVocabularyIds.length, 22,
+      unit.id + ' lessons must cover all 22 vocabulary targets');
+    assert.equal(new Set(lessonVocabularyIds).size, 22,
+      unit.id + ' must teach each new vocabulary target in exactly one lesson');
+    assert.deepEqual(
+      [...lessonVocabularyIds].sort(),
+      unit.vocab.map((word) => word.id).sort(),
+      unit.id + ' lesson vocabulary coverage must match its unit vocabulary',
+    );
   }
   for (const unit of reviewUnits) {
     assert.equal(unit.vocab.length, 0, unit.id + ' must not introduce new vocabulary');

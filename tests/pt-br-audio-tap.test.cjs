@@ -44,7 +44,11 @@ function createPortugueseTapHarness() {
     };
     const vocabulary = [
         { id: 'ptbr_ola', target: 'olá', translation: 'hola', example: 'Olá!', exampleTranslation: '¡Hola!' },
-        { id: 'ptbr_bom_dia', target: 'bom dia', translation: 'buenos días', example: 'Bom dia!', exampleTranslation: '¡Buenos días!' }
+        { id: 'ptbr_oi', target: 'oi', translation: 'hola informal', example: 'Oi, tudo bem?', exampleTranslation: 'Hola, ¿todo bien?' },
+        { id: 'ptbr_bom_dia', target: 'bom dia', translation: 'buenos días', example: 'Bom dia!', exampleTranslation: '¡Buenos días!' },
+        { id: 'ptbr_boa_tarde', target: 'boa tarde', translation: 'buenas tardes', example: 'Boa tarde!', exampleTranslation: '¡Buenas tardes!' },
+        { id: 'ptbr_boa_noite', target: 'boa noite', translation: 'buenas noches', example: 'Boa noite!', exampleTranslation: '¡Buenas noches!' },
+        { id: 'ptbr_tchau', target: 'tchau', translation: 'adiós', example: 'Tchau, Ana!', exampleTranslation: '¡Adiós, Ana!' }
     ];
     const window = {
         LanguageManager: languageManager,
@@ -76,12 +80,14 @@ test('Portuguese lesson words resolve to Spanish meanings and the tap bubble ope
     const vocabulary = harness.window.getTapTranslationVocabulary();
     assert.deepEqual(
         Array.from(vocabulary, word => [word.text, word.translation]),
-        [['olá', 'hola'], ['bom dia', 'buenos días']]
+        [['olá', 'hola'], ['oi', 'hola informal'], ['bom dia', 'buenos días'],
+            ['boa tarde', 'buenas tardes'], ['boa noite', 'buenas noches'], ['tchau', 'adiós']]
     );
 
-    const markup = harness.window.renderTapTranslationSentence('Olá, bom dia!', 'target');
-    assert.match(markup, /class="tap-translation-word" data-translation="hola"/);
-    assert.match(markup, /class="tap-translation-word" data-translation="buenos días"/);
+    const markup = harness.window.renderTapTranslationSentence('Olá, oi, bom dia, boa tarde, boa noite, tchau!', 'target');
+    for (const meaning of ['hola', 'hola informal', 'buenos días', 'buenas tardes', 'buenas noches', 'adiós']) {
+        assert.ok(markup.includes('data-translation="' + meaning + '"'), meaning + ' is available in the tap index');
+    }
 
     const button = {
         dataset: { translation: 'buenos días', vocabId: 'ptbr_bom_dia' },

@@ -763,6 +763,6 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Rama feat/en-us-a2-u19-u22, apilada sobre el head CI-verde de PR #903.
 - U19: modificadores de grado e intensidad; U20: repaso integrado sin vocabulario; U21: reglas, permisos y obligaciones; U22: consejos y bienestar.
 - Bloque de 4 unidades y 20 lecciones; 66 entradas nuevas en U19/U21/U22, U20 con 0; 80 ejercicios. Inventario A2 U1–U22: 440 entradas nuevas; U10 y U20 son repasos.
-- Manifiesto y prueba de currículo amplían la cobertura a U1–U22, 440 targets únicos, cinco lecciones y 20 ejercicios por unidad, referencias de repaso resueltas y disponibilidad inglesa false. CI del bloque aún pendiente al registrar esta nota.
+- Manifiesto y prueba de currículo amplían la cobertura a U1–U22, 440 targets únicos, cinco lecciones y 20 ejercicios por unidad, referencias de repaso resueltas y disponibilidad inglesa false. CI final del head b25244f931a2f020bcd3b3c73c5477a0eab475c4: regresión #45919230037 success (103/103 pasos), Offline quality reports success y JavaScript type checks #45919230094 success. PR #904 abierta y mergeable=true; no fusionada.
 - Todas las entradas nuevas not_checked; cotejo individual CEFR-J pendiente. Sin cambios a IndexedDB v1, backup JSON v3, dependencias, POS/audio, PT-BR ni otros idiomas. No publicar ni fusionar sin aprobación expresa.
 - Fuente: rama feat/en-us-a2-u19-u22, archivos de currículo, prueba y documentación; 26 nov 2026.

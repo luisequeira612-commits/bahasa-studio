@@ -1,7 +1,7 @@
 ## 2026-11-26 — Inglés en-US B1 U37–U40 integrado en rama de trabajo
 - Rama `feat/en-us-b1-u37-u40`, apilada sobre U1–U36. U37 causative have/get something done; U38 wish/if only; U39 concesión y contraste; U40 Review IV sin vocabulario nuevo.
 - Bloque: 3 unidades de contenido, 66 entradas nuevas, 15 lecciones; repaso U40 con 5 lecciones y cero entradas. Total bloque: 4 unidades, 20 lecciones y 80 ejercicios. Acumulado U1–U40: 792 entradas únicas, 200 lecciones y 800 ejercicios; repasos U10/U20/U30/U40.
-- El manifiesto registra U1–U40; inglés permanece `available:false`. Nuevas entradas `not_checked`; CI y deduplicación completa contra A1/A2 pendientes. Sin cambios a IndexedDB v1, backup JSON v3, dependencias, audio, red ni otros idiomas. Fuente: `EN_US_B1_SOURCES.md`, manifiesto, currículo y tests; 26 nov 2026.
+- El manifiesto registra U1–U40; inglés permanece `available:false`. Auditoría estática previa: 66/66 targets únicos; cero coincidencias exactas con A1/A2 o U1–U36. `have something repaired` se cambió a `get an appliance repaired` por duplicación exacta en U28. CI pendiente; entradas `not_checked`. Sin cambios a IndexedDB v1, backup JSON v3, dependencias, audio, red ni otros idiomas. Fuente: `EN_US_B1_SOURCES.md`, manifiesto, currículo y tests; 26 nov 2026.
 
 ## 2026-11-26 — Inglés en-US B1 U33–U36 en preparación
 - Rama `feat/en-us-b1-u33-u36`, apilada sobre U1–U32. Añade U33 reported statements; U34 reported questions/commands; U35 passive voice en presente/pasado/futuro; U36 pasiva con modales y get-passive.

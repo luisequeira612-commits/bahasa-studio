@@ -23,7 +23,7 @@ window.AudioEngine = {
     },
     async loadAudioManifest() {
         try {
-            const response = await fetch('./audio/manifest.json', { cache: 'no-cache' });
+            const response = await fetch('./audio/manifest-multilingual.json', { cache: 'no-cache' });
             if (!response.ok) throw new Error('HTTP ' + response.status);
             const manifest = await response.json();
             this.audioManifest = new Map();

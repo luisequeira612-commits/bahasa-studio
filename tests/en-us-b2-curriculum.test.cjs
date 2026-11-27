@@ -134,6 +134,22 @@ test('B2 uses only existing exercise types with valid answer structures', () => 
         assert.ok(Array.isArray(exercise.options) && exercise.options.length >= 3);
         assert.equal(new Set(exercise.options.map((option) => option.trim().toLocaleLowerCase())).size,
           exercise.options.length, unit.id + ' multiple-choice options must be distinct');
+        if (unit.unitNumber % 10 === 0) {
+          const genericDistractors = new Set([
+            'una posibilidad hipotética', 'un resultado aún no confirmado',
+            'tener una obligación formal', 'retrasarse respecto al plazo',
+            'una obligación futura', 'una certeza demostrada',
+            'una expresión de posibilidad futura', 'un conector de consecuencia',
+            'una petición directa', 'una afirmación absoluta',
+            'una expresión de certeza absoluta', 'una condición hipotética',
+            'una expresión de obligación pasada', 'una metáfora de progreso',
+            'un conector de contraste',
+          ]);
+          for (const option of exercise.options) {
+            assert.ok(!genericDistractors.has(option.trim().toLocaleLowerCase()),
+              unit.id + ' review questions must use real vocabulary as distractors');
+          }
+        }
         assert.ok(Number.isInteger(exercise.answer) && exercise.answer >= 0 && exercise.answer < exercise.options.length);
       } else if (exercise.type === 'order') {
         assert.ok(Array.isArray(exercise.words) && exercise.words.length >= 2);

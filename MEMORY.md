@@ -1,3 +1,11 @@
+## 2026-11-26 — Inglés en-US B1 U17–U20 en preparación
+- PR #919 (U13–U16) fusionada por squash en la rama B1 `feat/en-us-b1-u09-u12`, no en `main`; merge commit `c24073c4a2bd7c9bdcd1627f595eb6349b0befb6`. CI final de #919: regresión 103/103, TypeScript y calidad offline success; sin reviews ni comentarios.
+- Rama actual `feat/en-us-b1-u17-u20`, apilada sobre esa secuencia. Añade U17 condiciones/acuerdos, U18 cláusulas temporales futuras, U19 planes que cambiaron y U20 Review II sin vocabulario nuevo.
+- Bloque: 3 unidades de contenido, 66 entradas, 15 lecciones + 1 repaso de 5 lecciones; 80 ejercicios. Acumulado B1 U1–U20: 396 entradas nuevas únicas, 100 lecciones, 400 ejercicios; U10 y U20 son repasos.
+- Auditoría estática de B1: 396/396 targets únicos. Comparación A1/A2 para U17–U19 sin coincidencias exactas tras deduplicar. Vocabulario `not_checked`. CI de PR U17–U20 pendiente; inglés sigue `available:false` hasta completar el curso y sus gates.
+- Sin cambios a IndexedDB v1, backup JSON v3, dependencias, audio, red o cursos existentes.
+- Fuente: rama `feat/en-us-b1-u17-u20`, manifiesto, currículo y tests; 26 nov 2026.
+
 ## 2026-11-26 — Inglés en-US B1 U13–U16 en preparación
 - Primera CI de PR #919 encontró una repetición exacta de `be set to` entre U11 y U13; U13 se cambió a `be penciled in for` y se actualizaron traducción, ejemplo y ejercicios. Auditoría estática del acumulado B1 U1–U16: 330/330 targets únicos; nueva CI pendiente.
 - Segunda revisión estática de U13–U16 contra A1/A2 encontró `at short notice` y `check the details`; sustituidos por `on short notice` (en-US) y `verify the figures`, con traducciones y ejemplos alineados. Repetir CI integral.

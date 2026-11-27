@@ -59,7 +59,7 @@ def render_batch(model: Path, jobs: list[dict]) -> None:
     ]
     subprocess.run(
         ["piper", "--model", str(model), "--json-input"],
-        input="\\n".join(lines) + "\\n",
+        input="\n".join(lines) + "\n",
         text=True,
         check=True
     )

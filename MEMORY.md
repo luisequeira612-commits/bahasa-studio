@@ -1,3 +1,9 @@
+## 2026-11-27 — Rerun por timeout intermitente no E2E SRS
+- Depois de corrigir as expectativas de cache A2, o run #45965883973 passou Service Worker install e audio-manifest export, mas falhou no test local em `tests/learning-screen-phase-5b.e2e.test.cjs:1000`: timeout de 30s aguardando `#adaptiveRecommendationLearn button` no teste SRS de Aprender. Não envolve áudio nem o Service Worker.
+- Se reintentó únicamente el job fallido `140394330243` mediante GitHub Actions; resultado del rerun pendiente. No se cambió código ajeno al audio.
+
+Fuente: Actions #45965883973, test SRS Phase 5B; 27 nov 2026.
+
 ## 2026-11-27 — Corrección de regex antiguas en todos los tests A2
 - CI #45965572064 confirmó que Service Worker install y export de manifiestos pasan, pero nueve tests A2 seguían usando la regex parcial `v3\\.8.166` (solo escapaba el primer punto). Se actualizaron A2 U1-U27 a `v3\\.8.167`; A2 U28-U30 ya había sido corregido en `0c038c9`.
 - Esta es la última familia de expectativas de cache antigua detectada. Nuevo CI pendiente.

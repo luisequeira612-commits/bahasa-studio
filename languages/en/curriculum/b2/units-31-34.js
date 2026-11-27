@@ -18,7 +18,7 @@ const defs=[
 ["alongside","junto con","The report examines costs alongside environmental effects.","El informe examina los costos junto con los efectos ambientales."],
 ["rather than","en lugar de","We should address the cause rather than treat the symptoms.","Deberíamos abordar la causa en lugar de tratar los síntomas."],
 ["insofar as possible","en la medida de lo posible","Personal information should be protected insofar as possible.","La información personal debe protegerse en la medida de lo posible."],
-["in the light of","a la luz de","In the light of new evidence, the decision was reconsidered.","A la luz de nuevas pruebas, se reconsideró la decisión."],
+["in light of","a la luz de","In light of new evidence, the decision was reconsidered.","A la luz de nuevas pruebas, se reconsideró la decisión."],
 ["for this reason","por esta razón","For this reason, the team requested an extension.","Por esta razón, el equipo solicitó una prórroga."],
 ["in other words","en otras palabras","The system is not fully secure; in other words, it still needs testing.","El sistema no es completamente seguro; en otras palabras, todavía necesita pruebas."],
 ["more specifically","más concretamente","More specifically, the policy applies to temporary staff.","Más concretamente, la política se aplica al personal temporal."],
@@ -80,7 +80,7 @@ lessons:[
 ["almost entirely","casi por completo","The process is now almost entirely automated.","El proceso ahora está casi completamente automatizado."],
 ["rather disappointing","bastante decepcionante","The response was rather disappointing.","La respuesta fue bastante decepcionante."],
 ["exceptionally well","excepcionalmente bien","The team handled the transition exceptionally well.","El equipo gestionó la transición excepcionalmente bien."],
-["reasonably confident","razonablemente seguro","We are reasonably confident about the estimate.","Tenemos una confianza razonable en la estimación."],
+["reasonably confident","bastante seguros","We are reasonably confident about the estimate.","Tenemos bastante confianza en la estimación."],
 ["to some degree","en cierta medida","The two explanations overlap to some degree.","Las dos explicaciones coinciden en cierta medida."]],
 lessons:[
 ["Intensificadores fuertes","Refuerza evaluaciones con combinaciones naturales.","Highly, deeply, particularly y extremely se combinan con adjetivos adecuados; aprende colocaciones, no traducciones aisladas.",[0,1,2,3],"Residents are deeply concerned about the proposal."],

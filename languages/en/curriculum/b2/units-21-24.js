@@ -32,10 +32,10 @@ lessons:[
 ["Pasiva en informes y procedimientos","Resume estimaciones, requisitos y resultados de investigaciones.","Be estimated/scheduled/required/deemed + complemento; came to light es una expresión activa fija.",[16,17,18,19,20,21],"The damage is estimated to exceed two million dollars."]]},
 {n:22,title:"Have/get something done: causativas",desc:"Explica servicios, reparaciones y experiencias en las que otra persona realiza una acción por encargo o el sujeto la sufre.",grammar:"Have/get + object + past participle; have/get someone to do something; get something done puede sugerir logro o esfuerzo.",trap:"I had my phone repaired = otra persona lo reparó. I repaired my phone = yo lo reparé. No confundas el objeto con quien realiza la acción.",rows:[
 ["to have something repaired","mandar a reparar algo","I had my laptop repaired last week.","Mandé a reparar mi portátil la semana pasada."],
-["to get the roof inspected","hacer que inspeccionen el techo","We're getting the roof inspected before the rainy season.","Vamos a hacer inspeccionar el techo antes de la temporada de lluvias."],
+["to get the roof inspected","hacer que inspeccionen el techo","We're getting the roof inspected before the rainy season.","Vamos a hacer que inspeccionen el techo antes de la temporada de lluvias."],
 ["to have a document translated","mandar a traducir un documento","She had the contract translated into Spanish.","Mandó a traducir el contrato al español."],
 ["to get one's hair cut","cortarse el cabello (con alguien)","I'm getting my hair cut on Saturday.","Me voy a cortar el cabello el sábado."],
-["to have the brakes checked","hacer revisar los frenos","You should have the brakes checked before the trip.","Deberías hacer revisar los frenos antes del viaje."],
+["to have the brakes checked","hacer que revisen los frenos","You should have the brakes checked before the trip.","Deberías hacer que revisen los frenos antes del viaje."],
 ["to get the heating fixed","hacer reparar la calefacción","They finally got the heating fixed.","Por fin lograron que repararan la calefacción."],
 ["to have a room redecorated","mandar a redecorar una habitación","We had the guest room redecorated.","Mandamos a redecorar la habitación de invitados."],
 ["to get a suit tailored","mandar a ajustar un traje","He got his suit tailored for the ceremony.","Mandó a ajustar su traje para la ceremonia."],

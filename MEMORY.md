@@ -1,3 +1,11 @@
+## 2026-11-27 — Versionado y atribución de voces Piper
+- Las diez voces quedaron fijadas a la revisión upstream inmutable `5ec43b186ef915a195d3ddbcfd9916e76c503c3f` de `rhasspy/piper-voices`, cuyo historial identifica los cambios recientes de Faber, Thorsten, japonés y coreano. Se comprobó que los diez IDs y sus rutas existen en el `voices.json` oficial.
+- El generador ahora descarga `.onnx`, `.onnx.json` y `MODEL_CARD` desde la misma revisión; conserva solo las fichas `MODEL_CARD` en `audio/voices/<code>/`, no los pesos ONNX; y genera `audio/VOICE_ATTRIBUTION.md` con enlaces a las fichas. La caché local separa versiones por SHA.
+- Se añadió test que exige 10 voces, revisión SHA-40, metadatos completos y preservación de MODEL_CARD/atribución. Test commit `a4cbc96544d8814be1979fc0b939352de1de0e19`; CI y nueva generación con fichas pendientes.
+- La voz `pt_BR-faber-medium` fue retrainada desde Hi-Fi TTS reader 92 (CC BY 4.0); su MODEL_CARD debe acompañar los clips para conservar la atribución. La documentación oficial de Piper confirma el requisito de atribución para voces fine-tuned desde esa base.
+
+Fuentes: Piper `voices.json` en revisión `5ec43b1`, historial upstream `5ec43b1`/`2f358b6`, `docs/COMMERCIAL_USE.md`; `tools/audio-voices.json`, `tools/generar_audio.py`, `tests/audio-manifest.test.mjs`; 27 nov 2026.
+
 ## 2026-11-27 — Normalización canónica de texto portugués
 - Al revisar los textos localizados se detectó un escape duplicado en el colapso de espacios (`/\\s+/g`), que no normalizaba espacios/tabulaciones como se pretendía. Corregido a `/\s+/g` en `addLocalizedEntry()`.
 - El test `--all-languages` ahora exige que todos los textos localizados tengan espacios canónicos colapsados. Test actualizado en commits `eb8e816` y `bb73e97`; CI pendiente.

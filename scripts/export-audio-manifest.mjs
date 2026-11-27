@@ -110,10 +110,116 @@ export async function buildManifest({ includeInteractive = false, includeB2 = fa
   return [...entries.values()];
 }
 
+async function loadLanguageRegistry() {
+  const source = await readFile(path.join(ROOT, 'language-manager.js'), 'utf8');
+  const sandbox = { window: {} };
+  vm.runInNewContext(source, sandbox, { filename: 'language-manager.js', timeout: 5000 });
+  const manager = sandbox.window.LanguageManager;
+  if (!manager || typeof manager.list !== 'function') throw new Error('LanguageManager registry unavailable');
+  return manager.list();
+}
+
+async function loadLocalizedLevels(languageCode, curriculumPaths) {
+  const levels = [];
+  for (const [levelId, relativeIndex] of Object.entries(curriculumPaths || {})) {
+    const indexPath = path.join(ROOT, relativeIndex.replace(/^\.\//, ''));
+    try {
+      const indexSource = await readFile(indexPath, 'utf8');
+      const sandbox = { window: {} };
+      vm.runInNewContext(indexSource, sandbox, { filename: indexPath, timeout: 5000 });
+      const manifest = sandbox.window.GUARDI_CURRICULUM_MANIFESTS?.[languageCode]?.[levelId];
+      if (!manifest) throw new Error(`Missing ${languageCode}/${levelId} curriculum manifest in ${relativeIndex}`);
+      const units = [];
+      for (const block of manifest.blocks || []) {
+        const blockPath = path.join(ROOT, block.path.replace(/^\.\//, ''));
+        const blockSource = await readFile(blockPath, 'utf8');
+        const blockSandbox = { window: {} };
+        vm.runInNewContext(blockSource, blockSandbox, { filename: blockPath, timeout: 5000 });
+        const blockData = blockSandbox.window.GUARDI_CURRICULUM_BLOCKS?.[languageCode]?.[levelId]?.[block.id];
+        if (!blockData?.units) throw new Error(`Missing ${languageCode}/${levelId}/${block.id} block data in ${block.path}`);
+        units.push(...blockData.units);
+      }
+      if (!units.length) throw new Error(`No units loaded for ${languageCode}/${levelId}`);
+      levels.push({ id: levelId, units });
+    } catch (error) {
+      if (error?.code === 'ENOENT') {
+        throw new Error(`Declared curriculum file missing for ${languageCode}/${levelId}: ${error.message}`);
+      }
+      throw error;
+    }
+  }
+  return levels;
+}
+
+function addLocalizedEntry(entries, language, levelId, text, kind, unitId) {
+  if (typeof text !== 'string' || !text.trim()) return;
+  const normalized = normalize(text);
+  const id = hashText(text);
+  const key = language + ':' + id;
+  const existing = entries.get(key);
+  const source = { level: levelId, unit: unitId, kind };
+  if (existing && existing.normalized !== normalized) throw new Error(`Hash collision for ${language}/${id}`);
+  if (existing) {
+    if (!existing.sources.some((item) => item.level === source.level && item.unit === source.unit && item.kind === source.kind)) {
+      existing.sources.push(source);
+    }
+    if (!existing.levels.includes(levelId)) existing.levels.push(levelId);
+    return;
+  }
+  entries.set(key, {
+    id, language, text: text.trim().replace(/\s+/g, ' '), normalized,
+    levels: [levelId], sources: [source]
+  });
+}
+
+function collectLocalizedLevel(level, language, entries) {
+  for (const unit of level.units || []) {
+    for (const vocab of unit.vocab || []) {
+      addLocalizedEntry(entries, language, level.id, vocab.target || vocab.idn, 'vocabulary', unit.id);
+      addLocalizedEntry(entries, language, level.id, vocab.ex, 'example', unit.id);
+    }
+    const visit = (items) => {
+      for (const item of items || []) {
+        if (!item || typeof item !== 'object') continue;
+        if (typeof item.audioText === 'string') {
+          addLocalizedEntry(entries, language, level.id, item.audioText, 'exercise-audioText', unit.id);
+        }
+        if (typeof item.answer === 'string') {
+          addLocalizedEntry(entries, language, level.id, item.answer, 'exercise-answer', unit.id);
+        }
+      }
+    };
+    visit(unit.exercises);
+    for (const lesson of unit.lessons || []) visit(lesson.exercises);
+  }
+}
+
+async function buildAllLanguageManifest() {
+  const entries = new Map();
+  const languages = await loadLanguageRegistry();
+  const localeByCode = new Map(languages.map((language) => [language.code, language.locale]));
+  process.stdout.write(`Audio language registry: ${languages.map((language) => language.code + '[' + Object.keys(language.curriculum || {}).join(',') + ']').join(' ')}\\n`);
+  const idManifest = await buildManifest({ includeInteractive: true, includeB2: true });
+  for (const entry of idManifest) {
+    entries.set('id:' + entry.id, { ...entry, language: 'id' });
+  }
+  for (const language of languages) {
+    if (language.code === 'id' || !language.curriculum || !Object.keys(language.curriculum).length) continue;
+    const levels = await loadLocalizedLevels(language.code, language.curriculum);
+    process.stdout.write(`Audio curriculum ${language.code}: ${levels.map((level) => level.id + '=' + level.units.length).join(', ')}\\n`);
+    for (const level of levels) collectLocalizedLevel(level, language.code, entries);
+  }
+  for (const entry of entries.values()) {
+    entry.locale = localeByCode.get(entry.language) || entry.locale || null;
+  }
+  return [...entries.values()];
+}
+
 async function main() {
   const outputIndex = process.argv.indexOf('--output');
   const output = outputIndex >= 0 ? path.resolve(process.argv[outputIndex + 1]) : path.join(ROOT, 'audio', 'manifest.json');
   const includeInteractive = process.argv.includes('--include-interactive');
+  const allLanguages = process.argv.includes('--all-languages');
   let includeB2 = process.argv.includes('--include-b2');
   if (!includeB2) {
     try {
@@ -131,10 +237,10 @@ async function main() {
       if (error?.code !== 'ENOENT') throw error;
     }
   }
-  const manifest = await buildManifest({ includeInteractive, includeB2 });
+  const manifest = allLanguages ? await buildAllLanguageManifest() : await buildManifest({ includeInteractive, includeB2 });
   await mkdir(path.dirname(output), { recursive: true });
   await writeFile(output, JSON.stringify(manifest, null, 2) + '\n', 'utf8');
-  const counts = Object.fromEntries(['A1', 'A2', 'B1', 'B2'].map((level) => [level, manifest.filter((entry) => entry.levels.includes(level)).length]));
+  const counts = allLanguages ? Object.fromEntries([...new Set(manifest.map((entry) => entry.language))].map((language) => [language, manifest.filter((entry) => entry.language === language).length])) : Object.fromEntries(['A1', 'A2', 'B1', 'B2'].map((level) => [level, manifest.filter((entry) => entry.levels.includes(level)).length]));
   process.stdout.write(`Unique audio texts: ${manifest.length}; ${JSON.stringify(counts)}\n`);
 }
 

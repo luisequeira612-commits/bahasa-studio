@@ -5,6 +5,8 @@ window.AudioEngine = {
     selectedVoice: null,
     voicePreference: 'auto',
     currentAudio: null,
+    audioManifest: new Map(),
+    audioManifestLoaded: false,
     rate: 1,
     getLanguageConfig() {
         const manager = window.LanguageManager;
@@ -18,6 +20,25 @@ window.AudioEngine = {
     },
     voiceKey(voice) {
         return voice.voiceURI || (String(voice.lang || '') + ':' + String(voice.name || ''));
+    },
+    async loadAudioManifest() {
+        try {
+            const response = await fetch('./audio/manifest-multilingual.json', { cache: 'no-cache' });
+            if (!response.ok) throw new Error('HTTP ' + response.status);
+            const manifest = await response.json();
+            this.audioManifest = new Map();
+            (manifest.entries || []).forEach(entry => {
+                if (entry && entry.language && entry.text && entry.file) {
+                    this.audioManifest.set(entry.language + ':' + this.hashText(entry.text), entry);
+                }
+            });
+            this.audioManifestLoaded = true;
+            this.updateVoiceStatus();
+        } catch (error) {
+            this.audioManifestLoaded = false;
+            this.updateVoiceStatus();
+            console.warn('No se pudo cargar la biblioteca de audio Piper:', error);
+        }
     },
     hashText(text) {
         const normalized = String(text ?? '').trim().replace(/\s+/g, ' ').toLowerCase();
@@ -98,13 +119,16 @@ window.AudioEngine = {
         const language = this.getLanguageConfig();
         const voices = this.voices.filter(voice => this.matchesActiveLanguage(voice));
         const languageName = String(language.name || language.code || 'idioma del curso').toLowerCase();
-        if (voices.length) {
+        const manifestPrefix = String(language.code || '') + ':';
+        const hasManifestAudio = this.audioManifestLoaded &&
+            Array.from(this.audioManifest.keys()).some(key => key.startsWith(manifestPrefix));
+        if (language.voiceStatus === 'configured' || hasManifestAudio) {
             const active = this.selectedVoice || this.activeLanguageVoice;
-            status.textContent = 'La app incluye grabaciones Piper del curso; no necesitas instalar una voz. Voz del dispositivo disponible como respaldo para ' +
-                languageName + ': ' + (active ? active.name : 'selección automática') + '.';
+            status.textContent = 'La app incluye grabaciones Piper para ' + languageName +
+                '. Voz del dispositivo disponible como respaldo' + (active ? ': ' + active.name : '') + '.';
         } else {
-            status.textContent = 'La app incluye grabaciones Piper del curso y puede reproducirlas sin voces instaladas. Una voz del dispositivo para ' +
-                languageName + ' solo es necesaria como respaldo si falta una grabación.';
+            status.textContent = 'Si falta una grabación, el navegador intentará reproducir la frase en ' +
+                languageName + ' con una voz compatible del dispositivo.';
         }
     },
     refreshVoices() {
@@ -140,8 +164,36 @@ window.AudioEngine = {
         }
         return true;
     },
+    localizeCourseLabels() {
+        const language = this.getLanguageConfig();
+        const languageName = String(language.name || language.code || 'idioma del curso').toLowerCase();
+        const area = document.getElementById('exerciseArea');
+        if (area && typeof area.querySelectorAll === 'function') {
+            area.querySelectorAll('p').forEach(paragraph => {
+                if (/Toca una palabra en .+? para consultar su significado sin salir de la lección\./i.test(paragraph.textContent || '')) {
+                    const localizedHint = '💡 Toca una palabra en ' + languageName +
+                        ' para consultar su significado sin salir de la lección.';
+                    if (paragraph.textContent !== localizedHint) paragraph.textContent = localizedHint;
+                }
+            });
+        }
+        const languageTrigger = document.getElementById('studyLanguageTrigger');
+        if (languageTrigger && typeof languageTrigger.setAttribute === 'function') {
+            languageTrigger.setAttribute('aria-label', 'Cambiar idioma de estudio. ' + language.name + ' actual');
+        }
+    },
+    observeCourseLabels() {
+        this.localizeCourseLabels();
+        const area = document.getElementById('exerciseArea');
+        if (area && typeof MutationObserver === 'function') {
+            this.lessonLabelObserver = new MutationObserver(() => this.localizeCourseLabels());
+            this.lessonLabelObserver.observe(area, { childList: true, subtree: true, characterData: true });
+        }
+    },
     init() {
         this.refreshVoices();
+        this.observeCourseLabels();
+        this.loadAudioManifest();
         if (this.synth && this.synth.onvoiceschanged !== undefined) {
             this.synth.onvoiceschanged = () => this.refreshVoices();
         }
@@ -156,25 +208,32 @@ window.AudioEngine = {
         }
         this.refreshVoices();
         const voice = this.selectedVoice || this.activeLanguageVoice;
-        if (!voice || !this.matchesActiveLanguage(voice)) {
-            const status = document.getElementById('audioVoiceStatus');
-            if (status) status.textContent = 'No se encontró una grabación para esta frase ni una voz instalada para ' + languageName + ' como respaldo.';
-            return false;
-        }
         this.synth.cancel();
         const utter = new SpeechSynthesisUtterance(text);
         utter.lang = language.locale || 'id-ID';
-        utter.voice = voice;
+        if (voice && this.matchesActiveLanguage(voice)) {
+            // A Portuguese (pt-PT) device voice is also a valid fallback for pt-BR.
+            utter.voice = voice;
+        }
         utter.rate = this.rate;
         this.synth.speak(utter);
+        if (!voice) {
+            const status = document.getElementById('audioVoiceStatus');
+            if (status) status.textContent = 'El navegador intentará reproducir esta frase en ' + languageName +
+                ' usando el idioma solicitado, aunque no haya una voz enumerada por el dispositivo.';
+        }
         return true;
     },
     playRecorded(text) {
         if (typeof Audio !== 'function') return false;
         const id = this.hashText(text);
         if (!id) return false;
+        const language = this.getLanguageConfig();
+        const manifestEntry = this.audioManifest.get(language.code + ':' + id);
+        const audioPath = manifestEntry ? manifestEntry.file : null;
+        if (!audioPath && this.audioManifestLoaded) return false;
         this.stopCurrentAudio();
-        const audio = new Audio(this.getLanguageConfig().audioPath + id + '.mp3');
+        const audio = new Audio(audioPath || (language.audioPath + id + '.mp3'));
         audio.preload = 'auto';
         audio.playbackRate = this.rate;
         this.currentAudio = audio;
@@ -212,6 +271,10 @@ window.AudioEngine = {
         const value = String(text ?? '').trim();
         if (!value) return false;
         this.updateVoiceStatus();
+        // Before the manifest is ready, keep the deterministic per-language
+        // MP3 path as a fast path. Once loaded, the manifest is authoritative:
+        // a missing entry falls back to the device voice instead of probing a
+        // possibly nonexistent file.
         if (this.playRecorded(value)) return true;
         return this.speakWithDeviceVoice(value);
     },

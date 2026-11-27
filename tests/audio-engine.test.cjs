@@ -12,9 +12,13 @@ function createEngine(options = {}) {
     const createdAudio = [];
     let availableVoices = options.voices || [];
     let cancelCalls = 0;
+    const hint = { textContent: '💡 Toca una palabra en indonesio para consultar su significado sin salir de la lección.' };
+    const languageTrigger = { attributes: {}, setAttribute(name, value) { this.attributes[name] = value; } };
     const statuses = {
         audioVoiceStatus: { textContent: '' },
-        voiceTestStatus: { textContent: '' }
+        voiceTestStatus: { textContent: '' },
+        exerciseArea: { querySelectorAll: selector => selector === 'p' ? [hint] : [] },
+        studyLanguageTrigger: languageTrigger
     };
     const synth = {
         getVoices: () => availableVoices,
@@ -51,7 +55,7 @@ function createEngine(options = {}) {
             speechSynthesis: options.noSynth ? null : synth,
             LanguageManager: {
                 getActiveLanguage: () => (options.language || { code: 'id' }).code,
-                getLanguage: () => options.language || { code: 'id', locale: 'id-ID', name: 'Indonesio', audioPath: './audio/id/', testPhrase: 'terima kasih' }
+                getLanguage: () => options.language || { code: 'id', locale: 'id-ID', name: 'Indonesio', audioPath: './audio/id/', voiceStatus: 'configured', testPhrase: 'terima kasih' }
             }
         },
         document: {
@@ -71,6 +75,8 @@ function createEngine(options = {}) {
         spoken,
         createdAudio,
         statuses,
+        hint,
+        languageTrigger,
         setAvailableVoices(voices) { availableVoices = voices; },
         get cancelCalls() { return cancelCalls; }
     };
@@ -94,12 +100,13 @@ test('reproduce el MP3 incluido aunque el dispositivo no tenga voz indonesia', (
     assert.match(setup.statuses.audioVoiceStatus.textContent, /grabaciones Piper/i);
 });
 
-test('si falta el MP3 y no hay voz indonesia, informa el problema sin usar otra lengua', () => {
+test('si falta el MP3 y no hay voz enumerada, solicita al navegador la voz del locale activo', () => {
     const setup = createEngine();
     setup.engine.speak('frase sin clip');
     setup.createdAudio[0].fail();
-    assert.equal(setup.spoken.length, 0);
-    assert.match(setup.statuses.audioVoiceStatus.textContent, /ni una voz instalada para indonesio/i);
+    assert.equal(setup.spoken.length, 1);
+    assert.equal(setup.spoken[0].lang, 'id-ID');
+    assert.equal(setup.spoken[0].voice, null);
 });
 
 test('si falta el MP3, usa únicamente una voz indonesia instalada como respaldo', () => {
@@ -156,7 +163,7 @@ test('el botón de prueba no reproduce una frase indonesia para un idioma sin fr
 });
 
 test('usa la ruta y el locale de la configuración del idioma activo', () => {
-    const language = { code: 'pt-BR', locale: 'pt-BR', name: 'Portugués de Brasil', audioPath: './audio/pt-BR/' };
+    const language = { code: 'pt-BR', locale: 'pt-BR', name: 'Portugués', audioPath: './audio/pt-BR/' };
     const voice = { name: 'Portuguese voice', lang: 'pt-BR' };
     const setup = createEngine({ language, voices: [{ name: 'Indonesian voice', lang: 'id-ID' }, voice] });
     setup.engine.speak('bom dia');
@@ -168,12 +175,14 @@ test('usa la ruta y el locale de la configuración del idioma activo', () => {
     assert.equal(setup.spoken[0].voice, voice);
 });
 
-test('no usa como respaldo una voz de un idioma distinto al curso activo', () => {
+test('Portugués usa pt-BR del navegador aunque no haya voz enumerada', () => {
     const language = { code: 'pt-BR', locale: 'pt-BR', name: 'Portugués de Brasil', audioPath: './audio/pt-BR/' };
-    const setup = createEngine({ language, voices: [{ name: 'Indonesian voice', lang: 'id-ID' }] });
+    const setup = createEngine({ language });
     setup.engine.speak('bom dia');
     setup.createdAudio[0].fail();
-    assert.equal(setup.spoken.length, 0);
+    assert.equal(setup.spoken.length, 1);
+    assert.equal(setup.spoken[0].lang, 'pt-BR');
+    assert.equal(setup.spoken[0].voice, null);
     assert.match(setup.statuses.audioVoiceStatus.textContent, /Portugués de Brasil/i);
 });
 
@@ -184,4 +193,100 @@ test('expone la voz seleccionada con un nombre neutral al idioma activo', () => 
     setup.engine.refreshVoices();
     assert.equal(setup.engine.activeLanguageVoice, voice);
     assert.equal(setup.engine.idVoice, undefined);
+});
+
+
+test('acepta una voz pt-PT como respaldo para el curso pt-BR', () => {
+    const language = { code: 'pt-BR', locale: 'pt-BR', name: 'Portugués de Brasil', audioPath: './audio/pt-BR/' };
+    const voice = { name: 'Portuguese Portugal', lang: 'pt-PT' };
+    const setup = createEngine({ language, voices: [voice] });
+    setup.engine.speak('bom dia');
+    setup.createdAudio[0].fail();
+    assert.equal(setup.spoken.length, 1);
+    assert.equal(setup.spoken[0].lang, 'pt-BR');
+    assert.equal(setup.spoken[0].voice, voice);
+});
+
+
+test('localiza el mensaje de consulta y la etiqueta accesible al idioma activo', () => {
+    const language = { code: 'pt-BR', locale: 'pt-BR', name: 'Portugués', audioPath: './audio/pt-BR/' };
+    const setup = createEngine({ language });
+    setup.engine.localizeCourseLabels();
+    assert.equal(setup.hint.textContent, '💡 Toca una palabra en portugués para consultar su significado sin salir de la lección.');
+    assert.equal(setup.languageTrigger.attributes['aria-label'], 'Cambiar idioma de estudio. Portugués actual');
+    language.name = 'Indonesio';
+    language.locale = 'id-ID';
+    setup.engine.localizeCourseLabels();
+    assert.equal(setup.hint.textContent, '💡 Toca una palabra en indonesio para consultar su significado sin salir de la lección.');
+    assert.equal(setup.languageTrigger.attributes['aria-label'], 'Cambiar idioma de estudio. Indonesio actual');
+});
+
+test('las seis palabras iniciales de PT-BR usan la ruta y el locale portugueses', () => {
+    const language = { code: 'pt-BR', locale: 'pt-BR', name: 'Portugués', audioPath: './audio/pt-BR/' };
+    for (const word of ['olá', 'oi', 'bom dia', 'boa tarde', 'boa noite', 'tchau']) {
+        const setup = createEngine({ language });
+        setup.engine.speak(word);
+        const expected = crypto.createHash('sha1').update(word, 'utf8').digest('hex').slice(0, 12);
+        assert.equal(setup.createdAudio[0].src, './audio/pt-BR/' + expected + '.mp3', word);
+        setup.createdAudio[0].fail();
+        assert.equal(setup.spoken.length, 1, word);
+        assert.equal(setup.spoken[0].text, word, word);
+        assert.equal(setup.spoken[0].lang, 'pt-BR', word);
+    }
+});
+
+test('PT-BR nunca usa una voz indonesia aunque sea la única instalada', () => {
+    const language = { code: 'pt-BR', locale: 'pt-BR', name: 'Portugués', audioPath: './audio/pt-BR/' };
+    const voice = { name: 'Indonesian device voice', lang: 'id-ID' };
+    const setup = createEngine({ language, voices: [voice] });
+    setup.engine.speak('olá');
+    setup.createdAudio[0].fail();
+    assert.equal(setup.spoken.length, 1);
+    assert.equal(setup.spoken[0].lang, 'pt-BR');
+    assert.equal(setup.spoken[0].voice, null);
+});
+
+test('prefiere la ruta del manifiesto Piper para el idioma activo', () => {
+    const language = { code: 'pt-BR', locale: 'pt-BR', name: 'Portugués', audioPath: './audio/pt-BR/' };
+    const setup = createEngine({ language });
+    const key = 'pt-BR:' + setup.engine.hashText('bom dia');
+    setup.engine.audioManifestLoaded = true;
+    setup.engine.audioManifest.set(key, { file: './audio/pt-BR/manifest-clip.mp3' });
+    setup.engine.speak('bom dia');
+    assert.equal(setup.createdAudio.length, 1);
+    assert.equal(setup.createdAudio[0].src, './audio/pt-BR/manifest-clip.mp3');
+    assert.equal(setup.spoken.length, 0);
+});
+
+test('si el manifiesto está cargado y no existe el texto, usa TTS del locale sin probar una ruta huérfana', () => {
+    const language = { code: 'pt-BR', locale: 'pt-BR', name: 'Portugués', audioPath: './audio/pt-BR/' };
+    const setup = createEngine({ language });
+    setup.engine.audioManifestLoaded = true;
+    setup.engine.speak('texto sin grabación');
+    assert.equal(setup.createdAudio.length, 0);
+    assert.equal(setup.spoken.length, 1);
+    assert.equal(setup.spoken[0].lang, 'pt-BR');
+});
+
+test('el estado de voz reconoce la biblioteca Piper del manifiesto portugués', () => {
+    const language = { code: 'pt-BR', locale: 'pt-BR', name: 'Portugués', audioPath: './audio/pt-BR/' };
+    const setup = createEngine({ language });
+    setup.engine.audioManifestLoaded = true;
+    setup.engine.audioManifest.set('pt-BR:' + setup.engine.hashText('olá'), { file: './audio/pt-BR/olá.mp3' });
+    setup.engine.updateVoiceStatus();
+    assert.match(setup.statuses.audioVoiceStatus.textContent, /incluye grabaciones Piper para portugués/i);
+});
+
+test('el botón de prueba usa la frase portuguesa y su clip del manifiesto', () => {
+    const language = {
+        code: 'pt-BR', locale: 'pt-BR', name: 'Portugués',
+        audioPath: './audio/pt-BR/', testPhrase: 'olá'
+    };
+    const setup = createEngine({ language });
+    setup.engine.audioManifestLoaded = true;
+    setup.engine.audioManifest.set('pt-BR:' + setup.engine.hashText('olá'), { file: './audio/pt-BR/olá.mp3' });
+    assert.equal(setup.engine.testVoice(), true);
+    assert.equal(setup.createdAudio.length, 1);
+    assert.equal(setup.createdAudio[0].src, './audio/pt-BR/olá.mp3');
+    assert.equal(setup.spoken.length, 0);
 });

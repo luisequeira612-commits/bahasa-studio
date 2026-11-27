@@ -76,5 +76,5 @@ test('service worker precaches B2 U1-U40 and advances the app-shell cache',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
  assert.ok(source.includes("./languages/pt-BR/curriculum/b2/index.js"));
  for(const file of b2Files)assert.ok(source.includes('./languages/pt-BR/curriculum/b2/'+file));
- assert.match(source,/bahasa-studio-v3\.8\.166/);
+ assert.match(source,/bahasa-studio-v3\.8\.167/);
 });

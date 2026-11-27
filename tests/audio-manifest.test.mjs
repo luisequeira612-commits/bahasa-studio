@@ -71,7 +71,15 @@ test('audio manifest exports unique A1, A2 and inline B1 texts without changing 
       .filter((name) => name.endsWith('.mp3'))
       .map((name) => name.slice(0, -4));
     assert.equal(new Set(audioFiles).size, audioFiles.length, 'MP3 filenames must be unique');
-    assert.deepEqual([...audioFiles].sort(), [...index].sort(), 'every indexed audio ID must have one MP3 and no orphan MP3 may remain');
+    const generatedManifest = JSON.parse(await readFile(path.join(root, 'audio', 'manifest.json'), 'utf8'));
+    const generatedMp3Ids = Array.isArray(generatedManifest)
+      ? generatedManifest
+        .filter((entry) => entry.language === 'id' && typeof entry.file === 'string' && entry.file.endsWith('.mp3'))
+        .map((entry) => entry.id)
+      : [];
+    const expectedMp3Ids = generatedMp3Ids.length ? generatedMp3Ids : index;
+    assert.deepEqual([...audioFiles].sort(), [...expectedMp3Ids].sort(),
+      'every generated manifest MP3 must exist and no orphan MP3 may remain');
 
     const levelUnion = new Set(entries.flatMap((entry) => entry.levels.map(() => entry.id)));
     assert.equal(levelUnion.size, entries.length, 'unique manifest IDs must equal the union of level memberships');
@@ -188,4 +196,64 @@ test('manifest export is deterministic, including the first-seen text variant', 
   } finally {
     await rm(temp, { recursive: true, force: true });
   }
+});
+
+test('all-language export follows the central language registry and includes every course with curriculum paths', async () => {
+  const temp = await mkdtemp(path.join(os.tmpdir(), 'bahasa-audio-all-languages-'));
+  const output = path.join(temp, 'all-languages.json');
+  try {
+    const result = spawnSync(process.execPath, [script, '--all-languages', '--output', output], {
+      cwd: root, encoding: 'utf8', timeout: 30000
+    });
+    assert.equal(result.status, 0, result.stderr || result.stdout);
+    const entries = JSON.parse(await readFile(output, 'utf8'));
+    const languages = new Set(entries.map((entry) => entry.language));
+    assert.ok(languages.has('id'), 'Indonesian course must be exported');
+    assert.ok(languages.has('pt-BR'), 'Brazilian Portuguese course must be discovered from LanguageManager');
+    for (const level of ['A1', 'A2', 'B1', 'B2']) {
+      assert.ok(entries.some((entry) => entry.language === 'pt-BR' &&
+        entry.sources.some((source) => source.level === level)),
+      'Portuguese ' + level + ' texts must be exported');
+    }
+    assert.ok(entries.some((entry) => entry.language === 'pt-BR' && entry.text.toLowerCase() === 'olá'),
+      'the initial Portuguese greeting must be included');
+    assert.ok(entries.every((entry) => entry.language && entry.locale && entry.text && entry.sources.length > 0));
+    assert.ok(entries.every((entry) => entry.text === entry.text.trim().replace(/\s+/g, ' ')),
+      'localized text must use canonical collapsed whitespace');
+    assert.equal(new Set(entries.map((entry) => entry.language + ':' + entry.id)).size, entries.length,
+      'audio text IDs must be unique within each language');
+    for (const entry of entries) assert.equal(entry.id, hashText(entry.text));
+  } finally {
+    await rm(temp, { recursive: true, force: true });
+  }
+});
+
+test('all ten Piper voices are pinned and their model cards are preserved for attribution', async () => {
+  const voices = JSON.parse(await readFile(path.join(root, 'tools/audio-voices.json'), 'utf8'));
+  assert.equal(Object.keys(voices).length, 10);
+  for (const [code, voice] of Object.entries(voices)) {
+    assert.equal(voice.repository, 'rhasspy/piper-voices', code);
+    assert.match(voice.revision, /^[a-f0-9]{40}$/, code + ' must use an immutable upstream revision');
+    assert.ok(voice.model && voice.model_path && voice.locale, code + ' voice metadata must be complete');
+    assert.ok(voice.attribution, code + ' voice attribution label must be present');
+  }
+  const generator = await readFile(path.join(root, 'tools/generar_audio.py'), 'utf8');
+  assert.match(generator, /MODEL_CARD/);
+  assert.match(generator, /VOICE_ATTRIBUTION\.md/);
+  assert.match(generator, /resolve\/\{revision\}/);
+  assert.match(generator, /PIPER_VERSION = "1\.8\.0"/);
+  assert.match(generator, /voice_revisions/);
+  assert.match(generator, /PiperVoice\.load/);
+  assert.match(generator, /voice\.synthesize_wav/);
+  assert.match(generator, /config\[code\]\.get\("attribution"/);
+  assert.match(generator, /wave\.open/);
+  assert.match(generator, /manifest-multilingual\.json/);
+  assert.match(generator, /inventory_path = ROOT \/ "audio" \/ "manifest\.json"/);
+  assert.match(generator, /metadata_path = ROOT \/ "audio" \/ "metadata\.json"/);
+  assert.match(generator, /inventory_path = ROOT \/ "audio" \/ code \/ "manifest\.json"/);
+  assert.match(generator, /metadata_path = ROOT \/ "audio" \/ code \/ "metadata\.json"/);
+  assert.match(generator, /sha256_file/);
+  assert.match(generator, /ROOT \/ "audio" \/ "index\.json"/);
+  const workflow = await readFile(path.join(root, '.github/workflows/audio.yml'), 'utf8');
+  assert.match(workflow, /piper-tts==1\.8\.0/);
 });

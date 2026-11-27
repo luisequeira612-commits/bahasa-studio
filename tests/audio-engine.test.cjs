@@ -12,9 +12,13 @@ function createEngine(options = {}) {
     const createdAudio = [];
     let availableVoices = options.voices || [];
     let cancelCalls = 0;
+    const hint = { textContent: '💡 Toca una palabra en indonesio para consultar su significado sin salir de la lección.' };
+    const languageTrigger = { attributes: {}, setAttribute(name, value) { this.attributes[name] = value; } };
     const statuses = {
         audioVoiceStatus: { textContent: '' },
-        voiceTestStatus: { textContent: '' }
+        voiceTestStatus: { textContent: '' },
+        exerciseArea: { querySelectorAll: selector => selector === 'p' ? [hint] : [] },
+        studyLanguageTrigger: languageTrigger
     };
     const synth = {
         getVoices: () => availableVoices,
@@ -51,7 +55,7 @@ function createEngine(options = {}) {
             speechSynthesis: options.noSynth ? null : synth,
             LanguageManager: {
                 getActiveLanguage: () => (options.language || { code: 'id' }).code,
-                getLanguage: () => options.language || { code: 'id', locale: 'id-ID', name: 'Indonesio', audioPath: './audio/id/', testPhrase: 'terima kasih' }
+                getLanguage: () => options.language || { code: 'id', locale: 'id-ID', name: 'Indonesio', audioPath: './audio/id/', voiceStatus: 'configured', testPhrase: 'terima kasih' }
             }
         },
         document: {
@@ -199,4 +203,13 @@ test('acepta una voz pt-PT como respaldo para el curso pt-BR', () => {
     assert.equal(setup.spoken.length, 1);
     assert.equal(setup.spoken[0].lang, 'pt-BR');
     assert.equal(setup.spoken[0].voice, voice);
+});
+
+
+test('localiza el mensaje de consulta y la etiqueta accesible al idioma activo', () => {
+    const language = { code: 'pt-BR', locale: 'pt-BR', name: 'Portugués de Brasil', audioPath: './audio/pt-BR/' };
+    const setup = createEngine({ language });
+    setup.engine.localizeCourseLabels();
+    assert.equal(setup.hint.textContent, '💡 Toca una palabra en portugués de brasil para consultar su significado sin salir de la lección.');
+    assert.equal(setup.languageTrigger.attributes['aria-label'], 'Cambiar idioma de estudio. Portugués de Brasil actual');
 });

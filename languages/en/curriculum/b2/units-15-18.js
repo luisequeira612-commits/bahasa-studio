@@ -11,7 +11,7 @@ const data=[
 ["would be doing","estaría haciendo","If she had accepted the role, she would be working abroad now.","Si hubiera aceptado el puesto, ahora estaría trabajando en el extranjero."],
 ["would have been","habría sido / estado","If I were more patient, the discussion would have been easier.","Si fuera más paciente, la conversación habría sido más fácil."],
 ["could have avoided","podría haber evitado","If we were more careful, we could have avoided the mistake.","Si fuéramos más cuidadosos, podríamos haber evitado el error."],
-["could be","podría estar","If he had taken the earlier train, he could be here by now.","Si hubiera tomado el tren anterior, podría estar aquí ahora."],
+["might still be","quizá todavía estaría","If he had taken the earlier train, he might still be here by now.","Si hubiera tomado el tren anterior, quizá todavía estaría aquí."],
 ["otherwise","de lo contrario","I would have missed the call; otherwise, I would know the result.","Habría perdido la llamada; de lo contrario, sabría el resultado."],
 ["to be in a better position","estar en mejor situación","With more support, we would be in a better position now.","Con más apoyo, ahora estaríamos en mejor situación."],
 ["to have a different outcome","tener un resultado diferente","If the team had communicated, the project might have had a different outcome.","Si el equipo se hubiera comunicado, el proyecto podría haber tenido otro resultado."],

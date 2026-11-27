@@ -13,7 +13,7 @@ const rows=[
 ["to need","necesitar","We need a response by the end of the day.","Necesitamos una respuesta antes de que termine el día."],
 ["to commence","dar comienzo a","The inspection will commence at 9 a.m.","La inspección dará comienzo a las 9."],
 ["to start","empezar","The inspection will start at 9 a.m.","La inspección empezará a las 9."],
-["to terminate an agreement","dar por terminado un acuerdo","We may need to end the arrangement early.","Cualquiera de las partes puede dar por terminado el acuerdo mediante aviso escrito."],
+["to terminate an agreement","dar por terminado un acuerdo","Either party may terminate the agreement with written notice.","Cualquiera de las partes puede dar por terminado el acuerdo mediante aviso escrito."],
 ["to end an arrangement","poner fin a un acuerdo","We may need to end the arrangement early.","Puede que tengamos que poner fin al acuerdo antes de tiempo."],
 ["to purchase","adquirir / comprar","The department plans to purchase new equipment.","El departamento planea adquirir equipo nuevo."],
 ["to buy","comprar","We need to buy a replacement cable.","Necesitamos comprar un cable de repuesto."],
@@ -21,7 +21,7 @@ const rows=[
 ["sorry about","perdón por","Sorry about the delay; the system was down.","Perdón por el retraso; el sistema estaba caído."],
 ["to inform someone that","informar a alguien de que","We are writing to inform you that your request has been approved.","Le escribimos para informarle que su solicitud ha sido aprobada."],
 ["just to let you know","solo para avisarte","Just to let you know, the room has changed.","Solo para avisarte, la sala ha cambiado."],
-["to inquire about","consultar acerca de","Sorry about the delay; the system was down.","Le escribo para consultar acerca de los puestos disponibles."],
+["to inquire about","consultar acerca de","I am writing to inquire about the available positions.","Le escribo para consultar acerca de los puestos disponibles."],
 ["to ask about","preguntar por","I wanted to ask about the schedule for next week.","Quería preguntar por el horario de la próxima semana."]
 ];
 const lessonDefs=[

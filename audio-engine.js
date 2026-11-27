@@ -33,8 +33,10 @@ window.AudioEngine = {
                 }
             });
             this.audioManifestLoaded = true;
+            this.updateVoiceStatus();
         } catch (error) {
             this.audioManifestLoaded = false;
+            this.updateVoiceStatus();
             console.warn('No se pudo cargar la biblioteca de audio Piper:', error);
         }
     },
@@ -117,7 +119,10 @@ window.AudioEngine = {
         const language = this.getLanguageConfig();
         const voices = this.voices.filter(voice => this.matchesActiveLanguage(voice));
         const languageName = String(language.name || language.code || 'idioma del curso').toLowerCase();
-        if (language.voiceStatus === 'configured') {
+        const manifestPrefix = String(language.code || '') + ':';
+        const hasManifestAudio = this.audioManifestLoaded &&
+            Array.from(this.audioManifest.keys()).some(key => key.startsWith(manifestPrefix));
+        if (language.voiceStatus === 'configured' || hasManifestAudio) {
             const active = this.selectedVoice || this.activeLanguageVoice;
             status.textContent = 'La app incluye grabaciones Piper para ' + languageName +
                 '. Voz del dispositivo disponible como respaldo' + (active ? ': ' + active.name : '') + '.';

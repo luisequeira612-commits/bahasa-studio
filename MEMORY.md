@@ -1,3 +1,10 @@
+## 2026-11-27 — Causa raíz: bloques curriculares localizados indexados por ID
+- El diagnóstico del run #45962624924 confirmó que el registro sí detectaba `pt-BR[A1,A2,B1,B2]` y abría sus índices; el fallo era la lectura de bloques. `GUARDI_CURRICULUM_BLOCKS[idioma][nivel]` es un mapa por `block.id` (p. ej. `01-06`), pero el exportador buscaba `.units` directamente en el mapa. Corregido a `...[levelId]?.[block.id]`.
+- Este era el motivo real de `pt-BR: 0`; no era un problema de voz, de modelo ni de espacio. El cambio está en commit `19e3b46b026dac4b70d3fcabe785aa7f00a55cc9` y debe hacer que A1/A2/B1/B2 portugués se exporten con sus bloques completos.
+- El run #45962624924 falló intencionalmente con el nuevo guard estricto al detectar el bloque ausente; esa detección evitó generar otra biblioteca incompleta. CI y nueva generación pendientes.
+
+Fuente: log de Actions #45962624924, `languages/pt-BR/curriculum/a1/index.js`, `units-01-06.js` y `scripts/export-audio-manifest.mjs`; 27 nov 2026.
+
 ## 2026-11-27 — Reintento de publicación cuando la rama avanza durante Piper
 - El run #45962481045 volvió a generar 127 clips ID y pasó el límite de tamaño (27,50 MiB total), pero el push falló porque la rama recibió commits mientras el workflow hacía rebase. El error fue una carrera de actualización de ref (`expected 87af5c5`, remoto ya en `de6ea73`), no un conflicto de contenido.
 - Se amplió `.github/workflows/audio.yml` con hasta cinco ciclos fetch/rebase/push para tolerar commits concurrentes; commit `f76962f1399434b248e12a2977e6dc9ecf6fec39`. El workflow se activa también cuando se modifica a sí mismo.

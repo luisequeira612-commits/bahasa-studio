@@ -791,3 +791,11 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Inventario A2 U1–U30 previsto: 594 entradas nuevas; U10, U20 y U30 son repasos. El manifiesto y el contrato automatizado se amplían a U30 y comparan el inventario contra A1.
 - CI de este bloque pendiente. Entradas `not_checked`; cotejo individual CEFR-J pendiente. Inglés sigue `available:false`; sin cambios a IndexedDB v1, backup JSON v3, dependencias, POS/audio, PT-BR ni otros idiomas. No fusionar ni publicar sin aprobación expresa.
 - Fuente: `units-27-30.js`, rama `feat/en-us-a2-u27-u30-v2`, tests y docs; 26 nov 2026.
+
+
+## 2026-11-26 — Inglés en-US A2 U31–U34
+- Rama `feat/en-us-a2-u31-u34`, apilada sobre PR #907. U31 transporte y conexiones; U32 preguntas indirectas y problemas de viaje; U33 molestias/lesiones y atención básica; U34 phrasal verbs domésticos.
+- Bloque de 4 unidades, 20 lecciones, 80 ejercicios y 88 entradas nuevas. Inventario A2 U1–U34 previsto: 682 entradas; U10/U20/U30 son repasos sin vocabulario.
+- Manifiesto y contrato automatizado se amplían a U34 y comprueban inventario completo, solapamiento A1, referencias y disponibilidad false.
+- CI pendiente. Vocabulario `not_checked`; cotejo individual CEFR-J pendiente. Sin cambios a IndexedDB v1, backup JSON v3, dependencias, POS/audio, PT-BR ni otros idiomas. No fusionar ni publicar sin aprobación expresa.
+- Fuente: rama `feat/en-us-a2-u31-u34`, currículo, tests y docs; 26 nov 2026.

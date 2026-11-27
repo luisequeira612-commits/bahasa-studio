@@ -943,3 +943,13 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Se añadieron los tres archivos bootstrap con estructuras válidas vacías (sin inventar clips ni hashes). El generador los sustituirá con los inventarios y huellas SHA-256 reales al terminar.
 - La generación completa sigue pendiente: la ejecución antigua #45962876912 aún estaba sintetizando; no se cuenta como publicada hasta confirmar PT-BR, tamaños, inventarios y commit automático. PR #942 sigue abierta y sin fusionar.
 - Fuente: Actions #45964229991, tests/service-worker-install.test.cjs, service-worker.js y commits bootstrap #3777c6a/#ab1a610/#bd394e8; 27 nov 2026.
+
+
+## 2026-11-27 — Primera generación Piper publicada en la rama
+- GitHub Actions workflow #25 (#45964968625), commit de síntesis por API Python, terminó con éxito: instalación Piper/ffmpeg, generación, validación de límites y commit automático.
+- Inspección del árbol Git recursivo de la rama: 7.282 archivos bajo `audio/`, 56.008.631 bytes (53,41 MiB) en total. Por carpetas: `audio/id/` 4.663 archivos y 27.714.030 bytes (26,43 MiB); `audio/pt-BR/` 2.612 archivos y 25.240.698 bytes (24,07 MiB); `audio/voices/` 2 archivos y 772 bytes. Las cifras de carpetas incluyen manifests/metadatos además de clips.
+- Presupuesto automático actual: 500 MiB; la biblioteca ocupa aprox. 10,7 %. No hay motivo actual para temer el límite de GitHub por tamaño.
+- Los diez modelos están configurados, pero el manifiesto generado y los clips reales cubren solamente los currículos registrados: indonesio y portugués brasileño. Inglés y los otros siete cursos no deben marcarse como cubiertos todavía.
+- La regresión del commit de PR `8e6e432` seguía en ejecución al registrar esta nota (workflow #4415); type checks pasó. No se ha probado aún la reproducción real en GitHub Pages ni se ha fusionado la PR #942.
+- Se actualizó la descripción de PR #942 con estas cifras y el estado real.
+- Fuente: GitHub Actions #45964968625 y árbol Git de `fix/pt-br-audio-language-labels`, 27 nov 2026.

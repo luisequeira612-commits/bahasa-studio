@@ -766,3 +766,12 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Manifiesto y prueba de currículo amplían la cobertura a U1–U22, 440 targets únicos, cinco lecciones y 20 ejercicios por unidad, referencias de repaso resueltas y disponibilidad inglesa false. CI final del head b25244f931a2f020bcd3b3c73c5477a0eab475c4: regresión #45919230037 success (103/103 pasos), Offline quality reports success y JavaScript type checks #45919230094 success. PR #904 abierta y mergeable=true; no fusionada.
 - Todas las entradas nuevas not_checked; cotejo individual CEFR-J pendiente. Sin cambios a IndexedDB v1, backup JSON v3, dependencias, POS/audio, PT-BR ni otros idiomas. No publicar ni fusionar sin aprobación expresa.
 - Fuente: rama feat/en-us-a2-u19-u22, archivos de currículo, prueba y documentación; 26 nov 2026.
+
+
+## 2026-11-26 — Inglés en-US A2 U23–U26
+- Rama feat/en-us-a2-u23-u26, apilada sobre PR #904.
+- U23: peticiones/ofrecimientos corteses; U24: primer condicional; U25: recipientes y medidas con contables/incontables; U26: cuantificadores y proporciones.
+- Bloque de 4 unidades, 20 lecciones, 88 entradas previstas y 80 ejercicios. Total proyectado A2 U1–U26: 528 entradas nuevas; U10 y U20 siguen como repasos sin vocabulario.
+- Manifiesto y test de currículo ampliados a U1–U26. CI, deduplicación y referencias de ejercicios pendientes al registrar esta nota.
+- Vocabulario not_checked; cotejo individual CEFR-J pendiente. Sin cambios a IndexedDB v1, backup JSON v3, dependencias, POS/audio, PT-BR ni otros idiomas. No publicar ni fusionar sin aprobación expresa.
+- Fuente: rama feat/en-us-a2-u23-u26, currículo, prueba y documentación; 26 nov 2026.

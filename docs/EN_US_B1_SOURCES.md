@@ -1,6 +1,6 @@
 # Inglés americano B1 — fuentes, plan y trazabilidad
 
-**Estado:** temario completo aprobado por el usuario el 27 de noviembre de 2026. Implementación en bloques pequeños; U1–U48 están authored en doce bloques apilados. El nivel permanece sin publicar.
+**Estado:** temario completo aprobado por el usuario el 27 de noviembre de 2026. Implementación en bloques pequeños; U1–U52 están authored en trece bloques apilados. El nivel permanece sin publicar.
 
 ## Estructura aprobada
 - 52 unidades, 5 lecciones explícitas por unidad y 20 ejercicios por unidad: 260 lecciones y 1.040 ejercicios al completar el nivel.
@@ -195,3 +195,12 @@
 - Acumulado U1–U48: 48 unidades, 240 lecciones, 960 ejercicios y 968 entradas nuevas. U10, U20, U30 y U40 son repasos sin vocabulario nuevo.
 - Deduplicación estática: 88/88 targets únicos; sin coincidencias exactas con A1/A2 ni U1–U44. La CI repetirá la comparación sobre el inventario completo.
 - Entradas nuevas `not_checked`; sin cotejo individual CEFR-J, revisión nativa ni certificación MCER. Inglés continúa `available:false` hasta completar U52 y los gates de publicación. Sin cambios a IndexedDB v1, backup JSON v3, dependencias, audio, red ni otros idiomas.
+
+
+## Bloque U49–U52 — inglés americano B1
+- U49: comunicación profesional en reuniones, entrevistas y presentaciones; U50: Review V sin vocabulario nuevo; U51: argumentar, negociar y resolver problemas; U52: B1 Final Check sin vocabulario nuevo.
+- Añade 2 unidades de contenido con 44 entradas nuevas (22 por unidad) y dos unidades de evaluación/repaso; total: 4 unidades, 20 lecciones y 80 ejercicios.
+- Acumulado U1–U52: 52 unidades, 260 lecciones, 1.040 ejercicios y 1.012 entradas nuevas. Repasos/evaluaciones sin vocabulario nuevo: U10, U20, U30, U40, U50 y U52.
+- U50 y U52 reutilizan IDs existentes y no crean vocabulario. U52 comprueba estructuras acumuladas en contextos personales, laborales y sociales.
+- Deduplicación estática: 44/44 targets nuevos únicos; la CI compara el inventario completo contra A1/A2 y B1 previo. Entradas nuevas `not_checked`; sin cotejo individual CEFR-J, revisión nativa ni certificación MCER.
+- La autoría de U1–U52 queda completa en ramas apiladas; todavía requiere integración secuencial, CI final, auditoría de calidad y verificación de disponibilidad/publicación. Inglés permanece `available:false` hasta superar esos gates. Sin cambios a IndexedDB v1, backup JSON v3, dependencias, audio, red ni otros idiomas.

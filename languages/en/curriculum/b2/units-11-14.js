@@ -50,7 +50,7 @@ const data=[
 ["didn't need to","no necesitó / no hizo falta","We didn't need to book because the venue was empty.","No hizo falta reservar porque el local estaba vacío."],
 ["might have","quizá haya / podría haber","He might have misunderstood the deadline.","Quizá haya entendido mal la fecha límite."],
 ["couldn't have","no podrían haber","They couldn't have completed the audit in one day.","No podrían haber completado la auditoría en un día."],
-["might have","puede que haya","The email might have gone to the wrong address.","Puede que el correo se haya enviado a la dirección equivocada."],
+["could conceivably have","podría perfectamente haber","The email could conceivably have gone to the wrong address.","El correo podría perfectamente haberse enviado a la dirección equivocada."],
 ["could have","podría haber","We could have avoided the delay with better planning.","Podríamos haber evitado el retraso con una mejor planificación."],
 ["would have","habría","I would have helped if I had known.","Habría ayudado si lo hubiera sabido."],
 ["was supposed to have","se suponía que ya había","The repairs were supposed to have been completed by Monday.","Se suponía que las reparaciones ya estarían terminadas para el lunes."],

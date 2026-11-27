@@ -129,7 +129,7 @@ const data=[
 ["Probabilidad con adjetivos","Formula predicciones usando likely, unlikely y estructuras con be.","Be likely/unlikely to + infinitivo; it is likely that + oración.",[0,1,2,3],"The team is unlikely to finish today."],
 ["Certeza y fuerza de la afirmación","Gradúa una predicción desde posibilidad hasta casi certeza.","Bound to y almost certain to son fuertes; evita presentarlos como certeza absoluta cuando son predicciones.",[4,5,6,7],"It is probable that demand will increase."],
 ["Expresiones de expectativa","Comunica expectativas con adverbios y expresiones de atribución.","In all likelihood, more than likely y by all accounts modifican la fuerza o fuente de una afirmación.",[8,9,10,11],"She will more than likely accept the invitation."],
-["Pronósticos y proyecciones","Interpreta predicciones oficiales y estimaciones.","Be expected/forecast/projected to suelen atribuir el pronóstico a una fuente o modelo.",[12,13,14,15],"Sales are forecast to rise by five percent."],
+["Pronósticos y proyecciones","Interpreta predicciones oficiales y estimaciones.","Be expected/forecast/projected to suelen atribuir el pronóstico a una fuente o modelo.",[12,13,14,15],"The population is projected to grow steadily."],
 ["Resultados frente a expectativas","Compara previsiones, objetivos y resultados observados.","Stand a good chance of + -ing; fall short of, exceed y meet expectations describen resultados.",[16,17,18,19,20,21],"The final result fell short of expectations."]
 ],bank:["It is probable that demand will increase.","There is a strong possibility that the launch will be delayed.","There is a slight chance that we may need extra staff.","In all likelihood, the meeting will be postponed.","She will more than likely accept the invitation."]}
 ];

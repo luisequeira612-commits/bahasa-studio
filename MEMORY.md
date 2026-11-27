@@ -742,3 +742,10 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - En U10 se alinearon los IDs de los ejercicios de repaso con las frases de orden correspondientes; el banco de 10 ejercicios también reutiliza el par de IDs de cada lección para mantener coherencia entre prompt, respuesta y vocabulario.
 - En U10, los ejercicios de opción múltiple de repaso ahora muestran la palabra y su traducción correcta; los ejercicios de orden usan el ID de vocabulario que corresponde a la frase modelo.
 - Revisión editorial U7–U9: los ejercicios de orden del banco y de lección se alinearon con el vocabulario que identifican; no se alteró el inventario ni la progresión.
+
+
+## 2026-11-27 — Inglés en-US A2 U11–U14
+- Rama `feat/en-us-a2-u11-u14`: cuatro unidades authored, 20 lecciones, 88 entradas léxicas y 80 ejercicios; temas: be going to, will/won't, acuerdos futuros con presente continuo y may/might.
+- Inventario A2 U1–U14: 286 entradas nuevas (U10 es repaso sin vocabulario). Auditoría estática: 88 targets únicos en el bloque, sin coincidencias exactas con A1 (638 targets) ni A2 U1–U10 (198 targets).
+- Vocabulario permanece `not_checked`; cotejo individual CEFR-J pendiente. Manifiesto ampliado a U14; inglés continúa `available:false` y «Próximamente». Sin cambios de almacenamiento, dependencias ni otros idiomas.
+- Fuente: rama `feat/en-us-a2-u11-u14`, archivos curriculares y tests; 27 nov 2026.

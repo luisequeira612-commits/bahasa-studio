@@ -794,3 +794,5 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 
 
 - 27 nov 2026: La primera regresión de PR #907 detectó que el contrato de inventario A2 seguía cargando U1–U26 aunque el manifiesto ya anunciaba U1–U30 (528 encontrados frente a 594 esperados). Se corrigió el rango del test para cargar 30 unidades; no se relajó ninguna aserción. Reejecución CI pendiente.
+
+- 27 nov 2026: La segunda regresión de PR #907 detectó dos solapamientos léxicos exactos entre A1 y A2 (try on, slice). Se sustituyeron por check the fit y dice, y se ajustaron sus ejemplos/ejercicio; la siguiente ejecución debe confirmar el inventario de 594 targets sin solapamientos.

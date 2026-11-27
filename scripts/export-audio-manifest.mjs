@@ -192,15 +192,19 @@ function collectLocalizedLevel(level, language, entries) {
 
 async function buildAllLanguageManifest() {
   const entries = new Map();
+  const languages = await loadLanguageRegistry();
+  const localeByCode = new Map(languages.map((language) => [language.code, language.locale]));
   const idManifest = await buildManifest({ includeInteractive: true, includeB2: true });
   for (const entry of idManifest) {
     entries.set('id:' + entry.id, { ...entry, language: 'id' });
   }
-  const languages = await loadLanguageRegistry();
   for (const language of languages) {
     if (language.code === 'id' || !language.curriculum || !Object.keys(language.curriculum).length) continue;
     const levels = await loadLocalizedLevels(language.code, language.curriculum);
     for (const level of levels) collectLocalizedLevel(level, language.code, entries);
+  }
+  for (const entry of entries.values()) {
+    entry.locale = localeByCode.get(entry.language) || entry.locale || null;
   }
   return [...entries.values()];
 }

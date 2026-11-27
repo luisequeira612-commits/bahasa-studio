@@ -48,8 +48,8 @@ const data=[
 ["shouldn't have","no debería haber","I shouldn't have shared that information.","No debería haber compartido esa información."],
 ["needn't have","no hacía falta que","You needn't have brought any food; everything was provided.","No hacía falta que trajeras comida; ya estaba todo preparado."],
 ["didn't need to","no necesitó / no hizo falta","We didn't need to book because the venue was empty.","No hizo falta reservar porque el local estaba vacío."],
-["must have","debe de haber","He must have misunderstood the deadline.","Debe de haber entendido mal la fecha límite."],
-["can't have","no puede haber","They can't have completed the audit in one day.","No pueden haber completado la auditoría en un día."],
+["could have","podría haber","He could have misunderstood the deadline.","Podría haber entendido mal la fecha límite."],
+["couldn't have","no podrían haber","They couldn't have completed the audit in one day.","No podrían haber completado la auditoría en un día."],
 ["might have","puede que haya","The email might have gone to the wrong address.","Puede que el correo se haya enviado a la dirección equivocada."],
 ["could have","podría haber","We could have avoided the delay with better planning.","Podríamos haber evitado el retraso con una mejor planificación."],
 ["would have","habría","I would have helped if I had known.","Habría ayudado si lo hubiera sabido."],
@@ -123,7 +123,7 @@ const data=[
 ["to fall short of","no alcanzar","The final result fell short of expectations.","El resultado final no alcanzó las expectativas."],
 ["to exceed expectations","superar las expectativas","The service has exceeded expectations so far.","El servicio ha superado las expectativas hasta ahora."],
 ["to meet expectations","cumplir las expectativas","The candidate met most of the requirements.","El candidato cumplió la mayoría de los requisitos."],
-["to foresee","prever","We foresee a gradual increase in demand.","Prevemos un aumento gradual de la demanda."],
+["to anticipate","anticipar / prever","We anticipate a gradual increase in demand.","Prevemos un aumento gradual de la demanda."],
 ["to be subject to change","estar sujeto a cambios","All dates are subject to change.","Todas las fechas están sujetas a cambios."]
 ],lessons:[
 ["Probabilidad con adjetivos","Formula predicciones usando likely, unlikely y estructuras con be.","Be likely/unlikely to + infinitivo; it is likely that + oración.",[0,1,2,3],"The new policy is likely to reduce costs."],

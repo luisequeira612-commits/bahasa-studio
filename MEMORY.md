@@ -1,3 +1,9 @@
+## 2026-11-27 — Robustez del commit automático de audio
+- El workflow ahora incluye `.github/workflows/audio.yml` en sus propios paths de activación y, antes de publicar clips, hace `git fetch`, `git rebase origin/$GITHUB_REF_NAME` y `git push origin HEAD:$branch`. Esto evita un push no-fast-forward si el branch avanzó mientras Piper generaba clips.
+- La primera generación tras corregir el nombre de archivo está en ejecución en Actions #45962301907 (commit de evento `3e96f2d`). Como el workflow anterior no rebasaba, esa ejecución puede fallar al publicar si el branch avanzó durante la generación; la siguiente ejecución usará la versión robusta y reutilizará los audios ya generados.
+
+Fuente: `.github/workflows/audio.yml`, Actions #45962301907 y commits del branch; 27 nov 2026.
+
 ## 2026-11-27 — Corrección de descarga de modelos Piper
 - Primera ejecución real del workflow #45962200126 instaló Piper y ffmpeg correctamente, pero falló al descargar el modelo: el generador usaba el último segmento del directorio (`medium`) como nombre de archivo. Hugging Face espera el nombre canónico de voz (`id_ID-news_tts-medium.onnx`).
 - Corregido `download_piper_model()` para recibir por separado el identificador canónico de voz y la ruta de carpeta, y construir los nombres `.onnx` / `.onnx.json` con el identificador. El cambio está en commit `3e96f2d412970a1e47c64a9e2e4fd8c65d0c4274`; el siguiente push debe volver a activar generación.

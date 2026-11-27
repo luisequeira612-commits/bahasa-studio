@@ -222,3 +222,11 @@
 - Se ejecuta como `npm run quality:en-audit`; CI publica el artefacto `en-curriculum-quality-report`. La prueba de integración está en `tests/audit-en-curriculum-quality.test.mjs` y se incluye en `quality:tests`.
 - El informe es exclusivamente estructural: no certifica gramática, naturalidad, inglés estadounidense, equivalencia semántica ni nivel MCER. No sustituye revisión editorial independiente. Las entradas `not_checked` siguen sin validarse.
 - Los informes genéricos históricos de indonesio permanecen separados y no deben presentarse como resultados de inglés.
+
+
+## Cola editorial inglesa (pendiente de revisión humana)
+
+- `scripts/build-en-editorial-review-queue.mjs` genera una cola separada desde los manifiestos ingleses A1/A2/B1: una fila por entrada de vocabulario y por ejercicio directo/de lección. Incluye forma inglesa, glosa española, ejemplos, tipo, consigna, respuesta canónica, opciones, IDs vinculados y dimensiones de revisión.
+- Todos los registros nacen como `pending`, `not_reviewed` y `unassessed`; generar la cola no cambia el estado de verificación. `not_checked` se conserva literalmente.
+- Ejecutar con `npm run quality:en-queue`. La CI publica `en-editorial-review-queue` (CSV + resumen JSON). Tests: `tests/build-en-editorial-review-queue.test.mjs`.
+- La cola organiza trabajo editorial; no realiza revisión automática, no certifica naturalidad ni CEFR y no debe interpretarse como aprobación.

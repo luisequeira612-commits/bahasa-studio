@@ -90,6 +90,6 @@ Estado: primer bloque U1–U6 en desarrollo; el nivel no está publicado. Fecha:
 - U24: primer condicional para condiciones, consecuencias probables y medidas preventivas.
 - U25: sustantivos contables/incontables con recipientes y medidas.
 - U26: cuantificadores para cantidades y proporciones.
-- 4 unidades, 20 lecciones, 80 ejercicios y 88 entradas léxicas previstas; auditoría automática de duplicados y solapamiento A1/A2 pendiente de CI.
+- 4 unidades, 20 lecciones, 80 ejercicios y 88 entradas léxicas nuevas. Auditoría estática: 88 targets únicos, sin duplicados internos ni coincidencias exactas con los 440 targets A2 U1–U22. La comparación con los 638 targets A1 queda cubierta por el test automatizado de CI.
 - El manifiesto y los tests se amplían hasta U26. Entradas not_checked; cotejo individual CEFR-J pendiente. Ejemplos originales; no se afirma validación nativa ni certificación MCER.
 - Se conserva el esquema runtime y los tipos mc/order; sin POS/audio, dependencias ni cambios de almacenamiento. Inglés continúa available:false y «Próximamente».

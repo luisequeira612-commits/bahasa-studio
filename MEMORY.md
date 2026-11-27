@@ -1,3 +1,15 @@
+## 2026-11-26 — Inglés en-US B1 U29–U32 en preparación
+- Rama `feat/en-us-b1-u29-u32`, apilada sobre U1–U28. Añade U29 phrasal verbs; U30 Review III sin vocabulario nuevo; U31 cláusulas relativas definitorias/no definitorias; U32 whose/where/when y omisión del relativo.
+- Bloque: 3 unidades de contenido, 66 entradas, 15 lecciones, y un repaso de 5 lecciones; 80 ejercicios en total. Acumulado U1–U32: 638 entradas únicas, 160 lecciones y 640 ejercicios; repasos U10, U20 y U30.
+- Auditoría estática B1: 638/638 targets únicos. U29–U32 comparadas contra A1/A2; `take up`, `break down` y `look forward to` se sustituyeron por `take on`, `break off` y `look back on`. Las nuevas expresiones se comprobaron sin coincidencias exactas A1/A2. CI pendiente; vocabulario `not_checked`; inglés sigue `available:false`.
+- Sin cambios a IndexedDB v1, backup JSON v3, dependencias, audio, red ni otros idiomas. Fuente: rama, manifiesto, currículo y tests; 26 nov 2026.
+
+## 2026-11-26 — Inglés en-US B1 U25–U28 en preparación
+- Rama `feat/en-us-b1-u25-u28`, ahora rebased sobre la corrección de U21–U24 de PR #921. Añade U25 consejos/críticas; U26 capacidad/logros; U27 patrones gerundio/infinitivo; U28 patrones con objeto.
+- Bloque: 4 unidades, 20 lecciones, 80 ejercicios y 88 entradas nuevas. Acumulado B1 U1–U28: 572 entradas únicas, 140 lecciones y 560 ejercicios; U10 y U20 son repasos.
+- Auditoría estática B1: 572/572 targets únicos. U25–U28 comparadas contra A1/A2 sin coincidencias exactas tras cambiar `make progress` por `show steady improvement`. CI de PR #922 pendiente; vocabulario `not_checked`; inglés sigue `available:false`.
+- Sin cambios a IndexedDB v1, backup JSON v3, dependencias, audio, red ni otros idiomas. Fuente: rama, manifiesto, currículo y tests; 26 nov 2026.
+
 ## 2026-11-26 — Inglés en-US B1 U21–U24 en preparación
 - Rama `feat/en-us-b1-u21-u24`, apilada sobre la secuencia `feat/en-us-b1-u09-u12` (head `fcffb28f8d555d383c251b29ca056f99f4be6ceb` al crear la rama). Añade U21 obligación/responsabilidad/expectativas; U22 permisos/peticiones; U23 deducción presente; U24 modales pasados y arrepentimiento.
 - Bloque: 4 unidades de contenido, 22 entradas por unidad, 20 lecciones y 80 ejercicios. Acumulado B1 U1–U24: 484 entradas previstas, 120 lecciones y 480 ejercicios; U10 y U20 son repasos sin vocabulario nuevo.
@@ -879,3 +891,4 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 
 - CI PR #917: test de inventario/deduplicación pasó con 242 términos únicos y sin solapamientos A1/A2. Falló únicamente la comprobación de U10 por `deepStrictEqual` de array entre contextos VM (prototipos distintos); reemplazada por `assert.equal(lesson.vocabIds.length,0)`. Head de test fix `81037fb426cc9d51a03f48d08edab74896236118`; nueva regresión pendiente. Fuente: run 45927510333, 27 nov 2026.
 - CI inicial de PR #921 detectó tres coincidencias exactas A1/A2: `be responsible for`, `would you mind` e `I was wondering if`. Sustituidas por `be entrusted with`, `would you be so kind as to` e `I would appreciate it if`, con traducciones, ejemplos y ejercicios alineados. Nueva CI pendiente.
+- CI de PR #923 detectó tres coincidencias A2 no capturadas por el primer escaneo (`turn down`, `sort out`, `run into`). Se sustituyeron por `pass up`, `straighten out` y `come up against`, con ejemplos/traducciones/ejercicios alineados; nueva CI pendiente.

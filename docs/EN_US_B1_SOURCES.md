@@ -113,4 +113,4 @@
 - Manifiesto y tests cubren U1–U12, la unidad de repaso con cero vocabulario nuevo y referencias cruzadas a IDs B1 anteriores. Auditoría estática interna: 242/242 únicos.
 - Nuevas entradas `not_checked`; sin revisión nativa ni certificación CEFR. CI pendiente.
 
-- Ajuste de variedad en-US en U12: `check-in desk` → `check-in counter`, `arrival hall` → `arrivals area`, `temporary cover` → `temporary coverage`, `handover meeting` → `handoff meeting`. Se priorizan formas habituales en inglés estadounidense. CI del head actualizado pendiente.
+- Ajuste de variedad en-US en U12: `check-in desk` → `check-in kiosk`, `arrival hall` → `arrivals area`, `temporary cover` → `temporary coverage`, `handover meeting` → `handoff meeting`. Se priorizan formas habituales en inglés estadounidense; `check-in counter` se evitó por coincidir con B1 U2. CI del head actualizado pendiente.

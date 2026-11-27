@@ -977,3 +977,10 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - No se debe ampliar ni reescribir el índice legado `audio/index.json`, porque mantiene su propio contrato para el audio preexistente. La prueba ahora compara los MP3 generados con los IDs de `audio/manifest.json` cuando existe el inventario Piper, y mantiene el índice legado como fallback en ramas antiguas.
 - Cambio de prueba registrado en commit `753a541`; requiere CI nuevo. No se ha fusionado PR #942 ni se ha probado aún GitHub Pages.
 - Fuente: Regression workflow #45966347954, job test, error en `tests/audio-manifest.test.mjs`; 27 nov 2026.
+
+
+## 2026-11-27 — Limpieza de clips MP3 obsoletos
+- Tras alinear el test con `audio/manifest.json`, el inventario de árbol reveló tres MP3 antiguos en `audio/id/` que ya no tenían entrada en el manifiesto: `6a59ab59f488`, `e08b77f1505c`, `e280bb781206`. Una búsqueda exacta de esos IDs en el código del repositorio no encontró referencias.
+- Se añadió al generador una poda limitada a `audio/<idioma>/*.mp3`: elimina únicamente clips cuyo hash ya no está en el manifiesto actual de ese idioma. No toca OPUS, archivos no MP3 ni otros idiomas. Esto mantiene el directorio generado y su inventario sincronizados al cambiar los currículos.
+- Cambio en `tools/generar_audio.py`, commit `a7b6738`; requiere una nueva ejecución del workflow de generación y CI posterior.
+- Fuente: árbol Git de la rama y búsqueda exacta de IDs, 27 nov 2026.

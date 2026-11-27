@@ -310,3 +310,24 @@ test('English B2 U16 inverted-conditional lessons cover all targets and use matc
       .replace(/[.,!?;:]/g, '').trim().split(/\s+/));
   }
 });
+
+
+test('English B2 U15–U18 lesson targets are covered once and match their sentence examples', () => {
+  const units = loadB2();
+  for (const number of [15, 16, 17, 18]) {
+    const unit = units.find((item) => item.unitNumber === number);
+    assert.ok(unit);
+    const lessonIds = unit.lessons.flatMap((lesson) => Array.from(lesson.vocabIds || []));
+    assert.equal(lessonIds.length, 22, 'U' + number + ' must cover 22 targets');
+    assert.equal(new Set(lessonIds).size, 22, 'U' + number + ' must not duplicate lesson targets');
+    for (const lesson of unit.lessons) {
+      const orderExercise = Array.from(lesson.exercises || []).find((exercise) => exercise.type === 'order');
+      assert.ok(orderExercise);
+      assert.equal(orderExercise.vocabId, lesson.vocabIds[1]);
+      const word = unit.vocab.find((item) => item.id === orderExercise.vocabId);
+      assert.ok(word);
+      assert.deepEqual(Array.from(orderExercise.correctOrder), word.ex
+        .replace(/[.,!?;:]/g, '').trim().split(/\s+/));
+    }
+  }
+});

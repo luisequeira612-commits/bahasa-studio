@@ -402,6 +402,6 @@ test('English B2 U1 sentence-building exercises use examples for their own vocab
     const word = unit.vocab.find((item) => item.id === exercise.vocabId);
     assert.ok(word);
     assert.deepEqual(Array.from(exercise.correctOrder), word.ex
-      .replace(/[.,!?;:]/g, '').trim().split(/\\s+/));
+      .replace(/[.,!?;:]/g, '').trim().split(/\s+/));
   }
 });

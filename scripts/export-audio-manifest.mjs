@@ -128,7 +128,7 @@ async function loadLocalizedLevels(languageCode, curriculumPaths) {
       const sandbox = { window: {} };
       vm.runInNewContext(indexSource, sandbox, { filename: indexPath, timeout: 5000 });
       const manifest = sandbox.window.GUARDI_CURRICULUM_MANIFESTS?.[languageCode]?.[levelId];
-      if (!manifest) continue;
+      if (!manifest) throw new Error(`Missing ${languageCode}/${levelId} curriculum manifest in ${relativeIndex}`);
       const units = [];
       for (const block of manifest.blocks || []) {
         const blockPath = path.join(ROOT, block.path.replace(/^\.\//, ''));
@@ -136,11 +136,15 @@ async function loadLocalizedLevels(languageCode, curriculumPaths) {
         const blockSandbox = { window: {} };
         vm.runInNewContext(blockSource, blockSandbox, { filename: blockPath, timeout: 5000 });
         const blocks = blockSandbox.window.GUARDI_CURRICULUM_BLOCKS?.[languageCode]?.[levelId];
-        if (blocks?.units) units.push(...blocks.units);
+        if (!blocks?.units) throw new Error(`Missing ${languageCode}/${levelId} block data in ${block.path}`);
+        units.push(...blocks.units);
       }
+      if (!units.length) throw new Error(`No units loaded for ${languageCode}/${levelId}`);
       levels.push({ id: levelId, units });
     } catch (error) {
-      if (error?.code === 'ENOENT') continue;
+      if (error?.code === 'ENOENT') {
+        throw new Error(`Declared curriculum file missing for ${languageCode}/${levelId}: ${error.message}`);
+      }
       throw error;
     }
   }
@@ -194,6 +198,7 @@ async function buildAllLanguageManifest() {
   const entries = new Map();
   const languages = await loadLanguageRegistry();
   const localeByCode = new Map(languages.map((language) => [language.code, language.locale]));
+  process.stdout.write(`Audio language registry: ${languages.map((language) => language.code + '[' + Object.keys(language.curriculum || {}).join(',') + ']').join(' ')}\\n`);
   const idManifest = await buildManifest({ includeInteractive: true, includeB2: true });
   for (const entry of idManifest) {
     entries.set('id:' + entry.id, { ...entry, language: 'id' });
@@ -201,6 +206,7 @@ async function buildAllLanguageManifest() {
   for (const language of languages) {
     if (language.code === 'id' || !language.curriculum || !Object.keys(language.curriculum).length) continue;
     const levels = await loadLocalizedLevels(language.code, language.curriculum);
+    process.stdout.write(`Audio curriculum ${language.code}: ${levels.map((level) => level.id + '=' + level.units.length).join(', ')}\\n`);
     for (const level of levels) collectLocalizedLevel(level, language.code, entries);
   }
   for (const entry of entries.values()) {

@@ -100,7 +100,7 @@ lessons:[
 ["the former","el primero / la primera de dos","Both routes are possible, but the former is shorter.","Ambas rutas son posibles, pero la primera es más corta."],
 ["the latter","el segundo / la segunda de dos","We could call or email; the latter is more convenient.","Podríamos llamar o escribir; lo segundo es más práctico."],
 ["if so","si es así","Are you available tomorrow? If so, let's meet at ten.","¿Estás disponible mañana? Si es así, reunámonos a las diez."],
-["if that is not the case","si ese no es el caso","Please confirm today; if that is not the case, we'll choose another supplier.","Confirma hoy; si ese no es el caso, elegiremos otro proveedor."],
+["if you can't","si no puedes","Please confirm today; if you can't, we'll choose another supplier.","Confirma hoy; si no puedes, elegiremos otro proveedor."],
 ["so am I","yo también","They're concerned about the delay, and so am I.","A ellos les preocupa el retraso, y a mí también."],
 ["nor can we","ni nosotros podemos","They cannot change the terms, nor can we.","Ellos no pueden cambiar las condiciones, ni nosotros tampoco."],
 ["the same goes for","lo mismo ocurre con","The rule applies to staff; the same goes for contractors.","La regla se aplica al personal; lo mismo ocurre con los contratistas."],

@@ -1,3 +1,10 @@
+## 2026-11-27 — Corrección de descarga de modelos Piper
+- Primera ejecución real del workflow #45962200126 instaló Piper y ffmpeg correctamente, pero falló al descargar el modelo: el generador usaba el último segmento del directorio (`medium`) como nombre de archivo. Hugging Face espera el nombre canónico de voz (`id_ID-news_tts-medium.onnx`).
+- Corregido `download_piper_model()` para recibir por separado el identificador canónico de voz y la ruta de carpeta, y construir los nombres `.onnx` / `.onnx.json` con el identificador. El cambio está en commit `3e96f2d412970a1e47c64a9e2e4fd8c65d0c4274`; el siguiente push debe volver a activar generación.
+- No se generó audio nuevo en esa ejecución y no se debe contar como biblioteca generada. El inventario previo de ~26 MiB corresponde a archivos existentes.
+
+Fuente: log del job `generate` de Actions #45962200126 y `tools/generar_audio.py`; 27 nov 2026.
+
 ## 2026-11-27 — Presupuesto conservador de almacenamiento de audio
 - Se redujo el límite total del workflow de 1 GiB a 500 MiB para la carpeta `audio/`, manteniendo el bloqueo de archivos individuales de 100 MiB. El objetivo operativo es dejar margen para futuras ampliaciones de los diez idiomas, no consumir todo el límite recomendado.
 - Inventario previo del árbol Git (head `6b4d106`): 2.268 MP3 = 14.867.472 bytes (~14,18 MiB) y 2.268 OPUS = 10.950.730 bytes (~10,44 MiB); JSON de audio = 959.849 bytes (~0,92 MiB). Total aproximado de `audio/`: 26 MiB. Esto es tamaño actual del árbol, no resultado de generación Piper.

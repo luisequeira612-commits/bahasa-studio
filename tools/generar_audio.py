@@ -116,7 +116,7 @@ def main() -> None:
     entries.sort(key=lambda x: (x["language"], x["id"]))
     manifest = {"version": 2, "engine": "piper",
                 "languages": config, "entries": entries}
-    MANIFEST.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\\n",
+    MANIFEST.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
                         encoding="utf-8")
     attribution_lines = [
         "# Atribución de voces Piper",
@@ -139,7 +139,7 @@ def main() -> None:
         "Conservar estas fichas al redistribuir los clips generados."
     ])
     (ROOT / "audio" / "VOICE_ATTRIBUTION.md").write_text(
-        "\\n".join(attribution_lines) + "\\n", encoding="utf-8"
+        "\n".join(attribution_lines) + "\\n", encoding="utf-8"
     )
     (ROOT / "audio" / ".generated-manifest.json").unlink(missing_ok=True)
     total = sum(p.stat().st_size for p in (ROOT / "audio").rglob("*.mp3"))

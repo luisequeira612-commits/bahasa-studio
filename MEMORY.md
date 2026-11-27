@@ -1,3 +1,11 @@
+## 2026-11-27 — Índice ID sincronizado; segunda generación idempotente
+- Run #45966682151 terminó con éxito: `0 nuevos, 5,002 reutilizados`; confirma que el hash + Piper version + revisión de voz evitan regenerar audio sin cambios.
+- Commit `b8a594ea` actualizó `audio/index.json`: ahora contiene exactamente 2,392 IDs y coincide con `audio/manifest.json`. PT-BR conserva 2,610 entradas. Los metadatos ID y PT-BR mantienen 2,392/2,610 hashes SHA-256.
+- Verificación del Git tree: 5,005 MP3 (5,002 activos + 3 archivos ID legados conservados), 39.01 MiB MP3; carpeta `audio/` 53.42 MiB. Bajo el presupuesto de 500 MiB.
+- Próximo: validar CI/E2E del PR con los archivos ya presentes; después preparar la publicación para que el usuario pruebe el audio PT-BR en la app.
+
+Fuente: Actions #45966682151, commit `b8a594ea`, `audio/index.json`, manifiestos, metadata y Git tree; 27 nov 2026.
+
 ## 2026-11-27 — Primera biblioteca de audio generada y verificada
 - Run Piper #45964968625 terminó correctamente y publicó commit `84fd9add`. Generó 5,002 MP3: 2,392 indonesios + 2,610 PT-BR; el log indicó 0 reutilizados en la primera migración a Piper 1.8.0. Tamaño MP3: 39.01 MiB; tamaño total de `audio/`: 53.41 MiB. El workflow pasó el límite de 500 MiB total y 100 MiB por archivo.
 - Inventarios verificados: `audio/manifest.json` (ID, 2,392), `audio/pt-BR/manifest.json` (2,610), metadatos SHA-256 completos (0 faltantes en ambos), manifiesto central `audio/manifest-multilingual.json` (1.84 MiB), MODEL_CARD de ambos modelos y `VOICE_ATTRIBUTION.md`.

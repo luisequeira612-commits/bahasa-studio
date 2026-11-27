@@ -146,33 +146,63 @@ test('el botón de prueba reproduce una frase incluida sin exigir voces del disp
 });
 
 
-test('el botón de prueba no reproduce una frase indonesia para un idioma sin frase configurada', () => {
-    const language = { code: 'pt-BR', locale: 'pt-BR', name: 'Portugués', audioPath: './audio/pt-BR/' };
-    const setup = createEngine({ language });
-    assert.equal(setup.engine.testVoice(), false);
+test('el botón de prueba usa una frase del idioma activo y no una frase indonesia', () => {
+    const language = {
+        code: 'pt-BR', locale: 'pt-BR', name: 'Portugués',
+        audioPath: './audio/pt-BR/', audioMode: 'speechSynthesis',
+        voiceFallbackLocales: ['pt-PT'], testPhrase: 'olá'
+    };
+    const voice = { name: 'Portuguese voice', lang: 'pt-BR' };
+    const setup = createEngine({ language, voices: [voice] });
+    assert.equal(setup.engine.testVoice(), true);
     assert.equal(setup.createdAudio.length, 0);
-    assert.equal(setup.spoken.length, 0);
-    assert.match(setup.statuses.voiceTestStatus.textContent, /no hay una frase de prueba configurada/i);
+    assert.equal(setup.spoken.length, 1);
+    assert.equal(setup.spoken[0].text, 'olá');
+    assert.equal(setup.spoken[0].lang, 'pt-BR');
+    assert.match(setup.statuses.voiceTestStatus.textContent, /voz del dispositivo/i);
 });
 
-test('usa la ruta y el locale de la configuración del idioma activo', () => {
-    const language = { code: 'pt-BR', locale: 'pt-BR', name: 'Portugués de Brasil', audioPath: './audio/pt-BR/' };
-    const voice = { name: 'Portuguese voice', lang: 'pt-BR' };
-    const setup = createEngine({ language, voices: [{ name: 'Indonesian voice', lang: 'id-ID' }, voice] });
-    setup.engine.speak('bom dia');
-    const expected = crypto.createHash('sha1').update('bom dia', 'utf8').digest('hex').slice(0, 12);
-    assert.equal(setup.createdAudio[0].src, './audio/pt-BR/' + expected + '.mp3');
-    setup.createdAudio[0].fail();
+test('portugués usa speechSynthesis directamente y prioriza la voz pt-BR', () => {
+    const preferred = { name: 'Brazilian Portuguese', lang: 'pt-BR' };
+    const fallback = { name: 'European Portuguese', lang: 'pt-PT' };
+    const language = {
+        code: 'pt-BR', locale: 'pt-BR', name: 'Portugués de Brasil',
+        audioPath: './audio/pt-BR/', audioMode: 'speechSynthesis',
+        voiceFallbackLocales: ['pt-PT']
+    };
+    const setup = createEngine({ language, voices: [fallback, preferred] });
+    assert.equal(setup.engine.speak('bom dia'), true);
+    assert.equal(setup.createdAudio.length, 0, 'PT-BR has no recorded clips and must not try Indonesian or nonexistent MP3s');
     assert.equal(setup.spoken.length, 1);
     assert.equal(setup.spoken[0].lang, 'pt-BR');
-    assert.equal(setup.spoken[0].voice, voice);
+    assert.equal(setup.spoken[0].voice, preferred);
+    assert.equal(setup.engine.activeLanguageVoice, preferred);
 });
 
-test('no usa como respaldo una voz de un idioma distinto al curso activo', () => {
-    const language = { code: 'pt-BR', locale: 'pt-BR', name: 'Portugués de Brasil', audioPath: './audio/pt-BR/' };
+test('usa pt-PT como respaldo cuando no hay una voz pt-BR', () => {
+    const fallback = { name: 'European Portuguese', lang: 'pt-PT' };
+    const language = {
+        code: 'pt-BR', locale: 'pt-BR', name: 'Portugués de Brasil',
+        audioPath: './audio/pt-BR/', audioMode: 'speechSynthesis',
+        voiceFallbackLocales: ['pt-PT']
+    };
+    const setup = createEngine({ language, voices: [{ name: 'Indonesian voice', lang: 'id-ID' }, fallback] });
+    assert.equal(setup.engine.speak('bom dia'), true);
+    assert.equal(setup.createdAudio.length, 0);
+    assert.equal(setup.spoken.length, 1);
+    assert.equal(setup.spoken[0].lang, 'pt-PT');
+    assert.equal(setup.spoken[0].voice, fallback);
+});
+
+test('no usa una voz de otro idioma si faltan pt-BR y pt-PT', () => {
+    const language = {
+        code: 'pt-BR', locale: 'pt-BR', name: 'Portugués de Brasil',
+        audioPath: './audio/pt-BR/', audioMode: 'speechSynthesis',
+        voiceFallbackLocales: ['pt-PT']
+    };
     const setup = createEngine({ language, voices: [{ name: 'Indonesian voice', lang: 'id-ID' }] });
-    setup.engine.speak('bom dia');
-    setup.createdAudio[0].fail();
+    assert.equal(setup.engine.speak('bom dia'), false);
+    assert.equal(setup.createdAudio.length, 0);
     assert.equal(setup.spoken.length, 0);
     assert.match(setup.statuses.audioVoiceStatus.textContent, /Portugués de Brasil/i);
 });

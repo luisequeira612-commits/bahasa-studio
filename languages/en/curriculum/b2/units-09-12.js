@@ -17,7 +17,7 @@ const rows=[
 ["for much of the time","durante gran parte del tiempo","For much of the time, the team had been working remotely.","Durante gran parte del tiempo, el equipo había estado trabajando a distancia."],
 ["as soon as","tan pronto como","As soon as the figures had been checked, we shared them.","Tan pronto como se revisaron las cifras, las compartimos."],
 ["the moment","en cuanto","The moment I saw the results, I knew something was wrong.","En cuanto vi los resultados, supe que algo iba mal."],
-["hardly had","apenas había","As soon as the figures had been checked, we shared them.","Apenas habíamos comenzado cuando se fue la electricidad."],
+["hardly had","apenas había","Hardly had we begun when the power went out.","Apenas habíamos comenzado cuando se fue la electricidad."],
 ["no sooner had","apenas había / no bien","No sooner had the meeting begun than the alarm rang.","Apenas había comenzado la reunión cuando sonó la alarma."],
 ["at no point","en ningún momento","At no point had anyone warned us about the change.","En ningún momento nos habían advertido del cambio."],
 ["through no fault of","sin que fuera culpa de","Through no fault of her own, she missed the deadline.","Sin que fuera culpa suya, no cumplió el plazo."],

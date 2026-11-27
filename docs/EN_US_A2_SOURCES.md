@@ -82,3 +82,14 @@ Estado: primer bloque U1–U6 en desarrollo; el nivel no está publicado. Fecha:
 - Total A2 U1–U22: 440 entradas léxicas nuevas; U10 y U20 son repasos sin vocabulario. Manifiesto actualizado hasta U22.
 - Entradas not_checked; cotejo individual CEFR-J pendiente. Los ejemplos son originales; no se afirma validación nativa ni certificación MCER.
 - Se conserva el esquema runtime vigente y los tipos mc/order; sin POS/audio, dependencias ni cambios de almacenamiento. Inglés continúa available:false y «Próximamente».
+
+
+## Bloque U23–U26 — 26 de noviembre de 2026
+
+- U23: peticiones y ofrecimientos corteses con can/could/may y fórmulas como would you mind.
+- U24: primer condicional para condiciones, consecuencias probables y medidas preventivas.
+- U25: sustantivos contables/incontables con recipientes y medidas.
+- U26: cuantificadores para cantidades y proporciones.
+- 4 unidades, 20 lecciones, 80 ejercicios y 88 entradas léxicas previstas; auditoría automática de duplicados y solapamiento A1/A2 pendiente de CI.
+- El manifiesto y los tests se amplían hasta U26. Entradas not_checked; cotejo individual CEFR-J pendiente. Ejemplos originales; no se afirma validación nativa ni certificación MCER.
+- Se conserva el esquema runtime y los tipos mc/order; sin POS/audio, dependencias ni cambios de almacenamiento. Inglés continúa available:false y «Próximamente».

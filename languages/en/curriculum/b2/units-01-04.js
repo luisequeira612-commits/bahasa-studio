@@ -9,7 +9,7 @@ const vocab=[
 ["lately","últimamente","I've been sleeping poorly lately.","Últimamente he estado durmiendo mal."],
 ["over the past decade","durante la última década","Over the past decade, the city has changed considerably.","Durante la última década, la ciudad ha cambiado considerablemente."],
 ["since then","desde entonces","He joined the company in 2020 and has led the team since then.","Se incorporó a la empresa en 2020 y ha dirigido el equipo desde entonces."],
-["to date","hasta el momento","No major issues have emerged to date.","Hasta el momento no han surgido problemas importantes."],
+["as of now","hasta el momento","As of now, no major issues have emerged.","Hasta el momento no han surgido problemas importantes."],
 ["to undergo","someterse a / experimentar","The building has undergone extensive renovations.","El edificio ha experimentado amplias renovaciones."],
 ["to evolve","evolucionar","Our approach has evolved over time.","Nuestro enfoque ha evolucionado con el tiempo."],
 ["to expand","ampliarse / expandir","The company has expanded into three new markets.","La empresa se ha expandido a tres mercados nuevos."],

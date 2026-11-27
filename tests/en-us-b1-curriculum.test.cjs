@@ -153,3 +153,19 @@ test('B1 U46-U47 vocabulary glosses and examples use precise Spanish', async () 
     assert.equal(word.exEsp, translation);
   }
 });
+
+test('B1 U27-U28 Spanish examples preserve the English verb patterns', async () => {
+  const { units } = await loader().loadUnits('en', 'B1', Array.from({ length: 52 }, (_, i) => i + 1));
+  const expected = [
+    [27, 'put off doing something', 'dejar algo para después', "Don't put off doing the paperwork.", 'No dejes los trámites para después.'],
+    [28, 'hear someone mention', 'oír a alguien mencionar algo', 'I heard the manager mention a new schedule.', 'Oí al gerente mencionar un nuevo horario.'],
+  ];
+  for (const [unitNumber, target, gloss, example, translation] of expected) {
+    const unit = units.find((item) => item.unitNumber === unitNumber);
+    const word = unit?.vocab?.find((item) => item.target === target);
+    assert.ok(word, 'expected B1 vocabulary target must exist: U' + unitNumber + ' ' + target);
+    assert.equal(word.esp, gloss);
+    assert.equal(word.ex, example);
+    assert.equal(word.exEsp, translation);
+  }
+});

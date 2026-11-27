@@ -123,7 +123,7 @@ test('B1 U21-U32 examples use precise wording and avoid awkward phrasing', async
   const { units } = await loader().loadUnits('en', 'B1', Array.from({ length: 52 }, (_, i) => i + 1));
   const expected = [
     [21, "at one's own risk", 'bajo su propio riesgo', 'Visitors enter the storage area at their own risk.', 'Los visitantes entran al área de almacenamiento bajo su propio riesgo.'],
-    [21, 'reach a tentative conclusion', 'llegar a una conclusión provisional', 'The investigators reached a tentative conclusion after reviewing the records.', 'Los investigadores llegaron a una conclusión provisional después de revisar los registros.'],
+    [23, 'reach a tentative conclusion', 'llegar a una conclusión provisional', 'The investigators reached a tentative conclusion after reviewing the records.', 'Los investigadores llegaron a una conclusión provisional después de revisar los registros.'],
     [22, 'be allowed to', 'tener permiso para', 'Employees are allowed to use the meeting room after six.', 'Los empleados tienen permiso para usar la sala de reuniones después de las seis.'],
     [25, 'it is advisable to', 'ser aconsejable', 'It may be advisable to check the figures again.', 'Puede ser aconsejable revisar las cifras otra vez.'],
     [32, 'the place in which', 'el lugar en el que', 'The place in which the meeting was held has changed.', 'El lugar en el que se celebró la reunión ha cambiado.'],

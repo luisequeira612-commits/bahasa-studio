@@ -110,15 +110,24 @@ export async function buildManifest({ includeInteractive = false, includeB2 = fa
   return [...entries.values()];
 }
 
-async function loadPtBrLevels() {
+async function loadLanguageRegistry() {
+  const source = await readFile(path.join(ROOT, 'language-manager.js'), 'utf8');
+  const sandbox = { window: {} };
+  vm.runInNewContext(source, sandbox, { filename: 'language-manager.js', timeout: 5000 });
+  const manager = sandbox.window.LanguageManager;
+  if (!manager || typeof manager.list !== 'function') throw new Error('LanguageManager registry unavailable');
+  return manager.list();
+}
+
+async function loadLocalizedLevels(languageCode, curriculumPaths) {
   const levels = [];
-  for (const levelId of ['A1', 'A2', 'B1', 'B2']) {
-    const indexPath = path.join(ROOT, 'languages', 'pt-BR', 'curriculum', levelId.toLowerCase(), 'index.js');
+  for (const [levelId, relativeIndex] of Object.entries(curriculumPaths || {})) {
+    const indexPath = path.join(ROOT, relativeIndex.replace(/^\.\//, ''));
     try {
       const indexSource = await readFile(indexPath, 'utf8');
       const sandbox = { window: {} };
       vm.runInNewContext(indexSource, sandbox, { filename: indexPath, timeout: 5000 });
-      const manifest = sandbox.window.GUARDI_CURRICULUM_MANIFESTS?.['pt-BR']?.[levelId];
+      const manifest = sandbox.window.GUARDI_CURRICULUM_MANIFESTS?.[languageCode]?.[levelId];
       if (!manifest) continue;
       const units = [];
       for (const block of manifest.blocks || []) {
@@ -126,7 +135,7 @@ async function loadPtBrLevels() {
         const blockSource = await readFile(blockPath, 'utf8');
         const blockSandbox = { window: {} };
         vm.runInNewContext(blockSource, blockSandbox, { filename: blockPath, timeout: 5000 });
-        const blocks = blockSandbox.window.GUARDI_CURRICULUM_BLOCKS?.['pt-BR']?.[levelId];
+        const blocks = blockSandbox.window.GUARDI_CURRICULUM_BLOCKS?.[languageCode]?.[levelId];
         if (blocks?.units) units.push(...blocks.units);
       }
       levels.push({ id: levelId, units });
@@ -187,7 +196,12 @@ async function buildAllLanguageManifest() {
   for (const entry of idManifest) {
     entries.set('id:' + entry.id, { ...entry, language: 'id' });
   }
-  for (const level of await loadPtBrLevels()) collectLocalizedLevel(level, 'pt-BR', entries);
+  const languages = await loadLanguageRegistry();
+  for (const language of languages) {
+    if (language.code === 'id' || !language.curriculum || !Object.keys(language.curriculum).length) continue;
+    const levels = await loadLocalizedLevels(language.code, language.curriculum);
+    for (const level of levels) collectLocalizedLevel(level, language.code, entries);
+  }
   return [...entries.values()];
 }
 

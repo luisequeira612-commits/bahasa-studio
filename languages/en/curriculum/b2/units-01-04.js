@@ -1,7 +1,7 @@
 (function(root){
 'use strict';
 const vocab=[
-["have a track record","tener un historial probado","The team has a track record of delivering projects on time.","El equipo tiene un historial probado de entregar los proyectos a tiempo."],
+["have a track record","tener una trayectoria demostrada","The team has a track record of delivering projects on time.","El equipo cuenta con una trayectoria demostrada en la entrega puntual de proyectos."],
 ["ongoing","en curso","The investigation is still ongoing.","La investigación sigue en curso."],
 ["to date","hasta la fecha","To date, we have received more than 200 applications.","Hasta la fecha, hemos recibido más de 200 solicitudes."],
 ["so far","hasta ahora","So far, the results have been encouraging.","Hasta ahora, los resultados han sido alentadores."],

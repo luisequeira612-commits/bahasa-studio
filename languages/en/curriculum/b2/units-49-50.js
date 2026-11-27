@@ -47,7 +47,7 @@ const refs=[
 ["en_b2_u46_v01","to get the ball rolling","poner algo en marcha","Let's get the ball rolling with a short introduction."],
 ["en_b2_u47_v03","to achieve","lograr","The team achieved its main objective."],
 ["en_b2_u48_v01","to lay the groundwork","sentar las bases","The pilot program laid the groundwork for wider reform."],
-["en_b2_u49_v01","to distinguish between","distinguir entre","It is important to distinguish between correlation and causation."]
+["en_b2_u49_v01","to differentiate between","diferenciar entre","It is important to differentiate between correlation and causation."]
 ];
 const reviewDefs=[
 ["Colocaciones y phrasal verbs","Recupera combinaciones naturales y verbos con partícula.","Advanced collocations and phrasal verbs with object placement.",[0,1],"The department will look into the complaint."],

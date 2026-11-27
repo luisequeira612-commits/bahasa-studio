@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generate Guardi's pre-generated multilingual Piper audio library."""
 from __future__ import annotations
-import argparse, hashlib, json, os, shutil, subprocess, tempfile
+import argparse, hashlib, json, os, shutil, subprocess, tempfile, wave
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -49,20 +49,14 @@ def download_piper_model(model_id: str, model_path: str, revision: str, cache_di
     return onnx, card
 
 def render_batch(model: Path, jobs: list[dict]) -> None:
-    """Load one Piper model once and synthesize a batch via JSON input."""
-    lines = [
-        json.dumps(
-            {"text": job["text"], "output_file": str(job["raw"])},
-            ensure_ascii=False
-        )
-        for job in jobs
-    ]
-    subprocess.run(
-        ["piper", "--model", str(model), "--json-input"],
-        input="\n".join(lines) + "\n",
-        text=True,
-        check=True
-    )
+    """Load one Piper model once and synthesize all its texts through the Python API."""
+    from piper import PiperVoice
+
+    voice = PiperVoice.load(str(model))
+    for job in jobs:
+        job["raw"].parent.mkdir(parents=True, exist_ok=True)
+        with wave.open(str(job["raw"]), "wb") as wav_file:
+            voice.synthesize_wav(job["text"], wav_file)
 
 def encode(raw: Path, destination: Path) -> None:
     destination.parent.mkdir(parents=True, exist_ok=True)

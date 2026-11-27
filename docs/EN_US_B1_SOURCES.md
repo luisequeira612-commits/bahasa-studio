@@ -1,6 +1,6 @@
 # Inglés americano B1 — fuentes, plan y trazabilidad
 
-**Estado:** temario completo aprobado por el usuario el 27 de noviembre de 2026. Implementación en bloques pequeños; U1–U16 están authored en cuatro bloques apilados. El nivel permanece sin publicar.
+**Estado:** temario completo aprobado por el usuario el 27 de noviembre de 2026. Implementación en bloques pequeños; U1–U20 están authored en cinco bloques apilados. El nivel permanece sin publicar.
 
 ## Estructura aprobada
 - 52 unidades, 5 lecciones explícitas por unidad y 20 ejercicios por unidad: 260 lecciones y 1.040 ejercicios al completar el nivel.
@@ -127,3 +127,11 @@
 - Vocabulario nuevo `not_checked`; la comparación automatizada exacta no certifica nivel MCER, naturalidad nativa ni cotejo individual CEFR-J. Inglés sigue `available:false`; sin cambios a IndexedDB v1, backup JSON v3, dependencias ni otros idiomas.
 - La primera CI detectó una coincidencia exacta de `be set to` con U11; U13 usa ahora `be penciled in for`, con ejemplo, traducción y ejercicios alineados. Auditoría estática: 330 targets únicos en U1–U16; la nueva regresión debe confirmar también la ausencia de solapamientos A1/A2.
 - La comparación local contra A1/A2 detectó `at short notice` y `check the details`; se cambiaron a `on short notice` (forma estadounidense) y `verify the figures`, con ejemplos y glosas actualizados. La CI integral debe confirmar cero coincidencias.
+
+
+## Bloque U17–U20 — inglés americano B1
+- U17: condiciones, excepciones y acuerdos; U18: cláusulas temporales de futuro; U19: planes que cambiaron; U20: Review II sin vocabulario nuevo.
+- Añade 3 unidades de contenido (66 entradas nuevas, 15 lecciones) y una unidad de repaso (5 lecciones, 0 entradas nuevas). El bloque suma 4 unidades, 20 lecciones y 80 ejercicios.
+- Acumulado U1–U20: 20 unidades, 100 lecciones, 400 ejercicios y 396 entradas nuevas; U10 y U20 son repasos sin vocabulario.
+- Auditoría estática de B1: 396/396 targets únicos. Comparación de los targets U17–U19 contra los inventarios A1/A2: sin coincidencias exactas. Entradas nuevas `not_checked`; no se presenta como certificación CEFR ni validación nativa.
+- Manifiesto y tests amplían la carga a U20. Inglés continúa `available:false`; sin cambios a IndexedDB v1, backup JSON v3, dependencias ni otros idiomas.

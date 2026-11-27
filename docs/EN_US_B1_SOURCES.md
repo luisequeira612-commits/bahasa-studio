@@ -144,3 +144,4 @@
 - Acumulado U1–U24: 24 unidades, 120 lecciones, 480 ejercicios y 484 entradas nuevas. U10 y U20 siguen siendo repasos sin vocabulario nuevo.
 - Vocabulario nuevo `not_checked`; los controles automáticos verifican estructura y coincidencias exactas, no certifican nivel CEFR ni naturalidad nativa. Inglés continúa `available:false` hasta completar B1 y sus gates.
 - Sin cambios a IndexedDB v1, backup JSON v3, dependencias, audio, red ni otros idiomas.
+- Primera CI de U21–U24 detectó coincidencias A1/A2 en U21/U22; se cambiaron a `be entrusted with`, `would you be so kind as to` e `I would appreciate it if`, con ejemplos y traducciones actualizados. Nueva CI pendiente.

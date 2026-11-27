@@ -266,8 +266,11 @@ window.AudioEngine = {
         const value = String(text ?? '').trim();
         if (!value) return false;
         this.updateVoiceStatus();
-        if (this.audioManifestLoaded && this.playRecorded(value)) return true;
-        if (!this.audioManifestLoaded) this.playRecorded(value);
+        // Before the manifest is ready, keep the deterministic per-language
+        // MP3 path as a fast path. Once loaded, the manifest is authoritative:
+        // a missing entry falls back to the device voice instead of probing a
+        // possibly nonexistent file.
+        if (this.playRecorded(value)) return true;
         return this.speakWithDeviceVoice(value);
     },
     testVoice() {

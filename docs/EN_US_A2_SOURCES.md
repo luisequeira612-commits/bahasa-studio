@@ -70,3 +70,15 @@ Estado: primer bloque U1–U6 en desarrollo; el nivel no está publicado. Fecha:
 - 4 unidades, 20 lecciones, 88 entradas nuevas y 80 ejercicios.
 - Total A2 U1–U18: 374 entradas nuevas; U10 continúa como repaso sin vocabulario.
 - Las entradas siguen not_checked; cotejo individual CEFR-J pendiente. Sin POS/audio ni cambios al runtime.
+
+
+## Bloque U19–U22 — 26 de noviembre de 2026
+
+- U19: modificadores de grado e intensidad para matizar descripciones y opiniones.
+- U20: repaso integrado II sin vocabulario nuevo; reutiliza 20 IDs de U19 y U15–U18.
+- U21: reglas, permisos, prohibiciones y obligaciones con must/mustn't/have to/don't have to.
+- U22: consejos y bienestar con should/shouldn't, síntomas y hábitos saludables.
+- U19, U21 y U22 añaden 66 entradas nuevas; U20 añade 0. El bloque tiene 20 lecciones y 80 ejercicios.
+- Total A2 U1–U22: 440 entradas léxicas nuevas; U10 y U20 son repasos sin vocabulario. Manifiesto actualizado hasta U22.
+- Entradas not_checked; cotejo individual CEFR-J pendiente. Los ejemplos son originales; no se afirma validación nativa ni certificación MCER.
+- Se conserva el esquema runtime vigente y los tipos mc/order; sin POS/audio, dependencias ni cambios de almacenamiento. Inglés continúa available:false y «Próximamente».

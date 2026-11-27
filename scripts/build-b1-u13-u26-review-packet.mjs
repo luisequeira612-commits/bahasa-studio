@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/** Build a source-backed, read-only B1 U13-U26 editorial review packet. */
+/** Build a source-backed, read-only American English B1 U13-U26 editorial review packet. */
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -44,7 +44,7 @@ export function buildB1ReviewPacket({ curriculum, notes = [], prompt = '' }) {
     '- Ejercicios dentro de lecciones: ' + counts.lesson_exercises + '.',
     '- Total de ejercicios combinados: ' + (counts.direct_exercises + counts.lesson_exercises) + '.',
     '',
-    '## Notas históricas (contexto, no autoridad)',
+    '## Contexto y fuentes del currículo',
   ];
   for (const note of notes) sections.push('', '### ' + note.path, '', note.content.trim());
   sections.push('', '## Fuente curricular exacta', '');

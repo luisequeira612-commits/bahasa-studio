@@ -114,3 +114,5 @@
 - Nuevas entradas `not_checked`; sin revisión nativa ni certificación CEFR. CI pendiente.
 
 - Ajuste de variedad en-US en U12: `check-in desk` → `check-in kiosk`, `arrival hall` → `arrivals area`, `temporary cover` → `temporary coverage`, `handover meeting` → `handoff meeting`. Se priorizan formas habituales en inglés estadounidense; `check-in counter` se evitó por coincidir con B1 U2. CI del head actualizado pendiente.
+
+- Auditoría de coincidencias con A2 en U9/U11/U12: se sustituyeron `meanwhile`, `in the meantime`, `all of a sudden`, `eventually`, `reschedule`, `postpone`, `be due to`, `layover`, `delivery window`, `training session`, `appointment slot` y `departure gate` por `in parallel`, `during that interval`, `out of nowhere`, `at long last`, `set a new date`, `defer`, `be expected to`, `connection time`, `delivery period`, `skills workshop`, `appointment window` y `boarding area`. Se actualizaron también los modelos de ordenación afectados. Nueva CI pendiente.

@@ -1,3 +1,9 @@
+## 2026-11-26 — Inglés en-US B1 U29–U32 en preparación
+- Rama `feat/en-us-b1-u29-u32`, apilada sobre U1–U28. Añade U29 phrasal verbs; U30 Review III sin vocabulario nuevo; U31 cláusulas relativas definitorias/no definitorias; U32 whose/where/when y omisión del relativo.
+- Bloque: 3 unidades de contenido, 66 entradas, 15 lecciones, y un repaso de 5 lecciones; 80 ejercicios en total. Acumulado U1–U32: 638 entradas únicas, 160 lecciones y 640 ejercicios; repasos U10, U20 y U30.
+- Auditoría estática B1: 638/638 targets únicos. U29–U32 comparadas contra A1/A2; `take up`, `break down` y `look forward to` se sustituyeron por `take on`, `break off` y `look back on`. Las nuevas expresiones se comprobaron sin coincidencias exactas A1/A2. CI pendiente; vocabulario `not_checked`; inglés sigue `available:false`.
+- Sin cambios a IndexedDB v1, backup JSON v3, dependencias, audio, red ni otros idiomas. Fuente: rama, manifiesto, currículo y tests; 26 nov 2026.
+
 ## 2026-11-26 — Inglés en-US B1 U25–U28 en preparación
 - Rama `feat/en-us-b1-u25-u28`, ahora rebased sobre la corrección de U21–U24 de PR #921. Añade U25 consejos/críticas; U26 capacidad/logros; U27 patrones gerundio/infinitivo; U28 patrones con objeto.
 - Bloque: 4 unidades, 20 lecciones, 80 ejercicios y 88 entradas nuevas. Acumulado B1 U1–U28: 572 entradas únicas, 140 lecciones y 560 ejercicios; U10 y U20 son repasos.

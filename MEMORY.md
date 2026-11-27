@@ -845,3 +845,7 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - CI inicial de PR #916 detectó seis solapamientos léxicos exactos con A1/A2: `playground`, `classmate`, `supervisor`, `assignment`, `scholarship`, `study group`. Reemplazados por `play area`, `school friend`, `team lead`, `coursework`, `tuition waiver`, `study session` en U5/U8 y ejemplos asociados. Head correctivo `b5a6a3eae9352fda016ab3429bf1662043b74dfe`; nueva regresión pendiente. Fuente: PR #916 y CI run 45925927510, 27 nov 2026.
 
 - Segunda ejecución de PR #916 aún encontró `playground` y `classmate`: las sustituciones se habían aplicado por error a las filas homólogas de U5, desplazando `plot twist` y `storyline`. Se restauraron ambos términos en U5 y se corrigió U6 con `play area` y `school friend`. Head `cbaf77c0d4bc19eb8808cd5d79be5da48f7ce098`; CI nuevo pendiente. Fuente: run 45926264635, logs y commit correctivo, 27 nov 2026.
+
+
+## 2026-11-27 — Inglés en-US B1 U9–U12 en PR apilada
+- Rama `feat/en-us-b1-u09-u12` basada en PR #916. Añade U9 secuencia narrativa, U10 repaso sin vocabulario nuevo, U11 formas futuras y U12 future continuous. 4 unidades, 20 lecciones, 80 ejercicios, 66 entradas nuevas; B1 U1–U12 suma 242 términos únicos. Manifiesto/tests amplían cobertura y verifican reviewVocabIds con referencias a unidades previas. Vocabulario `not_checked`, CI pendiente, idioma no publicado (`available:false`), sin cambios de esquema ni almacenamiento. Fuente: rama `feat/en-us-b1-u09-u12`, 27 nov 2026.

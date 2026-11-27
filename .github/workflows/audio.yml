@@ -16,7 +16,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: guardi-piper-audio
+  group: guardi-piper-audio-v2
   cancel-in-progress: false
 
 jobs:
@@ -61,9 +61,21 @@ jobs:
           branch="$GITHUB_REF_NAME"
           for attempt in 1 2 3 4 5; do
             git fetch origin "$branch"
-            git rebase "origin/$branch"
-            if git push origin "HEAD:$branch"; then
-              exit 0
+            if git rebase "origin/$branch"; then
+              if git push origin "HEAD:$branch"; then
+                exit 0
+              fi
+            else
+              echo "Conflicto al rebase; se prioriza el lote de audio recién generado."
+              git rebase --abort || true
+              git reset --mixed "origin/$branch"
+              git add audio
+              if ! git diff --cached --quiet; then
+                git commit -m "chore: generate multilingual Piper audio"
+              fi
+              if git push origin "HEAD:$branch"; then
+                exit 0
+              fi
             fi
             echo "Push concurrente; reintentando ($attempt/5)..."
             sleep 2

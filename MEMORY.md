@@ -1,3 +1,9 @@
+## 2026-11-27 — Alineación de pruebas con nueva caché del Service Worker
+- CI #45963926469 falló en cuatro pruebas de currículo y el E2E offline porque esperaban literalmente `bahasa-studio-v3.8.166`; el Service Worker se había incrementado correctamente a `v3.8.167` para precargar los nuevos inventarios. No era una regresión de caché.
+- Se actualizaron las cinco expectativas de pruebas a `v3.8.167` (cuatro pruebas de currículo y `pt-br-curriculum.e2e.test.cjs`). CI del head actual pendiente.
+
+Fuente: Actions #45963926469, `service-worker.js` y cinco tests PT-BR; 27 nov 2026.
+
 ## 2026-11-27 — Inventarios offline futuros autodescubiertos
 - `service-worker.js` ya no codifica a mano solo PT-BR: deriva `manifest.json` y `metadata.json` por idioma desde las rutas curriculares no vacías de `LanguageManager`, excluyendo el inventario indonesio histórico que permanece en la raíz de `audio/`.
 - Al registrar un nuevo curso en el catálogo, el Service Worker incluirá automáticamente su inventario offline. La precarga incluye además `audio/manifest-multilingual.json` para `AudioEngine`.

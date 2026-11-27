@@ -234,3 +234,14 @@ test('las seis palabras iniciales de PT-BR usan la ruta y el locale portugueses'
         assert.equal(setup.spoken[0].lang, 'pt-BR', word);
     }
 });
+
+test('PT-BR nunca usa una voz indonesia aunque sea la única instalada', () => {
+    const language = { code: 'pt-BR', locale: 'pt-BR', name: 'Portugués', audioPath: './audio/pt-BR/' };
+    const voice = { name: 'Indonesian device voice', lang: 'id-ID' };
+    const setup = createEngine({ language, voices: [voice] });
+    setup.engine.speak('olá');
+    setup.createdAudio[0].fail();
+    assert.equal(setup.spoken.length, 1);
+    assert.equal(setup.spoken[0].lang, 'pt-BR');
+    assert.equal(setup.spoken[0].voice, null);
+});

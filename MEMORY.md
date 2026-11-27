@@ -1,3 +1,10 @@
+## 2026-11-27 — Corrección de síntesis por lotes: usar Python API de Piper
+- El primer run batch #45964798118 falló porque Piper 1.8 no creó los WAV cuando se invocó `--json-input`; la CLI actual de Piper 1.x ya no ofrece compatibilidad fiable con ese modo (issue upstream #28). `ffmpeg` detectó el primer WAV ausente y detuvo el proceso, sin publicar clips.
+- Se reemplazó el modo JSONL por la API oficial Python: `PiperVoice.load(model)` una vez por idioma y `voice.synthesize_wav(text, wav_file)` para cada salida. Esto mantiene el modelo cargado en memoria y evita el arranque CLI por frase.
+- Tests ahora exigen `PiperVoice.load`, `synthesize_wav` y `wave.open`. Cambio en commits `b11c866` y `9897686`; siguiente run v2 pendiente.
+
+Fuentes: Piper Python API docs, Piper CLI docs/issue #28, `tools/generar_audio.py`, `tests/audio-manifest.test.mjs`, Actions #45964798118; 27 nov 2026.
+
 ## 2026-11-27 — Metadatos de licencia basados en MODEL_CARD
 - El generador ya no conserva la afirmación genérica `MIT` en metadata de audio como si fuera la licencia de la voz/dataset. Para cada idioma activo, `model_license`, `model_license_url` y `model_attribution` apuntan explícitamente a su `MODEL_CARD`, que es la fuente de verdad para los términos de la voz y el dataset.
 - Cambio en `tools/generar_audio.py`, commit `2d06e9f`; nueva generación/CI pendiente.

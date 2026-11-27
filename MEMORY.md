@@ -816,3 +816,11 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Fuente: rama `feat/en-us-a2-u35-u38-v2`, currículo, tests y docs; 27 nov 2026.
 
 - 27 nov 2026: CI de PR #912 detectó cuatro coincidencias exactas con A1 en U36–U37 (`once`, `twice`, `competition`, `today`). Se sustituyeron por `on one occasion`, `on two occasions`, `contest` y `so far today`, con ejemplos/frases modelo alineados. Se repetirá la comparación automatizada; no se redujo la cobertura del test.
+
+
+## 2026-11-27 — Inglés en-US A2 U39–U40 (bloque final)
+- Rama `feat/en-us-a2-u39-u40-v2`, apilada sobre la corrección de solapamientos A1 de PR #912. U39 cubre phrasal verbs sociales y patrones gerundio/infinitivo; U40 es evaluación final integrada sin vocabulario nuevo.
+- Bloque final: 2 unidades, 10 lecciones, 40 ejercicios y 22 entradas nuevas. Inventario A2 U1–U40: 792 entradas; U10/U20/U30/U40 no introducen vocabulario nuevo.
+- Auditoría estática: 792 targets únicos en A2, sin duplicados exactos internos. Manifiesto y test se amplían a U40; CI verifica solapamiento A1 y referencias.
+- CI pendiente. Entradas `not_checked`; cotejo individual CEFR-J pendiente. Sin cambios a IndexedDB v1, backup JSON v3, dependencias, POS/audio, PT-BR ni otros idiomas. No fusionar ni publicar sin aprobación expresa.
+- Fuente: rama `feat/en-us-a2-u39-u40-v2`, currículo, tests y docs; 27 nov 2026.

@@ -1,3 +1,9 @@
+## 2026-11-27 — Normalización canónica de texto portugués
+- Al revisar los textos localizados se detectó un escape duplicado en el colapso de espacios (`/\\s+/g`), que no normalizaba espacios/tabulaciones como se pretendía. Corregido a `/\s+/g` en `addLocalizedEntry()`.
+- El test `--all-languages` ahora exige que todos los textos localizados tengan espacios canónicos colapsados. Test actualizado en commits `eb8e816` y `bb73e97`; CI pendiente.
+
+Fuente: `scripts/export-audio-manifest.mjs` y `tests/audio-manifest.test.mjs`; 27 nov 2026.
+
 ## 2026-11-27 — Cobertura de exportación PT-BR A1–B2 como gate
 - Se amplió el test `--all-languages` para exigir textos PT-BR en cada nivel A1, A2, B1 y B2, y la presencia de la palabra inicial `olá`. Así se evita que una futura ejecución declare éxito exportando solo una parte del curso.
 - Prueba añadida en commit `d6ce54b7493b0d96d8cee65a70eede4f9fbfb16f`; pendiente CI.

@@ -11,6 +11,11 @@ test('loads the actual American English B1 curriculum from all 13 manifest block
   assert.equal(curriculum.language, 'en');
   assert.equal(curriculum.totalUnits, 52);
   assert.equal(curriculum.units.length, 52);
+  assert.equal(curriculum.units.reduce((sum, unit) => sum + (unit.vocab?.length ?? 0), 0), 1012);
+  assert.equal(curriculum.units.reduce((sum, unit) => sum + (unit.lessons?.length ?? 0), 0), 260);
+  assert.equal(curriculum.units.reduce((sum, unit) => sum + (unit.exercises?.length ?? 0) +
+    (unit.lessons ?? []).reduce((count, lesson) => count + (lesson.exercises?.length ?? 0), 0), 0), 1040);
+  assert.equal(curriculum.units[51].vocab.length, 0);
   assert.deepEqual(curriculum.units.map((unit) => unit.unitNumber), Array.from({ length: 52 }, (_, i) => i + 1));
   assert.ok(curriculum.units.every((unit) => unit.id.startsWith('en_b1_u')));
   assert.ok(curriculum.units.every((unit) => unit.vocab.every((word) => typeof word.target === 'string' && typeof word.esp === 'string')));

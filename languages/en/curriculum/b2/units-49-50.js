@@ -20,7 +20,7 @@ const rows=[
 ["to avoid ambiguity","evitar la ambigüedad","The instructions were rewritten to avoid ambiguity.","Las instrucciones se reescribieron para evitar la ambigüedad."],
 ["to be precise","para ser precisos","To be precise, the trial lasted eleven weeks.","Para ser precisos, el ensayo duró once semanas."],
 ["roughly speaking","a grandes rasgos","Roughly speaking, costs have doubled.","A grandes rasgos, los costos se han duplicado."],
-["in precise terms","en términos precisos","In precise terms, the figures are estimates.","En términos precisos, las cifras son estimaciones."],
+["more precisely","más precisamente / más concretamente","More precisely, the figures are estimates rather than final totals.","Más concretamente, las cifras son estimaciones y no totales definitivos."],
 ["a subtle difference","una diferencia sutil","There is a subtle difference in meaning between the terms.","Hay una diferencia sutil de significado entre los términos."],
 ["a misleading impression","una impresión engañosa","The headline creates a misleading impression of the findings.","El titular crea una impresión engañosa de los hallazgos."]
 ];

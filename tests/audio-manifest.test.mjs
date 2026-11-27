@@ -236,6 +236,12 @@ test('all ten Piper voices are pinned and their model cards are preserved for at
   assert.match(generator, /voice_revisions/);
   assert.match(generator, /"--json-input"/);
   assert.match(generator, /"output_file": str\(job\["raw"\]\)/);
+  assert.match(generator, /manifest-multilingual\.json/);
+  assert.match(generator, /inventory_path = ROOT \/ "audio" \/ "manifest\.json"/);
+  assert.match(generator, /metadata_path = ROOT \/ "audio" \/ "metadata\.json"/);
+  assert.match(generator, /inventory_path = ROOT \/ "audio" \/ code \/ "manifest\.json"/);
+  assert.match(generator, /metadata_path = ROOT \/ "audio" \/ code \/ "metadata\.json"/);
+  assert.match(generator, /sha256_file/);
   const workflow = await readFile(path.join(root, '.github/workflows/audio.yml'), 'utf8');
   assert.match(workflow, /piper-tts==1\.8\.0/);
 });

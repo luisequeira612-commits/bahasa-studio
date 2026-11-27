@@ -16,5 +16,77 @@
     "repository": "rhasspy/piper-voices",
     "model_path": "pt/pt_BR/faber/medium",
     "audio_path": "./audio/pt-BR/"
+  },
+  "en": {
+    "locale": "en-US",
+    "name": "Inglés",
+    "engine": "piper",
+    "model": "en_US-lessac-medium",
+    "repository": "rhasspy/piper-voices",
+    "model_path": "en/en_US/lessac/medium",
+    "audio_path": "./audio/en/"
+  },
+  "it": {
+    "locale": "it-IT",
+    "name": "Italiano",
+    "engine": "piper",
+    "model": "it_IT-riccardo-x_low",
+    "repository": "rhasspy/piper-voices",
+    "model_path": "it/it_IT/riccardo/x_low",
+    "audio_path": "./audio/it/"
+  },
+  "fr": {
+    "locale": "fr-FR",
+    "name": "Francés",
+    "engine": "piper",
+    "model": "fr_FR-upmc-medium",
+    "repository": "rhasspy/piper-voices",
+    "model_path": "fr/fr_FR/upmc/medium",
+    "audio_path": "./audio/fr/"
+  },
+  "de": {
+    "locale": "de-DE",
+    "name": "Alemán",
+    "engine": "piper",
+    "model": "de_DE-thorsten-medium",
+    "repository": "rhasspy/piper-voices",
+    "model_path": "de/de_DE/thorsten/medium",
+    "audio_path": "./audio/de/"
+  },
+  "nl": {
+    "locale": "nl-NL",
+    "name": "Neerlandés",
+    "engine": "piper",
+    "model": "nl_NL-mls-medium",
+    "repository": "rhasspy/piper-voices",
+    "model_path": "nl/nl_NL/mls/medium",
+    "audio_path": "./audio/nl/"
+  },
+  "ru": {
+    "locale": "ru-RU",
+    "name": "Ruso",
+    "engine": "piper",
+    "model": "ru_RU-ruslan-medium",
+    "repository": "rhasspy/piper-voices",
+    "model_path": "ru/ru_RU/ruslan/medium",
+    "audio_path": "./audio/ru/"
+  },
+  "ja": {
+    "locale": "ja-JP",
+    "name": "Japonés",
+    "engine": "piper",
+    "model": "ja_JP-hi_fi_captain-medium",
+    "repository": "rhasspy/piper-voices",
+    "model_path": "ja/ja_JP/hi_fi_captain/medium",
+    "audio_path": "./audio/ja/"
+  },
+  "ko": {
+    "locale": "ko-KR",
+    "name": "Coreano",
+    "engine": "piper",
+    "model": "ko_KR-kss-medium",
+    "repository": "rhasspy/piper-voices",
+    "model_path": "ko/ko_KR/kss/medium",
+    "audio_path": "./audio/ko/"
   }
 }

@@ -214,3 +214,11 @@
 - Los paquetes ingleses de revisión cubren U1–U12, U13–U26 y U27–U52. El paquete U27–U52 confirma 26 unidades, 484 entradas, 130 lecciones y 520 ejercicios (260 directos + 260 en lecciones), e incluye U51/U52.
 - Limitación importante: el informe genérico `curriculum-quality-report`, `unified-quality-report`, la cola editorial genérica y el lint/vocab report del workflow inspeccionado leen el currículo histórico indonesio A1/A2/B1; no son evidencia de calidad del curso inglés. La revisión externa independiente de los paquetes ingleses todavía no se ha ejecutado. Las comprobaciones estructurales internas no certifican naturalidad nativa ni nivel MCER.
 - Vocabulario sigue `not_checked`; no modificar IndexedDB v1, backup JSON v3, dependencias ni otros idiomas. No fusionar a `main` ni activar inglés sin autorización expresa.
+
+## Auditoría estructural específica de inglés
+
+- `scripts/audit-en-curriculum-quality.mjs` carga directamente los manifiestos y bloques declarados de inglés en-US A1, A2 y B1. No reutiliza el cargador ni los campos del currículo indonesio.
+- Valida cobertura de manifiestos, orden e IDs de unidades, campos de vocabulario inglés/español, IDs, estructura de lecciones, tipos de ejercicios `mc`/`order`, respuestas y referencias de vocabulario.
+- Se ejecuta como `npm run quality:en-audit`; CI publica el artefacto `en-curriculum-quality-report`. La prueba de integración está en `tests/audit-en-curriculum-quality.test.mjs` y se incluye en `quality:tests`.
+- El informe es exclusivamente estructural: no certifica gramática, naturalidad, inglés estadounidense, equivalencia semántica ni nivel MCER. No sustituye revisión editorial independiente. Las entradas `not_checked` siguen sin validarse.
+- Los informes genéricos históricos de indonesio permanecen separados y no deben presentarse como resultados de inglés.

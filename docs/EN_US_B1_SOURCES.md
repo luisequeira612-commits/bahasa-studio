@@ -204,3 +204,13 @@
 - U50 y U52 reutilizan IDs existentes y no crean vocabulario. U52 comprueba estructuras acumuladas en contextos personales, laborales y sociales.
 - Deduplicación estática: 44/44 targets nuevos únicos; la CI compara el inventario completo contra A1/A2 y B1 previo. Entradas nuevas `not_checked`; sin cotejo individual CEFR-J, revisión nativa ni certificación MCER.
 - La autoría de U1–U52 queda completa en ramas apiladas; todavía requiere integración secuencial, CI final, auditoría de calidad y verificación de disponibilidad/publicación. Inglés permanece `available:false` hasta superar esos gates. Sin cambios a IndexedDB v1, backup JSON v3, dependencias, audio, red ni otros idiomas.
+
+
+## Revisión editorial B1 — 27 de noviembre de 2026
+
+- La cadena de trabajo continua `feat/en-us-b1-u21-u24` contiene U1–U52 tras integrar el bloque final mediante PR #936 (merge commit `d392adeb9b9496331d10acb28153bdb16ca009e7`). El currículo suma 52 unidades, 260 lecciones, 1.040 ejercicios combinados y 1.012 entradas de vocabulario; U10/U20/U30/U40/U50/U52 son repasos/evaluaciones sin vocabulario nuevo.
+- CI de integración PR #936: regresión #45949566479 y JavaScript type checks #45949566477, ambos success. El merge fue solo dentro de la rama de secuencia, no en `main`; inglés continúa `available:false`.
+- Al auditar la cadena integrada se detectaron 64 consignas con puntuación interrogativa incorrecta en U37–U52 (`Elige la traducción de «…»?`). Se corrigieron a punto final en U37–U40 (14), U41–U44 (20), U45–U48 (20) y U49–U52 (10), y se añadió un test que recorre los 52 bloques y ambos bancos de ejercicios.
+- Los paquetes ingleses de revisión cubren U1–U12, U13–U26 y U27–U52. El paquete U27–U52 confirma 26 unidades, 484 entradas, 130 lecciones y 520 ejercicios (260 directos + 260 en lecciones), e incluye U51/U52.
+- Limitación importante: el informe genérico `curriculum-quality-report`, `unified-quality-report`, la cola editorial genérica y el lint/vocab report del workflow inspeccionado leen el currículo histórico indonesio A1/A2/B1; no son evidencia de calidad del curso inglés. La revisión externa independiente de los paquetes ingleses todavía no se ha ejecutado. Las comprobaciones estructurales internas no certifican naturalidad nativa ni nivel MCER.
+- Vocabulario sigue `not_checked`; no modificar IndexedDB v1, backup JSON v3, dependencias ni otros idiomas. No fusionar a `main` ni activar inglés sin autorización expresa.

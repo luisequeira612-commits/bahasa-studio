@@ -1,3 +1,10 @@
+## 2026-11-27 — Metadato locale uniforme en exportación multilingüe
+- La prueba nueva de `--all-languages` detectó que los registros de indonesio conservaban el formato del exportador histórico sin `locale`, mientras los registros localizados tampoco añadían ese campo. Se corrigió `buildAllLanguageManifest()` para leer los locales desde `LanguageManager` y adjuntarlos a todas las entradas.
+- El test de exportación multilingüe del run #45962348707 marcó fallo en `Run Indonesian audio manifest export tests`; se está obteniendo el log completo al finalizar el job. El cambio correctivo está en commit `4c5d6ec7f751c166fe4fc95635e882d26fce2ee7`; CI nuevo pendiente.
+- La generación Piper del run #45962301907 seguía procesando textos cuando se registró; no hay todavía cifra final de audio generado.
+
+Fuente: `scripts/export-audio-manifest.mjs`, `tests/audio-manifest.test.mjs`, Actions #45962348707/#45962301907; 27 nov 2026.
+
 ## 2026-11-27 — Pruebas directas de manifiesto y fallback por idioma
 - Se añadieron pruebas de `AudioEngine` que comprueban que, con el manifiesto cargado, se reproduce exactamente el archivo indicado por `audio/manifest.json`; si no existe entrada para el texto/idioma, no intenta una ruta huérfana y usa TTS del locale activo.
 - La corrección del nombre de archivo del modelo Piper está en ejecución en Actions #45962301907; `Install Piper and ffmpeg` success y `Generate missing multilingual audio` en curso al registrar. El run fue disparado por el commit `3e96f2d`; el workflow actualizado para rebase antes del push se disparó por `a9783cd` en run #45962332154, queued.

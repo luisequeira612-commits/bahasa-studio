@@ -1,3 +1,9 @@
+## 2026-11-27 — Corrección de regex antiguas en todos los tests A2
+- CI #45965572064 confirmó que Service Worker install y export de manifiestos pasan, pero nueve tests A2 seguían usando la regex parcial `v3\\.8.166` (solo escapaba el primer punto). Se actualizaron A2 U1-U27 a `v3\\.8.167`; A2 U28-U30 ya había sido corregido en `0c038c9`.
+- Esta es la última familia de expectativas de cache antigua detectada. Nuevo CI pendiente.
+
+Fuente: Actions #45965572064 y tests `pt-br-curriculum-a2-u01-u03` a `a2-u25-u27`; 27 nov 2026.
+
 ## 2026-11-27 — Última regex A2 aún fijada en v3.8.166
 - El run #45965136673 pasó Service Worker install y audio-manifest export; el test local falló solo en A2 U28-U30. Su título ya mostraba `v3.8.167`, pero la regex interna conservaba parcialmente `v3\\.8.166` (el segundo punto no estaba escapado), por lo que la sustitución anterior no la detectó.
 - Se corrigió la regex en `tests/pt-br-curriculum-a2-u28-u30.test.cjs`, commit `0c038c9`; debe repetirse CI.

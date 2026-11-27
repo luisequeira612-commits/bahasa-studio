@@ -833,3 +833,5 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - 27 nov 2026: primer CI de PR #915 detectó 25 coincidencias exactas de vocabulario B1 U1–U4 con A1/A2; se sustituyeron y alinearon ejemplos/frases/ejercicios. Nueva regresión pendiente. No declarar bloque listo hasta CI verde.
 
 - 27 nov 2026: segundo CI aisló una última coincidencia exacta (`in the meantime`) en U4; sustituida por `in the interim`. Nueva regresión pendiente.
+
+- 27 nov 2026: CI confirmó 88 targets B1 únicos y cero coincidencias exactas con A1/A2. Falló solo una expectativa del test (`totalUnits` es 52, no 4); corregida, CI pendiente.

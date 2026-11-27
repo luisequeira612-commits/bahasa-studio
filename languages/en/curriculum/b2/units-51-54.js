@@ -93,7 +93,7 @@ lessons:[
 ["to circulate an agenda","distribuir una agenda","Please circulate the agenda before the meeting.","Distribuye la agenda antes de la reunión."],
 ["to put a proposal on the agenda","incluir una propuesta en la agenda","The committee agreed to put the proposal on the agenda next week.","El comité acordó incluir la propuesta en la agenda la próxima semana."],
 ["to take the minutes","redactar el acta","Could you take the minutes during the meeting?","¿Podrías redactar el acta durante la reunión?"],
-["to proceed to","proceder a / pasar a","I'll proceed to the next section of the presentation.","Pasaré a la siguiente sección de la presentación."],
+["to transition to","pasar a / hacer la transición a","I'll transition to the next section of the presentation.","Pasaré a la siguiente sección de la presentación."],
 ["to draw your attention to","llamar su atención sobre","I'd like to draw your attention to the final chart.","Me gustaría llamar su atención sobre el gráfico final."],
 ["to walk someone through","guiar a alguien paso a paso","I'll walk you through the main stages of the process.","Te guiaré por las etapas principales del proceso."],
 ["to address a question","responder / abordar una pregunta","I'd like to address the question about costs.","Me gustaría abordar la pregunta sobre los costos."],

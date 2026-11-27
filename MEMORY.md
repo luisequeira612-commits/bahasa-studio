@@ -835,3 +835,7 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - 27 nov 2026: segundo CI aisló una última coincidencia exacta (`in the meantime`) en U4; sustituida por `in the interim`. Nueva regresión pendiente.
 
 - 27 nov 2026: CI confirmó 88 targets B1 únicos y cero coincidencias exactas con A1/A2. Falló solo una expectativa del test (`totalUnits` es 52, no 4); corregida, CI pendiente.
+
+
+## 2026-11-27 — Inglés en-US B1 U5–U8 en PR #916
+- Rama `feat/en-us-b1-u05-u08`, apilada sobre PR #915. Añade U5 narrativa, U6 used to/would, U7 be/get used to y U8 past perfect vs past simple: 4 unidades, 20 lecciones, 80 ejercicios y 88 entradas nuevas; total acumulado U1–U8: 176 entradas. Manifiesto y tests amplían cobertura a U1–U8 y deduplicación A1/A2. CI pendiente; vocabulario `not_checked`, inglés `available:false`, sin cambios a IndexedDB v1/backup v3 ni dependencias. Fuente: rama/PR #916, 27 nov 2026.

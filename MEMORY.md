@@ -1,3 +1,8 @@
+## 2026-11-27 — Texto de ayuda de lección independiente del idioma
+- Tras la prueba manual del usuario, el audio PT-BR quedó confirmado como funcional. Se detectó que el texto de ayuda bajo «Palabras nuevas» aún decía «en indonesio»; se corrigió a una instrucción neutral para todos los cursos y se añadió una prueba de regresión específica.
+- 2026-11-27 — El primer CI de PR #943 detectó dos aserciones antiguas en `tests/regression.test.cjs` que exigían literalmente la frase «en indonesio». Se actualizaron ambas para exigir la indicación neutral y rechazar el texto antiguo; se mantiene la prueba de traducción segura y la prueba específica de neutralidad. Reejecutar CI antes de integrar.
+- Pendiente: CI del PR y despliegue de Pages; el usuario confirmó audio PT-BR, por lo que después de publicar se puede retomar inglés B2.
+
 ## 2026-11-27 — Limpieza final de MP3 huérfanos completada
 - Corrección de la nota anterior: el generador ya incluía limpieza de MP3 cuyo hash no aparece en el inventario del idioma. El run #45967211472 la ejecutó y eliminó los 3 MP3 huérfanos que seguían en `audio/id/`; ya no se conservan huérfanos.
 - Git tree actual: 5,002 MP3 activos + 2,268 OPUS legados = 7,279 archivos bajo `audio/`; MP3 38.99 MiB; carpeta `audio/` 53.40 MiB. Los inventarios son ID 2,392 y PT-BR 2,610, con SHA-256 completos.

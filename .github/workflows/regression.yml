@@ -203,7 +203,7 @@ jobs:
           if-no-files-found: ignore
           retention-days: 14
       - name: Run B1 U27-U52 independent review packet tests
-        run: node --test tests/build-b1-u27-u52-review-packet.test.mjs
+        run: node --test tests/build-b1-u27-u50-review-packet.test.mjs
       - name: Generate B1 U27-U52 independent review packet
         if: ${{ !cancelled() }}
         run: npm run quality:deepseek-b1-u27-u52

@@ -1,0 +1,132 @@
+(function(root){
+'use strict';
+const defs=[
+{n:51,title:"Academic discussion",desc:"Participa en discusiones académicas mediante hipótesis, evidencia, cautela y respuestas razonadas a perspectivas distintas.",grammar:"Academic stance, evidence-based claims, cautious agreement/disagreement, and structured contributions.",trap:"I would argue that... signals a position; the evidence appears to suggest... limits certainty. Separate personal opinion from a source's finding.",rows:[
+["to put forward a hypothesis","plantear una hipótesis","The paper puts forward a hypothesis about language exposure.","El artículo plantea una hipótesis sobre la exposición lingüística."],
+["to test an assumption","poner a prueba una suposición","The experiment was designed to test an assumption.","El experimento se diseñó para poner a prueba una suposición."],
+["the available evidence","las pruebas disponibles","The available evidence remains inconclusive.","Las pruebas disponibles siguen sin ser concluyentes."],
+["to interpret the findings","interpretar los hallazgos","Researchers should interpret the findings with caution.","Los investigadores deberían interpretar los hallazgos con cautela."],
+["to support a hypothesis","respaldar una hipótesis","The results partially support the original hypothesis.","Los resultados respaldan parcialmente la hipótesis original."],
+["to contradict a claim","contradecir una afirmación","The latest data contradicts an earlier claim.","Los datos más recientes contradicen una afirmación anterior."],
+["a theoretical framework","un marco teórico","The analysis is based on a well-established theoretical framework.","El análisis se basa en un marco teórico bien establecido."],
+["a research question","una pregunta de investigación","The research question focuses on access to education.","La pregunta de investigación se centra en el acceso a la educación."],
+["to account for differences","explicar las diferencias","The model accounts for differences between the groups.","El modelo explica las diferencias entre los grupos."],
+["to be open to debate","estar abierto a debate","The interpretation is still open to debate.","La interpretación sigue abierta a debate."],
+["to take a position","adoptar una postura","Students are expected to take a position and defend it.","Se espera que los estudiantes adopten una postura y la defiendan."],
+["to qualify an argument","matizar un argumento","The speaker qualified the argument by noting its limitations.","El ponente matizó el argumento al señalar sus limitaciones."],
+["to engage with an idea","examinar / interactuar con una idea","The discussion engages with several competing ideas.","El debate examina varias ideas contrapuestas."],
+["to raise a concern","plantear una preocupación","One participant raised a concern about the sample size.","Un participante planteó una preocupación sobre el tamaño de la muestra."],
+["to draw on previous work","basarse en trabajos anteriores","The chapter draws on previous work in cognitive science.","El capítulo se basa en trabajos anteriores de ciencia cognitiva."],
+["to be broadly consistent with","ser ampliamente coherente con","The results are broadly consistent with earlier studies.","Los resultados son ampliamente coherentes con estudios anteriores."],
+["a limitation of the study","una limitación del estudio","The small sample is a major limitation of the study.","La muestra pequeña es una limitación importante del estudio."],
+["to warrant further investigation","merecer una investigación adicional","The unexpected result warrants further investigation.","El resultado inesperado merece una investigación adicional."],
+["to reach a tentative conclusion","llegar a una conclusión provisional","We can reach only a tentative conclusion at this stage.","En esta etapa solo podemos llegar a una conclusión provisional."],
+["to challenge an interpretation","cuestionar una interpretación","The alternative explanation challenges that interpretation.","La explicación alternativa cuestiona esa interpretación."],
+["to build on an argument","desarrollar un argumento","The second speaker built on the previous argument.","El segundo ponente desarrolló el argumento anterior."],
+["to invite further discussion","invitar a seguir debatiendo","The findings invite further discussion about fairness.","Los hallazgos invitan a seguir debatiendo sobre la equidad."]],
+lessons:[
+["Hipótesis y preguntas","Formula preguntas y propuestas que orientan una discusión académica.","Hypothesis, assumption, theoretical framework y research question cumplen funciones distintas.",[0,1,2,3],"The experiment was designed to test an assumption."],
+["Evidencia y evaluación","Interpreta hallazgos y reconoce cuándo respaldan o contradicen una idea.","Support, contradict e interpret the findings requieren precisión sobre el alcance de la evidencia.",[4,5,6,7],"The results partially support the original hypothesis."],
+["Postura y matización","Defiende una posición y reconoce límites sin perder claridad.","Take a position, qualify an argument y engage with an idea estructuran una contribución crítica.",[8,9,10,11],"The speaker qualified the argument by noting its limitations."],
+["Limitaciones y seguimiento","Identifica limitaciones y propone investigación adicional.","Limitation, warrant further investigation y tentative conclusion expresan prudencia académica.",[12,13,14,15],"The unexpected result warrants further investigation."],
+["Debate integrado","Conecta argumentos y abre espacio a nuevas perspectivas.","Build on an argument y invite further discussion mantienen continuidad; distingue conclusión provisional de hecho probado.",[16,17,18,19,20,21],"The second speaker built on the previous argument."]]},
+{n:52,title:"Reports and proposals",desc:"Estructura informes y propuestas con propósito, hallazgos, opciones, recomendaciones y justificación.",grammar:"Report sections, executive summaries, findings, recommendations, feasibility and proposal language.",trap:"A finding reports what was observed; a recommendation proposes action. Do not present a recommendation as if it were a measured result.",rows:[
+["executive summary","resumen ejecutivo","The executive summary outlines the main findings and recommendations.","El resumen ejecutivo presenta los hallazgos y recomendaciones principales."],
+["scope of the report","alcance del informe","The scope of the report is limited to current operations.","El alcance del informe se limita a las operaciones actuales."],
+["key findings","hallazgos clave","The key findings are summarized in the table below.","Los hallazgos clave se resumen en la tabla siguiente."],
+["to identify a trend","identificar una tendencia","The survey identifies a trend toward remote work.","La encuesta identifica una tendencia hacia el trabajo remoto."],
+["to assess feasibility","evaluar la viabilidad","The next stage is to assess feasibility.","La siguiente etapa es evaluar la viabilidad."],
+["a proposed course of action","una línea de acción propuesta","The report recommends a proposed course of action.","El informe recomienda una línea de acción propuesta."],
+["to allocate resources","asignar recursos","The plan allocates resources to staff training.","El plan asigna recursos a la formación del personal."],
+["cost implications","implicaciones de costos","The proposal considers the cost implications of each option.","La propuesta considera las implicaciones de costos de cada opción."],
+["to meet the objectives","cumplir los objetivos","The revised schedule should meet the objectives.","El calendario revisado debería cumplir los objetivos."],
+["to implement a recommendation","implementar una recomendación","Management agreed to implement the first recommendation.","La dirección acordó implementar la primera recomendación."],
+["a measurable outcome","un resultado medible","Each target should have a measurable outcome.","Cada objetivo debería tener un resultado medible."],
+["a potential drawback","un posible inconveniente","One potential drawback is the additional training time.","Un posible inconveniente es el tiempo adicional de formación."],
+["to prioritize actions","priorizar acciones","The team must prioritize actions according to urgency.","El equipo debe priorizar las acciones según su urgencia."],
+["to set out the options","exponer las opciones","The document sets out three options for consideration.","El documento expone tres opciones para su consideración."],
+["to provide a rationale","proporcionar una justificación","The proposal provides a rationale for the budget increase.","La propuesta proporciona una justificación para el aumento del presupuesto."],
+["to monitor progress","supervisar el progreso","A monthly review will monitor progress.","Una revisión mensual supervisará el progreso."],
+["implementation timeline","calendario de implementación","The implementation timeline includes three phases.","El calendario de implementación incluye tres fases."],
+["to be cost-effective","ser rentable","The recommended option is likely to be cost-effective.","Es probable que la opción recomendada sea rentable."],
+["to address a shortfall","abordar un déficit","The plan aims to address a shortfall in staffing.","El plan pretende abordar un déficit de personal."],
+["to draw up a proposal","elaborar una propuesta","The consultant was asked to draw up a proposal.","Se pidió al consultor que elaborara una propuesta."],
+["to be subject to review","estar sujeto a revisión","The policy will be subject to review after six months.","La política estará sujeta a revisión después de seis meses."],
+["next steps","próximos pasos","The final section identifies the next steps.","La sección final identifica los próximos pasos."]],
+lessons:[
+["Propósito y estructura","Reconoce las partes principales de un informe profesional.","Executive summary, scope y key findings orientan al lector antes del análisis.",[0,1,2,3],"The executive summary outlines the main findings and recommendations."],
+["Viabilidad y opciones","Evalúa si una propuesta puede ejecutarse y qué costos implica.","Assess feasibility, course of action y cost implications separan análisis y decisión.",[4,5,6,7],"The next stage is to assess feasibility."],
+["Objetivos y resultados","Relaciona acciones con metas observables y recomendaciones.","Measurable outcome, implement a recommendation y potential drawback permiten comparar opciones.",[8,9,10,11],"Each target should have a measurable outcome."],
+["Planificación y justificación","Expone opciones, razones, prioridades y seguimiento.","Set out options, provide a rationale y monitor progress hacen explícita la lógica del plan.",[12,13,14,15],"The proposal provides a rationale for the budget increase."],
+["Propuesta completa","Integra presupuesto, calendario, revisión y siguientes pasos.","Implementation timeline, cost-effective y subject to review delimitan ejecución y evaluación.",[16,17,18,19,20,21],"The policy will be subject to review after six months."]]},
+{n:53,title:"Professional negotiation",desc:"Negocia condiciones, concesiones, límites y acuerdos con firmeza, flexibilidad y lenguaje diplomático.",grammar:"Conditional offers, concessions, counteroffers, tentative agreement and formalizing terms.",trap:"We could consider X if you can offer Y is a conditional proposal. I agree in principle does not mean every detail is settled.",rows:[
+["to reach a compromise","llegar a un compromiso","Both sides were willing to reach a compromise.","Ambas partes estaban dispuestas a llegar a un compromiso."],
+["to make a concession","hacer una concesión","The supplier made a concession on delivery costs.","El proveedor hizo una concesión en los costos de entrega."],
+["to put forward a counteroffer","presentar una contraoferta","They put forward a counteroffer during the second meeting.","Presentaron una contraoferta durante la segunda reunión."],
+["to negotiate terms","negociar condiciones","We need to negotiate the terms before signing.","Tenemos que negociar las condiciones antes de firmar."],
+["to be willing to","estar dispuesto a","We are willing to extend the trial period.","Estamos dispuestos a ampliar el periodo de prueba."],
+["to be prepared to","estar preparado para","The company is prepared to discuss alternative dates.","La empresa está preparada para hablar de fechas alternativas."],
+["subject to agreement","sujeto a acuerdo","The revised price is subject to agreement on delivery.","El precio revisado está sujeto a un acuerdo sobre la entrega."],
+["to meet halfway","ceder mutuamente","If both teams meet halfway, we can settle this today.","Si ambos equipos ceden mutuamente, podemos resolver esto hoy."],
+["to be open to","estar abierto a","We are open to a longer payment period.","Estamos abiertos a un plazo de pago más largo."],
+["to hold firm on","mantenerse firme en","We need to hold firm on the safety requirements.","Debemos mantenernos firmes en los requisitos de seguridad."],
+["to agree in principle","estar de acuerdo en principio","The parties agreed in principle but need to review the details.","Las partes estuvieron de acuerdo en principio, pero deben revisar los detalles."],
+["to reach a binding agreement","llegar a un acuerdo vinculante","The aim is to reach a binding agreement by Friday.","El objetivo es llegar a un acuerdo vinculante antes del viernes."],
+["to be non-negotiable","no ser negociable","The delivery deadline is non-negotiable.","La fecha límite de entrega no es negociable."],
+["to leave room for","dejar margen para","The contract should leave room for minor adjustments.","El contrato debería dejar margen para pequeños ajustes."],
+["to make a proposal","hacer una propuesta","I'd like to make a proposal regarding the payment schedule.","Me gustaría hacer una propuesta sobre el calendario de pagos."],
+["to take an offer into consideration","tener en cuenta una oferta","We will take your offer into consideration.","Tendremos en cuenta su oferta."],
+["to withdraw an offer","retirar una oferta","The company reserved the right to withdraw the offer.","La empresa se reservó el derecho de retirar la oferta."],
+["to come to an arrangement","llegar a un acuerdo","We came to an arrangement that suited both parties.","Llegamos a un acuerdo que convenía a ambas partes."],
+["to be subject to approval","estar sujeto a aprobación","Any change will be subject to approval by the board.","Cualquier cambio estará sujeto a la aprobación de la junta."],
+["to clarify expectations","aclarar expectativas","Let's clarify expectations before moving forward.","Aclaremos las expectativas antes de seguir adelante."],
+["to put an agreement in writing","poner un acuerdo por escrito","We should put the agreement in writing.","Deberíamos poner el acuerdo por escrito."],
+["to honor the terms","cumplir las condiciones","Both parties must honor the terms of the contract.","Ambas partes deben cumplir las condiciones del contrato."]],
+lessons:[
+["Compromiso y concesiones","Busca acuerdos que reconozcan intereses de ambas partes.","Reach a compromise, make a concession y meet halfway expresan grados de flexibilidad.",[0,1,2,3],"Both sides were willing to reach a compromise."],
+["Ofertas y condiciones","Formula propuestas condicionales y expresa disposición.","Willing to, prepared to y subject to agreement delimitan qué se ofrece y bajo qué condiciones.",[4,5,6,7],"We are willing to extend the trial period."],
+["Límites y principios","Mantén requisitos esenciales y distingue acuerdo provisional de final.","Hold firm on y agree in principle no significan que todos los términos estén cerrados.",[8,9,10,11],"The parties agreed in principle but need to review the details."],
+["Propuestas y alternativas","Presenta ofertas, considera opciones y reconoce cuándo pueden retirarse.","Make a proposal, take into consideration y withdraw an offer describen fases distintas.",[12,13,14,15],"We will take your offer into consideration."],
+["Formalizar acuerdos","Aclara expectativas y documenta compromisos verificables.","Come to an arrangement, subject to approval y put in writing evitan ambigüedades.",[16,17,18,19,20,21],"We should put the agreement in writing."]]},
+{n:54,title:"Meetings and presentations",desc:"Gestiona reuniones y presentaciones, organiza ideas, responde preguntas y desarrolla argumentos con claridad.",grammar:"Signposting, agenda management, handling questions, turn-taking and presentation transitions.",trap:"I'll move on to... signals a transition; to sum up introduces a summary. Do not confuse taking questions with answering every question immediately.",rows:[
+["to chair a meeting","presidir una reunión","Maria will chair the meeting this afternoon.","María presidirá la reunión esta tarde."],
+["to circulate an agenda","distribuir una agenda","Please circulate the agenda before the meeting.","Distribuye la agenda antes de la reunión."],
+["to table a proposal","presentar una propuesta para debate","The committee agreed to table the proposal next week.","El comité acordó presentar la propuesta la próxima semana."],
+["to take the minutes","redactar el acta","Could you take the minutes during the meeting?","¿Podrías redactar el acta durante la reunión?"],
+["to move on to","pasar a","I'll move on to the next section of the presentation.","Pasaré a la siguiente sección de la presentación."],
+["to draw your attention to","llamar su atención sobre","I'd like to draw your attention to the final chart.","Me gustaría llamar su atención sobre el gráfico final."],
+["to walk someone through","guiar a alguien paso a paso","I'll walk you through the main stages of the process.","Te guiaré por las etapas principales del proceso."],
+["to address a question","responder / abordar una pregunta","I'd like to address the question about costs.","Me gustaría abordar la pregunta sobre los costos."],
+["to take questions","responder preguntas","We'll take questions at the end of the presentation.","Responderemos preguntas al final de la presentación."],
+["to elaborate on","ampliar / desarrollar","Could you elaborate on the final recommendation?","¿Podrías desarrollar la recomendación final?"],
+["to make a brief point","hacer una breve observación","I'd like to make a brief point before we continue.","Me gustaría hacer una breve observación antes de continuar."],
+["to summarize the discussion","resumir el debate","Let me summarize the discussion so far.","Permítanme resumir el debate hasta ahora."],
+["to reach a decision","tomar una decisión","We need to reach a decision before the deadline.","Tenemos que tomar una decisión antes del plazo."],
+["to defer a decision","aplazar una decisión","The chair decided to defer the decision until Friday.","La presidencia decidió aplazar la decisión hasta el viernes."],
+["to raise a point","plantear un punto","I'd like to raise one final point.","Me gustaría plantear un último punto."],
+["to clarify the agenda","aclarar la agenda","Could we clarify the agenda before starting?","¿Podríamos aclarar la agenda antes de empezar?"],
+["to keep to the schedule","ceñirse al horario","We need to keep to the schedule today.","Hoy tenemos que ceñirnos al horario."],
+["to run over time","pasarse del tiempo previsto","The presentation ran over time by ten minutes.","La presentación se pasó diez minutos del tiempo previsto."],
+["to wrap up","concluir","To wrap up, I'd like to highlight three key points.","Para concluir, me gustaría destacar tres puntos clave."],
+["to sum up","resumir","To sum up, the project is feasible with some adjustments.","En resumen, el proyecto es viable con algunos ajustes."],
+["to follow the thread","seguir el hilo","A clear outline helps the audience follow the thread.","Un esquema claro ayuda al público a seguir el hilo."],
+["to make the most of","aprovechar al máximo","Let's make the most of the time available.","Aprovechemos al máximo el tiempo disponible."]],
+lessons:[
+["Organizar reuniones","Gestiona agenda, roles y registro de acuerdos.","Chair a meeting, circulate an agenda, table a proposal y take the minutes describen funciones concretas.",[0,1,2,3],"Please circulate the agenda before the meeting."],
+["Transiciones en presentaciones","Guía a la audiencia entre secciones y procesos.","Move on to, draw attention to y walk through organizan la información.",[4,5,6,7],"I'll move on to the next section of the presentation."],
+["Preguntas y desarrollo","Responde preguntas y amplía explicaciones con claridad.","Address a question, take questions y elaborate on ayudan a gestionar interacción.",[8,9,10,11],"Could you elaborate on the final recommendation?"],
+["Decisiones y agenda","Plantea puntos, aclara asuntos y controla el tiempo.","Reach/defer a decision, raise a point y keep to the schedule organizan la reunión.",[12,13,14,15],"We need to reach a decision before the deadline."],
+["Cierre y síntesis","Resume ideas y concluye sin perder el hilo argumental.","Wrap up y sum up marcan cierre; follow the thread y make the most of orientan la participación.",[16,17,18,19,20,21],"To sum up, the project is feasible with some adjustments."]]}
+];
+function build(d){
+ const vocab=d.rows.map((r,i)=>({id:"en_b2_u"+d.n+"_v"+String(i+1).padStart(2,"0"),target:r[0],esp:r[1],ex:r[2],exEsp:r[3],verification:{status:"not_checked",sources:[]}}));
+ const mc=(w,opts)=>({vocabId:w.id,type:"mc",prompt:"¿Qué significa «"+w.target+"»?",options:opts,answer:0,explanation:"Selecciona la opción que encaja con la función y el contexto profesional."});
+ const order=(w,s)=>{const words=s.split(" ");return {vocabId:w.id,type:"order",prompt:"Ordena la frase.",words,correctOrder:words.slice(),explanation:"Reconstruye la frase y observa cómo se organiza la interacción."};};
+ const lessons=d.lessons.map(l=>({title:l[0],objective:l[1],grammar:l[2],vocabIds:l[3].map(i=>vocab[i].id),reviewVocabIds:[],exercises:[mc(vocab[l[3][0]],[vocab[l[3][0]].esp,vocab[(l[3][0]+7)%22].esp,vocab[(l[3][0]+14)%22].esp]),order(vocab[l[3][1]],l[4])]}));
+ const exercises=[];for(let i=0;i<5;i++)exercises.push(mc(vocab[i],[vocab[i].esp,vocab[(i+8)%22].esp,vocab[(i+15)%22].esp]));
+ for(let i=0;i<5;i++)exercises.push(order(vocab[i+5],d.lessons[i][4]));
+ return {unitNumber:d.n,id:"en_b2_u"+d.n,title:"Unidad "+d.n+": "+d.title,desc:d.desc,grammar:d.grammar,trap:{title:"Claridad y propósito profesional",detail:d.trap},vocab,lessons,exercises};
+}
+root.GUARDI_CURRICULUM_BLOCKS=root.GUARDI_CURRICULUM_BLOCKS||{};root.GUARDI_CURRICULUM_BLOCKS.en=root.GUARDI_CURRICULUM_BLOCKS.en||{};root.GUARDI_CURRICULUM_BLOCKS.en.B2=root.GUARDI_CURRICULUM_BLOCKS.en.B2||{};
+root.GUARDI_CURRICULUM_BLOCKS.en.B2["51-54"]={units:defs.map(build)};
+})(typeof window!=="undefined"?window:globalThis);

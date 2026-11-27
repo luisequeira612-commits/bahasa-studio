@@ -253,6 +253,17 @@ jobs:
           path: artifacts/unified-quality-report.json
           if-no-files-found: ignore
           retention-days: 14
+      - name: Run English en-US curriculum quality audit
+        if: ${{ !cancelled() }}
+        run: npm run quality:en-audit
+      - name: Upload English curriculum quality report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: en-curriculum-quality-report
+          path: artifacts/en-curriculum-quality-report.json
+          if-no-files-found: ignore
+          retention-days: 14
       - name: Generate source-backed DeepSeek review packet
         if: ${{ !cancelled() }}
         run: npm run quality:deepseek-packet

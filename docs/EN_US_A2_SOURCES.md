@@ -116,3 +116,14 @@ Estado: primer bloque U1–U6 en desarrollo; el nivel no está publicado. Fecha:
 - Ejemplos originales. Entradas nuevas `not_checked`; cotejo individual CEFR-J y validación nativa pendientes. Se mantiene el esquema runtime y los tipos `mc`/`order`; inglés `available:false`, IndexedDB v1 y backup JSON v3 intactos.
 
 - Corrección editorial tras CI: `try on` y `slice` coincidían exactamente con lemas A1; se sustituyeron por `check the fit` y `dice`, con ejemplos y ejercicios alineados. La comparación completa automatizada vuelve a ser el criterio de aceptación.
+
+
+## Bloque U31–U34 — 27 de noviembre de 2026
+
+- U31: transporte, horarios, tarifas, rutas, conexiones y equipaje.
+- U32: preguntas indirectas y resolución de problemas de viaje.
+- U33: molestias, lesiones leves y atención básica con have got, should y need to.
+- U34: tareas domésticas y phrasal verbs frecuentes.
+- Cuatro unidades, 20 lecciones, 80 ejercicios y 88 entradas nuevas. Total A2 U1–U34: 682 entradas; U10/U20/U30 siguen como repasos sin vocabulario.
+- Auditoría estática del inventario A2: 682 targets únicos, sin duplicados exactos entre U1–U34. La prueba automatizada compara también el inventario contra A1.
+- Ejemplos originales; entradas `not_checked`, cotejo individual CEFR-J y validación nativa pendientes. Se conserva el esquema runtime, `mc`/`order`, `available:false`, IndexedDB v1 y backup JSON v3.

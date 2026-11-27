@@ -44,7 +44,7 @@ lessons:[
 ["a conflict of interest","un conflicto de intereses","The journalist disclosed a potential conflict of interest.","El periodista declaró un posible conflicto de intereses."],
 ["an editorial stance","una postura editorial","The newspaper's editorial stance is clearly stated.","La postura editorial del periódico está claramente indicada."],
 ["to frame an issue","plantear un asunto desde cierto enfoque","The campaign frames the issue as a question of fairness.","La campaña plantea el asunto como una cuestión de equidad."],
-["to spread misinformation","difundir información falsa","False accounts can spread misinformation quickly.","Las cuentas falsas pueden difundir información errónea rápidamente."],
+["to spread misinformation","difundir información errónea","False accounts can spread misinformation quickly.","Las cuentas falsas pueden difundir información errónea rápidamente."],
 ["to distinguish fact from opinion","distinguir los hechos de las opiniones","Students should learn to distinguish fact from opinion.","Los estudiantes deberían aprender a distinguir los hechos de las opiniones."],
 ["a primary source","una fuente primaria","The original letter is a primary source.","La carta original es una fuente primaria."],
 ["a secondary source","una fuente secundaria","The textbook is a secondary source.","El libro de texto es una fuente secundaria."],

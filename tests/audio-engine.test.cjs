@@ -94,12 +94,13 @@ test('reproduce el MP3 incluido aunque el dispositivo no tenga voz indonesia', (
     assert.match(setup.statuses.audioVoiceStatus.textContent, /grabaciones Piper/i);
 });
 
-test('si falta el MP3 y no hay voz indonesia, informa el problema sin usar otra lengua', () => {
+test('si falta el MP3 y no hay voz enumerada, solicita al navegador la voz del locale activo', () => {
     const setup = createEngine();
     setup.engine.speak('frase sin clip');
     setup.createdAudio[0].fail();
-    assert.equal(setup.spoken.length, 0);
-    assert.match(setup.statuses.audioVoiceStatus.textContent, /ni una voz instalada para indonesio/i);
+    assert.equal(setup.spoken.length, 1);
+    assert.equal(setup.spoken[0].lang, 'id-ID');
+    assert.equal(setup.spoken[0].voice, null);
 });
 
 test('si falta el MP3, usa únicamente una voz indonesia instalada como respaldo', () => {
@@ -168,12 +169,14 @@ test('usa la ruta y el locale de la configuración del idioma activo', () => {
     assert.equal(setup.spoken[0].voice, voice);
 });
 
-test('no usa como respaldo una voz de un idioma distinto al curso activo', () => {
+test('Portugués usa pt-BR del navegador aunque no haya voz enumerada', () => {
     const language = { code: 'pt-BR', locale: 'pt-BR', name: 'Portugués de Brasil', audioPath: './audio/pt-BR/' };
-    const setup = createEngine({ language, voices: [{ name: 'Indonesian voice', lang: 'id-ID' }] });
+    const setup = createEngine({ language });
     setup.engine.speak('bom dia');
     setup.createdAudio[0].fail();
-    assert.equal(setup.spoken.length, 0);
+    assert.equal(setup.spoken.length, 1);
+    assert.equal(setup.spoken[0].lang, 'pt-BR');
+    assert.equal(setup.spoken[0].voice, null);
     assert.match(setup.statuses.audioVoiceStatus.textContent, /Portugués de Brasil/i);
 });
 
@@ -184,4 +187,16 @@ test('expone la voz seleccionada con un nombre neutral al idioma activo', () => 
     setup.engine.refreshVoices();
     assert.equal(setup.engine.activeLanguageVoice, voice);
     assert.equal(setup.engine.idVoice, undefined);
+});
+
+
+test('acepta una voz pt-PT como respaldo para el curso pt-BR', () => {
+    const language = { code: 'pt-BR', locale: 'pt-BR', name: 'Portugués de Brasil', audioPath: './audio/pt-BR/' };
+    const voice = { name: 'Portuguese Portugal', lang: 'pt-PT' };
+    const setup = createEngine({ language, voices: [voice] });
+    setup.engine.speak('bom dia');
+    setup.createdAudio[0].fail();
+    assert.equal(setup.spoken.length, 1);
+    assert.equal(setup.spoken[0].lang, 'pt-BR');
+    assert.equal(setup.spoken[0].voice, voice);
 });

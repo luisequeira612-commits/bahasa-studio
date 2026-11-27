@@ -172,6 +172,14 @@ def main() -> None:
         language_entries = [entry for entry in entries if entry["language"] == code]
         if not language_entries:
             continue
+        # Keep the generated MP3 directory exactly aligned with the current
+        # language manifest. This removes clips for curriculum text that was
+        # deleted or changed, preventing stale/orphaned audio from shipping.
+        expected_ids = {entry["id"] for entry in language_entries}
+        language_dir = ROOT / "audio" / code
+        for candidate in language_dir.glob("*.mp3"):
+            if candidate.stem not in expected_ids:
+                candidate.unlink()
         audio_hashes = {}
         for entry in language_entries:
             audio_file = ROOT / entry["file"].removeprefix("./")

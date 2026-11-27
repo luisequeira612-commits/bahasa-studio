@@ -161,3 +161,4 @@
 - Acumulado U1–U32: 32 unidades, 160 lecciones, 640 ejercicios y 638 entradas nuevas. U10, U20 y U30 son repasos sin vocabulario nuevo.
 - Deduplicación estática B1: 638/638 targets únicos. U29–U32 comparadas contra A1/A2; tres solapamientos de phrasal verbs fueron reemplazados por `take on`, `look back on` y `break off`, sin coincidencias exactas en los inventarios A1/A2.
 - Entradas nuevas `not_checked`; sin certificación CEFR ni revisión nativa. Inglés continúa `available:false` hasta completar B1 y sus gates. Sin cambios a IndexedDB v1, backup JSON v3, dependencias, audio, red ni otros idiomas.
+- Primera CI de U29–U32 detectó tres coincidencias A2 adicionales (`turn down`, `sort out`, `run into`) en U29. Sustituidas por `pass up`, `straighten out` y `come up against`; actualizaron ejemplos y ejercicios. Nueva CI pendiente.

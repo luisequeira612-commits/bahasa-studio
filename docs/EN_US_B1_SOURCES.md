@@ -101,3 +101,5 @@
 
 - Revisión editorial adicional antes de abrir el siguiente bloque: se corrigieron dos frases de banco para que practiquen exactamente `coming-of-age` (U1) y `school uniform` (U6). Auditoría estática del acumulado U1–U8: 176 targets únicos y sin duplicados exactos internos; CI verificará solapamiento con A1/A2 y referencias.
 - PR #915 (U1–U4) pasó CI en el head `6f9a08e9f24f36421fe907b0b99169f6f769bce2`: regresión 103/103, TypeScript y calidad offline success. Sigue abierta y sin fusionar.
+
+- Auditoría CI inicial de U1–U8 detectó seis coincidencias exactas con A1/A2 en U6/U8: `playground`, `classmate`, `supervisor`, `assignment`, `scholarship`, `study group`. Sustituidas por `play area`, `school friend`, `team lead`, `coursework`, `tuition waiver`, `study session`; se reejecutará la regresión para confirmar que no quedan solapamientos.

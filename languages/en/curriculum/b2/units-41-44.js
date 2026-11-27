@@ -112,11 +112,11 @@ lessons:[
 ["comparatively","comparativamente","The new method is comparatively inexpensive.","El nuevo método es comparativamente económico."],
 ["inevitably","inevitablemente","A major change will inevitably involve some disruption.","Un cambio importante inevitablemente implicará cierta interrupción."]],
 lessons:[
-["Nominalización","Transforma verbos y adjetivos en sustantivos abstractos.","Reliable → reliability; implement → implementation; sustain → sustainability.",[0,1,2,3],"Successful implementation requires careful planning."],
-["Prefijos negativos y evaluativos","Cambia el significado mediante prefijos frecuentes.","In-, mis-, under-, over- y dis- modifican la base; revisa si el resultado es una palabra establecida.",[4,5,6,7],"A misinterpretation of the data led to the wrong conclusion."],
-["Formación verbal","Crea verbos a partir de adjetivos y sustantivos.","Broaden, strengthen, clarify, justify y simplify expresan procesos de cambio o evaluación.",[8,9,10,11],"The changes should strengthen public confidence."],
-["Adjetivos derivados","Forma adjetivos para evaluar consecuencias y relaciones.","Unavoidable, counterproductive, inconsistent y disproportionate tienen matices específicos.",[12,13,14,15],"Excessive monitoring can be counterproductive."],
-["Adverbios y familias léxicas","Reconoce la función y el significado de derivados en contexto.","Comparatively e inevitably modifican una oración; underlying funciona como adjetivo y no como adverbio.",[16,17,18,19,20,21],"A major change will inevitably involve some disruption."]]}
+["Nominalización","Transforma verbos y adjetivos en sustantivos abstractos.","Reliability, accountability, accessibility e implementation son sustantivos abstractos derivados; observa los cambios de forma y los sufijos.",[0,1,2,3],"Successful implementation requires careful planning."],
+["Prefijos negativos y evaluativos","Cambia el significado mediante prefijos frecuentes.","Sustainability, inequality, misinterpretation y underestimation muestran formación nominal y distintos patrones de prefijos y sufijos.",[4,5,6,7],"A misinterpretation of the data led to the wrong conclusion."],
+["Formación verbal","Crea verbos a partir de adjetivos y sustantivos.","Overproduction y disagreement son sustantivos derivados; broaden y strengthen son verbos formados con el sufijo -en.",[8,9,10,11],"The changes should strengthen public confidence."],
+["Adjetivos derivados","Forma adjetivos para evaluar consecuencias y relaciones.","Clarify, justify y simplify son verbos derivados; unavoidable es un adjetivo formado con prefijo negativo.",[12,13,14,15],"Excessive monitoring can be counterproductive."],
+["Adverbios y familias léxicas","Reconoce la función y el significado de derivados en contexto.","Counterproductive, inconsistent, disproportionate y underlying son adjetivos; comparatively e inevitably son adverbios derivados.",[16,17,18,19,20,21],"A major change will inevitably involve some disruption."]]}
 ];
 function build(d){
  const vocab=d.rows.map((r,i)=>({id:"en_b2_u"+d.n+"_v"+String(i+1).padStart(2,"0"),target:r[0],esp:r[1],ex:r[2],exEsp:r[3],verification:{status:"not_checked",sources:[]}}));

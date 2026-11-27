@@ -48,9 +48,21 @@ def download_piper_model(model_id: str, model_path: str, revision: str, cache_di
                         f"{base}/MODEL_CARD", "-o", str(card)], check=True)
     return onnx, card
 
-def render(model: Path, text: str, raw_wav: Path) -> None:
-    subprocess.run(["piper", "--model", str(model), "--output_file", str(raw_wav)],
-                   input=text, text=True, check=True)
+def render_batch(model: Path, jobs: list[dict]) -> None:
+    """Load one Piper model once and synthesize a batch via JSON input."""
+    lines = [
+        json.dumps(
+            {"text": job["text"], "output_file": str(job["raw"])},
+            ensure_ascii=False
+        )
+        for job in jobs
+    ]
+    subprocess.run(
+        ["piper", "--model", str(model), "--json-input"],
+        input="\\n".join(lines) + "\\n",
+        text=True,
+        check=True
+    )
 
 def encode(raw: Path, destination: Path) -> None:
     destination.parent.mkdir(parents=True, exist_ok=True)
@@ -103,6 +115,7 @@ def main() -> None:
 
     generated = reused = 0
     entries = []
+    pending = {code: [] for code in active_codes}
     with tempfile.TemporaryDirectory() as tmp:
         tmpdir = Path(tmp)
         for item in texts:
@@ -115,15 +128,25 @@ def main() -> None:
             if destination.exists() and not args.force and can_reuse_version and can_reuse_voice:
                 reused += 1
             else:
-                raw = tmpdir / f"{code}-{digest}.wav"
-                render(models[code], item["text"], raw)
-                encode(raw, destination)
-                generated += 1
+                pending[code].append({
+                    "text": item["text"],
+                    "raw": tmpdir / f"{code}-{digest}.wav",
+                    "destination": destination
+                })
             entries.append({
                 "id": digest, "language": code, "locale": cfg["locale"],
                 "text": item["text"], "file": "./" + relative,
                 "sources": item.get("sources", [])
             })
+
+        for code in active_codes:
+            jobs = pending[code]
+            if not jobs:
+                continue
+            render_batch(models[code], jobs)
+            for job in jobs:
+                encode(job["raw"], job["destination"])
+                generated += 1
 
     entries.sort(key=lambda x: (x["language"], x["id"]))
     manifest = {

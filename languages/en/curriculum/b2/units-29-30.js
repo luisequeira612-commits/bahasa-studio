@@ -33,7 +33,7 @@ const lessons=[
 ];
 const vocab=rows.map((r,i)=>({id:"en_b2_u29_v"+String(i+1).padStart(2,"0"),target:r[0],esp:r[1],ex:r[2],exEsp:r[3],verification:{status:"not_checked",sources:[]}}));
 const mc=(w,opts)=>({vocabId:w.id,type:"mc",prompt:"¿Qué significa «"+w.target+"»?",options:opts,answer:0,explanation:"Identifica el núcleo del grupo nominal y la relación entre sus modificadores."});
-const order=(w,s)=>{const words=s.split(" ");return {vocabId:w.id,type:"order",prompt:"Ordena la frase.",words,correctOrder:words.slice(),explanation:"Reconstruye el grupo nominal dentro de una oración natural."};};
+const order=(w,s)=>{const correctOrder=s.replace(/[.,!?;:]/g,"").trim().split(/\s+/).filter(Boolean);let words=correctOrder.length>1?correctOrder.slice(1).concat(correctOrder.slice(0,1)):correctOrder.slice();if(words.join(" ")===correctOrder.join(" "))words=correctOrder.slice().reverse();return {vocabId:w.id,type:"order",prompt:"Ordena la frase.",words,correctOrder,explanation:"Reconstruye el grupo nominal dentro de una oración natural."};};
 const lessonObjects=lessons.map(l=>({title:l[0],objective:l[1],grammar:l[2],vocabIds:l[3].map(i=>vocab[i].id),reviewVocabIds:[],exercises:[mc(vocab[l[3][0]],[vocab[l[3][0]].esp,vocab[(l[3][0]+7)%22].esp,vocab[(l[3][0]+14)%22].esp]),order(vocab[l[3][1]],l[4])]}));
 const exercises=[];for(let i=0;i<5;i++)exercises.push(mc(vocab[i],[vocab[i].esp,vocab[(i+8)%22].esp,vocab[(i+15)%22].esp]));
 for(let i=0;i<5;i++)exercises.push(order(vocab[i+5],lessons[i][4]));

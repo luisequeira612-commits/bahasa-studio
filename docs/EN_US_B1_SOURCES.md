@@ -1,6 +1,6 @@
 # Inglés americano B1 — fuentes, plan y trazabilidad
 
-**Estado:** temario completo aprobado por el usuario el 27 de noviembre de 2026. Implementación en bloques pequeños; U1–U32 están authored en ocho bloques apilados. El nivel permanece sin publicar.
+**Estado:** temario completo aprobado por el usuario el 27 de noviembre de 2026. Implementación en bloques pequeños; U1–U36 están authored en nueve bloques apilados. El nivel permanece sin publicar.
 
 ## Estructura aprobada
 - 52 unidades, 5 lecciones explícitas por unidad y 20 ejercicios por unidad: 260 lecciones y 1.040 ejercicios al completar el nivel.
@@ -162,3 +162,11 @@
 - Deduplicación estática B1: 638/638 targets únicos. U29–U32 comparadas contra A1/A2; tres solapamientos de phrasal verbs fueron reemplazados por `take on`, `look back on` y `break off`, sin coincidencias exactas en los inventarios A1/A2.
 - Entradas nuevas `not_checked`; sin certificación CEFR ni revisión nativa. Inglés continúa `available:false` hasta completar B1 y sus gates. Sin cambios a IndexedDB v1, backup JSON v3, dependencias, audio, red ni otros idiomas.
 - Primera CI de U29–U32 detectó tres coincidencias A2 adicionales (`turn down`, `sort out`, `run into`) en U29. Sustituidas por `pass up`, `straighten out` y `come up against`; actualizaron ejemplos y ejercicios. Nueva CI pendiente.
+
+
+## Bloque U33–U36 — inglés americano B1
+- U33: reported statements; U34: reported questions y commands; U35: passive voice en presente, pasado y futuro; U36: pasiva con modales y get-passive.
+- Añade 4 unidades de contenido, 20 lecciones, 80 ejercicios y 88 entradas nuevas.
+- Acumulado U1–U36: 36 unidades, 180 lecciones, 720 ejercicios y 726 entradas nuevas. U10, U20 y U30 son repasos sin vocabulario nuevo.
+- Deduplicación estática B1: 726/726 targets únicos. U33–U36 comparadas contra A1/A2; `ask if` se sustituyó por `inquire whether` tras detectar una coincidencia A2. `at the time` se sustituyó por `during that period` para evitar duplicado interno.
+- Entradas nuevas `not_checked`; no es certificación CEFR ni revisión nativa. Inglés continúa `available:false` hasta completar B1 y sus gates. Sin cambios a IndexedDB v1, backup JSON v3, dependencias, audio, red ni otros idiomas.

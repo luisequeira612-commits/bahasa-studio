@@ -25,7 +25,7 @@ const defs=[
 ["to find common ground","encontrar puntos en común","The two sides eventually found common ground.","Las dos partes finalmente encontraron puntos en común."],
 ["to draw the matter to a close","dar el asunto por concluido","We would like to draw the matter to a close.","Nos gustaría dar el asunto por concluido."]],
 lessons:[
-["Presentar una queja fundamentada","Explica el problema y el impacto con un tono adecuado.","Lodge a complaint, raise a concern y express dissatisfaction sirven para iniciar una reclamación formal.",[0,1,2,3],"I'd like to raise a concern about the service provided."],
+["Presentar una queja fundamentada","Explica el problema y el impacto con un tono adecuado.","Lodge a complaint, voice a concern y express dissatisfaction sirven para iniciar una reclamación formal.",[0,1,2,3],"I'd like to voice a concern about the service provided."],
 ["Reconocer y responder","Reconoce molestias y explica qué acciones se tomarán.","Acknowledge the inconvenience, investigate the matter y offer an apology muestran responsabilidad.",[4,5,6,7],"We acknowledge the inconvenience caused by the outage."],
 ["Soluciones y medidas correctivas","Propón remedios y vías de resolución.","Amicable resolution, corrective action y escalate an issue describen niveles de respuesta.",[8,9,10,11],"The provider promised to take corrective action."],
 ["Causas y prevención","Aborda el origen del conflicto y evita que vuelva a ocurrir.","Root cause, prevent a recurrence y compensate for a loss precisan el tipo de solución.",[12,13,14,15],"The new procedure addresses the root cause of the problem."],

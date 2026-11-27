@@ -1,3 +1,10 @@
+## 2026-11-27 — Compatibilidad con voces Piper retrainadas
+- La MODEL_CARD de `pt_BR-faber-medium` exige Piper 1.5 o superior. Se cambió el workflow de `piper-tts==1.3.0` a `piper-tts==1.8.0` (PyPI actual, compatible con Python 3.12), que conserva el CLI `piper --model ... --output_file ...`.
+- Para no reutilizar clips generados con un motor/voz anterior, el manifiesto ahora registra `piper_version` y `voice_revisions`. El generador solo reutiliza un MP3 si coinciden la versión de Piper y la revisión de voz; al cambiar modelo o versión regenera ese idioma. La revisión de voz se incorpora también a la ruta de caché temporal.
+- Test ampliado para exigir Piper 1.8.0, SHA de voz, `MODEL_CARD`, atribución y cache invalidation. Cambios en `ee1357f`, `34a2da0` y `bf1001b`; CI pendiente.
+
+Fuentes: MODEL_CARD de `pt_BR-faber-medium` en `rhasspy/piper-voices` commit `2f358b6`, PyPI `piper-tts` release 1.8.0 y Piper CLI usage docs; 27 nov 2026.
+
 ## 2026-11-27 — Versionado y atribución de voces Piper
 - Las diez voces quedaron fijadas a la revisión upstream inmutable `5ec43b186ef915a195d3ddbcfd9916e76c503c3f` de `rhasspy/piper-voices`, cuyo historial identifica los cambios recientes de Faber, Thorsten, japonés y coreano. Se comprobó que los diez IDs y sus rutas existen en el `voices.json` oficial.
 - El generador ahora descarga `.onnx`, `.onnx.json` y `MODEL_CARD` desde la misma revisión; conserva solo las fichas `MODEL_CARD` en `audio/voices/<code>/`, no los pesos ONNX; y genera `audio/VOICE_ATTRIBUTION.md` con enlaces a las fichas. La caché local separa versiones por SHA.

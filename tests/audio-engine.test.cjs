@@ -267,3 +267,26 @@ test('si el manifiesto está cargado y no existe el texto, usa TTS del locale si
     assert.equal(setup.spoken.length, 1);
     assert.equal(setup.spoken[0].lang, 'pt-BR');
 });
+
+test('el estado de voz reconoce la biblioteca Piper del manifiesto portugués', () => {
+    const language = { code: 'pt-BR', locale: 'pt-BR', name: 'Portugués', audioPath: './audio/pt-BR/' };
+    const setup = createEngine({ language });
+    setup.engine.audioManifestLoaded = true;
+    setup.engine.audioManifest.set('pt-BR:' + setup.engine.hashText('olá'), { file: './audio/pt-BR/olá.mp3' });
+    setup.engine.updateVoiceStatus();
+    assert.match(setup.statuses.audioVoiceStatus.textContent, /incluye grabaciones Piper para portugués/i);
+});
+
+test('el botón de prueba usa la frase portuguesa y su clip del manifiesto', () => {
+    const language = {
+        code: 'pt-BR', locale: 'pt-BR', name: 'Portugués',
+        audioPath: './audio/pt-BR/', testPhrase: 'olá'
+    };
+    const setup = createEngine({ language });
+    setup.engine.audioManifestLoaded = true;
+    setup.engine.audioManifest.set('pt-BR:' + setup.engine.hashText('olá'), { file: './audio/pt-BR/olá.mp3' });
+    assert.equal(setup.engine.testVoice(), true);
+    assert.equal(setup.createdAudio.length, 1);
+    assert.equal(setup.createdAudio[0].src, './audio/pt-BR/olá.mp3');
+    assert.equal(setup.spoken.length, 0);
+});

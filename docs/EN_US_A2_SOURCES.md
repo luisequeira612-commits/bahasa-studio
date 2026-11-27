@@ -127,3 +127,5 @@ Estado: primer bloque U1–U6 en desarrollo; el nivel no está publicado. Fecha:
 - Cuatro unidades, 20 lecciones, 80 ejercicios y 88 entradas nuevas. Total A2 U1–U34: 682 entradas; U10/U20/U30 siguen como repasos sin vocabulario.
 - Auditoría estática del inventario A2: 682 targets únicos, sin duplicados exactos entre U1–U34. La prueba automatizada compara también el inventario contra A1.
 - Ejemplos originales; entradas `not_checked`, cotejo individual CEFR-J y validación nativa pendientes. Se conserva el esquema runtime, `mc`/`order`, `available:false`, IndexedDB v1 y backup JSON v3.
+
+- Corrección tras CI: `train station` y `personal item` coincidían exactamente con vocabulario A1; se sustituyeron por `rail terminal` y `overhead bag`. El test de regresión completo sigue siendo el criterio de aceptación.

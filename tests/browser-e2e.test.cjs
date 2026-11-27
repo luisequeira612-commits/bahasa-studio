@@ -1272,7 +1272,7 @@ test('Indonesian device voice selection persists and is used only when a recordi
     assert.deepEqual(await page.evaluate(() => window.__spokenVoices), ['mock-id-b']);
     await page.waitForFunction(async () => (await DB.get('settings', 'audioVoiceURI')) === 'mock-id-b');
     assert.equal(await page.locator('#audioVoiceSelect').inputValue(), 'mock-id-b');
-    assert.match(await page.locator('#audioVoiceStatus').innerText(), /Voz del dispositivo disponible como respaldo para indonesio: Mock Indonesian B/);
+    assert.match(await page.locator('#audioVoiceStatus').innerText(), /Voz del dispositivo disponible como respaldo: Mock Indonesian B/);
 
     await page.reload({ waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
@@ -1323,7 +1323,7 @@ test('voice selector remains optional when no Indonesian device voice exists', a
     await page.waitForFunction(() => typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db);
     assert.equal(await page.locator('#audioVoiceSelect option').count(), 1);
     assert.equal(await page.locator('#audioVoiceSelect').inputValue(), 'auto');
-    assert.ok((await page.locator('#audioVoiceStatus').innerText()).includes('grabaciones Piper del curso'));
+    assert.ok((await page.locator('#audioVoiceStatus').innerText()).includes('Si falta una grabación, el navegador intentará reproducir la frase en indonesio'));
     await page.evaluate(() => AudioEngine.speak('frase sin grabación disponible'));
     await page.waitForFunction(() => document.getElementById('audioVoiceStatus').textContent.includes('No se encontró una grabación'));
     assert.equal(await page.evaluate(() => AudioEngine.selectedVoice === null), true);
@@ -1362,7 +1362,7 @@ test('Indonesian voices discovered asynchronously refresh the selector', async (
     await page.evaluate(() => window.__publishIndonesianVoices());
     await page.waitForFunction(() => document.querySelectorAll('#audioVoiceSelect option').length === 2);
     assert.equal(await page.locator('#audioVoiceSelect option').nth(1).textContent(), 'Late Indonesian (id-ID)');
-    assert.match(await page.locator('#audioVoiceStatus').innerText(), /Voz del dispositivo disponible como respaldo para indonesio: Late Indonesian/);
+    assert.match(await page.locator('#audioVoiceStatus').innerText(), /Voz del dispositivo disponible como respaldo: Late Indonesian/);
   } finally {
     await context.close();
     await new Promise(resolve => server.close(resolve));

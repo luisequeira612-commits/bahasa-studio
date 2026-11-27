@@ -1,3 +1,9 @@
+## 2026-11-27 — Metadatos de licencia basados en MODEL_CARD
+- El generador ya no conserva la afirmación genérica `MIT` en metadata de audio como si fuera la licencia de la voz/dataset. Para cada idioma activo, `model_license`, `model_license_url` y `model_attribution` apuntan explícitamente a su `MODEL_CARD`, que es la fuente de verdad para los términos de la voz y el dataset.
+- Cambio en `tools/generar_audio.py`, commit `2d06e9f`; nueva generación/CI pendiente.
+
+Fuente: `audio/metadata.json`, MODEL_CARD upstream y `tools/generar_audio.py`; 27 nov 2026.
+
 ## 2026-11-27 — Ejecución rápida aislada de la generación Piper
 - El workflow antiguo #45962876912 llevaba más de 15 min en la síntesis secuencial con Piper 1.3 y sin progreso visible. No hay acción de cancelación disponible desde el conector GitHub.
 - Para no bloquear el lote correcto, el workflow nuevo usa grupo de concurrencia `guardi-piper-audio-v2`, por lo que puede ejecutarse en paralelo al antiguo. El push ahora maneja conflictos de rebase: en caso de conflicto, rebase aborta, el runner vuelve a basar su commit en la rama remota y vuelve a preparar únicamente `audio/`, priorizando el lote generado con el código actual.

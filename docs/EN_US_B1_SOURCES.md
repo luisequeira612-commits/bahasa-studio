@@ -177,5 +177,5 @@
 - Añade 3 unidades de contenido con 66 entradas nuevas (22 por unidad) y una unidad de repaso con cinco lecciones; 4 unidades, 20 lecciones y 80 ejercicios en total.
 - Acumulado U1–U40: 40 unidades, 200 lecciones, 800 ejercicios y 792 entradas nuevas. U10, U20, U30 y U40 son repasos sin vocabulario nuevo.
 - U40 reutiliza IDs de U33–U39 y no crea vocabulario. Los bancos y las cinco lecciones conservan los tipos `mc` y `order` del runtime actual.
-- Deduplicación estática interna: U37–U39 aportan 66 targets nuevos; la CI compara el inventario B1 completo contra A1/A2 y detecta solapamientos exactos. Entradas nuevas `not_checked`; no se afirma cotejo individual CEFR-J, naturalidad nativa ni certificación MCER.
+- Deduplicación estática: U37–U39 aportan 66 targets, únicos entre sí y sin coincidencias exactas con A1/A2 ni U1–U36. `have something repaired` se sustituyó por `get an appliance repaired` al detectar reutilización exacta en U28. La CI repetirá la comprobación sobre el inventario completo. Entradas nuevas `not_checked`; no se afirma cotejo individual CEFR-J, naturalidad nativa ni certificación MCER.
 - Inglés continúa `available:false` hasta completar U52 y sus gates. Sin cambios a IndexedDB v1, backup JSON v3, dependencias, audio, red ni otros idiomas.

@@ -804,3 +804,11 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Auditoría estática: 682 targets únicos en A2, sin duplicados exactos entre los ocho bloques. Manifiesto y test se amplían a U34 y comprueban también solapamiento con A1.
 - CI pendiente. Entradas `not_checked`; cotejo individual CEFR-J pendiente. Sin cambios a IndexedDB v1, backup JSON v3, dependencias, POS/audio, PT-BR ni otros idiomas. No fusionar ni publicar sin aprobación expresa.
 - Fuente: rama `feat/en-us-a2-u31-u34-v3`, currículo, tests y docs; 27 nov 2026.
+
+
+## 2026-11-27 — Inglés en-US A2 U35–U38
+- Rama `feat/en-us-a2-u35-u38`, apilada sobre PR #910. U35 trabajo/estudios y because/so/can/could; U36 experiencias ever/never; U37 just/already/yet, since/for y contraste con pasado simple; U38 defining relative clauses who/which/that.
+- Bloque de 4 unidades, 20 lecciones, 80 ejercicios y 88 entradas nuevas. Inventario A2 U1–U38 previsto: 770 entradas; U10/U20/U30 son repasos sin vocabulario.
+- Manifiesto y pruebas se amplían a U38, con controles de inventario, solapamiento A1 y referencias de ejercicios.
+- CI pendiente. Entradas `not_checked`; cotejo individual CEFR-J pendiente. Sin cambios a IndexedDB v1, backup JSON v3, dependencias, POS/audio, PT-BR ni otros idiomas. No fusionar ni publicar sin aprobación expresa.
+- Fuente: rama `feat/en-us-a2-u35-u38`, currículo, tests y docs; 27 nov 2026.

@@ -804,3 +804,5 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Auditoría estática: 682 targets únicos en A2, sin duplicados exactos entre los ocho bloques. Manifiesto y test se amplían a U34 y comprueban también solapamiento con A1.
 - CI pendiente. Entradas `not_checked`; cotejo individual CEFR-J pendiente. Sin cambios a IndexedDB v1, backup JSON v3, dependencias, POS/audio, PT-BR ni otros idiomas. No fusionar ni publicar sin aprobación expresa.
 - Fuente: rama `feat/en-us-a2-u31-u34-v3`, currículo, tests y docs; 27 nov 2026.
+
+- 27 nov 2026: La regresión de PR #910 detectó dos coincidencias exactas con A1 en U31 (`train station`, `personal item`). Se sustituyeron por `rail terminal` y `overhead bag`, manteniendo las frases y los objetivos de transporte; se repetirá el test integral sin relajar la comparación.

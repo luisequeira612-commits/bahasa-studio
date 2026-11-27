@@ -108,7 +108,7 @@ const data=[
 ["to sound as if","sonar como si","It sounds as if the situation is getting worse.","Suena como si la situación estuviera empeorando."],
 ["to look as though","parecer que","They look as though they need a break.","Parece que necesitan un descanso."],
 ["to act as if","actuar como si","Don't act as if you had no choice.","No actúes como si no tuvieras opción."],
-["it's high time","ya va siendo hora de","It is high time we took this seriously.","Ya es hora de que nos tomemos esto en serio."],
+["to wish things had been different","desear que las cosas hubieran sido diferentes","She wished things had been different before she made the decision.","Ella deseaba que las cosas hubieran sido diferentes antes de tomar la decisión."],
 ["it is improbable that","ser improbable que","It is improbable that he would agree without further details.","Es improbable que aceptara sin más detalles."],
 ["to put oneself in someone's shoes","ponerse en el lugar de alguien","Try to put yourself in her shoes.","Intenta ponerte en su lugar."],
 ["to take something for granted","dar algo por sentado","Don't take their support for granted.","No des por sentado su apoyo."],

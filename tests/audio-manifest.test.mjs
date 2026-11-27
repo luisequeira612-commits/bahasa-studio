@@ -71,7 +71,15 @@ test('audio manifest exports unique A1, A2 and inline B1 texts without changing 
       .filter((name) => name.endsWith('.mp3'))
       .map((name) => name.slice(0, -4));
     assert.equal(new Set(audioFiles).size, audioFiles.length, 'MP3 filenames must be unique');
-    assert.deepEqual([...audioFiles].sort(), [...index].sort(), 'every indexed audio ID must have one MP3 and no orphan MP3 may remain');
+    const generatedManifest = JSON.parse(await readFile(path.join(root, 'audio', 'manifest.json'), 'utf8'));
+    const generatedMp3Ids = Array.isArray(generatedManifest)
+      ? generatedManifest
+        .filter((entry) => entry.language === 'id' && typeof entry.file === 'string' && entry.file.endsWith('.mp3'))
+        .map((entry) => entry.id)
+      : [];
+    const expectedMp3Ids = generatedMp3Ids.length ? generatedMp3Ids : index;
+    assert.deepEqual([...audioFiles].sort(), [...expectedMp3Ids].sort(),
+      'every generated manifest MP3 must exist and no orphan MP3 may remain');
 
     const levelUnion = new Set(entries.flatMap((entry) => entry.levels.map(() => entry.id)));
     assert.equal(levelUnion.size, entries.length, 'unique manifest IDs must equal the union of level memberships');

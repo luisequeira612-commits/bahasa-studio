@@ -1218,3 +1218,90 @@ test('completed unit sheet lets the learner open any completed lesson directly',
     await new Promise(resolve => server.close(resolve));
   }
 });
+
+test('Portugués PT-BR: audio del curso y consulta contextual de palabras funcionan', async () => {
+  const { server, url } = await startServer();
+  const browser = await chromium.launch({ headless: true });
+  const context = await browser.newContext({
+    viewport: { width: 360, height: 740 },
+    serviceWorkers: 'block',
+    reducedMotion: 'reduce'
+  });
+  await context.addInitScript(() => localStorage.setItem('guardi_active_language', 'pt-BR'));
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() =>
+      typeof App !== 'undefined' && typeof DB !== 'undefined' && DB.db &&
+      LanguageManager.getActiveLanguage() === 'pt-BR' &&
+      typeof window.getTapTranslationVocabulary === 'function' &&
+      typeof window.refreshWordTranslationIndex === 'function'
+    );
+
+    const fixture = await page.evaluate(() => {
+      const vocabulary = window.getTapTranslationVocabulary();
+      const word = vocabulary.find(entry => entry && entry.text === 'olá');
+      if (!word) return null;
+
+      const sentence = document.createElement('div');
+      sentence.innerHTML = window.renderTapTranslationSentence('Olá, bom dia!', 'target');
+      const speaker = sentence.querySelector('.tap-translation-speaker');
+      const locale = sentence.querySelector('.tap-translation-phrase')?.lang;
+
+      const voice = { name: 'Português (Brasil)', lang: 'pt-BR' };
+      const spoken = [];
+      AudioEngine.synth = {
+        getVoices: () => [voice],
+        cancel: () => {},
+        speak: utterance => spoken.push({
+          text: utterance.text,
+          lang: utterance.lang,
+          voiceLang: utterance.voice?.lang || null
+        })
+      };
+      const audioResult = AudioEngine.speak('bom dia');
+
+      const card = document.createElement('div');
+      card.className = 'flashcard';
+      card.style.cssText = 'position:fixed;left:12px;top:160px;width:300px;min-height:60px;z-index:9999;';
+      const paragraph = document.createElement('p');
+      paragraph.id = 'fixturePtMeaningTrigger';
+      paragraph.textContent = word.text;
+      card.appendChild(paragraph);
+      document.body.appendChild(card);
+      window.refreshWordTranslationIndex();
+
+      return {
+        text: word.text,
+        translation: word.translation,
+        locale,
+        hasSpeaker: Boolean(speaker),
+        audioResult,
+        spoken: spoken[0] || null,
+        dictionaryPlaceholder: document.getElementById('dictSearch')?.placeholder
+      };
+    });
+
+    assert.ok(fixture, 'PT-BR A1 should expose adapted vocabulary for the meaning index');
+    assert.equal(fixture.text, 'olá');
+    assert.equal(fixture.translation, 'hola');
+    assert.equal(fixture.locale, 'pt-BR');
+    assert.equal(fixture.hasSpeaker, true, 'target-language sentences should expose an audio control');
+    assert.equal(fixture.audioResult, true);
+    assert.equal(fixture.spoken.lang, 'pt-BR');
+    assert.equal(fixture.spoken.voiceLang, 'pt-BR');
+    assert.equal(fixture.dictionaryPlaceholder, 'Buscar palabra o traducción...');
+
+    await page.locator('#fixturePtMeaningTrigger').click({ position: { x: 18, y: 10 } });
+    await page.waitForFunction(() => !document.getElementById('wordMeaningPopup').hidden);
+    assert.equal(await page.locator('#wordMeaningTerm').innerText(), 'olá');
+    assert.equal(await page.locator('#wordMeaningText').innerText(), 'hola');
+    await page.locator('#wordMeaningClose').click();
+    await page.waitForFunction(() => document.getElementById('wordMeaningPopup').hidden);
+  } finally {
+    await context.close();
+    await browser.close();
+    await new Promise(resolve => server.close(resolve));
+  }
+});

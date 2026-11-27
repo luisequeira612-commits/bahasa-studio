@@ -5,7 +5,7 @@
     const STORAGE_KEY = 'guardi_active_language';
     /** @type {Readonly<Record<GuardiLanguageCode, GuardiLanguageConfig>>} */
     const LANGUAGES = Object.freeze({
-        'pt-BR': Object.freeze({ code: 'pt-BR', locale: 'pt-BR', name: 'Portugués', flag: '🇧🇷', piperVoice: 'pt_BR-faber-medium', voiceStatus: 'candidate', audioPath: './audio/pt-BR/', curriculum: Object.freeze({ A1: './languages/pt-BR/curriculum/a1/index.js', A2: './languages/pt-BR/curriculum/a2/index.js', B1: './languages/pt-BR/curriculum/b1/index.js', B2: './languages/pt-BR/curriculum/b2/index.js' }), available: true }),
+        'pt-BR': Object.freeze({ code: 'pt-BR', locale: 'pt-BR', name: 'Portugués', flag: '🇧🇷', piperVoice: 'pt_BR-faber-medium', voiceStatus: 'candidate', audioPath: './audio/pt-BR/', audioAvailable: false, allowSystemVoiceFallback: true, testPhrase: 'bom dia', curriculum: Object.freeze({ A1: './languages/pt-BR/curriculum/a1/index.js', A2: './languages/pt-BR/curriculum/a2/index.js', B1: './languages/pt-BR/curriculum/b1/index.js', B2: './languages/pt-BR/curriculum/b2/index.js' }), available: true }),
         en: Object.freeze({ code: 'en', locale: 'en-US', name: 'Inglés', flag: '🇺🇸', piperVoice: 'en_US-lessac-medium', voiceStatus: 'candidate', audioPath: './audio/en/', curriculum: Object.freeze({}), available: false }),
         it: Object.freeze({ code: 'it', locale: 'it-IT', name: 'Italiano', flag: '🇮🇹', piperVoice: 'it_IT-riccardo-x_low', voiceStatus: 'unverified', audioPath: './audio/it/', curriculum: Object.freeze({}), available: false }),
         fr: Object.freeze({ code: 'fr', locale: 'fr-FR', name: 'Francés', flag: '🇫🇷', piperVoice: 'fr_FR-upmc-medium', voiceStatus: 'candidate', audioPath: './audio/fr/', curriculum: Object.freeze({}), available: false }),
@@ -14,7 +14,7 @@
         ru: Object.freeze({ code: 'ru', locale: 'ru-RU', name: 'Ruso', flag: '🇷🇺', piperVoice: 'ru_RU-ruslan-medium', voiceStatus: 'candidate', audioPath: './audio/ru/', curriculum: Object.freeze({}), available: false }),
         ja: Object.freeze({ code: 'ja', locale: 'ja-JP', name: 'Japonés', flag: '🇯🇵', piperVoice: 'ja_JP', voiceStatus: 'unverified', audioPath: './audio/ja/', curriculum: Object.freeze({}), available: false }),
         ko: Object.freeze({ code: 'ko', locale: 'ko-KR', name: 'Coreano', flag: '🇰🇷', piperVoice: 'ko_KR-kss-medium', voiceStatus: 'unverified', audioPath: './audio/ko/', curriculum: Object.freeze({}), available: false }),
-        id: Object.freeze({ code: 'id', locale: 'id-ID', name: 'Indonesio', flag: '🇮🇩', piperVoice: 'id_ID-news_tts-medium', voiceStatus: 'configured', audioPath: './audio/id/', curriculum: Object.freeze({ A1: './curriculum-a1.js', A2: './curriculum-a2.js' }), testPhrase: 'terima kasih', available: true })
+        id: Object.freeze({ code: 'id', locale: 'id-ID', name: 'Indonesio', flag: '🇮🇩', piperVoice: 'id_ID-news_tts-medium', voiceStatus: 'configured', audioPath: './audio/id/', audioAvailable: true, curriculum: Object.freeze({ A1: './curriculum-a1.js', A2: './curriculum-a2.js' }), testPhrase: 'terima kasih', available: true })
     });
     /**
      * Validate one language registry entry without requiring every CEFR level to exist.

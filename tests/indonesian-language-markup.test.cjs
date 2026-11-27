@@ -39,9 +39,10 @@ test('el matching usa el locale activo y pares con campos neutrales', () => {
     assert.doesNotMatch(html, /match-option-btn[^\n]*lang="id"|data-side="idn"/);
 });
 
-test('la frase interactiva aplica el locale de origen y reserva audio para indonesio', () => {
+test('la frase interactiva aplica el locale de origen y ofrece audio para cualquier idioma objetivo', () => {
     assert.match(html, /sourceLocale = language === 'es' \? 'es' : LanguageManager\.getLocale\(activeLanguage\)/);
-    assert.match(html, /language !== 'es' && activeLanguage === 'id'/);
+    assert.match(html, /const speaker = language !== 'es'/);
+    assert.doesNotMatch(html, /language !== 'es' && activeLanguage === 'id'/);
 });
 
 test('marca el ejemplo modelo y el término emergente con locale dinámico', () => {
@@ -90,4 +91,14 @@ test('el popup de significado usa texto, traducción y ejemplos con locale diná
     assert.doesNotMatch(indexBuilder, /word\.idn|word\.esp|lang = 'id'/);
     assert.match(html, /termNode\.lang = matches\[0\]\.locale/);
     assert.match(html, /original\.lang = example\.locale/);
+});
+
+test('las indicaciones de lección, diccionario y audio no fijan indonesio', () => {
+    assert.match(html, /const languageName = LanguageManager\.getLanguage\(language\)/);
+    assert.match(html, /Toca una palabra en \$\{App\.escapeHtml\(languageName\.toLocaleLowerCase\('es'\)\)\}/);
+    assert.doesNotMatch(html, /Toca una palabra en indonesio/);
+    assert.match(html, /placeholder="Buscar palabra o traducción/);
+    assert.doesNotMatch(html, /Buscar indonesio o español|diccionario indonesio y español/);
+    assert.match(html, /<h3>Audio del curso<\/h3>/);
+    assert.doesNotMatch(html, /Audio en indonesio|voz indonesia/);
 });

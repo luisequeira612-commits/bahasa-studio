@@ -10,11 +10,11 @@ window.AudioEngine = {
         const manager = window.LanguageManager;
         const code = manager && typeof manager.getActiveLanguage === 'function' ? manager.getActiveLanguage() : 'id';
         const config = manager && typeof manager.getLanguage === 'function' ? manager.getLanguage(code) : null;
-        return config || { code: 'id', locale: 'id-ID', name: 'indonesio', audioPath: './audio/id/' };
+        return config || { code: 'id', locale: 'id-ID', name: 'idioma del curso', audioPath: './audio/id/' };
     },
     matchesActiveLanguage(voice) {
-        const languageTag = String(this.getLanguageConfig().locale || 'id-ID').toLowerCase().split('-')[0];
-        return String(voice && voice.lang || '').toLowerCase().split('-')[0] === languageTag;
+        const languageTag = String(this.getLanguageConfig().locale || 'id-ID').toLowerCase().replace(/_/g, '-').split('-')[0];
+        return String(voice && voice.lang || '').toLowerCase().replace(/_/g, '-').split('-')[0] === languageTag;
     },
     voiceKey(voice) {
         return voice.voiceURI || (String(voice.lang || '') + ':' + String(voice.name || ''));
@@ -98,6 +98,18 @@ window.AudioEngine = {
         const language = this.getLanguageConfig();
         const voices = this.voices.filter(voice => this.matchesActiveLanguage(voice));
         const languageName = String(language.name || language.code || 'idioma del curso').toLowerCase();
+        const hasRecordings = language.audioAvailable !== false;
+        if (!hasRecordings) {
+            if (voices.length) {
+                const active = this.selectedVoice || this.activeLanguageVoice;
+                status.textContent = 'Este curso no tiene grabaciones incluidas. Se usará una voz del dispositivo para ' +
+                    languageName + ': ' + (active ? active.name : 'selección automática') + '.';
+            } else {
+                status.textContent = 'Este curso no tiene grabaciones incluidas. El navegador intentará sintetizar el audio para ' +
+                    languageName + ' con la voz configurada en el dispositivo.';
+            }
+            return;
+        }
         if (voices.length) {
             const active = this.selectedVoice || this.activeLanguageVoice;
             status.textContent = 'La app incluye grabaciones Piper del curso; no necesitas instalar una voz. Voz del dispositivo disponible como respaldo para ' +
@@ -157,20 +169,30 @@ window.AudioEngine = {
         this.refreshVoices();
         const voice = this.selectedVoice || this.activeLanguageVoice;
         if (!voice || !this.matchesActiveLanguage(voice)) {
+            if (language.allowSystemVoiceFallback === true && this.voices.length === 0) {
+                this.synth.cancel();
+                const utter = new SpeechSynthesisUtterance(text);
+                utter.lang = language.locale || 'und';
+                utter.voice = null;
+                utter.rate = this.rate;
+                this.synth.speak(utter);
+                return true;
+            }
             const status = document.getElementById('audioVoiceStatus');
             if (status) status.textContent = 'No se encontró una grabación para esta frase ni una voz instalada para ' + languageName + ' como respaldo.';
             return false;
         }
         this.synth.cancel();
         const utter = new SpeechSynthesisUtterance(text);
-        utter.lang = language.locale || 'id-ID';
+        utter.lang = voice.lang || language.locale || 'und';
         utter.voice = voice;
         utter.rate = this.rate;
         this.synth.speak(utter);
         return true;
     },
     playRecorded(text) {
-        if (typeof Audio !== 'function') return false;
+        const language = this.getLanguageConfig();
+        if (language.audioAvailable === false || typeof Audio !== 'function') return false;
         const id = this.hashText(text);
         if (!id) return false;
         this.stopCurrentAudio();
@@ -224,7 +246,9 @@ window.AudioEngine = {
             return false;
         }
         this.refreshVoices();
-        if (status) status.textContent = 'Probando una grabación Piper incluida. No necesitas instalar una voz.';
+        if (status) status.textContent = language.audioAvailable === false
+            ? 'Probando la voz del dispositivo para ' + String(language.name || 'el idioma del curso').toLowerCase() + '.'
+            : 'Probando una grabación Piper incluida. No necesitas instalar una voz.';
         return this.speak(phrase);
     }
 };

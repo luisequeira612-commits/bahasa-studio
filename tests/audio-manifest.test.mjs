@@ -235,6 +235,7 @@ test('all ten Piper voices are pinned and their model cards are preserved for at
     assert.equal(voice.repository, 'rhasspy/piper-voices', code);
     assert.match(voice.revision, /^[a-f0-9]{40}$/, code + ' must use an immutable upstream revision');
     assert.ok(voice.model && voice.model_path && voice.locale, code + ' voice metadata must be complete');
+    assert.ok(voice.attribution, code + ' voice attribution label must be present');
   }
   const generator = await readFile(path.join(root, 'tools/generar_audio.py'), 'utf8');
   assert.match(generator, /MODEL_CARD/);
@@ -244,6 +245,7 @@ test('all ten Piper voices are pinned and their model cards are preserved for at
   assert.match(generator, /voice_revisions/);
   assert.match(generator, /PiperVoice\.load/);
   assert.match(generator, /voice\.synthesize_wav/);
+  assert.match(generator, /config\[code\]\.get\("attribution"/);
   assert.match(generator, /wave\.open/);
   assert.match(generator, /manifest-multilingual\.json/);
   assert.match(generator, /inventory_path = ROOT \/ "audio" \/ "manifest\.json"/);

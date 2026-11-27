@@ -118,8 +118,9 @@ window.AudioEngine = {
         if (language.audioMode === 'speechSynthesis') {
             const supportedLocales = [language.locale, ...(Array.isArray(language.voiceFallbackLocales) ? language.voiceFallbackLocales : [])]
                 .filter(Boolean).join(' / ');
-            status.textContent = voices.length
-                ? 'Voz del dispositivo para ' + languageName + ': ' + voices[0].name + ' (' + voices[0].lang + ').'
+            const active = this.selectedVoice || this.activeLanguageVoice || voices[0];
+            status.textContent = active
+                ? 'Voz del dispositivo para ' + languageName + ': ' + active.name + ' (' + active.lang + ').'
                 : 'No hay una voz compatible para ' + languageName + '. Activa una voz ' + supportedLocales + ' en el dispositivo.';
             return;
         }

@@ -219,3 +219,17 @@ test('all-language export follows the central language registry and includes eve
     await rm(temp, { recursive: true, force: true });
   }
 });
+
+test('all ten Piper voices are pinned and their model cards are preserved for attribution', async () => {
+  const voices = JSON.parse(await readFile(path.join(root, 'tools/audio-voices.json'), 'utf8'));
+  assert.equal(Object.keys(voices).length, 10);
+  for (const [code, voice] of Object.entries(voices)) {
+    assert.equal(voice.repository, 'rhasspy/piper-voices', code);
+    assert.match(voice.revision, /^[a-f0-9]{40}$/, code + ' must use an immutable upstream revision');
+    assert.ok(voice.model && voice.model_path && voice.locale, code + ' voice metadata must be complete');
+  }
+  const generator = await readFile(path.join(root, 'tools/generar_audio.py'), 'utf8');
+  assert.match(generator, /MODEL_CARD/);
+  assert.match(generator, /VOICE_ATTRIBUTION\.md/);
+  assert.match(generator, /resolve\/\{revision\}/);
+});

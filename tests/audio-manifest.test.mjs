@@ -189,3 +189,24 @@ test('manifest export is deterministic, including the first-seen text variant', 
     await rm(temp, { recursive: true, force: true });
   }
 });
+
+test('all-language export follows the central language registry and includes every course with curriculum paths', async () => {
+  const temp = await mkdtemp(path.join(os.tmpdir(), 'bahasa-audio-all-languages-'));
+  const output = path.join(temp, 'all-languages.json');
+  try {
+    const result = spawnSync(process.execPath, [script, '--all-languages', '--output', output], {
+      cwd: root, encoding: 'utf8', timeout: 30000
+    });
+    assert.equal(result.status, 0, result.stderr || result.stdout);
+    const entries = JSON.parse(await readFile(output, 'utf8'));
+    const languages = new Set(entries.map((entry) => entry.language));
+    assert.ok(languages.has('id'), 'Indonesian course must be exported');
+    assert.ok(languages.has('pt-BR'), 'Brazilian Portuguese course must be discovered from LanguageManager');
+    assert.ok(entries.every((entry) => entry.language && entry.locale && entry.text && entry.sources.length > 0));
+    assert.equal(new Set(entries.map((entry) => entry.language + ':' + entry.id)).size, entries.length,
+      'audio text IDs must be unique within each language');
+    for (const entry of entries) assert.equal(entry.id, hashText(entry.text));
+  } finally {
+    await rm(temp, { recursive: true, force: true });
+  }
+});

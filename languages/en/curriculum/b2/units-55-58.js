@@ -79,7 +79,7 @@ lessons:[
 ["to be carried out","llevarse a cabo","The assessment is carried out by an independent team.","La evaluación la lleva a cabo un equipo independiente."],
 ["to account for variations","explicar las variaciones","The model accounts for variations in temperature.","El modelo explica las variaciones de temperatura."],
 ["to be dependent on","depender de","The final result is dependent on the quality of the input.","El resultado final depende de la calidad de los datos de entrada."],
-["to be triggered by","ser desencadenado por","The alarm is triggered by excessive heat.","La alarma se activa por un calor excesivo."],
+["to be triggered by","ser activado por","The alarm is triggered by excessive heat.","La alarma se activa debido al calor excesivo."],
 ["to operate in sequence","funcionar en secuencia","The components operate in sequence.","Los componentes funcionan en secuencia."],
 ["to summarize the process","resumir el proceso","The diagram summarizes the process from start to finish.","El diagrama resume el proceso de principio a fin."]],
 lessons:[

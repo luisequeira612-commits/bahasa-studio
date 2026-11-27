@@ -106,4 +106,4 @@ test('English A1 vocabulary introduces no duplicate targets across U1-U12',async
 ## 2026-11-26 — Auditoría de referencias de repaso
 - Se corrigieron IDs de vocabulario reciclado en U30 (box/class: U6 v05/v06) y U31–U32 (listen: U1 v18).
 - Auditoría estática de los 46 IDs de reviewVocabIds: todos resuelven al target esperado. Inventario léxico sigue en 638 entradas únicas y cero duplicados.
-- CI de PR #895 y PR #897 debe repetirse en los heads actualizados; no declarar listo hasta regresión y typecheck verdes.
+- PR #895 en head 3a738748ed0c3a8bbaaae3ad3b689b08c518dd97: regresión #45913948547 y typecheck #45913948597 success; calidad offline success. Cero fallos CI en el head actual.

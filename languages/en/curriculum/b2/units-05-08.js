@@ -121,10 +121,10 @@ const data=[
 ],lessons:[
 ["Pensamiento y opinión","Distingue una opinión estable de un proceso de reflexión.","Think = opinar suele ser stative; be thinking about = considerar es dinámico.",[0,1,2,3],"We're thinking about moving closer to work."],
 ["Posesión, experiencia y percepción","Interpreta have y see según indiquen estado o actividad.","Have = poseer es estático; have a meeting/meal = participar en una actividad.",[4,5,6,7],"He's seeing a client this afternoon."],
-["Sentidos y sensaciones","Diferencia propiedades percibidas y acciones deliberadas.","Taste/smell/look como percepción suelen ser stative; probar, oler o mirar deliberadamente son dinámicos.",[8,9,10,11],"The chef is tasting the sauce."],
+["Sentidos y sensaciones","Diferencia propiedades percibidas y acciones deliberadas.","Taste/smell/look como percepción suelen ser stative; probar, oler o mirar deliberadamente son dinámicos.",[8,9,10,11],"She's feeling much better today."],
 ["Medición y apariencia","Describe propiedades estables y procesos de evaluación.","Weigh = tener un peso; be weighing = sopesar opciones. Appear = parecer o presentarse.",[12,13,14,15],"The committee is weighing several options."],
-["Estados, dependencia y propiedad","Usa verbos de estado con precisión y reconoce excepciones contextuales.","Depend on y belong to expresan relaciones; evita formas continuas cuando el significado es puramente estático.",[16,17,18,19,20,21],"The outcome depends on several factors."]
-],bank:["I think the proposal is realistic.","She has two younger brothers.","The soup tastes slightly salty.","The figures appear accurate.","This folder belongs to the finance team."]}
+["Estados, dependencia y propiedad","Usa verbos de estado con precisión y reconoce excepciones contextuales.","Depend on y belong to expresan relaciones; evita formas continuas cuando el significado es puramente estático.",[16,17,18,19,20,21],"The band is appearing at the festival tonight."]
+],bank:["He's seeing a client this afternoon.","The soup tastes slightly salty.","The chef is tasting the sauce.","I feel that we need more time.","She's feeling much better today."]}
 ];
 root.GUARDI_CURRICULUM_BLOCKS=root.GUARDI_CURRICULUM_BLOCKS||{};
 root.GUARDI_CURRICULUM_BLOCKS.en=root.GUARDI_CURRICULUM_BLOCKS.en||{};

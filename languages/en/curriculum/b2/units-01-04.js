@@ -87,7 +87,7 @@ const data=[
 ["to turn out","resultar","The task turned out to be more difficult than expected.","La tarea resultó ser más difícil de lo esperado."],
 ["to set off","emprender el viaje","They had set off before sunrise.","Habían emprendido el viaje antes del amanecer."],
 ["to look into","investigar","The company was looking into the complaint when new details emerged.","La empresa estaba investigando la queja cuando surgieron nuevos detalles."],
-["to run into","encontrarse con","I ran into an old colleague while I was travelling.","Me encontré con un antiguo compañero mientras viajaba."],
+["to run into","encontrarse con","I ran into an old colleague while I was traveling.","Me encontré con un antiguo compañero mientras viajaba."],
 ["to be on the verge of","estar a punto de","The negotiations were on the verge of collapsing.","Las negociaciones estaban a punto de fracasar."],
 ["to have second thoughts","empezar a tener dudas","He was having second thoughts before he signed the contract.","Estaba empezando a tener dudas antes de firmar el contrato."],
 ["to interrupt","interrumpir","A phone call interrupted the presentation.","Una llamada interrumpió la presentación."],

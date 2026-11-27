@@ -758,7 +758,7 @@ test('Tutor and dictionary controls expose accessible names and announce new cha
 
     assert.equal(await page.locator('#chatInput').getAttribute('aria-label'), 'Escribe tu consulta al tutor');
     assert.equal(await page.locator('#apiKeyInput').getAttribute('aria-label'), 'Clave opcional de Gemini API');
-    assert.equal(await page.locator('#dictSearch').getAttribute('aria-label'), 'Buscar en el diccionario indonesio y español');
+    assert.equal(await page.locator('#dictSearch').getAttribute('aria-label'), 'Buscar en el idioma del curso y en español');
 
     const chatLog = page.locator('#chatBox');
     assert.equal(await chatLog.getAttribute('role'), 'log');

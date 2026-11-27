@@ -1,26 +1,26 @@
 (function(root){
 'use strict';
 const rows=[
-["to distinguish between","distinguir entre","It is important to distinguish between correlation and causation.","Es importante distinguir entre correlación y causalidad."],
+["to differentiate between","diferenciar entre","It is important to differentiate between correlation and causation.","Es importante diferenciar entre correlación y causalidad."],
 ["to be synonymous with","ser sinónimo de","Efficiency is not necessarily synonymous with quality.","La eficiencia no es necesariamente sinónimo de calidad."],
 ["to use something interchangeably","usar algo indistintamente","These terms should not be used interchangeably.","Estos términos no deberían usarse indistintamente."],
-["to be prone to","ser propenso a","The system is prone to errors under heavy load.","El sistema es propenso a errores con cargas elevadas."],
+["to be vulnerable to","ser vulnerable a","The system is vulnerable to errors under heavy load.","El sistema es vulnerable a errores con cargas elevadas."],
 ["to be susceptible to","ser susceptible a","Older devices are more susceptible to failure.","Los dispositivos antiguos son más susceptibles a fallos."],
 ["to be subject to","estar sujeto a","All applications are subject to review.","Todas las solicitudes están sujetas a revisión."],
 ["to be inherent in","ser inherente a","Some uncertainty is inherent in the process.","Cierta incertidumbre es inherente al proceso."],
 ["to be attributable to","ser atribuible a","The improvement is partly attributable to better training.","La mejora es atribuible en parte a una mejor formación."],
 ["to be indicative of","ser indicativo de","A sudden increase may be indicative of a wider problem.","Un aumento repentino puede ser indicativo de un problema más amplio."],
-["to be consistent with","ser coherente con","The pattern is consistent with previous findings.","El patrón es coherente con hallazgos anteriores."],
+["to match","coincidir con","The pattern matches previous findings.","El patrón coincide con hallazgos anteriores."],
 ["to be incompatible with","ser incompatible con","The statement is incompatible with the available evidence.","La afirmación es incompatible con las pruebas disponibles."],
 ["to be equivalent to","ser equivalente a","The two procedures are not equivalent to each other.","Los dos procedimientos no son equivalentes."],
 ["to amount to","equivaler a / ascender a","The additional costs amount to nearly ten percent.","Los costos adicionales ascienden a casi el diez por ciento."],
-["to fall short of","no alcanzar","The final result fell short of expectations.","El resultado final no alcanzó las expectativas."],
-["to exceed expectations","superar las expectativas","The new service exceeded expectations.","El nuevo servicio superó las expectativas."],
+["to fail to meet","no cumplir","The final result failed to meet expectations.","El resultado final no cumplió las expectativas."],
+["to surpass expectations","superar las expectativas","The new service surpassed expectations.","El nuevo servicio superó las expectativas."],
 ["to make a distinction","establecer una distinción","We need to make a clear distinction between the two cases.","Necesitamos establecer una distinción clara entre los dos casos."],
 ["to avoid ambiguity","evitar la ambigüedad","The instructions were rewritten to avoid ambiguity.","Las instrucciones se reescribieron para evitar la ambigüedad."],
 ["to be precise","para ser precisos","To be precise, the trial lasted eleven weeks.","Para ser precisos, el ensayo duró once semanas."],
 ["roughly speaking","a grandes rasgos","Roughly speaking, costs have doubled.","A grandes rasgos, los costos se han duplicado."],
-["strictly speaking","estrictamente hablando","Strictly speaking, the figures are estimates.","Estrictamente hablando, las cifras son estimaciones."],
+["in precise terms","en términos precisos","In precise terms, the figures are estimates.","En términos precisos, las cifras son estimaciones."],
 ["a subtle difference","una diferencia sutil","There is a subtle difference in meaning between the terms.","Hay una diferencia sutil de significado entre los términos."],
 ["a misleading impression","una impresión engañosa","The headline creates a misleading impression of the findings.","El titular crea una impresión engañosa de los hallazgos."]
 ];

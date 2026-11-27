@@ -167,7 +167,7 @@ function addLocalizedEntry(entries, language, levelId, text, kind, unitId) {
     return;
   }
   entries.set(key, {
-    id, language, text: text.trim().replace(/\\s+/g, ' '), normalized,
+    id, language, text: text.trim().replace(/\s+/g, ' '), normalized,
     levels: [levelId], sources: [source]
   });
 }

@@ -50,7 +50,7 @@ const refs=[
 ["en_b2_u49_v01","to differentiate between","diferenciar entre","It is important to differentiate between correlation and causation."]
 ];
 const reviewDefs=[
-["Colocaciones y phrasal verbs","Recupera combinaciones naturales y verbos con partícula.","Advanced collocations and phrasal verbs with object placement.",[0,1],"The department will look into the complaint."],
+["Colocaciones y phrasal verbs","Recupera combinaciones naturales y verbos con partícula.","Advanced collocations and phrasal verbs with object placement.",[0,1],"The department will examine the complaint."],
 ["Preposiciones y formación de palabras","Aplica patrones preposicionales y familias léxicas.","Dependent prepositions, nominalization and derivation.",[2,3],"System reliability is essential for public services."],
 ["Connotación e idioms","Distingue valoración y expresiones figuradas frecuentes.","Connotation, evaluative language and useful idioms.",[4,5],"Let's get the ball rolling with a short introduction."],
 ["Sinónimos y metáforas","Reconoce diferencias semánticas y metáforas convencionales.","Near-synonyms, collocations and figurative language.",[6,7],"The pilot program laid the groundwork for wider reform."],

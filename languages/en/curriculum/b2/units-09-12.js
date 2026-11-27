@@ -25,7 +25,7 @@ const rows=[
 ["much as","por mucho que","Much as I respect the decision, I disagree with it.","Por mucho que respete la decisión, no estoy de acuerdo con ella."]
 ];
 const vocab=rows.map((r,i)=>({id:"en_b2_u9_v"+String(i+1).padStart(2,"0"),target:r[0],esp:r[1],ex:r[2],exEsp:r[3],verification:{status:"not_checked",sources:[]}}));
-const lessons=[
+const lessonData=[
 ["Énfasis con estructuras cleft","Destaca la información nueva o contrastiva sin alterar el significado básico.","It-cleft: It is/was + foco + that/who. What-cleft: What + clause + be + foco.",[0,1,2,3],"It is the timing that makes the decision difficult."],
 ["Inversión tras expresiones negativas","Da énfasis formal a límites temporales y hechos inesperados.","Not until, only after y little did pueden exigir inversión auxiliar-sujeto en la cláusula principal.",[4,5,6,7],"Not until the final stage did we notice the error."],
 ["Frecuencia y continuidad enfáticas","Refuerza que una situación se repite o continúa hasta el presente.","Time and again, ever since y to this day aportan duración o repetición; el tiempo verbal depende del marco temporal.",[8,9,10,11],"To this day, nobody has explained the discrepancy."],
@@ -34,7 +34,7 @@ const lessons=[
 ];
 const mc=(w,opts)=>({vocabId:w.id,type:"mc",prompt:"¿Qué significa «"+w.target+"»?",options:opts,answer:0,explanation:"Selecciona la equivalencia adecuada en este contexto."});
 const order=(w,s)=>{const words=s.split(" ");return {vocabId:w.id,type:"order",prompt:"Ordena la frase.",words,correctOrder:words.slice(),explanation:"Reconstruye la frase y observa el énfasis."};};
-const lessons=lessons.map(l=>({title:l[0],objective:l[1],grammar:l[2],vocabIds:l[3].map(i=>vocab[i].id),reviewVocabIds:[],exercises:[mc(vocab[l[3][0]],[vocab[l[3][0]].esp,vocab[(l[3][0]+7)%22].esp,vocab[(l[3][0]+14)%22].esp]),order(vocab[l[3][1]],l[4])]}));
+const lessons=lessonData.map(l=>({title:l[0],objective:l[1],grammar:l[2],vocabIds:l[3].map(i=>vocab[i].id),reviewVocabIds:[],exercises:[mc(vocab[l[3][0]],[vocab[l[3][0]].esp,vocab[(l[3][0]+7)%22].esp,vocab[(l[3][0]+14)%22].esp]),order(vocab[l[3][1]],l[4])]}));
 const bank=["What matters most is how the evidence is interpreted.","Only after the review did the team understand the risk.","We have explained the procedure time and again.","No sooner had the meeting begun than the alarm rang.","Far from solving the issue, the update made it worse."];
 const exercises=[];for(let i=0;i<5;i++)exercises.push(mc(vocab[i],[vocab[i].esp,vocab[(i+8)%22].esp,vocab[(i+15)%22].esp]));for(let i=0;i<5;i++)exercises.push(order(vocab[i+5],bank[i]));
 const unit={unitNumber:9,id:"en_b2_u9",title:"Unidad 9: Énfasis mediante tiempos y aspecto",desc:"Usa estructuras de énfasis, inversión y expresiones temporales para controlar el foco informativo y la perspectiva en narraciones y argumentos.",grammar:"Cleft sentences, inversión con expresiones negativas y temporales, present perfect para continuidad y past perfect para anterioridad.",trap:{title:"Énfasis sin perder la estructura",detail:"Not until the final stage did we notice the error. La inversión aparece en la cláusula principal después de not until; no inviertas la subordinada temporal."},vocab,lessons,exercises};

@@ -72,8 +72,9 @@ def main() -> None:
 
     cache = Path(os.environ.get("RUNNER_TEMP", tempfile.gettempdir())) / "guardi-piper-models"
     cache.mkdir(parents=True, exist_ok=True)
+    active_codes = sorted({item["language"] for item in texts})
     models = {}
-    for code in selected:
+    for code in active_codes:
         cfg = config[code]
         if cfg["engine"] != "piper":
             raise RuntimeError(f"Motor no permitido para producción: {code}")

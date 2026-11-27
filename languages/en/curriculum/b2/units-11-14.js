@@ -118,11 +118,11 @@ const data=[
 ["to be forecast to","preverse que","Sales are forecast to rise by five percent.","Se prevé que las ventas aumenten un cinco por ciento."],
 ["to be projected to","proyectarse que","The population is projected to grow steadily.","Se proyecta que la población crezca de forma constante."],
 ["to stand a good chance of","tener buenas posibilidades de","The proposal stands a good chance of being approved.","La propuesta tiene buenas posibilidades de ser aprobada."],
-["to be unlikely that","ser poco probable que","It is unlikely that the road will reopen today.","Es poco probable que la carretera vuelva a abrir hoy."],
+["it is unlikely that","ser poco probable que","It is unlikely that the road will reopen today.","Es poco probable que la carretera vuelva a abrir hoy."],
 ["to be on course to","ir camino de","The company is on course to meet its annual target.","La empresa va camino de alcanzar su objetivo anual."],
 ["to fall short of","no alcanzar","The final result fell short of expectations.","El resultado final no alcanzó las expectativas."],
 ["to exceed expectations","superar las expectativas","The service has exceeded expectations so far.","El servicio ha superado las expectativas hasta ahora."],
-["to meet expectations","cumplir las expectativas","The candidate met most of the requirements.","El candidato cumplió la mayoría de los requisitos."],
+["to meet expectations","cumplir las expectativas","The candidate met most of our expectations.","El candidato cumplió la mayoría de nuestras expectativas."],
 ["to expect","esperar","We expect a gradual increase in demand.","Esperamos un aumento gradual de la demanda."],
 ["to be subject to change","estar sujeto a cambios","All dates are subject to change.","Todas las fechas están sujetas a cambios."]
 ],lessons:[

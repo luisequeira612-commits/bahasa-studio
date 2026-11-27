@@ -174,3 +174,35 @@ test('B2 uses only existing exercise types with valid answer structures', () => 
   }
   assert.deepEqual([...types].sort(), ['mc', 'order']);
 });
+
+test('editorially corrected B2 vocabulary examples stay aligned with their targets', () => {
+  const units = loadB2();
+  const expected = [
+    [11, 'must be', 'The lights are on, so someone must be home.', 'Las luces están encendidas, así que alguien debe de estar en casa.'],
+    [11, 'could be', 'This could be the source of the problem.', 'Esta podría ser la fuente del problema.'],
+    [11, 'be highly likely to', 'The committee is highly likely to approve the plan.', 'Es muy probable que el comité apruebe el plan.'],
+    [11, 'to point to', 'All the evidence points to a software problem.', 'Todas las pruebas apuntan a un problema de software.'],
+    [12, 'should have', 'You should have checked the figures before sending the report.', 'Deberías haber revisado las cifras antes de enviar el informe.'],
+    [12, "didn't need to", "We didn't need to book because the restaurant was empty.", 'No hizo falta reservar porque el local estaba vacío.'],
+    [12, 'was meant to have', 'The payment was meant to have arrived yesterday.', 'Se suponía que el pago ya habría llegado ayer.'],
+    [12, 'in hindsight', 'In hindsight, we should have waited.', 'Visto en retrospectiva, deberíamos haber esperado.'],
+    [13, "don't have to", "You don't have to print the document.", 'No tienes que imprimir el documento.'],
+    [13, 'be allowed to', 'Employees are allowed to work remotely twice a week.', 'Los empleados tienen permiso para trabajar a distancia dos veces por semana.'],
+    [13, 'be advisable to', 'It is advisable to keep a copy.', 'Sería aconsejable guardar una copia.'],
+    [13, 'to comply with', 'All suppliers must comply with the safety regulations.', 'Todos los proveedores deben cumplir con las normas de seguridad.'],
+    [14, 'likely to', 'The new policy is likely to reduce costs.', 'Es probable que la nueva política reduzca los costos.'],
+    [14, 'there is a strong possibility that', 'There is a strong possibility that the launch will be delayed.', 'Hay una gran posibilidad de que el lanzamiento se retrase.'],
+    [14, 'in all likelihood', 'In all likelihood, the meeting will be postponed.', 'Con toda probabilidad, la reunión se pospondrá.'],
+    [26, 'little did I know', 'Little did I know that the decision would change everything.', 'Ni me imaginaba que la decisión lo cambiaría todo.'],
+    [26, 'little did we expect', 'Little did we expect the project to attract so much attention.', 'Ni por asomo esperábamos que el proyecto atrajera tanta atención.'],
+    [38, "it's not ideal", 'The timing is not ideal, but we can make it work.', 'El momento no es ideal, pero podemos hacer que funcione.'],
+  ];
+
+  for (const [unitNumber, target, example, translation] of expected) {
+    const unit = units.find((item) => item.unitNumber === unitNumber);
+    const word = unit?.vocab?.find((item) => item.target === target);
+    assert.ok(word, 'expected vocabulary target must exist: U' + unitNumber + ' ' + target);
+    assert.equal(word.ex, example, 'English example must match U' + unitNumber + ' ' + target);
+    assert.equal(word.exEsp, translation, 'Spanish example must match U' + unitNumber + ' ' + target);
+  }
+});

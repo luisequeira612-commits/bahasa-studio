@@ -36,7 +36,7 @@ lessons:[
 ["key findings","hallazgos clave","The key findings are summarized in the table below.","Los hallazgos clave se resumen en la tabla siguiente."],
 ["to identify a trend","identificar una tendencia","The survey identifies a trend toward remote work.","La encuesta identifica una tendencia hacia el trabajo remoto."],
 ["to assess feasibility","evaluar la viabilidad","The next stage is to assess feasibility.","La siguiente etapa es evaluar la viabilidad."],
-["a proposed course of action","una línea de acción propuesta","The report recommends a proposed course of action.","El informe recomienda una línea de acción propuesta."],
+["a proposed course of action","una línea de acción propuesta","The report recommends a course of action.","El informe recomienda una línea de acción."],
 ["to allocate resources","asignar recursos","The plan allocates resources to staff training.","El plan asigna recursos a la formación del personal."],
 ["cost implications","implicaciones de costos","The proposal considers the cost implications of each option.","La propuesta considera las implicaciones de costos de cada opción."],
 ["to meet the objectives","cumplir los objetivos","The revised schedule should meet the objectives.","El calendario revisado debería cumplir los objetivos."],
@@ -91,7 +91,7 @@ lessons:[
 {n:54,title:"Meetings and presentations",desc:"Gestiona reuniones y presentaciones, organiza ideas, responde preguntas y desarrolla argumentos con claridad.",grammar:"Signposting, agenda management, handling questions, turn-taking and presentation transitions.",trap:"I'll move on to... signals a transition; to sum up introduces a summary. Do not confuse taking questions with answering every question immediately.",rows:[
 ["to chair a meeting","presidir una reunión","Maria will chair the meeting this afternoon.","María presidirá la reunión esta tarde."],
 ["to circulate an agenda","distribuir una agenda","Please circulate the agenda before the meeting.","Distribuye la agenda antes de la reunión."],
-["to table a proposal","presentar una propuesta para debate","The committee agreed to table the proposal next week.","El comité acordó presentar la propuesta la próxima semana."],
+["to put a proposal on the agenda","incluir una propuesta en la agenda","The committee agreed to put the proposal on the agenda next week.","El comité acordó incluir la propuesta en la agenda la próxima semana."],
 ["to take the minutes","redactar el acta","Could you take the minutes during the meeting?","¿Podrías redactar el acta durante la reunión?"],
 ["to move on to","pasar a","I'll move on to the next section of the presentation.","Pasaré a la siguiente sección de la presentación."],
 ["to draw your attention to","llamar su atención sobre","I'd like to draw your attention to the final chart.","Me gustaría llamar su atención sobre el gráfico final."],

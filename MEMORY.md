@@ -1,3 +1,10 @@
+## 2026-11-27 — Reintento de publicación cuando la rama avanza durante Piper
+- El run #45962481045 volvió a generar 127 clips ID y pasó el límite de tamaño (27,50 MiB total), pero el push falló porque la rama recibió commits mientras el workflow hacía rebase. El error fue una carrera de actualización de ref (`expected 87af5c5`, remoto ya en `de6ea73`), no un conflicto de contenido.
+- Se amplió `.github/workflows/audio.yml` con hasta cinco ciclos fetch/rebase/push para tolerar commits concurrentes; commit `f76962f1399434b248e12a2977e6dc9ecf6fec39`. El workflow se activa también cuando se modifica a sí mismo.
+- Para los siguientes lotes se dejará que la generación publique antes de hacer nuevas modificaciones manuales en la rama, reduciendo carreras. El primer lote todavía no está publicado.
+
+Fuente: log del job `generate` de Actions #45962481045 y `.github/workflows/audio.yml`; 27 nov 2026.
+
 ## 2026-11-27 — Estado visible y prueba de voz PT-BR
 - `AudioEngine.updateVoiceStatus()` ahora reconoce una biblioteca Piper real cuando el manifiesto cargado contiene entradas del idioma activo, incluso si `voiceStatus` del registro todavía es `candidate`; al terminar `loadAudioManifest()` se actualiza el estado visible.
 - Se añadió `testPhrase: 'olá'` al curso PT-BR para que el botón de prueba pueda reproducir una frase portuguesa. Tests nuevos comprueban el estado de Piper y que `testVoice()` use el clip del manifiesto.

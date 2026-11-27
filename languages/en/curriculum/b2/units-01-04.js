@@ -1,7 +1,7 @@
 (function(root){
 'use strict';
 const vocab=[
-["have a track record","tener una trayectoria demostrable","The team has a track record of delivering projects on time.","El equipo tiene una trayectoria demostrable de entregar proyectos a tiempo."],
+["have a track record","tener un historial probado","The team has a track record of delivering projects on time.","El equipo tiene un historial probado de entregar los proyectos a tiempo."],
 ["ongoing","en curso","The investigation is still ongoing.","La investigación sigue en curso."],
 ["to date","hasta la fecha","To date, we have received more than 200 applications.","Hasta la fecha, hemos recibido más de 200 solicitudes."],
 ["so far","hasta ahora","So far, the results have been encouraging.","Hasta ahora, los resultados han sido alentadores."],
@@ -81,7 +81,7 @@ const data=[
 ],bank:["The same concerns have persisted for years.","Prices have fluctuated throughout the summer.","Demand has peaked earlier than expected.","Growth has started to level off.","The market has shown signs of recovery."]},
 {n:3,title:"Tiempos narrativos y cambios de perspectiva",desc:"Organiza relatos complejos y aclara qué ocurrió primero, qué estaba en progreso y qué interrumpió una acción.",grammar:"Past perfect simple y continuous; past simple y continuous; when, while, by the time, no sooner...than y hardly...when.",trap:["Past perfect no significa simplemente pasado lejano","By the time we arrived, the meeting had started. El past perfect marca anterioridad respecto a otro punto pasado; no lo uses solo para hacer que una acción parezca más antigua."],rows:[
 ["by the time","para cuando","By the time we reached the station, the train had left.","Para cuando llegamos a la estación, el tren ya se había ido."],
-["to have been doing","haber estado haciendo","She had been working there for years before she moved.","Ella llevaba años trabajando allí antes de mudarse."],
+["to have been doing","haber estado haciendo","She had been doing research for months before the results came in.","Llevaba meses investigando antes de que llegaran los resultados."],
 ["to take place","tener lugar","The incident took place shortly before midnight.","El incidente tuvo lugar poco antes de medianoche."],
 ["to come to light","salir a la luz","New evidence came to light during the inquiry.","Nuevas pruebas salieron a la luz durante la investigación."],
 ["to turn out","resultar","The task turned out to be more difficult than expected.","La tarea resultó ser más difícil de lo esperado."],

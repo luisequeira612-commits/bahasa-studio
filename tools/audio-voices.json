@@ -6,7 +6,8 @@
     "model": "id_ID-news_tts-medium",
     "repository": "rhasspy/piper-voices",
     "model_path": "id/id_ID/news_tts/medium",
-    "audio_path": "./audio/id/"
+    "audio_path": "./audio/id/",
+    "revision": "5ec43b186ef915a195d3ddbcfd9916e76c503c3f"
   },
   "pt-BR": {
     "locale": "pt-BR",
@@ -15,7 +16,8 @@
     "model": "pt_BR-faber-medium",
     "repository": "rhasspy/piper-voices",
     "model_path": "pt/pt_BR/faber/medium",
-    "audio_path": "./audio/pt-BR/"
+    "audio_path": "./audio/pt-BR/",
+    "revision": "5ec43b186ef915a195d3ddbcfd9916e76c503c3f"
   },
   "en": {
     "locale": "en-US",
@@ -24,7 +26,8 @@
     "model": "en_US-lessac-medium",
     "repository": "rhasspy/piper-voices",
     "model_path": "en/en_US/lessac/medium",
-    "audio_path": "./audio/en/"
+    "audio_path": "./audio/en/",
+    "revision": "5ec43b186ef915a195d3ddbcfd9916e76c503c3f"
   },
   "it": {
     "locale": "it-IT",
@@ -33,7 +36,8 @@
     "model": "it_IT-riccardo-x_low",
     "repository": "rhasspy/piper-voices",
     "model_path": "it/it_IT/riccardo/x_low",
-    "audio_path": "./audio/it/"
+    "audio_path": "./audio/it/",
+    "revision": "5ec43b186ef915a195d3ddbcfd9916e76c503c3f"
   },
   "fr": {
     "locale": "fr-FR",
@@ -42,7 +46,8 @@
     "model": "fr_FR-upmc-medium",
     "repository": "rhasspy/piper-voices",
     "model_path": "fr/fr_FR/upmc/medium",
-    "audio_path": "./audio/fr/"
+    "audio_path": "./audio/fr/",
+    "revision": "5ec43b186ef915a195d3ddbcfd9916e76c503c3f"
   },
   "de": {
     "locale": "de-DE",
@@ -51,7 +56,8 @@
     "model": "de_DE-thorsten-medium",
     "repository": "rhasspy/piper-voices",
     "model_path": "de/de_DE/thorsten/medium",
-    "audio_path": "./audio/de/"
+    "audio_path": "./audio/de/",
+    "revision": "5ec43b186ef915a195d3ddbcfd9916e76c503c3f"
   },
   "nl": {
     "locale": "nl-NL",
@@ -60,7 +66,8 @@
     "model": "nl_NL-mls-medium",
     "repository": "rhasspy/piper-voices",
     "model_path": "nl/nl_NL/mls/medium",
-    "audio_path": "./audio/nl/"
+    "audio_path": "./audio/nl/",
+    "revision": "5ec43b186ef915a195d3ddbcfd9916e76c503c3f"
   },
   "ru": {
     "locale": "ru-RU",
@@ -69,7 +76,8 @@
     "model": "ru_RU-ruslan-medium",
     "repository": "rhasspy/piper-voices",
     "model_path": "ru/ru_RU/ruslan/medium",
-    "audio_path": "./audio/ru/"
+    "audio_path": "./audio/ru/",
+    "revision": "5ec43b186ef915a195d3ddbcfd9916e76c503c3f"
   },
   "ja": {
     "locale": "ja-JP",
@@ -78,7 +86,8 @@
     "model": "ja_JP-hi_fi_captain-medium",
     "repository": "rhasspy/piper-voices",
     "model_path": "ja/ja_JP/hi_fi_captain/medium",
-    "audio_path": "./audio/ja/"
+    "audio_path": "./audio/ja/",
+    "revision": "5ec43b186ef915a195d3ddbcfd9916e76c503c3f"
   },
   "ko": {
     "locale": "ko-KR",
@@ -87,6 +96,7 @@
     "model": "ko_KR-kss-medium",
     "repository": "rhasspy/piper-voices",
     "model_path": "ko/ko_KR/kss/medium",
-    "audio_path": "./audio/ko/"
+    "audio_path": "./audio/ko/",
+    "revision": "5ec43b186ef915a195d3ddbcfd9916e76c503c3f"
   }
 }

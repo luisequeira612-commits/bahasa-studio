@@ -36,3 +36,14 @@ Estado: primer bloque U1–U6 en desarrollo; el nivel no está publicado. Fecha:
 - No se añaden POS, audio por palabra, dependencias ni campos de runtime. El motor actual solo ofrece mc y order; no se afirma evaluar escucha real, pronunciación, producción oral ni escritura libre.
 - language-manager.js conserva en.available: false; A2 no se puede seleccionar ni se publica desde esta PR.
 - No se cambian IndexedDB v1, backup JSON v3, otros idiomas ni el currículo PT-BR.
+
+
+## Bloque U7–U10 — 27 de noviembre de 2026
+
+- U7: relatos de incidentes; contraste pasado simple/pasado continuo con when/while.
+- U8: secuenciadores narrativos y experiencias de viaje.
+- U9: used to para hábitos y estados de infancia.
+- U10: repaso integrado sin vocabulario nuevo; reutiliza 20 IDs A2 anteriores.
+- U7–U9 añaden 66 targets; 5 lecciones explícitas y 20 ejercicios por unidad. U10 tiene 5 lecciones y 20 ejercicios, con 0 entradas nuevas.
+- El bloque añade 66 targets sin duplicados internos ni coincidencias exactas con A1 o A2 U1–U6. Total A2 U1–U10: 198 entradas nuevas.
+- Vocabulario not_checked; trazabilidad individual CEFR-J pendiente. No POS/audio, ni cambios de almacenamiento o disponibilidad.

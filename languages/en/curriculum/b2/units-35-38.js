@@ -1,0 +1,132 @@
+(function(root){
+'use strict';
+const defs=[
+{n:35,title:"Argument structure: tesis, razones y evidencia",desc:"Desarrolla argumentos claros con tesis, razones, evidencia, ejemplos y conclusiones conectadas.",grammar:"Claim, reason, evidence, example and warrant; use signposting phrases to make the logical relationship explicit.",trap:"A statistic is evidence, not automatically a reason. Explain how the evidence supports the claim; avoid assuming the connection is obvious.",rows:[
+["to put forward an argument","presentar un argumento","The researchers put forward an argument for stricter standards.","Los investigadores presentaron un argumento a favor de normas más estrictas."],
+["a central claim","una afirmación central","The central claim needs stronger supporting evidence.","La afirmación central necesita pruebas de apoyo más sólidas."],
+["to provide grounds for","proporcionar motivos para","The findings provide grounds for further investigation.","Los hallazgos proporcionan motivos para seguir investigando."],
+["supporting evidence","pruebas de apoyo","The proposal is based on supporting evidence from three studies.","La propuesta se basa en pruebas de apoyo de tres estudios."],
+["a relevant example","un ejemplo pertinente","A relevant example helps clarify the broader point.","Un ejemplo pertinente ayuda a aclarar el punto general."],
+["to substantiate a claim","respaldar una afirmación","Additional data is needed to substantiate the claim.","Se necesitan datos adicionales para respaldar la afirmación."],
+["to draw on research","basarse en investigaciones","The report draws on recent research into learning outcomes.","El informe se basa en investigaciones recientes sobre los resultados del aprendizaje."],
+["a line of reasoning","una línea de razonamiento","The article follows a clear line of reasoning.","El artículo sigue una línea de razonamiento clara."],
+["to establish a link","establecer una relación","The study establishes a link between sleep and attention.","El estudio establece una relación entre el sueño y la atención."],
+["to explain the difference","explicar la diferencia","This factor may explain the difference in results.","Este factor puede explicar la diferencia en los resultados."],
+["to be supported by","estar respaldado por","The conclusion is supported by several independent sources.","La conclusión está respaldada por varias fuentes independientes."],
+["to indicate","indicar","The available figures indicate a gradual recovery.","Las cifras disponibles indican una recuperación gradual."],
+["to make a case for","argumentar a favor de","The report makes a strong case for investing in prevention.","El informe presenta argumentos sólidos a favor de invertir en prevención."],
+["to weigh the evidence","sopesar las pruebas","We need to weigh the evidence before reaching a decision.","Debemos sopesar las pruebas antes de tomar una decisión."],
+["a counterexample","un contraejemplo","One counterexample is enough to challenge the general rule.","Un contraejemplo basta para cuestionar la regla general."],
+["to reach a conclusion","llegar a una conclusión","The panel reached a conclusion after reviewing the data.","El comité llegó a una conclusión después de revisar los datos."],
+["a reasonable inference","una inferencia razonable","That is a reasonable inference, but it is not a proven fact.","Esa es una inferencia razonable, pero no es un hecho demostrado."],
+["to reinforce the point","reforzar el argumento","The second example reinforces the point.","El segundo ejemplo refuerza el argumento."],
+["to follow from","derivarse de","The recommendation follows from the evidence presented.","La recomendación se deriva de las pruebas presentadas."],
+["the underlying assumption","la suposición subyacente","The argument depends on an underlying assumption about cost.","El argumento depende de una suposición subyacente sobre el costo."],
+["to take into account","tener en cuenta","Any assessment must take local conditions into account.","Cualquier evaluación debe tener en cuenta las condiciones locales."],
+["a well-founded conclusion","una conclusión bien fundamentada","The review reached a well-founded conclusion.","La revisión llegó a una conclusión bien fundamentada."]],
+lessons:[
+["Tesis y afirmación central","Formula una postura clara y delimitada.","Claim expresa lo que se sostiene; central claim identifica la tesis que organiza el argumento.",[0,1,2,3],"The central claim needs stronger supporting evidence."],
+["Razones y evidencia","Conecta razones con pruebas pertinentes y verificables.","Grounds, supporting evidence y substantiate distinguen motivos de datos que respaldan una afirmación.",[4,5,6,7],"Additional data is needed to substantiate the claim."],
+["Relaciones y explicaciones","Explica cómo los factores se relacionan con la conclusión.","Establish a link y account for expresan relaciones; no confundas correlación con causalidad.",[8,9,10,11],"This factor may explain the difference in results."],
+["Evaluar y ponderar","Considera la evidencia a favor y en contra antes de concluir.","Weigh the evidence, counterexample e inference ayudan a evaluar la fuerza del razonamiento.",[12,13,14,15],"We need to weigh the evidence before reaching a decision."],
+["Conclusión y coherencia","Cierra el argumento mostrando cómo se deriva la conclusión.","Follow from y well-founded conclusion conectan la recomendación con pruebas y supuestos explícitos.",[16,17,18,19,20,21],"The second example reinforces the point."]]},
+{n:36,title:"Refutation y qualification: refutar y matizar",desc:"Responde objeciones, reconoce límites y ajusta una postura sin caricaturizar el argumento contrario.",grammar:"Concession + rebuttal; qualification with to the extent that, in part, under certain conditions; distinguish refuting evidence from rejecting a claim.",trap:"I accept that X; however, Y... acknowledges a point before rebuttal. Do not use although and however to connect the same clauses incorrectly.",rows:[
+["to acknowledge an objection","reconocer una objeción","We should acknowledge the objection before responding.","Deberíamos reconocer la objeción antes de responder."],
+["to concede that","admitir que","I concede that the initial costs are high.","Admito que los costos iniciales son elevados."],
+["to challenge a premise","cuestionar una premisa","The data challenges a key premise of the proposal.","Los datos cuestionan una premisa clave de la propuesta."],
+["to rebut an argument","refutar un argumento","The article attempts to rebut the main criticism.","El artículo intenta refutar la crítica principal."],
+["to qualify a statement","matizar una afirmación","We need to qualify that statement in light of new evidence.","Debemos matizar esa afirmación a la luz de nuevas pruebas."],
+["to a certain extent","hasta cierto punto","The concern is valid to a certain extent.","La preocupación es válida hasta cierto punto."],
+["in part","en parte","The delay was caused, in part, by staff shortages.","El retraso se debió, en parte, a la falta de personal."],
+["subject to certain conditions","sujeto a ciertas condiciones","The offer is acceptable subject to certain conditions.","La oferta es aceptable sujeta a ciertas condiciones."],
+["that does not necessarily mean","eso no significa necesariamente","That does not necessarily mean the policy has failed.","Eso no significa necesariamente que la política haya fracasado."],
+["while this may be true","aunque esto pueda ser cierto","While this may be true, it overlooks the wider context.","Aunque esto pueda ser cierto, pasa por alto el contexto más amplio."],
+["a valid counterargument","un contraargumento válido","The author presents a valid counterargument.","El autor presenta un contraargumento válido."],
+["to overlook a factor","pasar por alto un factor","The criticism overlooks an important practical factor.","La crítica pasa por alto un factor práctico importante."],
+["to rest on the assumption","basarse en la suposición","The objection rests on the assumption that demand will remain constant.","La objeción se basa en la suposición de que la demanda seguirá constante."],
+["to be open to question","ser cuestionable","The reliability of the estimate remains open to question.","La fiabilidad de la estimación sigue siendo cuestionable."],
+["to hold up under scrutiny","resistir un examen riguroso","The explanation does not hold up under scrutiny.","La explicación no resiste un examen riguroso."],
+["to put things into perspective","poner las cosas en perspectiva","A comparison with previous years puts the figures into perspective.","Una comparación con años anteriores pone las cifras en perspectiva."],
+["to separate intention from outcome","separar la intención del resultado","We must separate intention from outcome when assessing the case.","Debemos separar la intención del resultado al evaluar el caso."],
+["to be partly responsible for","ser parcialmente responsable de","Several factors were partly responsible for the decline.","Varios factores fueron parcialmente responsables del descenso."],
+["to remain a possibility","seguir siendo una posibilidad","A further review remains a possibility.","Una revisión adicional sigue siendo una posibilidad."],
+["to be conditional on","depender de / estar condicionado por","The agreement is conditional on final approval.","El acuerdo está condicionado a la aprobación final."],
+["to allow for alternatives","permitir alternativas","The current evidence allows for alternative explanations.","Las pruebas actuales permiten explicaciones alternativas."],
+["to revise one's position","revisar la propia postura","She revised her position after considering the new data.","Ella revisó su postura después de considerar los nuevos datos."]],
+lessons:[
+["Reconocer y conceder","Muestra que comprendes una objeción antes de responder.","Acknowledge, concede y while this may be true introducen concesión sin abandonar la postura.",[0,1,2,3],"I concede that the initial costs are high."],
+["Matizar afirmaciones y condiciones","Limita una afirmación según el grado de evidencia y las condiciones que la sostienen.","Qualify, to a certain extent, in part y subject to certain conditions evitan generalizaciones absolutas.",[4,5,6,7],"The concern is valid to a certain extent."],
+["Matizar el alcance","Limita una afirmación según condiciones o evidencia parcial.","Qualify, to a certain extent, in part y subject to certain conditions evitan generalizaciones absolutas.",[8,9,10,11],"While this may be true, it overlooks the wider context."],
+["Evaluar solidez","Determina si una explicación resiste preguntas y evidencia contraria.","Open to question y hold up under scrutiny evalúan fiabilidad; distinguish intention from outcome.",[12,13,14,15],"The reliability of the estimate remains open to question."],
+["Revisar una postura","Integra perspectivas y ajusta la conclusión con transparencia.","Leave room for y revise one's position muestran apertura a evidencia nueva sin abandonar el rigor.",[16,17,18,19,20,21],"Several factors were partly responsible for the decline."]]},
+{n:37,title:"Discourse markers en conversación",desc:"Gestiona turnos, reformula ideas, pide aclaraciones y mantiene una conversación colaborativa y natural.",grammar:"Turn-taking markers, repair strategies, backchannels and topic management; register and intonation affect meaning.",trap:"Actually often corrects or contrasts; anyway can close or redirect a topic. Use markers to manage interaction, not as filler in every sentence.",rows:[
+["to pick up on that","retomar ese punto","I'd like to pick up on that point about costs.","Me gustaría retomar ese punto sobre los costos."],
+["if I could just come in","si me permiten intervenir","If I could just come in, I have a question about the timeline.","Si me permiten intervenir, tengo una pregunta sobre el calendario."],
+["to get back to the point","volver al tema","Let's get back to the point we were discussing.","Volvamos al tema que estábamos discutiendo."],
+["as I was saying","como iba diciendo","As I was saying, the final stage needs more time.","Como iba diciendo, la etapa final necesita más tiempo."],
+["you know what I mean","ya sabes a qué me refiero","It's a complicated situation, you know what I mean?","Es una situación complicada, ¿sabes a qué me refiero?"],
+["what I mean is","lo que quiero decir es","What I mean is that we need a clearer plan.","Lo que quiero decir es que necesitamos un plan más claro."],
+["if you see what I mean","si entiendes lo que quiero decir","The process needs to be more flexible, if you see what I mean.","El proceso debe ser más flexible, si entiendes lo que quiero decir."],
+["to put it another way","dicho de otra manera","To put it another way, we need to start again.","Dicho de otra manera, tenemos que empezar de nuevo."],
+["fair enough","de acuerdo / es razonable","Fair enough; let's look at the figures again.","De acuerdo; revisemos las cifras otra vez."],
+["I see your point","entiendo tu punto","I see your point, but I have a different concern.","Entiendo tu punto, pero tengo otra preocupación."],
+["just to clarify","solo para aclarar","Just to clarify, are we meeting in person?","Solo para aclarar, ¿nos reuniremos en persona?"],
+["could you expand on that","podrías ampliar eso","Could you expand on that last point?","¿Podrías ampliar ese último punto?"],
+["to correct someone","corregir a alguien","I don't mean to correct you, but the date has changed.","No quiero corregirte, pero la fecha ha cambiado."],
+["actually","en realidad","Actually, the figures were updated this morning.","En realidad, las cifras se actualizaron esta mañana."],
+["anyway","en fin / de todos modos","Anyway, we should decide what to do next.","En fin, deberíamos decidir qué hacer después."],
+["by the way","por cierto","By the way, have you received the revised draft?","Por cierto, ¿has recibido el borrador revisado?"],
+["to cut in","interrumpir","Sorry to cut in, but we are running out of time.","Perdón por interrumpir, pero se nos está acabando el tiempo."],
+["to hold that thought","no perder de vista una idea","Hold that thought; I want to check one detail first.","No pierdas esa idea; primero quiero comprobar un detalle."],
+["to take your point","entender / aceptar tu argumento","I take your point about the budget constraints.","Entiendo tu argumento sobre las limitaciones presupuestarias."],
+["to bring the discussion to a close","dar por concluido el debate","Let's bring the discussion to a close by agreeing on the next steps.","Demos por concluido el debate acordando los próximos pasos."],
+["to proceed to","proceder a / pasar a","We can now proceed to the final question.","Ahora podemos pasar a la pregunta final."],
+["to come back to","volver a","I'll come back to your question at the end.","Volveré a tu pregunta al final."]],
+lessons:[
+["Retomar y redirigir temas","Conecta una intervención con algo ya mencionado.","Pick up on, get back to y as I was saying gestionan continuidad y foco.",[0,1,2,3],"If I could just come in, I have a question about the timeline."],
+["Reformular y comprobar comprensión","Explica una idea de otra manera y comprueba si se entiende.","What I mean is y to put it another way reformulan; you know what I mean solicita alineación informal.",[4,5,6,7],"What I mean is that we need a clearer plan."],
+["Mostrar acuerdo y pedir precisión","Reconoce el punto ajeno y solicita más información.","Fair enough e I see your point expresan reconocimiento; expand on that pide desarrollo.",[8,9,10,11],"I see your point, but I have a different concern."],
+["Corregir e intervenir con tacto","Corrige, interrumpe o cambia de tema sin perder cortesía.","Actually puede corregir una suposición; cut in y hold that thought gestionan turnos.",[12,13,14,15],"Actually, the figures were updated this morning."],
+["Cerrar y avanzar","Resume acuerdos y dirige la conversación al siguiente asunto.","Wrap up cierra; move on to y come back to organizan la agenda.",[16,17,18,19,20,21],"Hold that thought; I want to check one detail first."]]},
+{n:38,title:"Implicature e indirectness: significado implícito y cortesía",desc:"Interpreta significados implícitos, peticiones indirectas, reservas y respuestas diplomáticas según el contexto.",grammar:"Pragmatic inference, indirect requests, understatement, polite refusal and context-dependent meaning; literal wording may differ from intended force.",trap:"That's an interesting idea can be sincere or politely reserved depending on tone and context. Do not infer a hidden meaning without contextual evidence.",rows:[
+["I was wondering if","me preguntaba si","I was wondering if you could send the details today.","Me preguntaba si podrías enviar los detalles hoy."],
+["would you mind","te importaría","Would you mind closing the window?","¿Te importaría cerrar la ventana?"],
+["it's not ideal","no es lo ideal","The timing is not ideal, but we can make it work.","El momento no es ideal, pero podemos hacer que funcione."],
+["I'm not sure that's the best approach","no estoy seguro de que sea el mejor enfoque","I'm not sure that's the best approach given the deadline.","No estoy seguro de que sea el mejor enfoque teniendo en cuenta el plazo."],
+["that's one way of looking at it","esa es una forma de verlo","That's one way of looking at it, although there are other factors.","Esa es una forma de verlo, aunque hay otros factores."],
+["with all due respect","con todo respeto","With all due respect, I don't think the figures are comparable.","Con todo respeto, no creo que las cifras sean comparables."],
+["I take it that","entiendo que / supongo que","I take it that the meeting has been postponed.","Entiendo que la reunión se ha pospuesto."],
+["if you don't mind my asking","si no te importa que pregunte","If you don't mind my asking, how was the decision reached?","Si no te importa que pregunte, ¿cómo se tomó la decisión?"],
+["I'm afraid","me temo que","I'm afraid we won't be able to meet that deadline.","Me temo que no podremos cumplir ese plazo."],
+["not exactly","no exactamente","That's not exactly what I had in mind.","No es exactamente lo que tenía en mente."],
+["a little surprising","un poco sorprendente","The lack of consultation is a little surprising.","La falta de consulta es un poco sorprendente."],
+["I wouldn't go that far","yo no llegaría tan lejos","I agree with some points, but I wouldn't go that far.","Estoy de acuerdo con algunos puntos, pero no llegaría tan lejos."],
+["to read between the lines","leer entre líneas","You have to read between the lines to understand the response.","Hay que leer entre líneas para entender la respuesta."],
+["to imply that","dar a entender que","The wording seems to imply that the decision is final.","La formulación parece dar a entender que la decisión es definitiva."],
+["to hint at","insinuar","She hinted at a possible change in management.","Ella insinuó un posible cambio en la dirección."],
+["to leave something unsaid","dejar algo sin decir","The statement leaves several important details unsaid.","La declaración deja sin mencionar varios detalles importantes."],
+["to be open to interpretation","estar sujeto a interpretación","The final sentence is open to interpretation.","La última oración está sujeta a interpretación."],
+["a polite way of declining","una forma cortés de rechazar","Saying you're unavailable can be a polite way of declining.","Decir que no estás disponible puede ser una forma cortés de rechazar."],
+["to soften a request","suavizar una petición","Could you possibly... is used to soften a request.","Could you possibly... se usa para suavizar una petición."],
+["to avoid giving a direct answer","evitar dar una respuesta directa","He avoided giving a direct answer to the question.","Él evitó dar una respuesta directa a la pregunta."],
+["to express reservations","expresar reservas","Several members expressed reservations about the proposal.","Varios miembros expresaron reservas sobre la propuesta."],
+["to take something at face value","tomar algo al pie de la letra","Don't take the comment at face value without considering the context.","No tomes el comentario al pie de la letra sin considerar el contexto."]],
+lessons:[
+["Peticiones indirectas","Formula peticiones corteses sin sonar excesivamente directo.","I was wondering if y would you mind suavizan peticiones; el contexto determina el grado de formalidad.",[0,1,2,3],"Would you mind closing the window?"],
+["Reservas y desacuerdo diplomático","Expresa dudas sin rechazar bruscamente una idea.","Not ideal, not sure y I wouldn't go that far atenúan desacuerdo; el tono importa.",[4,5,6,7],"With all due respect, I don't think the figures are comparable."],
+["Inferencias contextuales","Interpreta lo que una persona puede dar a entender indirectamente.","I take it that, I'm afraid y not exactly dependen de contexto, entonación y relación entre interlocutores.",[8,9,10,11],"That's not exactly what I had in mind."],
+["Implicaturas y lenguaje implícito","Reconoce insinuaciones, omisiones y formulaciones ambiguas.","Imply, hint at, leave unsaid y read between the lines describen significado no expresado literalmente.",[12,13,14,15],"The wording seems to imply that the decision is final."],
+["Cortesía y límites de interpretación","Distingue una negativa cortés de una afirmación literal y evita sobreinterpretar.","Open to interpretation y polite way of declining requieren evidencia contextual; no atribuyas intención sin indicios.",[16,17,18,19,20,21],"Saying you're unavailable can be a polite way of declining."]]}
+];
+function build(d){
+ const vocab=d.rows.map((r,i)=>({id:"en_b2_u"+d.n+"_v"+String(i+1).padStart(2,"0"),target:r[0],esp:r[1],ex:r[2],exEsp:r[3],verification:{status:"not_checked",sources:[]}}));
+ const mc=(w,opts)=>{const correct=opts[0];const match=String(w.id).match(/v(\d+)$/);const offset=match?Number(match[1])%opts.length:1;const options=opts.slice(offset).concat(opts.slice(0,offset));return {vocabId:w.id,type:"mc",prompt:"¿Qué significa «"+w.target+"»?",options,answer:options.indexOf(correct),explanation:"Selecciona la interpretación adecuada al contexto y al registro."};};
+ const order=(w,s)=>{const correctOrder=s.replace(/[.,!?;:]/g,"").trim().split(/\s+/).filter(Boolean);let words=correctOrder.length>1?correctOrder.slice(1).concat(correctOrder.slice(0,1)):correctOrder.slice();if(words.join(" ")===correctOrder.join(" "))words=correctOrder.slice().reverse();return {vocabId:w.id,type:"order",prompt:"Ordena la frase.",words,correctOrder,explanation:"Reconstruye la oración y comprueba la función discursiva."};};
+ const lessons=d.lessons.map(l=>({title:l[0],objective:l[1],grammar:l[2],vocabIds:l[3].map(i=>vocab[i].id),reviewVocabIds:[],exercises:[mc(vocab[l[3][0]],[vocab[l[3][0]].esp,vocab[(l[3][0]+7)%22].esp,vocab[(l[3][0]+14)%22].esp]),order(vocab[l[3][1]],l[4])]}));
+ const exercises=[];for(let i=0;i<5;i++)exercises.push(mc(vocab[i],[vocab[i].esp,vocab[(i+8)%22].esp,vocab[(i+15)%22].esp]));
+ for(let i=0;i<5;i++)exercises.push(order(vocab[i+5],vocab[i+5].ex));
+ return {unitNumber:d.n,id:"en_b2_u"+d.n,title:"Unidad "+d.n+": "+d.title,desc:d.desc,grammar:d.grammar,trap:{title:"Interpretación y propósito comunicativo",detail:d.trap},vocab,lessons,exercises};
+}
+root.GUARDI_CURRICULUM_BLOCKS=root.GUARDI_CURRICULUM_BLOCKS||{};root.GUARDI_CURRICULUM_BLOCKS.en=root.GUARDI_CURRICULUM_BLOCKS.en||{};root.GUARDI_CURRICULUM_BLOCKS.en.B2=root.GUARDI_CURRICULUM_BLOCKS.en.B2||{};
+root.GUARDI_CURRICULUM_BLOCKS.en.B2["35-38"]={units:defs.map(build)};
+})(typeof window!=="undefined"?window:globalThis);

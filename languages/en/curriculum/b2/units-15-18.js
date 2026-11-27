@@ -51,7 +51,7 @@ const data=[
 ["provided that","siempre que","You may use the room provided that you leave it tidy.","Puedes usar la sala siempre que la dejes ordenada."],
 ["as long as","siempre que","The plan should work as long as everyone cooperates.","El plan debería funcionar siempre que todos colaboren."],
 ["in the event that","en caso de que","In the event that the system fails, use the manual process.","En caso de que falle el sistema, utiliza el proceso manual."],
-["failing that","si eso falla","We could take the train; failing that, we can rent a car.","Podríamos tomar el tren; si eso falla, podemos alquilar un coche."],
+["failing that","si eso falla","We could take the train; failing that, we can rent a car.","Podríamos tomar el tren; si eso falla, podemos rentar un auto."],
 ["if not","si no","Please confirm by noon; if not, we will postpone the launch.","Confirma antes del mediodía; si no, pospondremos el lanzamiento."],
 ["under no circumstances","bajo ninguna circunstancia","Under no circumstances should the password be shared.","Bajo ninguna circunstancia debe compartirse la contraseña."],
 ["in any event","en cualquier caso","In any event, the final decision rests with the board.","En cualquier caso, la decisión final corresponde a la junta."],

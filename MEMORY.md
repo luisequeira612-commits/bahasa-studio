@@ -1044,3 +1044,8 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 ## 2026-11-28 — Inventarios vacíos de audio para inglés A1
 - El Service Worker descubre idiomas con currículo y exige que sus rutas de inventario existan durante la instalación offline. Para el curso en-US sin audio se añadieron `audio/en/manifest.json` vacío y `audio/en/metadata.json` con `audio_hashes: {}`.
 - Estos archivos son solo bootstrap: no contienen clips, hashes inventados ni modelo de voz. El audio en-US sigue sin seleccionar y fuera del alcance de publicación.
+
+
+## 2026-11-28 — Inventarios vacíos de audio para inglés A1
+- El Service Worker descubre idiomas con currículo y exige que sus rutas de inventario existan durante la instalación offline. Para el curso en-US sin audio se añaden `audio/en/manifest.json` vacío y `audio/en/metadata.json` con `audio_hashes: {}`.
+- Son archivos bootstrap: no contienen clips, hashes inventados ni modelo de voz. El audio en-US sigue sin seleccionar y fuera del alcance de publicación.

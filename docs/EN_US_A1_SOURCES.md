@@ -23,3 +23,31 @@ Estado: bloque U1–U6 en preparación; no publicado. Fecha: 26 de noviembre de 
 - Este bloque no afirma que cada lema haya sido cotejado individualmente contra CEFR-J o NGSL. La selección es una primera redacción pedagógica y requiere una pasada de trazabilidad por lema antes de cambiar estados.
 - Las frases de ejemplo son originales para este curso. No se han copiado frases de Tatoeba ni de materiales comerciales.
 - No se incorpora audio ni un campo POS nuevo: el contrato actual de vocabulario no contiene esos campos. No hay modelo de voz en-US aprobado ni clips incluidos en este bloque. Cualquier selección de modelo o extensión de audio se propondrá por separado y no cambiará IndexedDB v1 ni backup JSON v3.
+
+
+## Bloque U7–U12
+
+- Temas: demostrativos; colores y adjetivos; adjetivos posesivos; familia; pronombres posesivos; casa y there is/are.
+- 132 entradas nuevas previstas para este bloque, en estado not_checked. La trazabilidad por lema contra CEFR-J/NGSL sigue pendiente; no afirmar cotejo individual hasta completar el registro de fuente.
+
+
+## Bloque U13–U18 — 28 nov 2026
+- U13–U18: presente simple afirmativo con I/you/we/they; tercera persona singular; negativas don’t/doesn’t; preguntas do/does; hora/calendario/comidas; habilidades y permiso con can.
+- 132 entradas nuevas previstas (22 por unidad), ejemplos originales y estado inicial not_checked. Se evitó introducir pasado simple en la unidad de preguntas; la expresión temporal “this afternoon” se practica con presente simple de horario.
+- La lista se mantiene sin campos POS/audio porque no existen en el contrato PT-BR actual. CEFR-J/NGSL requieren trazabilidad por lema antes de afirmar cotejo individual.
+
+
+## Bloque U19–U24 — 28 nov 2026
+- U19–U24: gustos y pasatiempos; want/need/plan/hope/decide + to-infinitive; preguntas WH de seguimiento; presente continuo; ropa y clima; lugares de la ciudad.
+- 132 entradas nuevas previstas (22 por unidad), con ejemplos originales y estado not_checked. No se agregan campos POS/audio al contrato runtime.
+- La trazabilidad lema por lema con CEFR-J/NGSL sigue pendiente; no afirmar cotejo individual hasta documentar fuente por entrada.
+
+
+## Bloque U25–U30 — 28 nov 2026
+- U25–U29: dar indicaciones; dinero y compras; contables/incontables con some/any; cantidades; restaurante.
+- U30 es repaso integrador sin vocabulario nuevo. Las unidades mantienen cinco lecciones y veinte ejercicios; U30 reutiliza referencias previas.
+- Vocabulario nuevo permanece not_checked; trazabilidad CEFR-J/NGSL pendiente.
+
+## Bloque U31–U32 — 28 nov 2026
+- U31 integra conversaciones cotidianas; U32 es evaluación final A1. Ambas unidades reutilizan vocabulario previo, con cinco lecciones y veinte ejercicios.
+- El motor actual solo admite mc/order; U32 no afirma evaluar escucha real, pronunciación, expresión oral ni escritura libre.

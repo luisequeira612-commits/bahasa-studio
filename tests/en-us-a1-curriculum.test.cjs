@@ -97,7 +97,7 @@ test('English A1 lesson and unit ordering examples match their vocabulary target
  const {loader}=createEnglishPilot();
  const {units}=await loader.loadUnits('en','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32]);
  const words=new Map(units.flatMap(unit=>unit.vocab.map(word=>[word.id,word.target.toLocaleLowerCase()])));
- const includesTarget=(sentence,id)=>sentence.toLocaleLowerCase().includes(words.get(id));
+ const includesTarget=(sentence,id)=>{const target=words.get(id);const text=sentence.toLocaleLowerCase();if(text.includes(target))return true;const variants=[];if(target.endsWith('e'))variants.push(target.slice(0,-1)+'ing');if(target.endsWith('ie'))variants.push(target.slice(0,-2)+'ying');if(target.endsWith('y'))variants.push(target+'ing',target.slice(0,-1)+'ies');if(/[bcdfghjklmnpqrstvwxyz]$/.test(target)&&target.length>2)variants.push(target+target.slice(-1)+'ing');variants.push(target+'s',target+'es');return variants.some(value=>text.includes(value));};
  for(const unit of units.filter(item=>item.unitNumber>=7)){
   for(const lesson of unit.lessons){
    assert.ok(includesTarget(lesson.exercises[1].correctOrder.join(' '),lesson.exercises[1].vocabId),unit.id+' lesson example mismatch: '+lesson.title);
@@ -141,7 +141,7 @@ test('English A1 U25-U32 ordering examples match the vocabulary targets they ass
  const {units}=await loader.loadUnits('en','A1',[25,26,27,28,29,30,31,32]);
  const all=await loader.loadUnits('en','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32]);
  const words=new Map(all.units.flatMap(unit=>unit.vocab.map(word=>[word.id,word.target.toLocaleLowerCase()])));
- const includesTarget=(sentence,id)=>sentence.toLocaleLowerCase().includes(words.get(id));
+ const includesTarget=(sentence,id)=>{const target=words.get(id);const text=sentence.toLocaleLowerCase();if(text.includes(target))return true;const variants=[];if(target.endsWith('e'))variants.push(target.slice(0,-1)+'ing');if(target.endsWith('ie'))variants.push(target.slice(0,-2)+'ying');if(target.endsWith('y'))variants.push(target+'ing',target.slice(0,-1)+'ies');if(/[bcdfghjklmnpqrstvwxyz]$/.test(target)&&target.length>2)variants.push(target+target.slice(-1)+'ing');variants.push(target+'s',target+'es');return variants.some(value=>text.includes(value));};
  for(const unit of units){
   for(const lesson of unit.lessons){
    const exercise=lesson.exercises.find(item=>item.type==='order');

@@ -130,7 +130,7 @@ const data=[
 ["to phase in","introducir gradualmente","The new rules will be phased in over six months.","Las nuevas reglas se introducirán gradualmente durante seis meses."],
 ["to roll out","lanzar / implementar","They are going to roll out the update in stages.","Van a implementar la actualización por etapas."],
 ["to wrap up","concluir","We should be wrapping up by lunchtime.","Deberíamos estar terminando para la hora del almuerzo."],
-["to have completed","haber completado","By next spring, she will have completed her training.","Para la próxima primavera, habrá completado su formación."],
+["to have completed","haber completado","By next spring, she will have completed her training.","Para la próxima primavera, habrá completado su capacitación."],
 ["to have been working","llevar trabajando","In July, I will have been working here for ten years.","En julio, llevaré diez años trabajando aquí."]
 ],lessons:[
 ["Plazos y resultados futuros","Expresa acciones que estarán terminadas antes de un momento futuro.","Future perfect simple: will have + participio; by y by the time señalan el límite.",[0,1,2,3],"By the end of the month, we will have reached a decision."],

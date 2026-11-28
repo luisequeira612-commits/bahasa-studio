@@ -73,8 +73,8 @@ const data=[
 ["used to","solía","We used to meet every Friday.","Solíamos reunirnos todos los viernes."],
 ["would often","solía (repetidamente)","He would often stay late to finish the work.","A menudo se quedaba hasta tarde para terminar el trabajo."],
 ["to keep doing","seguir haciendo","They keep changing the requirements.","Siguen cambiando los requisitos."],
-["to go on doing","seguir haciendo","She went on explaining despite the interruption.","Siguió explicando a pesar de la interrupción."],
-["to gradually become","volverse gradualmente","The task is gradually becoming easier.","La tarea se está volviendo gradualmente más fácil."],
+["to go on doing","continuar haciendo","She went on explaining despite the interruption.","Continuó explicando pese a la interrupción."],
+["to gradually become","ir volviéndose","The task is gradually becoming easier.","La tarea se está volviendo más fácil poco a poco."],
 ["to increasingly rely on","depender cada vez más de","Businesses are increasingly relying on digital tools.","Las empresas dependen cada vez más de herramientas digitales."],
 ["repeatedly","repetidamente","The alarm has repeatedly gone off at night.","La alarma ha sonado repetidamente por la noche."],
 ["once in a while","de vez en cuando","Once in a while, I work from the library.","De vez en cuando, trabajo desde la biblioteca."],
@@ -102,9 +102,9 @@ const data=[
 ["to be having","estar pasando / tomando","We're having a difficult week.","Estamos pasando una semana difícil."],
 ["to see","ver / comprender","I see what you mean.","Entiendo lo que quieres decir."],
 ["to be seeing","estar saliendo con / reuniéndose con","He's seeing a client this afternoon.","Se reunirá con un cliente esta tarde."],
-["to taste","saber / tener sabor","The soup tastes slightly salty.","La sopa sabe un poco salada."],
+["to taste","saber a / tener sabor a","The soup tastes slightly salty.","La sopa sabe un poco salada."],
 ["to be tasting","estar probando","The chef is tasting the sauce.","El chef está probando la salsa."],
-["to feel","sentirse","I feel that we need more time.","Siento que necesitamos más tiempo."],
+["to feel","sentirse","I feel exhausted after the trip.","Me siento agotado después del viaje."],
 ["to be feeling","sentirse (temporalmente)","She's feeling much better today.","Hoy se siente mucho mejor."],
 ["to look","parecer","The plan looks reasonable.","El plan parece razonable."],
 ["to be looking","estar mirando","Why are you looking at me like that?","¿Por qué me estás mirando así?"],
@@ -124,7 +124,7 @@ const data=[
 ["Sentidos y sensaciones","Diferencia propiedades percibidas y acciones deliberadas.","Taste/smell/look como percepción suelen ser stative; probar, oler o mirar deliberadamente son dinámicos.",[8,9,10,11],"She's feeling much better today."],
 ["Medición y apariencia","Describe propiedades estables y procesos de evaluación.","Weigh = tener un peso; be weighing = sopesar opciones. Appear = parecer o presentarse.",[12,13,14,15],"The committee is weighing several options."],
 ["Estados, dependencia y propiedad","Usa verbos de estado con precisión y reconoce excepciones contextuales.","Depend on y belong to expresan relaciones; evita formas continuas cuando el significado es puramente estático.",[16,17,18,19,20,21],"The band is appearing at the festival tonight."]
-],bank:["He's seeing a client this afternoon.","The soup tastes slightly salty.","The chef is tasting the sauce.","I feel that we need more time.","She's feeling much better today."]}
+],bank:["He's seeing a client this afternoon.","The soup tastes slightly salty.","The chef is tasting the sauce.","I feel exhausted after the trip.","She's feeling much better today."]}
 ];
 root.GUARDI_CURRICULUM_BLOCKS=root.GUARDI_CURRICULUM_BLOCKS||{};
 root.GUARDI_CURRICULUM_BLOCKS.en=root.GUARDI_CURRICULUM_BLOCKS.en||{};
@@ -206,8 +206,8 @@ const data=[
 ["used to","solía","We used to meet every Friday.","Solíamos reunirnos todos los viernes."],
 ["would often","solía (repetidamente)","He would often stay late to finish the work.","A menudo se quedaba hasta tarde para terminar el trabajo."],
 ["to keep doing","seguir haciendo","They keep changing the requirements.","Siguen cambiando los requisitos."],
-["to go on doing","seguir haciendo","She went on explaining despite the interruption.","Siguió explicando a pesar de la interrupción."],
-["to gradually become","volverse gradualmente","The task is gradually becoming easier.","La tarea se está volviendo gradualmente más fácil."],
+["to go on doing","continuar haciendo","She went on explaining despite the interruption.","Continuó explicando pese a la interrupción."],
+["to gradually become","ir volviéndose","The task is gradually becoming easier.","La tarea se está volviendo más fácil poco a poco."],
 ["to increasingly rely on","depender cada vez más de","Businesses are increasingly relying on digital tools.","Las empresas dependen cada vez más de herramientas digitales."],
 ["repeatedly","repetidamente","The alarm has repeatedly gone off at night.","La alarma ha sonado repetidamente por la noche."],
 ["once in a while","de vez en cuando","Once in a while, I work from the library.","De vez en cuando, trabajo desde la biblioteca."],
@@ -235,9 +235,9 @@ const data=[
 ["to be having","estar pasando / tomando","We're having a difficult week.","Estamos pasando una semana difícil."],
 ["to see","ver / comprender","I see what you mean.","Entiendo lo que quieres decir."],
 ["to be seeing","estar saliendo con / reuniéndose con","He's seeing a client this afternoon.","Se reunirá con un cliente esta tarde."],
-["to taste","saber / tener sabor","The soup tastes slightly salty.","La sopa sabe un poco salada."],
+["to taste","saber a / tener sabor a","The soup tastes slightly salty.","La sopa sabe un poco salada."],
 ["to be tasting","estar probando","The chef is tasting the sauce.","El chef está probando la salsa."],
-["to feel","sentirse","I feel that we need more time.","Siento que necesitamos más tiempo."],
+["to feel","sentirse","I feel exhausted after the trip.","Me siento agotado después del viaje."],
 ["to be feeling","sentirse (temporalmente)","She's feeling much better today.","Hoy se siente mucho mejor."],
 ["to look","parecer","The plan looks reasonable.","El plan parece razonable."],
 ["to be looking","estar mirando","Why are you looking at me like that?","¿Por qué me estás mirando así?"],
@@ -257,7 +257,7 @@ const data=[
 ["Sentidos y sensaciones","Diferencia propiedades percibidas y acciones deliberadas.","Taste/smell/look como percepción suelen ser stative; probar, oler o mirar deliberadamente son dinámicos.",[8,9,10,11],"She's feeling much better today."],
 ["Medición y apariencia","Describe propiedades estables y procesos de evaluación.","Weigh = tener un peso; be weighing = sopesar opciones. Appear = parecer o presentarse.",[12,13,14,15],"The committee is weighing several options."],
 ["Estados, dependencia y propiedad","Usa verbos de estado con precisión y reconoce excepciones contextuales.","Depend on y belong to expresan relaciones; evita formas continuas cuando el significado es puramente estático.",[16,17,18,19,20,21],"The band is appearing at the festival tonight."]
-],bank:["He's seeing a client this afternoon.","The soup tastes slightly salty.","The chef is tasting the sauce.","I feel that we need more time.","She's feeling much better today."]}
+],bank:["He's seeing a client this afternoon.","The soup tastes slightly salty.","The chef is tasting the sauce.","I feel exhausted after the trip.","She's feeling much better today."]}
 ];
 root.GUARDI_CURRICULUM_BLOCKS=root.GUARDI_CURRICULUM_BLOCKS||{};
 root.GUARDI_CURRICULUM_BLOCKS.en=root.GUARDI_CURRICULUM_BLOCKS.en||{};

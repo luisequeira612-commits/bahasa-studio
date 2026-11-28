@@ -418,7 +418,7 @@ test('English B2 U1–U8 lesson and unit sentence exercises match their vocabula
     const word = u1.vocab.find((item) => item.id === exercise.vocabId);
     assert.ok(word);
     assert.deepEqual(Array.from(exercise.correctOrder), word.ex
-      .replace(/[.,!?;:]/g, '').trim().split(/\\s+/));
+      .replace(/[.,!?;:]/g, '').trim().split(/\s+/));
   }
   for (let number = 2; number <= 8; number += 1) {
     const unit = units.find((item) => item.unitNumber === number);

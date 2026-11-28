@@ -330,6 +330,31 @@ test('English B2 U16 inverted-conditional lessons cover all targets and use matc
 });
 
 
+test('English B2 U15 mixed-conditional lesson themes match their vocabulary', () => {
+  const unit = loadB2().find((item) => item.unitNumber === 15);
+  assert.ok(unit);
+  const expected = [
+    ['Condición pasada y resultado presente', ['if I had known', "if it hadn't been for", 'would be doing', 'to be better off']],
+    ['Condición presente y resultado pasado', ['would have been', 'could have avoided', 'to have been able to', 'to make a difference']],
+    ['Consecuencias y resultados alternativos', ['might still be', 'otherwise', 'to have a different outcome', 'to affect the outcome', 'to have turned out differently']],
+    ['Arrepentimiento y evaluación retrospectiva', ['to look back on', 'to regret not doing', 'to wish things were', 'to wish I had']],
+    ['Circunstancias y decisiones alternativas', ['to have no effect on', 'to be in this situation', 'in different circumstances', 'given the chance']],
+  ];
+  for (let index = 0; index < expected.length; index += 1) {
+    const [title, targets] = expected[index];
+    const lesson = unit.lessons[index];
+    assert.equal(lesson.title, title);
+    assert.deepEqual(lesson.vocabIds.map((id) => unit.vocab.find((word) => word.id === id)?.target), targets);
+    const exercise = lesson.exercises.find((item) => item.type === 'order');
+    assert.ok(exercise);
+    assert.equal(exercise.vocabId, lesson.vocabIds[1]);
+    const word = unit.vocab.find((item) => item.id === exercise.vocabId);
+    assert.ok(word);
+    assert.deepEqual(Array.from(exercise.correctOrder),
+      word.ex.replace(/[.,!?;:]/g, '').trim().split(/\\s+/));
+  }
+});
+
 test('English B2 U15–U18 lesson targets are covered once and match their sentence examples', () => {
   const units = loadB2();
   for (const number of [15, 16, 17, 18]) {

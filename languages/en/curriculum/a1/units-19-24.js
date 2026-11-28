@@ -192,7 +192,7 @@ unit(24,'Lugares de la ciudad','Reconoce lugares y elementos urbanos comunes par
 ['Lección 3: Servicios públicos','Ubica bancos, correos y estaciones de emergencia.','There is/are introduce existencia; next to y across from indican relación espacial.',[8,9,10,11,12],'The post office is across from the bank.'],
 ['Lección 4: Compras y comida','Nombra supermercados, farmacias, panaderías y restaurantes.','Usa the con lugares específicos: the pharmacy, the restaurant.',[13,14,15,16],'The pharmacy is next to the clinic.'],
 ['Lección 5: Viajes y lugares públicos','Ubica hoteles, aeropuertos, estaciones e iglesias.','Near/far y on/in ayudan a describir la ubicación de lugares.',[17,18,19,20,21],'The airport is far from the city.']
-],['Use the crosswalk.','Walk on the sidewalk.','The fire station is near the bridge.','The bank is next to the hotel.','The post office is across from the bank.'])
+],['Use the crosswalk.','Walk on the sidewalk.','The fire station is near the bridge.','The bank is near the town square.','The post office is across from the bank.'])
 ];
 root.GUARDI_CURRICULUM_BLOCKS=root.GUARDI_CURRICULUM_BLOCKS||{};
 root.GUARDI_CURRICULUM_BLOCKS.en=root.GUARDI_CURRICULUM_BLOCKS.en||{};

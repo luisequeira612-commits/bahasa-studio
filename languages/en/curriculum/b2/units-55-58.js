@@ -33,7 +33,7 @@ lessons:[
 {n:56,title:"Media literacy: hechos, opiniones, sesgos y fuentes",desc:"Evalúa credibilidad, evidencia, sesgos y encuadres mediáticos antes de aceptar o compartir información.",grammar:"Fact/opinion distinction, source evaluation, bias, framing, corroboration and misinformation vocabulary.",trap:"A claim is not a fact merely because it is widely shared. Corroborate with independent sources and distinguish evidence from interpretation.",rows:[
 ["to verify a source","verificar una fuente","Readers should verify a source before sharing the claim.","Los lectores deberían verificar una fuente antes de compartir la afirmación."],
 ["to cross-check information","contrastar información","Journalists cross-check information with independent records.","Los periodistas contrastan la información con registros independientes."],
-["a credible source","una fuente fiable","The article relies on a credible source.","El artículo se basa en una fuente confiable."],
+["a credible source","una fuente confiable","The article relies on a credible source.","El artículo se basa en una fuente confiable."],
 ["a misleading headline","un titular engañoso","The misleading headline exaggerates the findings.","El titular engañoso exagera los hallazgos."],
 ["a biased account","un relato sesgado","The report offers a biased account of the dispute.","El informe ofrece un relato sesgado de la disputa."],
 ["selective reporting","presentación selectiva de información","Selective reporting can distort public understanding.","La presentación selectiva de información puede distorsionar la comprensión pública."],

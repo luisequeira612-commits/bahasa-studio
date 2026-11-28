@@ -203,6 +203,11 @@ test('editorially corrected B2 vocabulary examples stay aligned with their targe
     [54, 'to take questions', "We'll take questions at the end of the presentation.", 'Recibiremos preguntas al final de la presentación.'],
     [55, 'to prevent a recurrence', 'Staff training should help prevent a recurrence.', 'La capacitación del personal debería ayudar a evitar que se repita.'],
     [57, 'to begin with', 'To begin with, the raw data are collected.', 'Para empezar, se recopilan los datos sin procesar.'],
+    [11, 'to rule out', 'We cannot rule out a technical fault.', 'No podemos descartar una falla técnica.'],
+    [25, 'the main point is that', 'The main point is that we need reliable information.', 'El punto principal es que necesitamos información confiable.'],
+    [31, 'in turn', 'Better training improves confidence and, in turn, performance.', 'Una mejor capacitación aumenta la confianza y, a su vez, el rendimiento.'],
+    [36, 'to be open to question', 'The reliability of the estimate remains open to question.', 'La confiabilidad de la estimación sigue siendo cuestionable.'],
+    [44, 'reliability', 'System reliability is essential for public services.', 'La confiabilidad del sistema es esencial para los servicios públicos.'],
   ];
 
   for (const [unitNumber, target, example, translation] of expected) {
@@ -444,4 +449,19 @@ test('English B2 U8 uses the stative meaning of feel consistently', () => {
   assert.equal(feel.esp, 'sentirse');
   assert.equal(feel.ex, 'I feel exhausted after the trip.');
   assert.equal(feel.exEsp, 'Me siento agotado después del viaje.');
+});
+
+
+test('English B2 U35 keeps plural data agreement consistent in vocabulary and lesson examples', () => {
+  const unit = loadB2().find((item) => item.unitNumber === 35);
+  assert.ok(unit);
+  const target = unit.vocab.find((word) => word.target === 'to substantiate a claim');
+  assert.ok(target);
+  const lesson = unit.lessons.find((item) => item.title === 'Razones y evidencia');
+  assert.ok(lesson);
+  const exercise = lesson.exercises.find((item) => item.type === 'order');
+  assert.ok(exercise);
+  assert.equal(exercise.vocabId, target.id);
+  assert.deepEqual(Array.from(exercise.correctOrder),
+    'Additional data are needed to substantiate the claim'.split(' '));
 });

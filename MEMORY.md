@@ -1,3 +1,245 @@
+## 2026-11-27 — Texto de ayuda de lección independiente del idioma
+- Tras la prueba manual del usuario, el audio PT-BR quedó confirmado como funcional. Se detectó que el texto de ayuda bajo «Palabras nuevas» aún decía «en indonesio»; se corrigió a una instrucción neutral para todos los cursos y se añadió una prueba de regresión específica.
+- 2026-11-27 — El primer CI de PR #943 detectó dos aserciones antiguas en `tests/regression.test.cjs` que exigían literalmente la frase «en indonesio». Se actualizaron ambas para exigir la indicación neutral y rechazar el texto antiguo; se mantiene la prueba de traducción segura y la prueba específica de neutralidad. Reejecutar CI antes de integrar.
+- Pendiente: CI del PR y despliegue de Pages; el usuario confirmó audio PT-BR, por lo que después de publicar se puede retomar inglés B2.
+
+## 2026-11-27 — Limpieza final de MP3 huérfanos completada
+- Corrección de la nota anterior: el generador ya incluía limpieza de MP3 cuyo hash no aparece en el inventario del idioma. El run #45967211472 la ejecutó y eliminó los 3 MP3 huérfanos que seguían en `audio/id/`; ya no se conservan huérfanos.
+- Git tree actual: 5,002 MP3 activos + 2,268 OPUS legados = 7,279 archivos bajo `audio/`; MP3 38.99 MiB; carpeta `audio/` 53.40 MiB. Los inventarios son ID 2,392 y PT-BR 2,610, con SHA-256 completos.
+- La segunda ejecución reutilizó los 5,002 clips y limpió el directorio; no volvió a sintetizar.
+
+Fuente: Actions #45967211472, `tools/generar_audio.py` limpieza por `expected_ids`, Git tree de la rama; 27 nov 2026.
+
+## 2026-11-27 — CI automático para ramas fix
+- GitHub devolvió `action_required` sin jobs para los checks `pull_request` del PR #942 (workflow approval gate). No hay una acción de aprobación de workflow disponible en el conector; los runs de `push` sí se ejecutan normalmente.
+- Para no bloquear la validación, `regression.yml` y `typecheck.yml` ahora también ejecutan en `push` a `fix/**` además de `main`. Se conserva el trigger `pull_request`; el push de esta rama produce los checks sin requerir aprobación manual.
+- Commits `46dc159` y `d3bc242`; verificar los nuevos runs push antes de dar CI por verde.
+
+Fuente: Actions #45967417020/#45967417290 (`action_required` sin jobs), `.github/workflows/regression.yml`, `.github/workflows/typecheck.yml`; 27 nov 2026.
+
+## 2026-11-27 — Restaurar etiqueta descriptiva de voz en metadata
+- CI #45966796710 falló en la aserción de regresión `bundled Indonesian recordings work without an installed device voice`: el generador había reemplazado `model_attribution` por una frase genérica al apuntar la licencia a MODEL_CARD.
+- Se conserva la referencia de licencia a MODEL_CARD, pero `model_attribution` ahora toma una etiqueta descriptiva por voz desde `tools/audio-voices.json` (ID mantiene `Piper Indonesian news_tts voice`; PT-BR y las otras ocho voces también tienen etiqueta). Tests verifican el campo.
+- Commits `ecdbd00`, `7f1f9c0`, `c508d5c`; la próxima ejecución reutiliza los 5,002 MP3 y solo actualiza metadata/manifiestos.
+
+Fuente: Actions #45966796710, `tests/regression.test.cjs`, `tools/audio-voices.json` y `tools/generar_audio.py`; 27 nov 2026.
+
+## 2026-11-27 — Índice ID sincronizado; segunda generación idempotente
+- Run #45966682151 terminó con éxito: `0 nuevos, 5,002 reutilizados`; confirma que el hash + Piper version + revisión de voz evitan regenerar audio sin cambios.
+- Commit `b8a594ea` actualizó `audio/index.json`: ahora contiene exactamente 2,392 IDs y coincide con `audio/manifest.json`. PT-BR conserva 2,610 entradas. Los metadatos ID y PT-BR mantienen 2,392/2,610 hashes SHA-256.
+- Verificación del Git tree: 5,005 MP3 (5,002 activos + 3 archivos ID legados conservados), 39.01 MiB MP3; carpeta `audio/` 53.42 MiB. Bajo el presupuesto de 500 MiB.
+- Próximo: validar CI/E2E del PR con los archivos ya presentes; después preparar la publicación para que el usuario pruebe el audio PT-BR en la app.
+
+Fuente: Actions #45966682151, commit `b8a594ea`, `audio/index.json`, manifiestos, metadata y Git tree; 27 nov 2026.
+
+## 2026-11-27 — Primera biblioteca de audio generada y verificada
+- Run Piper #45964968625 terminó correctamente y publicó commit `84fd9add`. Generó 5,002 MP3: 2,392 indonesios + 2,610 PT-BR; el log indicó 0 reutilizados en la primera migración a Piper 1.8.0. Tamaño MP3: 39.01 MiB; tamaño total de `audio/`: 53.41 MiB. El workflow pasó el límite de 500 MiB total y 100 MiB por archivo.
+- Inventarios verificados: `audio/manifest.json` (ID, 2,392), `audio/pt-BR/manifest.json` (2,610), metadatos SHA-256 completos (0 faltantes en ambos), manifiesto central `audio/manifest-multilingual.json` (1.84 MiB), MODEL_CARD de ambos modelos y `VOICE_ATTRIBUTION.md`.
+- Git tree mostró 5,005 MP3: 5,002 activos en manifiestos + 3 archivos ID legados que siguen listados en el `audio/index.json` antiguo. Se conservan por compatibilidad; no se borran sin revisar otros consumidores.
+- `audio/index.json` tenía 2,268 IDs y está desactualizado. El generador se modificó para sincronizarlo con los 2,392 IDs del inventario ID (`tools/generar_audio.py`, commit `25ae02c`); test estático actualizado (`217b488`, luego `753a541`). Falta que la siguiente ejecución de audio publique ese índice actualizado.
+- El audio antiguo generado por Piper 1.3 (`f099b7a`) fue supersedido por el lote correcto Piper 1.8 (`84fd9add`) mediante el push con resolución de conflictos.
+
+Fuente: Actions #45964968625, commits `f099b7a`/`84fd9add`/`25ae02c`/`217b488`/`753a541`, Git tree, manifests y metadatos; 27 nov 2026.
+
+## 2026-11-27 — Rerun por timeout intermitente no E2E SRS
+- Depois de corrigir as expectativas de cache A2, o run #45965883973 passou Service Worker install e audio-manifest export, mas falhou no test local em `tests/learning-screen-phase-5b.e2e.test.cjs:1000`: timeout de 30s aguardando `#adaptiveRecommendationLearn button` no teste SRS de Aprender. Não envolve áudio nem o Service Worker.
+- Se reintentó únicamente el job fallido `140394330243` mediante GitHub Actions; resultado del rerun pendiente. No se cambió código ajeno al audio.
+
+Fuente: Actions #45965883973, test SRS Phase 5B; 27 nov 2026.
+
+## 2026-11-27 — Corrección de regex antiguas en todos los tests A2
+- CI #45965572064 confirmó que Service Worker install y export de manifiestos pasan, pero nueve tests A2 seguían usando la regex parcial `v3\\.8.166` (solo escapaba el primer punto). Se actualizaron A2 U1-U27 a `v3\\.8.167`; A2 U28-U30 ya había sido corregido en `0c038c9`.
+- Esta es la última familia de expectativas de cache antigua detectada. Nuevo CI pendiente.
+
+Fuente: Actions #45965572064 y tests `pt-br-curriculum-a2-u01-u03` a `a2-u25-u27`; 27 nov 2026.
+
+## 2026-11-27 — Última regex A2 aún fijada en v3.8.166
+- El run #45965136673 pasó Service Worker install y audio-manifest export; el test local falló solo en A2 U28-U30. Su título ya mostraba `v3.8.167`, pero la regex interna conservaba parcialmente `v3\\.8.166` (el segundo punto no estaba escapado), por lo que la sustitución anterior no la detectó.
+- Se corrigió la regex en `tests/pt-br-curriculum-a2-u28-u30.test.cjs`, commit `0c038c9`; debe repetirse CI.
+
+Fuente: Actions #45965136673 y `tests/pt-br-curriculum-a2-u28-u30.test.cjs`; 27 nov 2026.
+
+## 2026-11-27 — Alineación de caché en pruebas A2
+- La regresión #45964822252 pasó Service Worker install y export de manifiestos, pero falló un test A2 U28-U30 que aún esperaba `v3.8.166`. Se comprobó que ocho tests A2 adicionales conservaban la versión antigua y se actualizaron a `v3.8.167`; A1/B1/B2 y E2E ya estaban alineados.
+- Los nuevos tests deben volver a ejecutarse; el fallo no es del código de caché, sino de expectativas históricas de tests.
+
+Fuente: Actions #45964822252 y tests `pt-br-curriculum-a2-u07-u09` a `a2-u28-u30`; 27 nov 2026.
+
+## 2026-11-27 — Corrección de síntesis por lotes: usar Python API de Piper
+- El primer run batch #45964798118 falló porque Piper 1.8 no creó los WAV cuando se invocó `--json-input`; la CLI actual de Piper 1.x ya no ofrece compatibilidad fiable con ese modo (issue upstream #28). `ffmpeg` detectó el primer WAV ausente y detuvo el proceso, sin publicar clips.
+- Se reemplazó el modo JSONL por la API oficial Python: `PiperVoice.load(model)` una vez por idioma y `voice.synthesize_wav(text, wav_file)` para cada salida. Esto mantiene el modelo cargado en memoria y evita el arranque CLI por frase.
+- Tests ahora exigen `PiperVoice.load`, `synthesize_wav` y `wave.open`. Cambio en commits `b11c866` y `9897686`; siguiente run v2 pendiente.
+
+Fuentes: Piper Python API docs, Piper CLI docs/issue #28, `tools/generar_audio.py`, `tests/audio-manifest.test.mjs`, Actions #45964798118; 27 nov 2026.
+
+## 2026-11-27 — Metadatos de licencia basados en MODEL_CARD
+- El generador ya no conserva la afirmación genérica `MIT` en metadata de audio como si fuera la licencia de la voz/dataset. Para cada idioma activo, `model_license`, `model_license_url` y `model_attribution` apuntan explícitamente a su `MODEL_CARD`, que es la fuente de verdad para los términos de la voz y el dataset.
+- Cambio en `tools/generar_audio.py`, commit `2d06e9f`; nueva generación/CI pendiente.
+
+Fuente: `audio/metadata.json`, MODEL_CARD upstream y `tools/generar_audio.py`; 27 nov 2026.
+
+## 2026-11-27 — Ejecución rápida aislada de la generación Piper
+- El workflow antiguo #45962876912 llevaba más de 15 min en la síntesis secuencial con Piper 1.3 y sin progreso visible. No hay acción de cancelación disponible desde el conector GitHub.
+- Para no bloquear el lote correcto, el workflow nuevo usa grupo de concurrencia `guardi-piper-audio-v2`, por lo que puede ejecutarse en paralelo al antiguo. El push ahora maneja conflictos de rebase: en caso de conflicto, rebase aborta, el runner vuelve a basar su commit en la rama remota y vuelve a preparar únicamente `audio/`, priorizando el lote generado con el código actual.
+- Commit `3971fbf699d6db58d9037e7a5f5de240bdd60f28`; ejecución nueva pendiente. El workflow viejo, si termina después de publicar el lote correcto, debe fallar al rebasear archivos binarios/manifest coincidentes y no sobrescribir la biblioteca nueva.
+
+Fuente: Actions #45962876912/#45963841587 y `.github/workflows/audio.yml`; 27 nov 2026.
+
+## 2026-11-27 — Actualización completa de expectativas de caché PT-BR
+- La regresión del head `0b3fdbb` seguía fallando en tests de B1/B2 que también fijaban el cache name `v3.8.166` (p. ej. B1 U28-U30 y B2 U1-U3/U31-U33). Se actualizaron todos los archivos PT-BR que contenían esa expectativa; los últimos commits de tests incluyen B1 U1-U33 y B2 U1-U40.
+- El fallo E2E de ese head también ocurrió antes de que existieran los inventarios PT-BR generados (`audio/pt-BR/manifest.json` y `metadata.json`); debe volver a ejecutarse tras la publicación del audio correcto.
+- CI nuevo del head `82bd3eb` está queued/in_progress; no declarar verde hasta que termine.
+
+Fuente: Actions #45964213536, tests `pt-br-curriculum-*` y commits de actualización de cache; 27 nov 2026.
+
+## 2026-11-27 — Alineación de pruebas con nueva caché del Service Worker
+- CI #45963926469 falló en cuatro pruebas de currículo y el E2E offline porque esperaban literalmente `bahasa-studio-v3.8.166`; el Service Worker se había incrementado correctamente a `v3.8.167` para precargar los nuevos inventarios. No era una regresión de caché.
+- Se actualizaron las cinco expectativas de pruebas a `v3.8.167` (cuatro pruebas de currículo y `pt-br-curriculum.e2e.test.cjs`). CI del head actual pendiente.
+
+Fuente: Actions #45963926469, `service-worker.js` y cinco tests PT-BR; 27 nov 2026.
+
+## 2026-11-27 — Inventarios offline futuros autodescubiertos
+- `service-worker.js` ya no codifica a mano solo PT-BR: deriva `manifest.json` y `metadata.json` por idioma desde las rutas curriculares no vacías de `LanguageManager`, excluyendo el inventario indonesio histórico que permanece en la raíz de `audio/`.
+- Al registrar un nuevo curso en el catálogo, el Service Worker incluirá automáticamente su inventario offline. La precarga incluye además `audio/manifest-multilingual.json` para `AudioEngine`.
+
+Fuente: `service-worker.js`, `language-manager.js`, `tests/service-worker-install.test.cjs`; 27 nov 2026.
+
+## 2026-11-27 — Compatibilidad con inventarios offline por idioma
+- Revisión de `offline-audio-manager.js` y `service-worker.js` detectó que el gestor offline exige arrays por idioma (`audio/manifest.json` + `audio/metadata.json` para ID; `audio/pt-BR/manifest.json` + `audio/pt-BR/metadata.json` para PT-BR) y metadatos `audio_hashes` SHA-256. No se puede sustituir el `audio/manifest.json` histórico por un objeto central.
+- El generador ahora conserva esos inventarios por idioma, calcula SHA-256 reales de cada MP3 y publica un manifiesto separado `audio/manifest-multilingual.json` para `AudioEngine`. El reproductor lee el manifiesto central; el offline manager mantiene sus rutas y formato existentes.
+- `service-worker.js` precachea el manifiesto central y los inventarios PT-BR; cache shell sube a `bahasa-studio-v3.8.167`. Los tests protegen estas rutas y la huella SHA-256.
+- Cambios principales: generator `e30ebc2`, audio engine `cf7423a`, service worker `432be1a`, tests `028409c`/`4a522e0`/`fea772c`; CI pendiente.
+
+Fuente: `offline-audio-manager.js`, `service-worker.js`, `audio-engine.js`, `tools/generar_audio.py` y tests; 27 nov 2026.
+
+## 2026-11-27 — Síntesis Piper por lotes
+- El generador dejó de iniciar un proceso Piper por cada frase. Ahora agrupa los textos por idioma y usa `piper --json-input` con `output_file` por registro, cargando cada modelo una sola vez por lote. Esto reduce drásticamente el tiempo de generación de miles de clips.
+- Se añadió una comprobación estática del uso de JSON input y rutas de salida por clip. Cambios en commits `f1f9225`, `6f5ed33` y `77f9eae`; CI pendiente.
+- La generación actual antigua #45962876912 sigue corriendo con el generador anterior (un proceso por texto); el siguiente run con Piper 1.8 usará el modo por lotes.
+
+Fuente: Piper CLI JSON Input docs, `tools/generar_audio.py`, `tests/audio-manifest.test.mjs` y Actions #45962876912; 27 nov 2026.
+
+## 2026-11-27 — Compatibilidad con voces Piper retrainadas
+- La MODEL_CARD de `pt_BR-faber-medium` exige Piper 1.5 o superior. Se cambió el workflow de `piper-tts==1.3.0` a `piper-tts==1.8.0` (PyPI actual, compatible con Python 3.12), que conserva el CLI `piper --model ... --output_file ...`.
+- Para no reutilizar clips generados con un motor/voz anterior, el manifiesto ahora registra `piper_version` y `voice_revisions`. El generador solo reutiliza un MP3 si coinciden la versión de Piper y la revisión de voz; al cambiar modelo o versión regenera ese idioma. La revisión de voz se incorpora también a la ruta de caché temporal.
+- Test ampliado para exigir Piper 1.8.0, SHA de voz, `MODEL_CARD`, atribución y cache invalidation. Cambios en `ee1357f`, `34a2da0` y `bf1001b`; CI pendiente.
+
+Fuentes: MODEL_CARD de `pt_BR-faber-medium` en `rhasspy/piper-voices` commit `2f358b6`, PyPI `piper-tts` release 1.8.0 y Piper CLI usage docs; 27 nov 2026.
+
+## 2026-11-27 — Versionado y atribución de voces Piper
+- Las diez voces quedaron fijadas a la revisión upstream inmutable `5ec43b186ef915a195d3ddbcfd9916e76c503c3f` de `rhasspy/piper-voices`, cuyo historial identifica los cambios recientes de Faber, Thorsten, japonés y coreano. Se comprobó que los diez IDs y sus rutas existen en el `voices.json` oficial.
+- El generador ahora descarga `.onnx`, `.onnx.json` y `MODEL_CARD` desde la misma revisión; conserva solo las fichas `MODEL_CARD` en `audio/voices/<code>/`, no los pesos ONNX; y genera `audio/VOICE_ATTRIBUTION.md` con enlaces a las fichas. La caché local separa versiones por SHA.
+- Se añadió test que exige 10 voces, revisión SHA-40, metadatos completos y preservación de MODEL_CARD/atribución. Test commit `a4cbc96544d8814be1979fc0b939352de1de0e19`; CI y nueva generación con fichas pendientes.
+- La voz `pt_BR-faber-medium` fue retrainada desde Hi-Fi TTS reader 92 (CC BY 4.0); su MODEL_CARD debe acompañar los clips para conservar la atribución. La documentación oficial de Piper confirma el requisito de atribución para voces fine-tuned desde esa base.
+
+Fuentes: Piper `voices.json` en revisión `5ec43b1`, historial upstream `5ec43b1`/`2f358b6`, `docs/COMMERCIAL_USE.md`; `tools/audio-voices.json`, `tools/generar_audio.py`, `tests/audio-manifest.test.mjs`; 27 nov 2026.
+
+## 2026-11-27 — Normalización canónica de texto portugués
+- Al revisar los textos localizados se detectó un escape duplicado en el colapso de espacios (`/\\s+/g`), que no normalizaba espacios/tabulaciones como se pretendía. Corregido a `/\s+/g` en `addLocalizedEntry()`.
+- El test `--all-languages` ahora exige que todos los textos localizados tengan espacios canónicos colapsados. Test actualizado en commits `eb8e816` y `bb73e97`; CI pendiente.
+
+Fuente: `scripts/export-audio-manifest.mjs` y `tests/audio-manifest.test.mjs`; 27 nov 2026.
+
+## 2026-11-27 — Cobertura de exportación PT-BR A1–B2 como gate
+- Se amplió el test `--all-languages` para exigir textos PT-BR en cada nivel A1, A2, B1 y B2, y la presencia de la palabra inicial `olá`. Así se evita que una futura ejecución declare éxito exportando solo una parte del curso.
+- Prueba añadida en commit `d6ce54b7493b0d96d8cee65a70eede4f9fbfb16f`; pendiente CI.
+
+Fuente: `tests/audio-manifest.test.mjs`, `language-manager.js` y manifiestos PT-BR; 27 nov 2026.
+
+## 2026-11-27 — Causa raíz: bloques curriculares localizados indexados por ID
+- El diagnóstico del run #45962624924 confirmó que el registro sí detectaba `pt-BR[A1,A2,B1,B2]` y abría sus índices; el fallo era la lectura de bloques. `GUARDI_CURRICULUM_BLOCKS[idioma][nivel]` es un mapa por `block.id` (p. ej. `01-06`), pero el exportador buscaba `.units` directamente en el mapa. Corregido a `...[levelId]?.[block.id]`.
+- Este era el motivo real de `pt-BR: 0`; no era un problema de voz, de modelo ni de espacio. El cambio está en commit `19e3b46b026dac4b70d3fcabe785aa7f00a55cc9` y debe hacer que A1/A2/B1/B2 portugués se exporten con sus bloques completos.
+- El run #45962624924 falló intencionalmente con el nuevo guard estricto al detectar el bloque ausente; esa detección evitó generar otra biblioteca incompleta. CI y nueva generación pendientes.
+
+Fuente: log de Actions #45962624924, `languages/pt-BR/curriculum/a1/index.js`, `units-01-06.js` y `scripts/export-audio-manifest.mjs`; 27 nov 2026.
+
+## 2026-11-27 — Reintento de publicación cuando la rama avanza durante Piper
+- El run #45962481045 volvió a generar 127 clips ID y pasó el límite de tamaño (27,50 MiB total), pero el push falló porque la rama recibió commits mientras el workflow hacía rebase. El error fue una carrera de actualización de ref (`expected 87af5c5`, remoto ya en `de6ea73`), no un conflicto de contenido.
+- Se amplió `.github/workflows/audio.yml` con hasta cinco ciclos fetch/rebase/push para tolerar commits concurrentes; commit `f76962f1399434b248e12a2977e6dc9ecf6fec39`. El workflow se activa también cuando se modifica a sí mismo.
+- Para los siguientes lotes se dejará que la generación publique antes de hacer nuevas modificaciones manuales en la rama, reduciendo carreras. El primer lote todavía no está publicado.
+
+Fuente: log del job `generate` de Actions #45962481045 y `.github/workflows/audio.yml`; 27 nov 2026.
+
+## 2026-11-27 — Estado visible y prueba de voz PT-BR
+- `AudioEngine.updateVoiceStatus()` ahora reconoce una biblioteca Piper real cuando el manifiesto cargado contiene entradas del idioma activo, incluso si `voiceStatus` del registro todavía es `candidate`; al terminar `loadAudioManifest()` se actualiza el estado visible.
+- Se añadió `testPhrase: 'olá'` al curso PT-BR para que el botón de prueba pueda reproducir una frase portuguesa. Tests nuevos comprueban el estado de Piper y que `testVoice()` use el clip del manifiesto.
+- Cambios en commits `de6ea73`, `82dfb47` y `3fb0b40`; CI pendiente. La exportación PT-BR sigue en investigación; no declarar lista la prueba en la app hasta confirmar los clips y el manifiesto publicados.
+
+Fuente: `audio-engine.js`, `language-manager.js`, `tests/audio-engine.test.cjs`; 27 nov 2026.
+
+## 2026-11-27 — Diagnóstico estricto del currículo PT-BR en exportación de audio
+- La generación real del run #45962301907 creó 127 MP3 nuevos, reutilizó 2.265 y exportó 2.392 textos, todos `id`; el registro indicó `pt-BR: 0`. El tamaño final de esa ejecución fue 15,99 MiB de MP3 y 27,49 MiB para `audio/`; validación de límites success. El commit automático falló por push no-fast-forward porque el workflow antiguo partió de un SHA anterior al avance de la rama.
+- La prueba `all-language export` del run #45962348707 falló específicamente porque no encontró entradas `pt-BR`. Se endureció `loadLocalizedLevels()` para no silenciar índices/manifiestos/bloques ausentes y se añadieron mensajes de diagnóstico de registro y unidades por nivel. Esto hará visible la causa exacta en el siguiente CI/generador.
+- Workflow actualizado en `.github/workflows/audio.yml` para rebase antes del push; run #45962332154 quedó queued. No se considera completada la biblioteca hasta generar PT-BR, verificar manifiesto y confirmar publicación del commit de audio.
+
+Fuente: Actions #45962301907/#45962348707/#45962332154; logs del job `generate` y tests; 27 nov 2026.
+
+## 2026-11-27 — Metadato locale uniforme en exportación multilingüe
+- La prueba nueva de `--all-languages` detectó que los registros de indonesio conservaban el formato del exportador histórico sin `locale`, mientras los registros localizados tampoco añadían ese campo. Se corrigió `buildAllLanguageManifest()` para leer los locales desde `LanguageManager` y adjuntarlos a todas las entradas.
+- El test de exportación multilingüe del run #45962348707 marcó fallo en `Run Indonesian audio manifest export tests`; se está obteniendo el log completo al finalizar el job. El cambio correctivo está en commit `4c5d6ec7f751c166fe4fc95635e882d26fce2ee7`; CI nuevo pendiente.
+- La generación Piper del run #45962301907 seguía procesando textos cuando se registró; no hay todavía cifra final de audio generado.
+
+Fuente: `scripts/export-audio-manifest.mjs`, `tests/audio-manifest.test.mjs`, Actions #45962348707/#45962301907; 27 nov 2026.
+
+## 2026-11-27 — Pruebas directas de manifiesto y fallback por idioma
+- Se añadieron pruebas de `AudioEngine` que comprueban que, con el manifiesto cargado, se reproduce exactamente el archivo indicado por `audio/manifest.json`; si no existe entrada para el texto/idioma, no intenta una ruta huérfana y usa TTS del locale activo.
+- La corrección del nombre de archivo del modelo Piper está en ejecución en Actions #45962301907; `Install Piper and ffmpeg` success y `Generate missing multilingual audio` en curso al registrar. El run fue disparado por el commit `3e96f2d`; el workflow actualizado para rebase antes del push se disparó por `a9783cd` en run #45962332154, queued.
+- Nuevas pruebas añadidas en commit `ed552b2387e2fa6eafc32b9d87f93b702041dc89`; CI del head actualizado pendiente.
+
+Fuente: `tests/audio-engine.test.cjs`, `.github/workflows/audio.yml`, Actions #45962301907/#45962332154; 27 nov 2026.
+
+## 2026-11-27 — Robustez del commit automático de audio
+- El workflow ahora incluye `.github/workflows/audio.yml` en sus propios paths de activación y, antes de publicar clips, hace `git fetch`, `git rebase origin/$GITHUB_REF_NAME` y `git push origin HEAD:$branch`. Esto evita un push no-fast-forward si el branch avanzó mientras Piper generaba clips.
+- La primera generación tras corregir el nombre de archivo está en ejecución en Actions #45962301907 (commit de evento `3e96f2d`). Como el workflow anterior no rebasaba, esa ejecución puede fallar al publicar si el branch avanzó durante la generación; la siguiente ejecución usará la versión robusta y reutilizará los audios ya generados.
+
+Fuente: `.github/workflows/audio.yml`, Actions #45962301907 y commits del branch; 27 nov 2026.
+
+## 2026-11-27 — Corrección de descarga de modelos Piper
+- Primera ejecución real del workflow #45962200126 instaló Piper y ffmpeg correctamente, pero falló al descargar el modelo: el generador usaba el último segmento del directorio (`medium`) como nombre de archivo. Hugging Face espera el nombre canónico de voz (`id_ID-news_tts-medium.onnx`).
+- Corregido `download_piper_model()` para recibir por separado el identificador canónico de voz y la ruta de carpeta, y construir los nombres `.onnx` / `.onnx.json` con el identificador. El cambio está en commit `3e96f2d412970a1e47c64a9e2e4fd8c65d0c4274`; el siguiente push debe volver a activar generación.
+- No se generó audio nuevo en esa ejecución y no se debe contar como biblioteca generada. El inventario previo de ~26 MiB corresponde a archivos existentes.
+
+Fuente: log del job `generate` de Actions #45962200126 y `tools/generar_audio.py`; 27 nov 2026.
+
+## 2026-11-27 — Presupuesto conservador de almacenamiento de audio
+- Se redujo el límite total del workflow de 1 GiB a 500 MiB para la carpeta `audio/`, manteniendo el bloqueo de archivos individuales de 100 MiB. El objetivo operativo es dejar margen para futuras ampliaciones de los diez idiomas, no consumir todo el límite recomendado.
+- Inventario previo del árbol Git (head `6b4d106`): 2.268 MP3 = 14.867.472 bytes (~14,18 MiB) y 2.268 OPUS = 10.950.730 bytes (~10,44 MiB); JSON de audio = 959.849 bytes (~0,92 MiB). Total aproximado de `audio/`: 26 MiB. Esto es tamaño actual del árbol, no resultado de generación Piper.
+- El workflow de generación Piper #45962200126 está ejecutándose en `Install Piper and ffmpeg`; todavía no hay resultado de biblioteca generada.
+
+Fuente: árbol Git #6b4d106, `.github/workflows/audio.yml` y Actions #45962200126; 27 nov 2026.
+
+## 2026-11-27 — Exportación de audio guiada por el registro multiidioma
+- `scripts/export-audio-manifest.mjs --all-languages` ahora lee `LanguageManager.list()` y recorre las rutas curriculares declaradas para cada idioma, en vez de tener PT-BR codificado como caso especial. Los idiomas con `curriculum` vacío se omiten hasta que tengan contenido real; indonesio conserva su exportador actual y los demás cursos se descubren al registrar sus rutas.
+- Se añadió prueba para el modo `--all-languages`: comprueba que se exporten ID y PT-BR, que cada texto tenga idioma/locale/origen y que los hashes sean únicos por idioma.
+- El CI del head `0b3a448` ya mostró `Run audio engine fallback tests`, `Run Indonesian audio manifest export tests`, `Run offline audio preparation tests` y `Run audio generation engine tests` en success; regresión completa seguía en curso. El head actual incorpora el exportador genérico y su prueba; CI nuevo pendiente.
+- Los ocho idiomas sin rutas curriculares declaradas no producen clips todavía. Tener voz configurada no inventa un curso ni texto que sintetizar; el generador los incorporará cuando sus manifiestos/rutas se añadan al registro.
+
+Fuente: `language-manager.js`, `scripts/export-audio-manifest.mjs`, `tests/audio-manifest.test.mjs` y Actions #45962044631; 27 nov 2026.
+
+## 2026-11-27 — Corrección de fallback de audio durante carga del manifiesto
+- CI del head `dd3c1a1` detectó que `speak()` iniciaba el MP3 y, simultáneamente, lanzaba TTS del dispositivo mientras el manifiesto aún cargaba. Se corrigió para retornar cuando `playRecorded()` inicia correctamente; una vez cargado el manifiesto, las frases ausentes pasan al fallback del dispositivo sin intentar una ruta inexistente.
+- Type checks #45961834777 success; regresión #45961834730 falló en el paso `Run audio engine fallback tests`, por este comportamiento. Calidad offline success. La nueva corrección está en commit `2a08884466690fd48c9e0b82fbd67c93f4585944`; CI nuevo pendiente.
+- La configuración de voces ahora contiene los diez idiomas registrados en Guardi. La generación real todavía no se ha ejecutado; tamaño de biblioteca, validez de cada modelo y cobertura de contenido quedan pendientes de comprobar.
+
+Fuente: GitHub Actions #45961834730/#45961834777 y `audio-engine.js`; 27 nov 2026.
+
+## 2026-11-27 — Ajuste de regresión de audio Piper
+- La regresión anterior falló únicamente en una aserción histórica que exigía literalmente la ruta MP3 antigua. `AudioEngine` ahora consulta primero `audio/manifest.json` por idioma + hash y conserva la ruta local como respaldo; la prueba se actualizó para verificar ese comportamiento.
+- Type checks del head anterior: success. La regresión fallida no implicó un error del generador ni del currículo.
+- Siguiente paso: validar CI del ajuste; después ejecutar la generación Piper y medir el tamaño real antes de ampliar voces a los demás idiomas.
+- No modificar IndexedDB v1, backup JSON v3 ni introducir backend/servicios de pago.
+
+Fuente: Actions #45961301234, `tests/regression.test.cjs` y `audio-engine.js`; 27 nov 2026.
+
+## 2026-11-27 — Corrección de audio y etiquetas del curso PT-BR (en PR)
+
+- Rama `fix/pt-br-audio-language-labels`: si falta un MP3 del idioma activo, `AudioEngine` solicita al navegador una voz usando el locale del curso aunque `getVoices()` no haya enumerado voces; acepta voces `pt-PT` como respaldo compatible con `pt-BR`, sin usar voces de otro idioma.
+- El mensaje de consulta de palabras y la etiqueta accesible del selector se actualizan al idioma activo; el estado de audio ya no afirma que todos los cursos incluyen grabaciones Piper cuando no están configuradas.
+- Pruebas añadidas/actualizadas en `tests/audio-engine.test.cjs` para las seis palabras iniciales PT-BR, locale sin voz enumerada, voz PT-PT y cambio de idioma en las etiquetas. `tests/browser-e2e.test.cjs` actualizado para reflejar el estado honesto del respaldo TTS; test añadido para impedir que PT-BR use una voz indonesia como fallback. Se ajustaron aserciones E2E antiguas al mensaje real del fallback TTS (sin confundir grabaciones Piper configuradas con voz del dispositivo). CI pendiente; PR sin fusionar.
+- Sin cambios a contenido curricular, traducciones/pronunciación, IndexedDB v1, backup JSON v3, dependencias ni progreso.
+
+Fuente: solicitud del dueño del 27 nov 2026; `audio-engine.js`, `tests/audio-engine.test.cjs` y `.github/workflows/regression.yml`.
+
 ## 2026-11-26 — Diversidad PT-BR B2 U37–U40
 
 - U37–U40 convierten sus 40 actividades de banco de unidad a `order`; las 40 actividades de lección permanecen `mc`.
@@ -727,9 +969,67 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Según la hoja de ruta vigente, el siguiente idioma previsto es inglés desde A1/cero para hispanohablantes; no se inicia en esta actualización.
 
 
+## 2026-11-27 — Biblioteca de audio Piper multilingüe en progreso
+- La tarea activa amplía la corrección de audio PT-BR a una biblioteca pre-generada local para todos los idiomas de cursos disponibles, sin depender de la voz del dispositivo en el funcionamiento normal.
+- Configuración inicial en `tools/audio-voices.json`: indonesio `id_ID-news_tts-medium` y portugués brasileño `pt_BR-faber-medium`, ambos de `rhasspy/piper-voices`.
+- `tools/generar_audio.py` genera MP3 mono 24 kHz/32 kbps, reutiliza archivos por SHA-1 corto del texto y crea `audio/manifest.json` con idioma, texto, archivo y fuentes.
+- `.github/workflows/audio.yml` permite `workflow_dispatch` y regeneración automática cuando cambia el currículo/configuración de audio; descarga Piper en GitHub Actions y comprueba límites de tamaño (<1 GiB total y <100 MiB por archivo).
+- `scripts/export-audio-manifest.mjs` se amplió para exportar textos de cursos disponibles de forma multilingüe; PT-BR se recoge desde sus bloques A1–B2 y el currículo indonesio existente se conserva.
+- `audio-engine.js` ahora carga `audio/manifest.json` y resuelve el clip por idioma activo + hash; `speechSynthesis` queda únicamente como respaldo si falta el clip.
+- La biblioteca completa todavía no está generada ni verificada en GitHub Actions. No declarar audio PT-BR funcional hasta generar los archivos y pasar CI; después se probará en GitHub Pages antes de continuar con las lecciones de inglés B2.
+- No modificar IndexedDB v1, backup JSON v3 ni introducir backend/servicios de pago.
+- Fuente: PR #942 y cambios de la rama `fix/pt-br-audio-language-labels`, 27 nov 2026.
+
+
+## 2026-11-27 — Bootstrap de inventarios offline para el precache
+- La regresión del head `31ae982` confirmó que los tests principales y TypeScript pasaban, pero `Run resilient service worker install tests` fallaba porque el Service Worker ya precargaba `audio/manifest-multilingual.json`, `audio/pt-BR/manifest.json` y `audio/pt-BR/metadata.json` antes de que la generación los creara.
+- Se añadieron los tres archivos bootstrap con estructuras válidas vacías (sin inventar clips ni hashes). El generador los sustituirá con los inventarios y huellas SHA-256 reales al terminar.
+- La generación completa sigue pendiente: la ejecución antigua #45962876912 aún estaba sintetizando; no se cuenta como publicada hasta confirmar PT-BR, tamaños, inventarios y commit automático. PR #942 sigue abierta y sin fusionar.
+- Fuente: Actions #45964229991, tests/service-worker-install.test.cjs, service-worker.js y commits bootstrap #3777c6a/#ab1a610/#bd394e8; 27 nov 2026.
+
+
+## 2026-11-27 — Primera generación Piper publicada en la rama
+- GitHub Actions workflow #25 (#45964968625), commit de síntesis por API Python, terminó con éxito: instalación Piper/ffmpeg, generación, validación de límites y commit automático.
+- Inspección del árbol Git recursivo de la rama: 7.282 archivos bajo `audio/`, 56.008.631 bytes (53,41 MiB) en total. Por carpetas: `audio/id/` 4.663 archivos y 27.714.030 bytes (26,43 MiB); `audio/pt-BR/` 2.612 archivos y 25.240.698 bytes (24,07 MiB); `audio/voices/` 2 archivos y 772 bytes. Las cifras de carpetas incluyen manifests/metadatos además de clips.
+- Presupuesto automático actual: 500 MiB; la biblioteca ocupa aprox. 10,7 %. No hay motivo actual para temer el límite de GitHub por tamaño.
+- Los diez modelos están configurados, pero el manifiesto generado y los clips reales cubren solamente los currículos registrados: indonesio y portugués brasileño. Inglés y los otros siete cursos no deben marcarse como cubiertos todavía.
+- La regresión del commit de PR `8e6e432` seguía en ejecución al registrar esta nota (workflow #4415); type checks pasó. No se ha probado aún la reproducción real en GitHub Pages ni se ha fusionado la PR #942.
+- Se actualizó la descripción de PR #942 con estas cifras y el estado real.
+- Fuente: GitHub Actions #45964968625 y árbol Git de `fix/pt-br-audio-language-labels`, 27 nov 2026.
+
+
+## 2026-11-27 — Alinear la prueba de inventario con el nuevo manifiesto Piper
+- La primera regresión tras generar el lote falló en `tests/audio-manifest.test.mjs`: comparaba todos los MP3 nuevos de `audio/id/` contra el antiguo `audio/index.json` (2.268 IDs), aunque el manifiesto Piper ahora incluye 2.392 clips ID al sumar respuestas/ejercicios interactivos y B2.
+- No se debe ampliar ni reescribir el índice legado `audio/index.json`, porque mantiene su propio contrato para el audio preexistente. La prueba ahora compara los MP3 generados con los IDs de `audio/manifest.json` cuando existe el inventario Piper, y mantiene el índice legado como fallback en ramas antiguas.
+- Cambio de prueba registrado en commit `753a541`; requiere CI nuevo. No se ha fusionado PR #942 ni se ha probado aún GitHub Pages.
+- Fuente: Regression workflow #45966347954, job test, error en `tests/audio-manifest.test.mjs`; 27 nov 2026.
+
+
+## 2026-11-27 — Limpieza de clips MP3 obsoletos
+- Tras alinear el test con `audio/manifest.json`, el inventario de árbol reveló tres MP3 antiguos en `audio/id/` que ya no tenían entrada en el manifiesto: `6a59ab59f488`, `e08b77f1505c`, `e280bb781206`. Una búsqueda exacta de esos IDs en el código del repositorio no encontró referencias.
+- Se añadió al generador una poda limitada a `audio/<idioma>/*.mp3`: elimina únicamente clips cuyo hash ya no está en el manifiesto actual de ese idioma. No toca OPUS, archivos no MP3 ni otros idiomas. Esto mantiene el directorio generado y su inventario sincronizados al cambiar los currículos.
+- Cambio en `tools/generar_audio.py`, commit `a7b6738`; requiere una nueva ejecución del workflow de generación y CI posterior.
+- Fuente: árbol Git de la rama y búsqueda exacta de IDs, 27 nov 2026.
+
+
+## 2026-11-27 — README actualizado a Guardi multilingüe
+- README ya no describe el proyecto como una app exclusiva de indonesio ni documenta Gemini como función opcional. Ahora refleja el catálogo real: pt-BR A1–B2 e indonesio A1–B2 disponibles; inglés en desarrollo con B2 bajo revisión editorial/no seleccionable; siete idiomas restantes en preparación.
+- Se documentan audio Piper ID/PT-BR, límites offline, persistencia local IndexedDB, backup JSON v3 y pruebas sin afirmar certificación lingüística.
+- Cambio en rama `docs/readme-multilingual-20261127`, PR separada para mantener el alcance de documentación aislado de la revisión curricular #946.
+- Fuente de disponibilidad: `language-manager.js` en `main`; README actualizado el 27 nov 2026.
+
+
+## 2026-11-27 — Regla permanente: README sincronizado con cada publicación de idioma
+- Corrección: el README anterior indicaba por error que el indonesio solo tenía A1 y A2. El currículo indonesio también tiene B1 y B2; el catálogo correcto es A1, A2, B1 y B2. README corregido en la rama `docs/readme-indonesian-a1-b2-20261127`.
+- Regla obligatoria para cada publicación: en el mismo cambio/PR que habilite y publique un idioma o nivel, actualizar `README.md` con el estado real de disponibilidad, niveles, audio y limitaciones relevantes. Verificar la tabla contra los currículos y el selector/registro de idiomas; no deducir niveles disponibles solo del manifiesto de audio ni de documentación histórica.
+- Añadir/ejecutar una prueba de regresión que compruebe que la tabla del README coincide con los niveles realmente disponibles. No marcar un nivel como disponible antes de que el curso sea seleccionable y esté publicado.
+- Esta regla aplica a todos los idiomas futuros y a nuevas ampliaciones de niveles. Fuente: corrección explícita del usuario y currículos indonesios A1–B2 comprobados con los cargadores `scripts/load-inline-b1-curriculum.mjs`, `scripts/load-inline-b2-curriculum.mjs` y pruebas de preparación; 27 nov 2026.
+
+
 ## 2026-11-26 — Inglés americano A1 aprobado; primer bloque en PR
 - El dueño aprobó el temario A1 de en-US (32 unidades) y autorizó iniciar Fase 1. Se implementa en bloques de 4–8 unidades; PR de inglés no se fusiona hasta aprobación explícita posterior. Mantener en.available=false y “Próximamente” hasta aprobación de publicación del nivel.
-- PR #891 U1–U6: 6 unidades y 132 entradas, con cinco repeticiones léxicas detectadas en la auditoría ampliada y corregidas en esta rama; CI pendiente de repetición. (alfabeto/deletreo; saludos y presentaciones; información personal; números/contacto; a/an; singular/plural). 5 lecciones explícitas y 22 entradas por unidad; vocabulario not_checked. El esquema conserva exactamente id,target,esp,ex,exEsp,verification; no se agregan POS/audio ni se modifica IndexedDB v1 o backup JSON v3.
-- Contrato de referencia: ejercicios mc y order, con 10 ejercicios de unidad + 2 por lección; los ejercicios no se presentan como validación lingüística. No se modifica PT-BR ni otros cursos.
+- PR #891 U1–U6: 6 unidades y 132 entradas; cinco repeticiones léxicas detectadas en auditoría ampliada y corregidas. (alfabeto/deletreo; saludos y presentaciones; información personal; números/contacto; a/an; singular/plural). 5 lecciones explícitas y 22 entradas por unidad; vocabulario not_checked. El esquema conserva exactamente id,target,esp,ex,exEsp,verification; no se agregan POS/audio ni se modifica IndexedDB v1 o backup JSON v3.
+- Contrato: ejercicios mc y order, 10 ejercicios de unidad + 2 por lección; no se presentan como validación lingüística. No se modifica PT-BR ni otros cursos.
 - Fuentes y límites de licencia: docs/EN_US_A1_SOURCES.md; CEFR-J/NGSL aún requieren trazabilidad por lema antes de afirmar cotejo. Ejemplos originales. Inglés americano (en-US); notas británicas solo cuando contrasten un punto útil.
-- Conflicto resuelto para esta tarea: las reglas generales antiguas de fusión automática quedan subordinadas a la instrucción específica vigente de no fusionar PRs de inglés sin aprobación expresa.
+- CI del head #891 `0fe8cc5ae807c61cbbeb0d26a72af5cae448cd5f`: regresión #4131 y type checks #253 success. El PR mantiene conflicto de merge con main hasta sincronizar los archivos compartidos.
+- La directiva específica de no fusionar PRs de inglés sin aprobación expresa prevalece sobre reglas generales antiguas de fusión automática.

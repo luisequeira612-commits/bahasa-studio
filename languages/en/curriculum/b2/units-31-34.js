@@ -38,7 +38,7 @@ lessons:[
 ["to some extent","hasta cierto punto","The criticism is justified to some extent.","La crítica está justificada hasta cierto punto."],
 ["arguably","podría decirse que","Arguably, the second option offers better value.","Podría decirse que la segunda opción ofrece una mejor relación calidad-precio."],
 ["reportedly","según se informa","The meeting has reportedly been moved to Friday.","Según se informa, la reunión se ha trasladado al viernes."],
-["as far as we can tell","por lo que podemos determinar","As far as we can tell, no data was lost.","Por lo que podemos determinar, no se perdió ningún dato."],
+["as far as we can tell","por lo que podemos determinar","As far as we can tell, no data were lost.","Por lo que podemos determinar, no se perdió ningún dato."],
 ["there is some evidence that","hay ciertos indicios de que","There is some evidence that sleep affects memory.","Hay ciertos indicios de que el sueño afecta a la memoria."],
 ["cannot be ruled out","no se puede descartar","A further delay cannot be ruled out.","No se puede descartar otro retraso."],
 ["tends to","tiende a","The system tends to perform better under lighter loads.","El sistema tiende a funcionar mejor con cargas menores."],

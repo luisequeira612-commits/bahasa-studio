@@ -110,9 +110,11 @@ test('el popup de significado usa texto, traducción y ejemplos con locale diná
 test('la ayuda de Palabras nuevas y los ajustes de audio no nombran indonesio de forma fija', () => {
     assert.match(html, /Toca una palabra para consultar su significado sin salir de la lección/);
     assert.match(html, /<h3>Audio del curso<\/h3>/);
+    assert.match(html, /Probar audio del idioma activo/);
+    assert.match(html, /Prueba el audio del idioma del curso/);
     assert.match(html, /aria-label="Voz del idioma activo"/);
     assert.match(html, /Buscar en el idioma del curso o en español/);
-    assert.doesNotMatch(html, /Audio en indonesio|Buscar indonesio o español|Toca una palabra en indonesio/);
+    assert.doesNotMatch(html, /Audio en indonesio|Buscar indonesio o español|Toca una palabra en indonesio|voz indonesia|Probar audio incluido/);
 });
 
 test('el tutor API usa el idioma activo y el modo local no muestra reglas indonesias en portugués', () => {

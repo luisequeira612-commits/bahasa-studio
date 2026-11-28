@@ -17,7 +17,7 @@ const defs=[
 ["to remain dissatisfied","seguir insatisfecho","The customer remained dissatisfied with the response.","El cliente siguió insatisfecho con la respuesta."],
 ["to reach a mutually acceptable outcome","llegar a un resultado aceptable para ambas partes","We hope to reach a mutually acceptable outcome.","Esperamos llegar a un resultado aceptable para ambas partes."],
 ["to address the root cause","abordar la causa principal","The new procedure addresses the root cause of the problem.","El nuevo procedimiento aborda la causa principal del problema."],
-["to prevent a recurrence","evitar que se repita","Staff training should help prevent a recurrence.","La formación del personal debería ayudar a evitar que se repita."],
+["to prevent a recurrence","evitar que se repita","Staff training should help prevent a recurrence.","La capacitación del personal debería ayudar a evitar que se repita."],
 ["to compensate for a loss","compensar una pérdida","The company agreed to compensate customers for the loss.","La empresa aceptó compensar a los clientes por la pérdida."],
 ["to seek clarification","solicitar una aclaración","I am writing to seek clarification about the charges.","Le escribo para solicitar una aclaración sobre los cargos."],
 ["to handle a complaint","gestionar una queja","All complaints are handled by a specialist team.","Todas las quejas son gestionadas por un equipo especializado."],
@@ -62,7 +62,7 @@ lessons:[
 {n:57,title:"Explaining complex processes",desc:"Explica procesos complejos mediante secuenciación, relaciones causales, precisión y reformulación para distintas audiencias.",grammar:"Process description, sequencing, cause/effect, passive process verbs, conditions and explanatory reformulation.",trap:"Ensure that each step has a clear subject or agent. Use once/after/before to sequence; use thereby to explain a result, not simply the next step.",rows:[
 ["to consist of","constar de","The process consists of four main stages.","El proceso consta de cuatro etapas principales."],
 ["to be divided into","dividirse en","The procedure is divided into three phases.","El procedimiento se divide en tres fases."],
-["to begin with","para empezar","To begin with, the raw data is collected.","Para empezar, se recopilan los datos sin procesar."],
+["to begin with","para empezar","To begin with, the raw data are collected.","Para empezar, se recopilan los datos sin procesar."],
 ["subsequently","posteriormente","The samples are subsequently tested in a laboratory.","Posteriormente, las muestras se analizan en un laboratorio."],
 ["after completion","después de completarse","After completion, the form is checked for errors.","Después de completarse, el formulario se revisa para detectar errores."],
 ["to trigger a response","desencadenar una respuesta","A temperature change triggers a response in the sensor.","Un cambio de temperatura desencadena una respuesta en el sensor."],

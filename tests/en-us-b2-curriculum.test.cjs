@@ -376,6 +376,31 @@ test('English B2 U15–U18 lesson targets are covered once and match their sente
 });
 
 
+test('English B2 U19 concession lessons match their vocabulary focus', () => {
+  const unit = loadB2().find((item) => item.unitNumber === 19);
+  assert.ok(unit);
+  const expected = [
+    ['Concesión y condiciones abiertas', ['even if', 'whether or not', 'regardless of', 'no matter what', 'whatever the outcome']],
+    ['Condiciones y alternativas prácticas', ['unless', 'if that is not the case', 'if that is not possible']],
+    ['Conectores concesivos y de transición', ['even so', 'nevertheless', 'nonetheless', 'in any case']],
+    ['Condiciones y acuerdos formales', ['irrespective of', 'on the proviso that', 'so long as', 'on the understanding that']],
+    ['Concesión y planificación ante imprevistos', ['come what may', 'in spite of', 'despite the fact that', 'to make provision for', 'to make allowances for', 'under any circumstances']],
+  ];
+  for (let index = 0; index < expected.length; index += 1) {
+    const [title, targets] = expected[index];
+    const lesson = unit.lessons[index];
+    assert.equal(lesson.title, title);
+    assert.deepEqual(lesson.vocabIds.map((id) => unit.vocab.find((word) => word.id === id)?.target), targets);
+    const exercise = lesson.exercises.find((item) => item.type === 'order');
+    assert.ok(exercise);
+    assert.equal(exercise.vocabId, lesson.vocabIds[1]);
+    const word = unit.vocab.find((item) => item.id === exercise.vocabId);
+    assert.ok(word);
+    assert.deepEqual(Array.from(exercise.correctOrder),
+      word.ex.replace(/[.,!?;:]/g, '').trim().split(/\\s+/));
+  }
+});
+
 test('English B2 U19–U20 cover their targets and keep review examples aligned', () => {
   const units = loadB2();
   const u19 = units.find((item) => item.unitNumber === 19);

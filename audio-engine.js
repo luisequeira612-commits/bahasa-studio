@@ -192,6 +192,7 @@ window.AudioEngine = {
         return true;
     },
     localizeCourseLabels() {
+        const language = this.getLanguageConfig();
         const area = document.getElementById('exerciseArea');
         if (area && typeof area.querySelectorAll === 'function') {
             area.querySelectorAll('p').forEach(paragraph => {

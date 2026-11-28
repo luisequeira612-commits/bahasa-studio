@@ -70,8 +70,8 @@ u5,[
 ['Lección 1: Más y menos','Compara dos opciones.','Mais/menos + adjetivo + do que establece una comparación.',[0,1],['ptbr_a2_u3_v01']],
 ['Lección 2: Igual de','Expresa que dos cosas tienen una cualidad similar.','Tão + adjetivo + quanto indica igualdad.',[2,9],[]],
 ['Lección 3: Mejor y peor','Valora dos alternativas.','Melhor y pior son comparativos irregulares.',[3,4],[]],
-['Lección 4: Tamaño y precio','Compara dimensiones y precios.','Maior y menor comparan tamaño; barato y caro describen precio.',[5,6,7],[]],
-['Lección 5: Elegir una opción cómoda','Compara comodidad y coste antes de elegir.','El adjetivo concuerda con el sustantivo: quarto confortável, mesa confortável.',[8,9],['ptbr_a2_u3_v05']]
+['Lección 4: Tamaño y precio','Compara dimensiones y recupera vocabulario de precios.','Maior y menor comparan tamaño; barato ya se presentó en A1 U10 y se retoma para describir precios dentro de comparaciones.',[5,6,7],['ptbr_a1_u10_v06']],
+['Lección 5: Elegir una opción cómoda','Compara comodidad y recupera caro para valorar una opción.','Caro ya se presentó en A1 U10 y se retoma al comparar alternativas; el adjetivo concuerda con el sustantivo: quarto confortável, mesa confortável.',[8,9],['ptbr_a2_u3_v05','ptbr_a1_u10_v07']]
 ]);
 const unit6=makeUnit(6,'Pedir ayuda y resolver problemas','Explica un inconveniente, solicita ayuda y propone una solución.',
 'Poder + infinitivo sirve para pedir algo con cortesía: pode explicar? Precisar + infinitivo expresa necesidad; tentar y conseguir describen intentos y resultados.',

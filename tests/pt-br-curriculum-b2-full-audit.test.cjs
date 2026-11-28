@@ -98,7 +98,7 @@ test('all 40 PT-BR B2 units have complete structure, lesson coverage and valid e
  ]);
  assert.equal(totalUnits,40);
  assert.deepEqual(Array.from(units,unit=>unit.unitNumber),numbers);
- const a2Ids=new Set(a2Units.flatMap(unit=>unit.vocab.map(word=>word.id)));
+ const priorLevelIds=new Set([...a1Units,...a2Units,...b1Units].flatMap(unit=>unit.vocab.map(word=>word.id)));
  const previousTargets=new Map();
  for(const [level,priorUnits] of [['A1',a1Units],['A2',a2Units],['B1',b1Units]])for(const priorUnit of priorUnits)for(const priorWord of priorUnit.vocab){
   const key=normalize(priorWord.target);
@@ -164,7 +164,7 @@ test('all 40 PT-BR B2 units have complete structure, lesson coverage and valid e
     lessonCoverage.push(id);
    }
    for(const id of lesson.reviewVocabIds??[]){
-    assert.ok(a2Ids.has(id),lessonPath+' review ID must resolve to A2: '+id);
+    assert.ok(priorLevelIds.has(id),lessonPath+' review ID must resolve to a previously introduced A1/A2/B1 term: '+id);
     assert.ok(!lesson.vocabIds.includes(id),lessonPath+' cannot mark new vocabulary as review: '+id);
    }
    const lessonExerciseIds=[];
@@ -185,4 +185,58 @@ test('all 40 PT-BR B2 units have complete structure, lesson coverage and valid e
  assert.equal(globalTargets.size,400);
  assert.equal(globalExamples.size,400);
  assert.deepEqual(priorLevelDuplicates,[],'B2 must not repeat A1/A2/B1 terms: '+priorLevelDuplicates.join('; '));
+});
+
+
+test('PT-BR A1-B2 global lexical progression documents every exact repeated target',async()=>{
+ const {loader}=createPilot();
+ const levels=[
+  ['A1',24],['A2',30],['B1',36],['B2',40]
+ ];
+ const loaded=await Promise.all(levels.map(([level,count])=>loader.loadUnits('pt-BR',level,Array.from({length:count},(_,i)=>i+1))));
+ const seen=new Map(),duplicates=[];
+ for(let i=0;i<levels.length;i++){
+  const [level]=levels[i],units=loaded[i].units;
+  for(const unit of units)for(const word of unit.vocab){
+   const key=normalize(word.target),previous=seen.get(key);
+   if(previous)duplicates.push({
+    target:key,first:previous.id,firstUnit:previous.level+'.U'+previous.unit,
+    repeated:word.id,repeatedUnit:level+'.U'+unit.unitNumber,
+    markedForReview:unit.lessons.some(lesson=>(lesson.reviewVocabIds||[]).includes(previous.id))
+   });
+   else seen.set(key,{id:word.id,level,unit:unit.unitNumber});
+  }
+ }
+ assert.ok(duplicates.length>0,'The global audit should detect known planned recycling');
+ const unmarked=duplicates.filter(item=>!item.markedForReview);
+ assert.deepEqual(unmarked,[],'Every exact lexical reuse across A1-B2 must be intentional and explicitly marked as review: '+JSON.stringify(unmarked));
+ const [a1,a2,b1,b2]=loaded.map(item=>item.units);
+ const get=(units,number)=>units.find(unit=>unit.unitNumber===number);
+ const b1u8=get(b1,8),b1u23=get(b1,23),b1u31=get(b1,31),b1u34=get(b1,34);
+ assert.ok(b1u8.vocab.some(word=>word.target==='pesquisa aplicada'));
+ assert.ok(b1u8.vocab.some(word=>word.target==='revisão por pares'));
+ assert.ok(b1u23.vocab.some(word=>word.target==='plano de contingência'));
+ assert.ok(b1u31.vocab.some(word=>word.target==='periódico científico'));
+ assert.ok(b1u31.vocab.some(word=>word.target==='repositório institucional'));
+ assert.ok(!b1u31.vocab.some(word=>['pesquisa aplicada','revisão por pares','protocolo experimental','reprodutibilidade'].includes(word.target)));
+ assert.ok(b1u34.vocab.some(word=>word.target==='avaliação de vulnerabilidade'));
+ assert.ok(!b1u34.vocab.some(word=>word.target==='plano de contingência'));
+ assert.ok(b1u34.lessons.some(lesson=>(lesson.reviewVocabIds||[]).includes('ptbr_b1_u23_v02')));
+
+ const b2u12=get(b2,12),b2u19=get(b2,19),b2u20=get(b2,20),b2u25=get(b2,25),b2u28=get(b2,28);
+ assert.ok(b2u12.lessons.some(lesson=>lesson.grammar.includes('no necesariamente idéntico')&&lesson.grammar.includes('misma proporción')));
+ assert.ok(b2u19.lessons.some(lesson=>lesson.grammar.includes('categoría gramatical')&&lesson.grammar.includes('transparente')));
+ assert.ok(b2u19.lessons.some(lesson=>(lesson.reviewVocabIds||[]).includes('ptbr_a2_u12_v07')&&(lesson.reviewVocabIds||[]).includes('ptbr_b1_u11_v06')));
+ assert.ok(b2u20.lessons.some(lesson=>lesson.grammar.includes('locución fija')&&lesson.grammar.includes('levar em conta')));
+ assert.ok(get(b2,1).lessons.some(lesson=>(lesson.reviewVocabIds||[]).includes('ptbr_b1_u2_v09')));
+ assert.ok(get(b2,2).lessons.some(lesson=>(lesson.reviewVocabIds||[]).includes('ptbr_b1_u2_v03')));
+ assert.ok(get(b2,3).lessons.some(lesson=>(lesson.reviewVocabIds||[]).includes('ptbr_b1_u2_v03')));
+ assert.ok(get(b2,11).lessons.some(lesson=>(lesson.reviewVocabIds||[]).includes('ptbr_b1_u2_v03')));
+ assert.ok(get(b2,21).lessons.some(lesson=>(lesson.reviewVocabIds||[]).includes('ptbr_b1_u4_v06')));
+ assert.ok(get(b2,15).lessons.some(lesson=>(lesson.reviewVocabIds||[]).includes('ptbr_b1_u11_v06')));
+ assert.ok(get(b2,18).lessons.some(lesson=>(lesson.reviewVocabIds||[]).includes('ptbr_b1_u11_v06')));
+ assert.ok(b2u25.lessons.some(lesson=>lesson.grammar.includes('sustantivo')&&lesson.grammar.toLocaleLowerCase('pt-BR').includes('antecipação')));
+ assert.ok(b2u28.grammar.includes('no es lo mismo que un hallazgo o una conclusión'));
+ const b2u28Source=fs.readFileSync(path.join(__dirname,'../languages/pt-BR/curriculum/b2/units-28-30.js'),'utf8');
+ assert.ok(b2u28Source.includes('cada fila representa un caso')&&b2u28Source.includes('cada columna una variable'));
 });

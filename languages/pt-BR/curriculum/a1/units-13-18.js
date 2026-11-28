@@ -136,8 +136,8 @@ const unit17=addUnit(17,'Emociones y sensaciones','Expresa emociones, estados pe
 'Estar + adjetivo para estados; estar com + sustantivo para sensaciones como fome, sede, sono y medo; concordancia de género.',
 'Estar feliz o estar com fome','En portugués se dice estou feliz, pero estou com fome / com sede / com sono. No traduzcas literalmente «tengo» en estas expresiones.',
 u17,[
-['Lección 1: Alegría y tristeza','Expresa dos emociones básicas.','Feliz y triste pueden seguir a estar: estou feliz, ela está triste.',[0,1],['ptbr_a1_u7_v07']],
-['Lección 2: Cansancio y concordancia','Describe cansancio y ajusta el género.','Cansado se usa en masculino y cansada en femenino: estou cansado / estou cansada.',[2,0],['ptbr_a1_u2_v09']],
+['Lección 1: Alegría y tristeza','Recupera dos emociones básicas ya presentadas y las usa con estar.','Feliz y triste pueden seguir a estar: estou feliz, ela está triste. Son términos de repaso, introducidos en A1 U9.',[0,1],['ptbr_a1_u9_v08','ptbr_a1_u9_v09']],
+['Lección 2: Cansancio y concordancia','Recupera cansado y ajusta el género según la persona.','Cansado se usa en masculino y cansada en femenino: estou cansado / estou cansada. Es vocabulario de repaso, ya presentado en A1 U9.',[2,0],['ptbr_a1_u9_v07','ptbr_a1_u9_v08']],
 ['Lección 3: Hambre y sed','Expresa dos sensaciones comunes.','Las expresiones son estar com fome y estar com sede.',[3,4],['ptbr_a1_u5_v03']],
 ['Lección 4: Sueño y miedo','Nombra sueño y miedo con estar com.','Se dice estou com sono y estou com medo; com forma parte de la expresión.',[5,6],[]],
 ['Lección 5: Preocupación y calma','Describe estados personales con adjetivos.','Preocupado, calmo y nervoso concuerdan con la persona descrita.',[7,8,9],['ptbr_a1_u7_v07']]

@@ -19,7 +19,10 @@ const sources={
  './languages/pt-BR/curriculum/b2/units-19-21.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b2/units-19-21.js'),'utf8'),
  './languages/pt-BR/curriculum/b2/units-22-24.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b2/units-22-24.js'),'utf8'),
  './languages/pt-BR/curriculum/b2/units-25-27.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b2/units-25-27.js'),'utf8'),
- './languages/pt-BR/curriculum/a2/index.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2/index.js'),'utf8')
+ './languages/pt-BR/curriculum/a2/index.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2/index.js'),'utf8'),
+ './languages/pt-BR/curriculum/b1/index.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b1/index.js'),'utf8'),
+ './languages/pt-BR/curriculum/b1/units-01-03.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b1/units-01-03.js'),'utf8'),
+ './languages/pt-BR/curriculum/b1/units-04-06.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/b1/units-04-06.js'),'utf8')
 };
 for(const file of a2Files)sources['./languages/pt-BR/curriculum/a2/'+file]=fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2',file),'utf8');
 function createPilot(){
@@ -71,10 +74,14 @@ test('B2 manifest declares 40 units and publishes only the authored U1-U40 block
  assert.deepEqual(Array.from(manifest.blocks[5].units),[16,17,18]);
  assert.equal(window.LanguageManager.isAvailable('pt-BR'),true);
 });
-test('B2 review references resolve to existing A2 vocabulary IDs',async()=>{
- const {loader}=createPilot(),{units}=await loader.loadUnits('pt-BR','B2',[1,2,3,4,5,6]);
- const {units:a2}=await loader.loadUnits('pt-BR','A2',Array.from({length:30},(_,i)=>i+1));
- const ids=new Set(a2.flatMap(unit=>unit.vocab.map(word=>word.id)));
+test('B2 review references resolve to existing A2-B1 vocabulary IDs',async()=>{
+ const {loader}=createPilot();
+ const [{units},{units:a2},{units:b1}]=await Promise.all([
+  loader.loadUnits('pt-BR','B2',[1,2,3,4,5,6]),
+  loader.loadUnits('pt-BR','A2',Array.from({length:30},(_,i)=>i+1)),
+  loader.loadUnits('pt-BR','B1',[2,4])
+ ]);
+ const ids=new Set([...a2,...b1].flatMap(unit=>unit.vocab.map(word=>word.id)));
  for(const unit of units)for(const lesson of unit.lessons)for(const id of lesson.reviewVocabIds)assert.ok(ids.has(id),id);
 });
 test('B2 U1-U6 add no exact normalized vocabulary duplicates against A1, A2 or B1',()=>{
@@ -100,7 +107,7 @@ test('service worker precaches B2 U1-U15 and advances the app-shell cache',()=>{
  assert.ok(source.includes("./languages/pt-BR/curriculum/b2/units-10-12.js"));
  assert.ok(source.includes("./languages/pt-BR/curriculum/b2/units-13-15.js"));
  assert.ok(source.includes("./languages/pt-BR/curriculum/b2/units-16-18.js"));
- assert.match(source,/bahasa-studio-v3\.8\.167/);
+ assert.match(source,/bahasa-studio-v3\.8\.168/);
 });
 
 test('pt-BR B2 U4-U6 load offline as an internal block with five lessons and ten contextual entries per unit',async()=>{

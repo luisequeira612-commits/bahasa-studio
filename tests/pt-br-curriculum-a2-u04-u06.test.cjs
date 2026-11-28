@@ -8,6 +8,8 @@ const repo=path.join(__dirname,'..');
 const managerSource=fs.readFileSync(path.join(repo,'language-manager.js'),'utf8');
 const loaderSource=fs.readFileSync(path.join(repo,'curriculum-loader.js'),'utf8');
 const sources={
+ './languages/pt-BR/curriculum/a1/index.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a1/index.js'),'utf8'),
+ './languages/pt-BR/curriculum/a1/units-07-12.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a1/units-07-12.js'),'utf8'),
  './languages/pt-BR/curriculum/a2/index.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2/index.js'),'utf8'),
  './languages/pt-BR/curriculum/a2/units-01-03.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2/units-01-03.js'),'utf8'),
  './languages/pt-BR/curriculum/a2/units-04-06.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2/units-04-06.js'),'utf8')
@@ -60,15 +62,18 @@ test('A2 manifest publishes U1-U30 as a partial level of thirty units',()=>{
  assert.deepEqual(Array.from(manifest.publishedUnits),[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]);
  assert.equal(window.LanguageManager.isAvailable('pt-BR'),true);
 });
-test('A2 U4-U6 review references resolve to earlier published A2 vocabulary',async()=>{
+test('A2 U4-U6 review references resolve to earlier published A1-A2 vocabulary',async()=>{
  const {loader}=createPilot();
- const {units}=await loader.loadUnits('pt-BR','A2',[1,2,3,4,5,6]);
- const earlier=new Set(units.slice(0,3).flatMap(unit=>unit.vocab.map(word=>word.id)));
- for(const unit of units.slice(3)) for(const lesson of unit.lessons) for(const id of lesson.reviewVocabIds) assert.ok(earlier.has(id),id);
+ const [{units:a1},{units:a2}]=await Promise.all([
+  loader.loadUnits('pt-BR','A1',[10,12]),
+  loader.loadUnits('pt-BR','A2',[1,2,3,4,5,6])
+ ]);
+ const earlier=new Set([...a1,...a2.slice(0,3)].flatMap(unit=>unit.vocab.map(word=>word.id)));
+ for(const unit of a2.slice(3)) for(const lesson of unit.lessons) for(const id of lesson.reviewVocabIds) assert.ok(earlier.has(id),id);
 });
 test('service worker precaches A2 U4-U6 with a new cache namespace',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');
  assert.match(source,/units-04-06\.js/);
  assert.match(source,/curriculum\/a2\/index\.js/);
- assert.match(source,/bahasa-studio-v3\.8.167/);
+ assert.match(source,/bahasa-studio-v3\.8.168/);
 });

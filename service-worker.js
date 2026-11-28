@@ -1,7 +1,7 @@
 importScripts('./language-manager.js');
 
-const CACHE_NAME = 'bahasa-studio-v3.8.167';
-// Force a worker update after the XP UI release; install refreshes this cache with cache: 'reload'.
+const CACHE_NAME = 'bahasa-studio-v3.8.168';
+// Force a worker update after the PT-BR curriculum correction release; install refreshes this cache with cache: 'reload'.
 const AUDIO_CACHE_NAME = 'guardi-audio-v2';
 const AUDIO_LANGUAGES = new Set(LanguageManager.list().map(({ code }) => code));
 const LANGUAGE_AUDIO_INVENTORY_ASSETS = LanguageManager.list()

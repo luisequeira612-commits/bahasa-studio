@@ -33,7 +33,7 @@ lessons:[
 {n:56,title:"Media literacy: hechos, opiniones, sesgos y fuentes",desc:"Evalúa credibilidad, evidencia, sesgos y encuadres mediáticos antes de aceptar o compartir información.",grammar:"Fact/opinion distinction, source evaluation, bias, framing, corroboration and misinformation vocabulary.",trap:"A claim is not a fact merely because it is widely shared. Corroborate with independent sources and distinguish evidence from interpretation.",rows:[
 ["to verify a source","verificar una fuente","Readers should verify a source before sharing the claim.","Los lectores deberían verificar una fuente antes de compartir la afirmación."],
 ["to cross-check information","contrastar información","Journalists cross-check information with independent records.","Los periodistas contrastan la información con registros independientes."],
-["a credible source","una fuente fiable","The article relies on a credible source.","El artículo se basa en una fuente fiable."],
+["a credible source","una fuente fiable","The article relies on a credible source.","El artículo se basa en una fuente confiable."],
 ["a misleading headline","un titular engañoso","The misleading headline exaggerates the findings.","El titular engañoso exagera los hallazgos."],
 ["a biased account","un relato sesgado","The report offers a biased account of the dispute.","El informe ofrece un relato sesgado de la disputa."],
 ["selective reporting","presentación selectiva de información","Selective reporting can distort public understanding.","La presentación selectiva de información puede distorsionar la comprensión pública."],
@@ -72,7 +72,7 @@ lessons:[
 ["to be checked for","ser revisado para detectar","Each batch is checked for quality.","Cada lote se revisa para comprobar su calidad."],
 ["to ensure that","garantizar que","A final review ensures that all entries are accurate.","Una revisión final garantiza que todas las entradas sean exactas."],
 ["to prevent something from happening","evitar que algo ocurra","The filter prevents dust from entering the system.","El filtro evita que el polvo entre en el sistema."],
-["to lead to","conducir a / provocar","A failure at this stage may lead to data loss.","Un fallo en esta etapa puede provocar la pérdida de datos."],
+["to lead to","conducir a / provocar","A failure at this stage may lead to data loss.","Una falla en esta etapa puede provocar la pérdida de datos."],
 ["to be followed by","ir seguido de","The initial test is followed by a full inspection.","La prueba inicial va seguida de una inspección completa."],
 ["in the event of","en caso de","In the event of a power failure, the backup starts automatically.","En caso de fallo eléctrico, la copia de respaldo se inicia automáticamente."],
 ["to occur","ocurrir","The final stage occurs in a controlled environment.","La etapa final ocurre en un entorno controlado."],

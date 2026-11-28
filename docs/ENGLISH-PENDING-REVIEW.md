@@ -26,21 +26,21 @@ En cada muestra comprobar únicamente: correspondencia entre objetivos, ejemplos
 
 ## Bloqueantes de publicación (no son pendientes editoriales)
 
-1. Integrar A1/A2/B1 en `main` en orden de dependencias. La cadena A1 #891–899 aún no está lista: #891 ya sincronizó `main` y es mergeable, pero su head actual no tiene check-runs registrados (0); #892 está `dirty` y tampoco tiene check-runs. A2 #900–912 y B1 #915–936 siguen apiladas y requieren integración secuencial. Los heads #912, #915 y #916 muestran typecheck/regresión exitosos.
+1. Integrar A1/A2/B1 en `main` en orden de dependencias. A1 #891 es mergeable, pero su head actual requiere aprobación/ejecución de Actions: Regression #46105596121 y type checks #46105596115 terminaron `action_required` sin jobs. A1 #892 está `dirty` y sin check-runs; debe actualizarse después de resolver su dependencia #891. A2 #900–912 y B1 #915–936 siguen apiladas y requieren integración secuencial. Los heads #912, #915 y #916 muestran typecheck/regresión exitosos.
 2. Integrar la corrección B2 de #948 y las correcciones A1 U16 de #893 una vez que se autorice la integración; ambos heads tienen CI completo exitoso.
 3. Solo después de integrar los cuatro niveles, registrar el manifiesto inglés A1–B2 en `language-manager.js`, habilitar inglés y actualizar `README.md` en el mismo cambio. Mantener la prueba `tests/readme-language-catalog.test.cjs`.
 
 **Estado de CI comprobado (2026-11-28):**
-- B2 PR #948, último head documental `7846b84830263eb8af3fce4e4e20f2e4e83d52cc`: regression run #4903 finalizó **success** tras reintentar el job E2E que había agotado el tiempo esperando `#adaptiveRecommendationLearn button`; el reintento completó los 103 pasos. Offline quality **success**. No queda un fallo de CI en este head.
+- B2 PR #948, último head documental `744631e119fe4ae170bc6245f5f9c3dc68c6d860`: regression run #46106687721 finalizó **success** (103 pasos, incluido E2E); Offline quality y type checks #46106687741 también **success**. CI completo verde en este head.
 - El timeout inicial fue una intermitencia de E2E general, no un defecto curricular inglés. El reintento pasó sin cambios de código.
-- A1 #891: head sincronizado `a40cc62a714dd576970bc14bc6844f2d3c7cc6ea` sigue sin check-runs registrados (consulta actual: 0); GitHub no ofrece resultado de CI para este head, así que no se marca como aprobado.
-- A1 #892: continúa con estado de merge `dirty` y sin check-runs; depende de la integración previa de #891.
+- A1 #891: head sincronizado `a40cc62a714dd576970bc14bc6844f2d3c7cc6ea`; Regression #46105596121 y type checks #46105596115 finalizaron `action_required` sin jobs. No equivale a fallo ni a éxito: el gate de ejecución/aprobación de Actions impide obtener resultado de CI. La PR es mergeable, pero no está aprobada para integración.
+- A1 #892: continúa con estado de merge `dirty` y sin check-runs; depende de la integración/sincronización previa de #891 y deberá actualizarse antes de revalidar.
 
 - A1 #893, head `f2cedff3dffb338fb4eda9b13fd9749e30dbc65d`: regression #4897 success; type checks #1017 success; offline quality success.
-- B2 #948, head de código `90062bf28cfe19f0587ab1d1769340c4d0cb026a`: regression #4896, type checks #1016 y offline quality success. El head documental posterior `7846b84830263eb8af3fce4e4e20f2e4e83d52cc` también pasó regression #4903 (incluido E2E), offline quality y type checks.
-- A1 #891: head anterior regression #4900 falló porque faltaba `audio/en/manifest.json`; type checks #1020 y offline quality success. El branch ya incluye `main` y es mergeable; el head actual `a40cc62a714dd576970bc14bc6844f2d3c7cc6ea` no tiene check-runs registrados (0), así que su CI sigue sin comprobarse.
+- B2 #948, head de código `90062bf28cfe19f0587ab1d1769340c4d0cb026a`: regression #4896, type checks #1016 y offline quality success. El head documental `7846b84830263eb8af3fce4e4e20f2e4e83d52cc` también pasó regression #4903 (incluido E2E), offline quality y type checks; el head documental más reciente `744631e119fe4ae170bc6245f5f9c3dc68c6d860` tiene CI completo verde (#46106687721/#46106687741).
+- A1 #891: head anterior regression #4900 falló porque faltaba `audio/en/manifest.json`; type checks #1020 y offline quality success. El head actual `a40cc62a714dd576970bc14bc6844f2d3c7cc6ea` recibió dos runs `action_required` sin jobs; sigue sin CI ejecutado.
 - Durante el push, el workflow `.github/workflows/audio.yml` se activó por su trigger `push` y generó 263 MP3 de inglés A1; el tamaño total de la biblioteca quedó en 54.66 MiB. Esto fue automático, no una escucha ni aprobación de calidad. La política acordada era generación manual; el trigger automático debe tratarse aparte.
-- A1 #892: no hay check-runs registrados para el head actual.
+- A1 #892: no hay check-runs registrados para el head actual; su merge state sigue `dirty`.
 - A2 #912: regression #4203 success; type checks #325 success.
 - B1 #915: regression #4210 success; type checks #332 success.
 - B1 #916: regression #4725 success; type checks #846 success.

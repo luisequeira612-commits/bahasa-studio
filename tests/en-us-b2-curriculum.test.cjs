@@ -585,7 +585,7 @@ test('English B2 lesson sentence examples match all 21 audited vocabulary target
     [9, 'Secuencia e inmediatez', 'the moment', 'The moment I saw the results, I knew something was wrong.'],
     [9, 'Concesión, contraste y circunstancias ajenas', 'far from', 'Far from solving the issue, the update made it worse.'],
     [11, 'Posibilidad y alternativas', 'must have', 'They must have missed the last announcement.'],
-    [12, 'Posibilidad e imposibilidad pasadas', "couldn't have", 'They couldn’t have completed the audit in one day.'],
+    [12, 'Posibilidad e imposibilidad pasadas', "couldn't have", 'They couldn't have completed the audit in one day.'],
     [13, 'Lenguaje normativo y cumplimiento', 'be necessary for', 'A valid ID is necessary for entry.'],
     [22, 'Causativa y experiencias no deseadas', 'to get a refund issued', 'She got a refund issued after contacting support.'],
     [25, 'Foco temporal, causal y de necesidad', 'it is precisely because', 'It is precisely because costs have risen that we need a review.'],

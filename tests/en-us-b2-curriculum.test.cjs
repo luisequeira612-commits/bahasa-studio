@@ -351,7 +351,7 @@ test('English B2 U29 complex noun phrase lessons match their vocabulary focus', 
     const word = unit.vocab.find((item) => item.id === exercise.vocabId);
     assert.ok(word);
     assert.deepEqual(Array.from(exercise.correctOrder),
-      word.ex.replace(/[.,!?;:]/g, '').trim().split(/\\s+/));
+      word.ex.replace(/[.,!?;:]/g, '').trim().split(/\s+/));
   }
 });
 
@@ -376,7 +376,7 @@ test('English B2 U27 fronting lessons match their vocabulary focus', () => {
     const word = unit.vocab.find((item) => item.id === exercise.vocabId);
     assert.ok(word);
     assert.deepEqual(Array.from(exercise.correctOrder),
-      word.ex.replace(/[.,!?;:]/g, '').trim().split(/\\s+/));
+      word.ex.replace(/[.,!?;:]/g, '').trim().split(/\s+/));
   }
 });
 
@@ -401,7 +401,7 @@ test('English B2 U15 mixed-conditional lesson themes match their vocabulary', ()
     const word = unit.vocab.find((item) => item.id === exercise.vocabId);
     assert.ok(word);
     assert.deepEqual(Array.from(exercise.correctOrder),
-      word.ex.replace(/[.,!?;:]/g, '').trim().split(/\\s+/));
+      word.ex.replace(/[.,!?;:]/g, '').trim().split(/\s+/));
   }
 });
 
@@ -447,7 +447,7 @@ test('English B2 U19 concession lessons match their vocabulary focus', () => {
     const word = unit.vocab.find((item) => item.id === exercise.vocabId);
     assert.ok(word);
     assert.deepEqual(Array.from(exercise.correctOrder),
-      word.ex.replace(/[.,!?;:]/g, '').trim().split(/\\s+/));
+      word.ex.replace(/[.,!?;:]/g, '').trim().split(/\s+/));
   }
 });
 
@@ -586,7 +586,7 @@ test('English B2 U5–U9 lesson themes match their vocabulary and sentence examp
       ['Concesión, contraste y circunstancias ajenas', ['through no fault of', 'far from', 'much as']],
     ]],
   ];
-  const normalize = (value) => value.replace(/[.,!?;:]/g, '').trim().split(/\\s+/);
+  const normalize = (value) => value.replace(/[.,!?;:]/g, '').trim().split(/\s+/);
   for (const [number, expectedLessons] of cases) {
     const unit = units.find((item) => item.unitNumber === number);
     assert.ok(unit, 'B2 unit must exist: U' + number);
@@ -640,7 +640,7 @@ test('English B2 U11–U14 lesson themes match their vocabulary and sentence exa
       ['Posibilidades de éxito y resultados', ['to be on course to', 'to fall short of', 'to exceed expectations', 'to meet expectations', 'to expect', 'to be subject to change']],
     ]],
   ];
-  const normalize = (value) => value.replace(/[.,!?;:]/g, '').trim().split(/\\s+/);
+  const normalize = (value) => value.replace(/[.,!?;:]/g, '').trim().split(/\s+/);
   for (const [number, expectedLessons] of cases) {
     const unit = units.find((item) => item.unitNumber === number);
     assert.ok(unit, 'B2 unit must exist: U' + number);

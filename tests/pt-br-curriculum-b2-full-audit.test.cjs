@@ -218,7 +218,7 @@ test('PT-BR A1-B2 global lexical progression documents every exact repeated targ
  assert.ok(b1u23.vocab.some(word=>word.target==='plano de contingência'));
  assert.ok(b1u31.vocab.some(word=>word.target==='periódico científico'));
  assert.ok(b1u31.vocab.some(word=>word.target==='repositório institucional'));
- assert.ok(!b1u31.vocab.some(word=>['pesquisa aplicada','revisão por pares'].includes(word.target)));
+ assert.ok(!b1u31.vocab.some(word=>['pesquisa aplicada','revisão por pares','protocolo experimental','reprodutibilidade'].includes(word.target)));
  assert.ok(b1u34.vocab.some(word=>word.target==='avaliação de vulnerabilidade'));
  assert.ok(!b1u34.vocab.some(word=>word.target==='plano de contingência'));
  assert.ok(b1u34.lessons.some(lesson=>(lesson.reviewVocabIds||[]).includes('ptbr_b1_u23_v02')));

@@ -1041,7 +1041,13 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - La reconstrucción requiere CI completo antes de sustituir la PR dependiente anterior. No fusionar PR de inglés sin aprobación expresa.
 
 
-## 2026-11-28 — Generación de audio manual en cadena A1 reconciliada
-- El push de U7–U12 activó dos commits automáticos de Piper con MP3 no solicitados. Se revirtieron ambos commits íntegramente antes de continuar.
-- `.github/workflows/audio.yml` ahora solo admite `workflow_dispatch`; no generar audio automáticamente al modificar el currículo.
-- Los clips en-US de este bloque no están aprobados ni forman parte de la PR.
+## 2026-11-28 — Reconciliación A1 U13–U18 sobre la nueva cadena
+- Se prepara el bloque U13–U18 encima de la rama reconciliada U1–U12; la cadena deja de depender de la rama divergente histórica #892.
+- Se alinean los ejemplos de lección y del banco con los objetivos léxicos y se conserva la prueba focalizada de U16. CI del nuevo head pendiente.
+- No se publica ni habilita inglés; no fusionar PRs de inglés sin aprobación expresa.
+
+
+## 2026-11-28 — Restaurada la generación manual de audio
+- Un push del currículo A1 activó el workflow de audio y produjo un commit automático con MP3 no solicitados dentro de la rama de trabajo. Se revirtió íntegramente ese commit antes de continuar.
+- `.github/workflows/audio.yml` vuelve a ejecutarse únicamente mediante `workflow_dispatch`; no generar ni publicar audio automáticamente al modificar currículos.
+- El audio en-US permanece sin aprobación de pronunciación y no forma parte de esta preparación curricular.

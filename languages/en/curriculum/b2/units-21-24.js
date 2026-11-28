@@ -6,7 +6,7 @@ const definitions=[
 ["it has been reported","se ha informado","It has been reported that several roads remain closed.","Se ha informado que varias carreteras siguen cerradas."],
 ["it is generally assumed","se suele suponer","It is generally assumed that the figures are accurate.","Se suele suponer que las cifras son exactas."],
 ["it remains to be seen","está por verse","It remains to be seen whether the changes will be effective.","Está por verse si los cambios serán eficaces."],
-["to be widely regarded as","ser ampliamente reconocido como","The novel is widely regarded as a modern classic.","La novela es ampliamente reconocida como un clásico moderno."],
+["to be widely regarded as","considerarse ampliamente / ser ampliamente considerado","The novel is widely regarded as a modern classic.","La novela se considera ampliamente un clásico moderno."],
 ["to be slated to","tener previsto / estar previsto que","The new system is slated to reduce waiting times.","Está previsto que el nuevo sistema reduzca los tiempos de espera."],
 ["to be thought to","se cree que","The painting is thought to date from the 18th century.","Se cree que la pintura data del siglo XVIII."],
 ["to be alleged to","se alega que","The company is alleged to have concealed the losses.","Se alega que la empresa ocultó las pérdidas."],

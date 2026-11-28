@@ -18536,7 +18536,7 @@ button.language-picker-row { cursor:pointer; touch-action:manipulation; }
                     <p style="font-size:0.8rem;color:var(--text-muted);margin:8px 0;">Palabras nuevas</p>
                     ${lesson.newVocab.map(wordCard).join('')}
                     ${lesson.reviewVocab.length ? `<p style="font-size:0.8rem;color:var(--text-muted);margin:14px 0 8px;">Repaso de lecciones anteriores</p>${lesson.reviewVocab.map(wordCard).join('')}` : ''}
-                    <p style="font-size:0.8rem;color:var(--text-muted);margin:8px 0;">💡 Toca una palabra para consultar su significado sin salir de la lección.</p>
+                    <p style="font-size:0.8rem;color:var(--text-muted);margin:8px 0;">💡 Toca una palabra en ${App.escapeHtml(languageName.toLowerCase())} para consultar su significado sin salir de la lección.</p>
                     <p style="font-size:0.8rem;color:var(--text-muted);margin:8px 0;">Escucha cada palabra y repítela en voz alta antes de comenzar.</p>
                     </div><div id="actionArea"><button class="btn" onclick="LessonEngine.renderStep()">Comenzar lección</button></div>`;
             },

@@ -335,8 +335,8 @@ test('English B2 U29 complex noun phrase lessons match their vocabulary focus', 
   assert.ok(unit);
   const expected = [
     ['Premodificadores y orden', ['a long-term strategic objective', 'a newly appointed regional director', 'the rapidly changing economic climate', 'a carefully worded public statement']],
-    ['Premodificadores evaluativos y compuestos', ['a widely held assumption', 'a series of unexpected technical difficulties', 'a highly controversial policy decision', 'a significant long-term impact']],
-    ['Postmodificación con frases y relativas', ['the evidence gathered during the investigation', 'the people directly affected by the decision', 'the extent of the damage caused', 'the measures necessary to prevent recurrence', 'the resources available to local communities', 'a clearly defined set of responsibilities']],
+    ['Premodificadores evaluativos y compuestos', ['a widely held assumption', 'a series of unexpected technical difficulties', 'a highly controversial policy decision', 'a significant long-term impact', 'a clearly defined set of responsibilities']],
+    ['Postmodificación con frases y relativas', ['the evidence gathered during the investigation', 'the people directly affected by the decision', 'the extent of the damage caused', 'the measures necessary to prevent recurrence', 'the resources available to local communities']],
     ['Sustantivos abstractos y precisión', ['the first publicly available figures', 'a detailed analysis of consumer behavior', 'the underlying causes of the problem', 'a shortage of qualified personnel']],
     ['Complementos y relaciones complejas', ['the proposed changes to the approval process', 'a range of practical alternatives', 'the relationship between price and perceived value', 'a matter of considerable public concern']],
   ];

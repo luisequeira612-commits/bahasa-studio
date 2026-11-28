@@ -12,13 +12,17 @@ const blockSource=fs.readFileSync(path.join(repo,'languages/en/curriculum/a1/uni
 const blockSource2=fs.readFileSync(path.join(repo,'languages/en/curriculum/a1/units-07-12.js'),'utf8');
 const blockSource3=fs.readFileSync(path.join(repo,'languages/en/curriculum/a1/units-13-18.js'),'utf8');
 const blockSource4=fs.readFileSync(path.join(repo,'languages/en/curriculum/a1/units-19-24.js'),'utf8');
+const blockSource5=fs.readFileSync(path.join(repo,'languages/en/curriculum/a1/units-25-30.js'),'utf8');
+const blockSource6=fs.readFileSync(path.join(repo,'languages/en/curriculum/a1/units-31-32.js'),'utf8');
 function createEnglishPilot(){
  const sources={
   './languages/en/curriculum/a1/index.js':manifestSource,
   './languages/en/curriculum/a1/units-01-06.js':blockSource,
   './languages/en/curriculum/a1/units-07-12.js':blockSource2,
   './languages/en/curriculum/a1/units-13-18.js':blockSource3,
-  './languages/en/curriculum/a1/units-19-24.js':blockSource4
+  './languages/en/curriculum/a1/units-19-24.js':blockSource4,
+  './languages/en/curriculum/a1/units-25-30.js':blockSource5,
+  './languages/en/curriculum/a1/units-31-32.js':blockSource6
  };
  const window={localStorage:{getItem(){return 'id';},setItem(){}},document:{createElement(){return {};},head:{appendChild(script){
   const source=sources[script.src];
@@ -39,12 +43,12 @@ test('English en-US is registered but remains unavailable until release approval
  assert.equal(loader.resolve('en','A1'),null);
  await assert.rejects(window.LanguageManager.setActiveLanguage('en'),/todavía no está disponible/);
 });
-test('English A1 manifest exposes the authored U1-U24 blocks',async()=>{
+test('English A1 manifest exposes the authored U1-U32 blocks',async()=>{
  const {loader}=createEnglishPilot();
- const curriculum=await loader.loadUnits('en','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]);
+ const curriculum=await loader.loadUnits('en','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32]);
  assert.equal(curriculum.language,'en');
  assert.equal(curriculum.totalUnits,32);
- assert.deepEqual(Array.from(curriculum.units,u=>u.unitNumber),[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]);
+ assert.deepEqual(Array.from(curriculum.units,u=>u.unitNumber),[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32]);
 });
 test('each English A1 unit has five explicit lessons, 22 new words and 20 supported exercises',async()=>{
  const {loader}=createEnglishPilot();
@@ -78,9 +82,9 @@ test('English A1 curriculum uses the established vocabulary shape without changi
  }
 });
 
-test('English A1 vocabulary introduces no duplicate targets across U1-U24',async()=>{
+test('English A1 vocabulary introduces no duplicate targets across U1-U32',async()=>{
  const {loader}=createEnglishPilot();
- const {units}=await loader.loadUnits('en','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]);
+ const {units}=await loader.loadUnits('en','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32]);
  const seen=new Set();
  for(const word of units.flatMap(unit=>unit.vocab)){
   const key=word.target.toLocaleLowerCase();
@@ -91,7 +95,7 @@ test('English A1 vocabulary introduces no duplicate targets across U1-U24',async
 
 test('English A1 lesson and unit ordering examples match their vocabulary targets in U7-U12',async()=>{
  const {loader}=createEnglishPilot();
- const {units}=await loader.loadUnits('en','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]);
+ const {units}=await loader.loadUnits('en','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32]);
  const words=new Map(units.flatMap(unit=>unit.vocab.map(word=>[word.id,word.target.toLocaleLowerCase()])));
  const includesTarget=(sentence,id)=>sentence.toLocaleLowerCase().includes(words.get(id));
  for(const unit of units.filter(item=>item.unitNumber>=7)){
@@ -128,5 +132,23 @@ test('English A1 U16 lesson targets and sentence exercises stay aligned', async 
  for(const exercise of unit.exercises.filter(item=>item.type==='order')){
   const target=unit.vocab.find(word=>word.id===exercise.vocabId);
   assert.deepEqual(Array.from(exercise.correctOrder),target.ex.split(' '));
+ }
+});
+
+
+test('English A1 U25-U32 ordering examples match the vocabulary targets they assess',async()=>{
+ const {loader}=createEnglishPilot();
+ const {units}=await loader.loadUnits('en','A1',[25,26,27,28,29,30,31,32]);
+ const all=await loader.loadUnits('en','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32]);
+ const words=new Map(all.units.flatMap(unit=>unit.vocab.map(word=>[word.id,word.target.toLocaleLowerCase()])));
+ const includesTarget=(sentence,id)=>sentence.toLocaleLowerCase().includes(words.get(id));
+ for(const unit of units){
+  for(const lesson of unit.lessons){
+   const exercise=lesson.exercises.find(item=>item.type==='order');
+   assert.ok(includesTarget(exercise.correctOrder.join(' '),exercise.vocabId),unit.id+' lesson example mismatch: '+lesson.title);
+  }
+  for(const exercise of unit.exercises.filter(item=>item.type==='order')){
+   assert.ok(includesTarget(exercise.correctOrder.join(' '),exercise.vocabId),unit.id+' unit example mismatch: '+exercise.vocabId);
+  }
  }
 });

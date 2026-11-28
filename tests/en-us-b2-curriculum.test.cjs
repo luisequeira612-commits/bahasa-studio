@@ -500,8 +500,22 @@ test('English B2 lesson sentence examples match all 21 audited vocabulary target
   }
 });
 
-test('English B2 U11 and U17 unit review banks match their source vocabulary', () => {
+test('English B2 U9, U11, U17, and U19 unit review banks match their source vocabulary', () => {
   const cases = [
+    [9, [
+      ['little did we know', 'Little did we know that the figures were incomplete.'],
+      ['for the first time', 'For the first time, the results have exceeded expectations.'],
+      ['ever since', 'Ever since the merger, the company has operated differently.'],
+      ['time and again', 'We have explained the procedure time and again.'],
+      ['to this day', 'To this day, nobody has explained the discrepancy.'],
+    ]],
+    [19, [
+      ['if that is not the case', 'Please reply today; if that is not the case, we may miss the deadline.'],
+      ['even so', 'The route was difficult. Even so, they reached the summit.'],
+      ['nevertheless', 'The evidence was limited; nevertheless, the panel reached a decision.'],
+      ['nonetheless', 'The task was demanding. Nonetheless, everyone completed it.'],
+      ['in any case', 'In any case, we need written confirmation.'],
+    ]],
     [11, [
       ['must have', 'They must have missed the last announcement.'],
       ["can't have", "She can't have forgotten the appointment; I reminded her twice."],

@@ -1056,3 +1056,10 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - 40 unidades, 200 lecciones, 800 ejercicios y 792 objetivos léxicos únicos; U10/U20/U30/U40 son repasos sin vocabulario nuevo.
 - Las pruebas comparan A2 contra el inventario completo A1 y validan referencias. CI pendiente.
 - Las entradas permanecen `not_checked`; trazabilidad lema por lema CEFR-J/NGSL y validación nativa pendientes. Inglés `available: false`; no fusionar ni publicar sin aprobación expresa.
+
+
+## 2026-11-28 — Inglés americano B1 U1–U52 preparado sobre A1/A2 reconciliados
+- Se consolida B1 U1–U52 sobre las nuevas ramas completas A1 U1–U32 y A2 U1–U40 sin audio Piper en-US no aprobado.
+- 52 unidades, 260 lecciones, 1.040 ejercicios y 1.012 objetivos léxicos nuevos; U10/U20/U30/U40/U50/U52 son repasos/evaluaciones sin vocabulario nuevo.
+- Las pruebas comparan B1 contra todos los objetivos A1/A2 y validan referencias de lecciones/bancos. CI pendiente sobre la cadena actualizada.
+- Entradas `not_checked`; trazabilidad individual CEFR-J/NGSL y revisión nativa pendientes. Inglés permanece `available: false`; no fusionar ni publicar sin aprobación expresa.

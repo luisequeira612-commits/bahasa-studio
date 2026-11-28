@@ -500,6 +500,41 @@ test('English B2 lesson sentence examples match all 21 audited vocabulary target
   }
 });
 
+test('English B2 U11 and U17 unit review banks match their source vocabulary', () => {
+  const cases = [
+    [11, [
+      ['must have', 'They must have missed the last announcement.'],
+      ["can't have", "She can't have forgotten the appointment; I reminded her twice."],
+      ['may well', 'The proposal may well attract further interest.'],
+      ['might conceivably', 'The change might conceivably affect older devices.'],
+      ['be bound to', 'A decision is bound to cause some disagreement.'],
+    ]],
+    [17, [
+      ['would rather someone did', "I'd rather you stayed here for now."],
+      ['would prefer to', 'We would prefer to receive the documents by email.'],
+      ['would sooner', "I'd sooner wait than make a rushed decision."],
+      ["it's time", "It's time we addressed the issue."],
+      ["it's high time", "It's high time the company reviewed its policy."],
+    ]],
+  ];
+  const normalize = (value) => value.replace(/[.,!?;:]/g, '').trim().split(/\\s+/);
+  const units = loadB2();
+  for (const [number, expected] of cases) {
+    const unit = units.find((item) => item.unitNumber === number);
+    assert.ok(unit, 'Missing B2 unit ' + number);
+    const bank = unit.exercises.filter((item) => item.type === 'order');
+    assert.equal(bank.length, expected.length, 'Unexpected review bank size in U' + number);
+    for (let index = 0; index < expected.length; index++) {
+      const [target, sentence] = expected[index];
+      const exercise = bank[index];
+      assert.equal(exercise.vocabId, unit.vocab[index + 5].id);
+      assert.equal(unit.vocab[index + 5].target, target);
+      assert.deepEqual(Array.from(exercise.correctOrder), normalize(sentence),
+        'Review bank sentence must match U' + number + ' target ' + target);
+    }
+  }
+});
+
 test('English B2 U35 keeps plural data agreement consistent in vocabulary and lesson examples', () => {
   const unit = loadB2().find((item) => item.unitNumber === 35);
   assert.ok(unit);

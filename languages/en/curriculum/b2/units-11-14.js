@@ -21,16 +21,16 @@ const data=[
 ["must have","debe de haber","They must have missed the last announcement.","Deben de haberse perdido el último anuncio."],
 ["can't have","no puede haber","She can't have forgotten the appointment; I reminded her twice.","No puede haber olvidado la cita; se la recordé dos veces."],
 ["may well","bien puede que","The proposal may well attract further interest.","Bien puede que la propuesta atraiga más interés."],
-["might possibly","quizá podría","The change might possibly affect older devices.","Quizá el cambio podría afectar a dispositivos antiguos."],
-["be bound to","tener muchas probabilidades de","A decision is bound to cause some disagreement.","Es casi seguro que una decisión causará cierto desacuerdo."],
+["might conceivably","podría llegar a","The change might conceivably affect older devices.","El cambio podría llegar a afectar a dispositivos antiguos."],
+["be bound to","ser casi seguro que / estar destinado a","A decision is bound to cause some disagreement.","Es casi seguro que una decisión causará cierto desacuerdo."],
 ["be unlikely to","ser poco probable que","The figures are unlikely to improve this quarter.","Es poco probable que las cifras mejoren este trimestre."],
 ["be highly likely to","ser muy probable que","The committee is highly likely to approve the plan.","Es muy probable que el comité apruebe el plan."],
 ["apparently","al parecer","Apparently, the office has changed its opening hours.","Al parecer, la oficina ha cambiado su horario."],
-["presumably","presumiblemente","Presumably, the missing files were backed up elsewhere.","Presumiblemente, los archivos perdidos tenían una copia en otro lugar."],
+["presumably","presumiblemente / probablemente","Presumably, the missing files were backed up elsewhere.","Probablemente, se había hecho una copia de seguridad de los archivos faltantes en otro lugar."],
 ["evidently","evidentemente","The team has evidently misunderstood the instructions.","Evidentemente, el equipo ha entendido mal las instrucciones."],
 ["there is little doubt that","hay pocas dudas de que","There is little doubt that costs will rise.","Hay pocas dudas de que los costos aumentarán."],
 ["it seems reasonable to assume","parece razonable suponer","It seems reasonable to assume that demand will remain stable.","Parece razonable suponer que la demanda se mantendrá estable."],
-["to rule out","descartar","We cannot rule out a technical fault.","No podemos descartar un fallo técnico."],
+["to rule out","descartar","We cannot rule out a technical fault.","No podemos descartar una falla técnica."],
 ["to point to","apuntar a / indicar","All the evidence points to a software problem.","Todas las pruebas apuntan a un problema de software."],
 ["to suggest","sugerir / indicar","The latest results suggest a gradual recovery.","Los últimos resultados indican una recuperación gradual."],
 ["to be consistent with","ser compatible con","Her account is consistent with the available evidence.","Su relato es compatible con las pruebas disponibles."],
@@ -41,7 +41,7 @@ const data=[
 ["Probabilidad y expectativas","Evalúa si un resultado parece probable o poco probable.","Be bound to y be highly likely to son más fuertes que might; be unlikely to indica baja probabilidad.",[8,9,10,11],"A decision is bound to cause some disagreement."],
 ["Fuentes e inferencias prudentes","Atribuye una inferencia y deja claro que no es conocimiento directo.","Apparently, presumably y evidently señalan la base o el carácter inferido de la información.",[12,13,14,15],"Presumably, the missing files were backed up elsewhere."],
 ["Evaluación de evidencia","Contrasta una hipótesis con pruebas y descarta explicaciones.","Point to, suggest, rule out, consistent with y at odds with sirven para evaluar evidencias.",[16,17,18,19,20,21],"We cannot rule out a technical fault."]
-],bank:["They must have missed the last announcement.","She can't have forgotten the appointment; I reminded her twice.","The proposal may well attract further interest.","The change might possibly affect older devices.","A decision is bound to cause some disagreement."]},
+],bank:["They must have missed the last announcement.","She can't have forgotten the appointment; I reminded her twice.","The proposal may well attract further interest.","The change might conceivably affect older devices.","A decision is bound to cause some disagreement."]},
 {n:12,title:"Modales perfectos y evaluación retrospectiva",desc:"Evalúa acciones pasadas para expresar crítica, arrepentimiento, posibilidad, expectativa incumplida o conclusiones sobre lo que pudo ocurrir.",grammar:"Must have, might have, could have, can't have, should have, ought to have, needn't have y was/were supposed to have.",trap:["Could have puede expresar capacidad o posibilidad no realizada","She could have won (tenía la posibilidad, pero no ganó necesariamente). She could have been injured (es posible que se lesionara). El contexto determina la lectura."],rows:[
 ["should have","debería haber","You should have checked the figures before sending the report.","Deberías haber revisado las cifras antes de enviar el informe."],
 ["ought to have","debería haber","They ought to have informed us about the change.","Deberían habernos informado del cambio."],
@@ -66,11 +66,11 @@ const data=[
 ["with the benefit of hindsight","con la perspectiva que da el tiempo","With the benefit of hindsight, the warning was obvious.","Con la perspectiva que da el tiempo, la advertencia era evidente."],
 ["there was no need to","no había necesidad de","There was no need to cancel the entire event.","No había necesidad de cancelar todo el evento."]
 ],lessons:[
-["Crítica y arrepentimiento","Evalúa decisiones pasadas y expresa qué habría sido mejor hacer.","Should have/ought to have para crítica; shouldn't have para acción equivocada.",[0,1,2,3],"They ought to have informed us about the change."],
-["Ausencia de necesidad","Distingue una acción innecesaria realizada de una acción que no fue necesaria.","Needn't have + participio implica que se hizo; didn't need to no afirma por sí solo si se hizo.",[4,5,6,7],"He might have misunderstood the deadline."],
-["Deducciones sobre el pasado","Expresa conclusiones con distintos grados de certeza sobre hechos pasados.","Must/can't have + participio para deducción; might/could have para posibilidad.",[8,9,10,11],"I would have helped if I had known."],
-["Resultados hipotéticos y expectativas","Explica resultados alternativos y expectativas incumplidas.","Would have suele aparecer en condicionales; was supposed to have expresa expectativa previa.",[12,13,14,15],"I wish I had asked for clarification."],
-["Responsabilidad y retrospectiva","Explica consecuencias, responsabilidades y oportunidades perdidas.","Regret doing, take responsibility for y in hindsight ayudan a evaluar decisiones.",[16,17,18,19,20,21],"We missed an opportunity to negotiate a better price."]
+["Crítica, arrepentimiento y deseo retrospectivo","Evalúa decisiones pasadas, expresa crítica y señala qué habría sido preferible hacer.","Should have y ought to have expresan crítica; shouldn't have reprocha una acción; regret doing y wish one had expresan arrepentimiento o deseo retrospectivo.",[0,1,2,12,13],"They ought to have informed us about the change."],
+["Ausencia de necesidad","Distingue una acción innecesaria de una obligación que sí existía.","Needn't have indica que se hizo algo que no era necesario; didn't need to y there was no need to expresan que no existía necesidad.",[3,4,21],"We didn't need to book because the restaurant was empty."],
+["Posibilidad e imposibilidad pasadas","Evalúa qué pudo o no pudo haber ocurrido según la evidencia disponible.","Might have y could have expresan posibilidad; couldn't have descarta una hipótesis; could conceivably have presenta una posibilidad remota.",[5,6,7,8],"They couldn't have completed the audit in one day."],
+["Resultados hipotéticos y expectativas retrospectivas","Compara resultados alternativos con lo que se esperaba que hubiera ocurrido.","Would have aparece en resultados hipotéticos; was supposed to have y was meant to have expresan expectativas previas; in hindsight y with the benefit of hindsight introducen evaluación posterior.",[9,10,11,19,20],"The repairs were supposed to have been completed by Monday."],
+["Responsabilidad y consecuencias","Explica quién responde por un resultado y cómo se afrontan las consecuencias.","Blame someone for, take responsibility for y be accountable for atribuyen responsabilidad; miss an opportunity y make up for describen consecuencias y compensación.",[14,15,16,17,18],"The manager took responsibility for the mistake."]
 ],bank:["He might have misunderstood the deadline.","They couldn't have completed the audit in one day.","The email could conceivably have gone to the wrong address.","We could have avoided the delay with better planning.","I would have helped if I had known."]},
 {n:13,title:"Obligación, necesidad y ausencia de obligación",desc:"Distingue obligación externa, necesidad práctica, recomendación, permiso y ausencia de obligación en registros formales y cotidianos.",grammar:"Must, have to, need to, be required to, be obliged to, should, ought to, don't have to, needn't y mustn't.",trap:["Don't have to no significa mustn't","You don't have to attend (no es obligatorio). You mustn't attend (está prohibido). La diferencia cambia por completo el mensaje."],rows:[
 ["be required to","estar obligado a / ser requisito","Applicants are required to provide two references.","Se exige que los solicitantes proporcionen dos referencias."],
@@ -82,7 +82,7 @@ const data=[
 ["don't have to","no tener que","You don't have to print the document.","No tienes que imprimir el documento."],
 ["needn't","no necesitar","You needn't wait for me.","No necesitas esperarme."],
 ["be under no obligation to","no tener ninguna obligación de","Customers are under no obligation to renew.","Los clientes no tienen ninguna obligación de renovar."],
-["be expected to","esperarse que","Staff are expected to arrive on time.","Se espera que el personal llegue puntual."],
+["be expected to","se espera que","Staff are expected to arrive on time.","Se espera que el personal llegue puntual."],
 ["be supposed to","se supone que debe","You're supposed to keep your receipt.","Se supone que debes guardar el recibo."],
 ["be allowed to","tener permiso para","Employees are allowed to work remotely twice a week.","Los empleados tienen permiso para trabajar a distancia dos veces por semana."],
 ["be permitted to","estar autorizado a","Visitors are not permitted to enter this area.","Los visitantes no están autorizados a entrar en esta zona."],
@@ -99,7 +99,7 @@ const data=[
 ["Obligación y requisito externo","Expresa normas y obligaciones impuestas por una autoridad o situación.","Must suele expresar obligación fuerte del hablante o norma; have to y be required to presentan necesidad externa.",[0,1,2,3],"The company is obliged to report the incident."],
 ["Prohibición y ausencia de obligación","Separa claramente lo prohibido de lo opcional.","Mustn't expresa prohibición; don't have to y needn't expresan ausencia de obligación.",[4,5,6,7],"You mustn't disclose confidential information."],
 ["Expectativa, permiso y derecho","Describe lo que se espera, permite o reconoce como derecho.","Be supposed to y be expected to son expectativas; be allowed/permitted/entitled to expresan permiso o derecho.",[8,9,10,11],"Staff are expected to arrive on time."],
-["Recomendación y necesidad","Matiza recomendaciones y requisitos imprescindibles.","It is advisable/essential/necessary to permite graduar la fuerza de una recomendación.",[12,13,14,15],"You are entitled to a full refund."],
+["Permiso, derechos y recomendaciones","Expresa lo que está permitido, lo que constituye un derecho y lo que resulta aconsejable.","Be permitted to, be entitled to y be free to expresan autorización o derecho; it is advisable to introduce una recomendación práctica.",[12,13,14,15],"You are entitled to a full refund."],
 ["Lenguaje normativo y cumplimiento","Interpreta cláusulas y reglas en contextos profesionales.","At one's discretion, unless otherwise stated, in accordance with y comply with son frecuentes en normas y políticas.",[16,17,18,19,20,21],"A valid ID is necessary for entry."]
 ],bank:["You mustn't disclose confidential information.","You don't have to print the document.","You needn't wait for me.","Customers are under no obligation to renew.","Staff are expected to arrive on time."]},
 {n:14,title:"Probabilidad, certeza y expectativa",desc:"Gradúa afirmaciones, interpreta probabilidades y comunica expectativas sin confundir evidencia, predicción y certeza.",grammar:"Adjetivos y adverbios de probabilidad; likely, unlikely, bound, certain, probable; probability phrases y patrones con infinitivo o that-clause.",trap:["Likely y probably no siguen el mismo patrón","It is likely that prices will rise / Prices are likely to rise. Probably suele modificar la cláusula: Prices will probably rise."],rows:[
@@ -114,11 +114,11 @@ const data=[
 ["in all likelihood","con toda probabilidad","In all likelihood, the meeting will be postponed.","Con toda probabilidad, la reunión se pospondrá."],
 ["more than likely","muy probablemente","She will more than likely accept the invitation.","Lo más probable es que acepte la invitación."],
 ["by all accounts","según todos los indicios","By all accounts, the event was a success.","Según todos los indicios, el evento fue un éxito."],
-["to be expected to","esperarse que","The figures are expected to improve next year.","Se espera que las cifras mejoren el próximo año."],
-["to be forecast to","preverse que","Sales are forecast to rise by five percent.","Se prevé que las ventas aumenten un cinco por ciento."],
-["to be projected to","proyectarse que","The population is projected to grow steadily.","Se proyecta que la población crezca de forma constante."],
+["to be expected to","se espera que","The figures are expected to improve next year.","Se espera que las cifras mejoren el próximo año."],
+["to be forecast to","se prevé que","Sales are forecast to rise by five percent.","Se prevé que las ventas aumenten un cinco por ciento."],
+["to be projected to","se proyecta que","The population is projected to grow steadily.","Se proyecta que la población crezca de forma constante."],
 ["to stand a good chance of","tener buenas posibilidades de","The proposal stands a good chance of being approved.","La propuesta tiene buenas posibilidades de ser aprobada."],
-["it is unlikely that","ser poco probable que","It is unlikely that the road will reopen today.","Es poco probable que la carretera vuelva a abrir hoy."],
+["it is unlikely that","es poco probable que","It is unlikely that the road will reopen today.","Es poco probable que la carretera vuelva a abrir hoy."],
 ["to be on course to","ir camino de","The company is on course to meet its annual target.","La empresa va camino de alcanzar su objetivo anual."],
 ["to fall short of","no alcanzar","The final result fell short of expectations.","El resultado final no alcanzó las expectativas."],
 ["to exceed expectations","superar las expectativas","The service has exceeded expectations so far.","El servicio ha superado las expectativas hasta ahora."],
@@ -126,11 +126,11 @@ const data=[
 ["to expect","esperar","We expect a gradual increase in demand.","Esperamos un aumento gradual de la demanda."],
 ["to be subject to change","estar sujeto a cambios","All dates are subject to change.","Todas las fechas están sujetas a cambios."]
 ],lessons:[
-["Probabilidad con adjetivos","Formula predicciones usando likely, unlikely y estructuras con be.","Be likely/unlikely to + infinitivo; it is likely that + oración.",[0,1,2,3],"The team is unlikely to finish today."],
-["Certeza y fuerza de la afirmación","Gradúa una predicción desde posibilidad hasta casi certeza.","Bound to y almost certain to son fuertes; evita presentarlos como certeza absoluta cuando son predicciones.",[4,5,6,7],"It is probable that demand will increase."],
-["Expresiones de expectativa","Comunica expectativas con adverbios y expresiones de atribución.","In all likelihood, more than likely y by all accounts modifican la fuerza o fuente de una afirmación.",[8,9,10,11],"She will more than likely accept the invitation."],
-["Pronósticos y proyecciones","Interpreta predicciones oficiales y estimaciones.","Be expected/forecast/projected to suelen atribuir el pronóstico a una fuente o modelo.",[12,13,14,15],"The population is projected to grow steadily."],
-["Resultados frente a expectativas","Compara previsiones, objetivos y resultados observados.","Stand a good chance of + -ing; fall short of, exceed y meet expectations describen resultados.",[16,17,18,19,20,21],"The final result fell short of expectations."]
+["Probabilidad con adjetivos","Formula predicciones usando likely, unlikely y estructuras con be.","Be likely/unlikely to + infinitivo; it is unlikely that + oración.",[0,1,2,3,15],"The team is unlikely to finish today."],
+["Certeza y fuerza de la afirmación","Gradúa una predicción desde una posibilidad hasta casi certeza sin convertirla en un hecho confirmado.","Bound to y almost certain to son expresiones fuertes; it is probable that y las expresiones de posibilidad presentan distintos grados de confianza.",[4,5,6,7],"It is probable that demand will increase."],
+["Expresiones de expectativa y atribución","Comunica expectativas y deja claro si proceden de indicios o de una fuente.","In all likelihood y more than likely modifican la fuerza de una predicción; by all accounts atribuye la valoración a varias fuentes; be expected to presenta una previsión.",[8,9,10,11],"She will more than likely accept the invitation."],
+["Pronósticos y proyecciones","Interpreta previsiones oficiales y estimaciones sobre tendencias futuras.","Be expected to, be forecast to y be projected to suelen atribuir el pronóstico a una fuente o modelo.",[12,13,14],"The population is projected to grow steadily."],
+["Posibilidades de éxito y resultados","Compara opciones prometedoras con objetivos y resultados observados.","Stand a good chance of + -ing expresa posibilidades; fall short of, exceed y meet expectations describen resultados; expect y be subject to change presentan previsiones y condiciones.",[16,17,18,19,20,21],"The final result fell short of expectations."]
 ],bank:["It is probable that demand will increase.","There is a strong possibility that the launch will be delayed.","There is a slight chance that we may need extra staff.","In all likelihood, the meeting will be postponed.","She will more than likely accept the invitation."]}
 ];
 root.GUARDI_CURRICULUM_BLOCKS=root.GUARDI_CURRICULUM_BLOCKS||{};

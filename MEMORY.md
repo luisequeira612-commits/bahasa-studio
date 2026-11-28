@@ -1051,3 +1051,9 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Se añade U13–U18 encima de la cadena U1–U12 que excluye Piper en-US no aprobado.
 - Se alinean ejemplos de lección y banco con los objetivos léxicos y se conserva la prueba focalizada de U16. CI pendiente.
 - Inglés permanece no disponible; audio manual y no incluido. No fusionar sin aprobación expresa.
+
+
+## 2026-11-28 — Reconciliación A1 U19–U24 sobre base sin audio
+- Se añade U19–U24 encima de la cadena reconciliada U1–U18, excluyendo el audio Piper en-US no aprobado.
+- Se alinean ejemplos de lección y banco con sus objetivos léxicos y la prueba de regresión general comprueba esta asociación. CI pendiente.
+- Mantener inglés no disponible y audio manual/no incluido; no fusionar PRs sin aprobación expresa.

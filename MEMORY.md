@@ -1057,3 +1057,9 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Se añade U19–U24 encima de la cadena reconciliada U1–U18, excluyendo el audio Piper en-US no aprobado.
 - Se alinean ejemplos de lección y banco con sus objetivos léxicos y la prueba de regresión general comprueba esta asociación. CI pendiente.
 - Mantener inglés no disponible y audio manual/no incluido; no fusionar PRs sin aprobación expresa.
+
+
+## 2026-11-28 — Cierre curricular A1 U25–U32
+- Se incorporan U25–U29 con 22 entradas nuevas por unidad; U30 es repaso sin vocabulario nuevo; U31–U32 son integración/evaluación sin vocabulario nuevo.
+- Se amplían manifiesto y pruebas a las 32 unidades y se valida alineación de ejemplos de lección y banco con sus IDs. CI pendiente.
+- El audio Piper en-US no aprobado permanece excluido; inglés no disponible hasta aprobación expresa.

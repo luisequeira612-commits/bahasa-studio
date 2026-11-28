@@ -60,10 +60,13 @@ test('A2 manifest publishes U1-U30 as a partial level of thirty units',()=>{
  assert.deepEqual(Array.from(manifest.publishedUnits),[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]);
  assert.equal(window.LanguageManager.isAvailable('pt-BR'),true);
 });
-test('A2 U4-U6 review references resolve to earlier published A2 vocabulary',async()=>{
+test('A2 U4-U6 review references resolve to earlier published A1-A2 vocabulary',async()=>{
  const {loader}=createPilot();
- const {units}=await loader.loadUnits('pt-BR','A2',[1,2,3,4,5,6]);
- const earlier=new Set(units.slice(0,3).flatMap(unit=>unit.vocab.map(word=>word.id)));
+ const [{units:a1},{units:a2}]=await Promise.all([
+  loader.loadUnits('pt-BR','A1',Array.from({length:24},(_,i)=>i+1)),
+  loader.loadUnits('pt-BR','A2',[1,2,3,4,5,6])
+ ]);
+ const earlier=new Set([...a1,...a2.slice(0,3)].flatMap(unit=>unit.vocab.map(word=>word.id)));
  for(const unit of units.slice(3)) for(const lesson of unit.lessons) for(const id of lesson.reviewVocabIds) assert.ok(earlier.has(id),id);
 });
 test('service worker precaches A2 U4-U6 with a new cache namespace',()=>{

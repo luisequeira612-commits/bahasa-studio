@@ -162,7 +162,7 @@ unit(17,'La hora, el calendario y las comidas','Expresa horas, días, meses y mo
 ['Lección 3: Meses I','Nombra meses del año y usa in con ellos.','Usa in + mes: in January, in February. Los meses llevan mayúscula.',[7,8,9,10],'February is a short month.'],
 ['Lección 4: Meses II','Completa el calendario anual.','Usa in + mes para situar eventos: in July, in December.',[11,12,13,14,15,16,17,18],'School ends in June.'],
 ['Lección 5: Comidas y momentos','Habla del almuerzo, la cena y las meriendas.','At noon indica mediodía; at + hora expresa el momento de una comida.',[19,20,21,2],'They have dinner at seven.']
-],['I rest on Sunday.','My birthday is in January.','February is a short month.','The course starts in March.','It rains in April.']),
+],['I rest on Saturday.','The store opens on Sunday.','My birthday is in January.','February is a short month.','The course starts in March.']),
 unit(18,'Habilidades y permiso con can','Expresa habilidades, posibilidades y permisos sencillos usando can y can’t.','Can + verbo base expresa capacidad o permiso. No cambia con he/she/it y no usa do en preguntas: Can she swim? Can’t expresa incapacidad o prohibición.','Can no lleva to ni -s','Después de can/can’t va la forma base: he can swim, no “he can swims” ni “can to swim”.',[
 ['swim','nadar','I can swim.','Sé nadar.'],
 ['dance','bailar','She can dance well.','Ella sabe bailar bien.'],

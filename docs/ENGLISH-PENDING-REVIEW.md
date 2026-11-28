@@ -23,6 +23,24 @@ Los currículos A1/A2/B1 están desarrollados en ramas y PRs apiladas, pero toda
 
 En cada muestra comprobar únicamente: correspondencia entre objetivos, ejemplos y lecciones; fidelidad de traducciones; validez de respuestas; y ausencia de errores gramaticales que enseñen algo incorrecto. No ampliar la muestra ni reabrir otras unidades.
 
+
+## Bloqueantes de publicación (no son pendientes editoriales)
+
+1. Integrar A1/A2/B1 en `main` en orden de dependencias. La cadena A1 #891–899 no está lista: #891 tiene conflicto de merge con `main` y #892 no tiene ejecuciones de CI registradas. A2 #900–912 y B1 #915–936 tienen sus bloques finales desarrollados; los heads #912, #915 y #916 muestran typecheck/regresión exitosos.
+2. Integrar la corrección B2 de #948 y las correcciones A1 U16 de #893 una vez que se autorice la integración; ambos heads tienen CI completo exitoso.
+3. Solo después de integrar los cuatro niveles, registrar el manifiesto inglés A1–B2 en `language-manager.js`, habilitar inglés y actualizar `README.md` en el mismo cambio. Mantener la prueba `tests/readme-language-catalog.test.cjs`.
+
+**Estado de CI comprobado (2026-11-27):**
+- A1 #893, head `f2cedff3dffb338fb4eda9b13fd9749e30dbc65d`: regression #4897 success; type checks #1017 success; offline quality success.
+- B2 #948, head `90062bf28cfe19f0587ab1d1769340c4d0cb026a`: regression #4896 success; type checks #1016 success; offline quality success.
+- A1 #891: regression #4131 success; type checks #253 success, pero el PR tiene conflicto de merge con `main`.
+- A1 #892: no hay check-runs registrados para el head actual.
+- A2 #912: regression #4203 success; type checks #325 success.
+- B1 #915: regression #4210 success; type checks #332 success.
+- B1 #916: regression #4725 success; type checks #846 success.
+
+**Restricción de integración:** la memoria del proyecto registra que no se deben fusionar PRs de inglés sin aprobación expresa. Esta tarea cierra la validación editorial; no autoriza por sí sola a fusionar ni a publicar.
+
 ## Regla de cierre
 
 Un hallazgo solo es bloqueante si contiene un error factual/gramatical, una traducción que cambia el sentido, una actividad sin respuesta válida o una asociación que enseña un objetivo equivocado. No reabrir mejoras de estilo ni ampliar la muestra. Al cerrar los bloqueantes correspondientes al alcance acordado y pasar las pruebas automáticas aplicables, marcar «inglés cerrado».

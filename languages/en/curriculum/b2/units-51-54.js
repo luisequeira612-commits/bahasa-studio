@@ -58,14 +58,14 @@ lessons:[
 ["Viabilidad y opciones","Evalúa si una propuesta puede ejecutarse y qué costos implica.","Assess feasibility, course of action y cost implications separan análisis y decisión.",[4,5,6,7],"The report sets out a proposed course of action."],
 ["Objetivos y resultados","Relaciona acciones con metas observables y recomendaciones.","Measurable outcome, implement a recommendation y potential drawback permiten comparar opciones.",[8,9,10,11],"Management agreed to implement the first recommendation."],
 ["Planificación y justificación","Expone opciones, razones, prioridades y seguimiento.","Set out options, provide a rationale y monitor progress hacen explícita la lógica del plan.",[12,13,14,15],"The document sets out three options for consideration."],
-["Propuesta completa","Integra presupuesto, calendario, revisión y siguientes pasos.","Implementation timeline, cost-effective y subject to review delimitan ejecución y evaluación.",[16,17,18,19,20,21],"The recommended option is likely to be cost-effective."]]},
+["Propuesta completa","Integra presupuesto, calendario, revisión y siguientes pasos.","Implementation timeline fija las fases; cost-effective evalúa el uso de recursos; address a shortfall identifica una necesidad; draw up a proposal prepara el documento; subject to review y next steps organizan evaluación y continuidad.",[16,17,18,19,20,21],"The final section identifies the next steps."]]},
 {n:53,title:"Professional negotiation",desc:"Negocia condiciones, concesiones, límites y acuerdos con firmeza, flexibilidad y lenguaje diplomático.",grammar:"Conditional offers, concessions, counteroffers, tentative agreement and formalizing terms.",trap:"We could consider X if you can offer Y is a conditional proposal. I agree in principle does not mean every detail is settled.",rows:[
 ["to reach a compromise","llegar a un acuerdo intermedio","Both sides were willing to reach a compromise.","Ambas partes estaban dispuestas a llegar a un acuerdo intermedio."],
 ["to make a concession","hacer una concesión","The supplier made a concession on delivery costs.","El proveedor hizo una concesión en los costos de entrega."],
 ["to put forward a counteroffer","presentar una contraoferta","They put forward a counteroffer during the second meeting.","Presentaron una contraoferta durante la segunda reunión."],
 ["to negotiate terms","negociar condiciones","We need to negotiate the terms before signing.","Tenemos que negociar las condiciones antes de firmar."],
 ["to be willing to","estar dispuesto a","We are willing to extend the trial period.","Estamos dispuestos a ampliar el periodo de prueba."],
-["to be prepared to","estar preparado para","The company is prepared to discuss alternative dates.","La empresa está preparada para hablar de fechas alternativas."],
+["to be prepared to","estar dispuesto a / estar preparado para","The company is prepared to discuss alternative dates.","La empresa está dispuesta a hablar de fechas alternativas."],
 ["subject to agreement","sujeto a acuerdo","The revised price is subject to agreement on delivery.","El precio revisado está sujeto a un acuerdo sobre la entrega."],
 ["to meet halfway","ceder mutuamente","If both teams meet halfway, we can settle this today.","Si ambos equipos ceden mutuamente, podemos resolver esto hoy."],
 ["to be open to","estar abierto a","We are open to a longer payment period.","Estamos abiertos a un plazo de pago más largo."],
@@ -95,7 +95,7 @@ lessons:[
 ["to take the minutes","redactar el acta","Could you take the minutes during the meeting?","¿Podrías redactar el acta durante la reunión?"],
 ["to transition to","pasar a / hacer la transición a","I'll transition to the next section of the presentation.","Pasaré a la siguiente sección de la presentación."],
 ["to draw your attention to","llamar su atención sobre","I'd like to draw your attention to the final chart.","Me gustaría llamar su atención sobre el gráfico final."],
-["to walk someone through","guiar a alguien paso a paso","I'll walk you through the main stages of the process.","Te guiaré por las etapas principales del proceso."],
+["to walk someone through","explicar o guiar a alguien paso a paso","I'll walk you through the main stages of the process.","Te explicaré paso a paso las etapas principales del proceso."],
 ["to address a question","responder / abordar una pregunta","I'd like to address the question about costs.","Me gustaría abordar la pregunta sobre los costos."],
 ["to take questions","responder preguntas","We'll take questions at the end of the presentation.","Responderemos preguntas al final de la presentación."],
 ["to elaborate on","ampliar / desarrollar","Could you elaborate on the final recommendation?","¿Podrías desarrollar la recomendación final?"],
@@ -114,9 +114,9 @@ lessons:[
 lessons:[
 ["Organizar reuniones","Gestiona agenda, roles y registro de acuerdos.","Chair a meeting, circulate an agenda, put a proposal on the agenda y take the minutes describen funciones concretas.",[0,1,2,3],"Please circulate the agenda before the meeting."],
 ["Transiciones en presentaciones","Guía a la audiencia entre secciones y procesos.","Transition to, draw attention to y walk someone through organizan la información.",[4,5,6,7],"I'd like to draw your attention to the final chart."],
-["Preguntas y desarrollo","Responde preguntas y amplía explicaciones con claridad.","Address a question, take questions y elaborate on ayudan a gestionar interacción.",[8,9,10,11],"Could you elaborate on the final recommendation?"],
+["Preguntas y desarrollo","Responde preguntas, amplía explicaciones y sintetiza intervenciones con claridad.","Take questions gestiona el turno de preguntas; elaborate on desarrolla una respuesta; make a brief point introduce una observación y summarize the discussion recupera lo tratado.",[8,9,10,11],"Could you elaborate on the final recommendation?"],
 ["Decisiones y agenda","Plantea puntos, aclara asuntos y controla el tiempo.","Reach/defer a decision, raise a point y keep to the schedule organizan la reunión.",[12,13,14,15],"The chair decided to defer the decision until Friday."],
-["Cierre y síntesis","Resume ideas y concluye sin perder el hilo argumental.","Bring the presentation to a close y sum up marcan el cierre; follow the thread y make the most of orientan la participación.",[16,17,18,19,20,21],"The presentation ran over time by ten minutes."]]}
+["Cierre, tiempo y síntesis","Controla el tiempo, resume las ideas y concluye sin perder el hilo argumental.","Keep to the schedule y run over time describen el control del tiempo; bring the presentation to a close y sum up marcan el cierre; follow the thread y make the most of orientan la participación.",[16,17,18,19,20,21],"The presentation ran over time by ten minutes."],]}
 ];
 function build(d){
  const vocab=d.rows.map((r,i)=>({id:"en_b2_u"+d.n+"_v"+String(i+1).padStart(2,"0"),target:r[0],esp:r[1],ex:r[2],exEsp:r[3],verification:{status:"not_checked",sources:[]}}));

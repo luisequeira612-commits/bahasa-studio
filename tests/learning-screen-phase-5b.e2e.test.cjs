@@ -984,7 +984,7 @@ test('Aprender review card starts the existing SRS session when due reviews exis
       SRSEngine.startSession = async () => {
         window.__startedReviewSession = true;
       };
-      App.renderAdaptiveRecommendation({
+      return App.renderAdaptiveRecommendation({
         dueCount: 18,
         weakWords: [],
         isolatedWords: [],

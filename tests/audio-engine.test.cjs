@@ -198,7 +198,7 @@ test('no usa una voz de otro idioma si faltan pt-BR y pt-PT', () => {
     const language = {
         code: 'pt-BR', locale: 'pt-BR', name: 'Portugués de Brasil',
         audioPath: './audio/pt-BR/', audioMode: 'speechSynthesis',
-        voiceFallbackLocales: ['pt-PT']
+        voiceFallbackLocales: ['pt-PT'], allowSystemVoiceFallback: true
     };
     const setup = createEngine({ language, voices: [{ name: 'Indonesian voice', lang: 'id-ID' }] });
     assert.equal(setup.engine.speak('bom dia'), false);

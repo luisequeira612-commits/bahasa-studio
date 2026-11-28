@@ -23,7 +23,7 @@ const defs=[
 ["what the report shows is","lo que muestra el informe es","What the report shows is a steady decline.","Lo que muestra el informe es un descenso constante."],
 ["it was because of","fue debido a","It was because of a technical issue that the launch was delayed.","Fue debido a un problema técnico que se retrasó el lanzamiento."],
 ["what surprised everyone was","lo que sorprendió a todos fue","What surprised everyone was how quickly she adapted.","Lo que sorprendió a todos fue lo rápido que se adaptó."],
-["the main point is that","el punto principal es que","The main point is that we need reliable information.","El punto principal es que necesitamos información fiable."]],
+["the main point is that","el punto principal es que","The main point is that we need reliable information.","El punto principal es que necesitamos información confiable."]],
 lessons:[
 ["It-clefts y what-clefts básicos","Destaca el elemento que explica, identifica o evalúa una situación.","It + be + foco + that/who identifica un elemento; What + clause + be presenta como foco una acción, situación o evaluación.",[0,1,2,3],"It is the lack of funding that limits the project."],
 ["Foco temporal, causal y de necesidad","Resalta cuándo o por qué ocurre algo y presenta una necesidad como información central.","It was not until + time/clause + that; it is precisely because + clause + that; What we need is... y All I want is... presentan necesidades o deseos como foco.",[4,5,6,7],"What we need is a clear decision."],

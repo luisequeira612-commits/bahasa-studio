@@ -236,6 +236,11 @@ window.AudioEngine = {
         }
         this.refreshVoices();
         const voice = this.selectedVoice || this.activeLanguageVoice;
+        if (!voice && this.voices.length > 0) {
+            const status = document.getElementById('audioVoiceStatus');
+            if (status) status.textContent = 'No hay una voz instalada compatible con ' + languageName + '.';
+            return false;
+        }
         this.synth.cancel();
         const utter = new SpeechSynthesisUtterance(text);
         utter.lang = voice && this.matchesActiveLanguage(voice) ? (voice.lang || language.locale || 'id-ID') : (language.locale || 'id-ID');

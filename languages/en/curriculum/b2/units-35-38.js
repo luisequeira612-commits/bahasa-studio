@@ -7,7 +7,7 @@ const defs=[
 ["to provide grounds for","proporcionar motivos para","The findings provide grounds for further investigation.","Los hallazgos proporcionan motivos para seguir investigando."],
 ["supporting evidence","pruebas de apoyo","The proposal is based on supporting evidence from three studies.","La propuesta se basa en pruebas de apoyo de tres estudios."],
 ["a relevant example","un ejemplo pertinente","A relevant example helps clarify the broader point.","Un ejemplo pertinente ayuda a aclarar el punto general."],
-["to substantiate a claim","respaldar una afirmación","Additional data is needed to substantiate the claim.","Se necesitan datos adicionales para respaldar la afirmación."],
+["to substantiate a claim","respaldar una afirmación","Additional data are needed to substantiate the claim.","Se necesitan datos adicionales para respaldar la afirmación."],
 ["to draw on research","basarse en investigaciones","The report draws on recent research into learning outcomes.","El informe se basa en investigaciones recientes sobre los resultados del aprendizaje."],
 ["a line of reasoning","una línea de razonamiento","The article follows a clear line of reasoning.","El artículo sigue una línea de razonamiento clara."],
 ["to establish a link","establecer una relación","The study establishes a link between sleep and attention.","El estudio establece una relación entre el sueño y la atención."],
@@ -33,7 +33,7 @@ lessons:[
 {n:36,title:"Refutation y qualification: refutar y matizar",desc:"Responde objeciones, reconoce límites y ajusta una postura sin caricaturizar el argumento contrario.",grammar:"Concession + rebuttal; qualification with to the extent that, in part, under certain conditions; distinguish refuting evidence from rejecting a claim.",trap:"I accept that X; however, Y... acknowledges a point before rebuttal. Do not use although and however to connect the same clauses incorrectly.",rows:[
 ["to acknowledge an objection","reconocer una objeción","We should acknowledge the objection before responding.","Deberíamos reconocer la objeción antes de responder."],
 ["to concede that","admitir que","I concede that the initial costs are high.","Admito que los costos iniciales son elevados."],
-["to challenge a premise","cuestionar una premisa","The data challenges a key premise of the proposal.","Los datos cuestionan una premisa clave de la propuesta."],
+["to challenge a premise","cuestionar una premisa","The data challenge a key premise of the proposal.","Los datos cuestionan una premisa clave de la propuesta."],
 ["to rebut an argument","refutar un argumento","The article attempts to rebut the main criticism.","El artículo intenta refutar la crítica principal."],
 ["to qualify a statement","matizar una afirmación","We need to qualify that statement in light of new evidence.","Debemos matizar esa afirmación a la luz de nuevas pruebas."],
 ["to a certain extent","hasta cierto punto","The concern is valid to a certain extent.","La preocupación es válida hasta cierto punto."],

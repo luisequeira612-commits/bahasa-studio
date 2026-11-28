@@ -238,7 +238,7 @@ window.AudioEngine = {
         const voice = this.selectedVoice || this.activeLanguageVoice;
         if (!voice && (this.voices.length > 0 || language.allowSystemVoiceFallback !== true)) {
             const status = document.getElementById('audioVoiceStatus');
-            if (status) status.textContent = 'No se encontró una grabación ni una voz instalada compatible con ' + languageName + '.';
+            if (status) status.textContent = 'No se encontró una grabación para esta frase ni una voz instalada para ' + languageName + '.';
             return false;
         }
         this.synth.cancel();

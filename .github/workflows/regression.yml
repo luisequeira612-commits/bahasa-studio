@@ -3,7 +3,7 @@ name: Regression tests
 on:
   pull_request:
   push:
-    branches: [main]
+    branches: [main, "fix/**"]
   workflow_dispatch:
 
 jobs:
@@ -26,6 +26,9 @@ jobs:
         run: npm run curriculum:lesson-inventory
       - name: Run regression tests
         run: node --test tests/regression.test.cjs
+
+      - name: Study hint remains language-neutral
+        run: node --test tests/study-language-neutral-hint.test.cjs
       - name: Run XP reward tests
         run: node --test tests/xp-rewards.test.cjs
       - name: Run unbiased exercise shuffle tests

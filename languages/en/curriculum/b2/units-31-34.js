@@ -1,0 +1,132 @@
+(function(root){
+'use strict';
+const defs=[
+{n:31,title:"Linking devices avanzados",desc:"Conecta ideas mediante relaciones precisas de contraste, concesión, consecuencia, reformulación y secuencia.",grammar:"Conjunctive adverbs, subordinating conjunctions and prepositional linkers; punctuation and clause structure vary by linker.",trap:"Although + clause; despite + noun/-ing. However links independent clauses and usually needs punctuation. Do not join two complete sentences with a comma alone.",rows:[
+["conversely","por el contrario","The first approach reduces costs; conversely, the second improves flexibility.","El primer enfoque reduce los costos; por el contrario, el segundo mejora la flexibilidad."],
+["by contrast","en cambio","Urban areas grew rapidly; by contrast, rural populations remained stable.","Las zonas urbanas crecieron rápidamente; en cambio, las poblaciones rurales se mantuvieron estables."],
+["whereas","mientras que","The older model is cheaper, whereas the newer one is more reliable.","El modelo antiguo es más barato, mientras que el nuevo es más fiable."],
+["all the same","aun así","The sample was small; all the same, the results were consistent.","La muestra era pequeña; aun así, los resultados fueron coherentes."],
+["notwithstanding","a pesar de","Notwithstanding these concerns, the project will proceed.","A pesar de estas preocupaciones, el proyecto seguirá adelante."],
+["insofar as","en la medida en que","The proposal is useful insofar as it addresses the main risk.","La propuesta es útil en la medida en que aborda el riesgo principal."],
+["to that end","con ese fin","We need better data; to that end, a survey will be conducted.","Necesitamos mejores datos; con ese fin, se realizará una encuesta."],
+["thereby","con ello / de ese modo","The update simplifies the process, thereby reducing delays.","La actualización simplifica el proceso y, con ello, reduce los retrasos."],
+["hence","por lo tanto","Demand has fallen; hence, production will be reduced.","La demanda ha caído; por lo tanto, se reducirá la producción."],
+["accordingly","en consecuencia","The requirements have changed; the schedule was adjusted accordingly.","Los requisitos han cambiado; el calendario se ajustó en consecuencia."],
+["in turn","a su vez","Better training improves confidence and, in turn, performance.","Una mejor formación aumenta la confianza y, a su vez, el rendimiento."],
+["as a result","como resultado","The supplier withdrew; as a result, the launch was postponed.","El proveedor se retiró; como resultado, se pospuso el lanzamiento."],
+["in addition to","además de","In addition to the fee, applicants must submit proof of identity.","Además de la tarifa, los solicitantes deben presentar una prueba de identidad."],
+["alongside","junto con","The report examines costs alongside environmental effects.","El informe examina los costos junto con los efectos ambientales."],
+["rather than","en lugar de","We should address the cause rather than treat the symptoms.","Deberíamos abordar la causa en lugar de tratar los síntomas."],
+["insofar as possible","en la medida de lo posible","Personal information should be protected insofar as possible.","La información personal debe protegerse en la medida de lo posible."],
+["in light of","a la luz de","In light of new evidence, the decision was reconsidered.","A la luz de nuevas pruebas, se reconsideró la decisión."],
+["for this reason","por esta razón","For this reason, the team requested an extension.","Por esta razón, el equipo solicitó una prórroga."],
+["in other words","en otras palabras","The system is not fully secure; in other words, it still needs testing.","El sistema no es completamente seguro; en otras palabras, todavía necesita pruebas."],
+["more specifically","más concretamente","More specifically, the policy applies to temporary staff.","Más concretamente, la política se aplica al personal temporal."],
+["for now","por ahora","The replacement is being prepared; for now, use the backup.","Se está preparando el reemplazo; por ahora, utiliza la copia de respaldo."],
+["ultimately","en última instancia","Ultimately, the decision depends on the available evidence.","En última instancia, la decisión depende de las pruebas disponibles."]],
+lessons:[
+["Contraste y oposición","Compara dos ideas sin confundir contraste con contradicción.","Whereas introduce una cláusula; by contrast y conversely conectan ideas independientes.",[0,1,2,3],"Urban areas grew rapidly; by contrast, rural populations remained stable."],
+["Concesión y límites","Reconoce objeciones sin abandonar la idea principal.","Nevertheless funciona como adverbio conjuntivo; notwithstanding es más formal y puede preceder a un nombre.",[4,5,6,7],"The proposal is useful insofar as it addresses the main risk."],
+["Consecuencia y resultado","Explica cómo una acción produce otra consecuencia.","Thereby suele ir seguido de -ing; hence y accordingly expresan resultado lógico o ajuste.",[8,9,10,11],"The requirements have changed; the schedule was adjusted accordingly."],
+["Adición y elección","Añade información y distingue opciones o prioridades.","In addition to y alongside introducen elementos; rather than marca una alternativa.",[12,13,14,15],"The report examines costs alongside environmental effects."],
+["Reformulación y secuencia","Aclara, concreta y organiza la progresión de un argumento.","In the light of presenta el marco; in other words reformula; in the meantime ordena acciones simultáneas.",[16,17,18,19,20,21],"For this reason, the team requested an extension."]]},
+{n:32,title:"Hedging y cautious language",desc:"Matiza afirmaciones, interpreta evidencia con prudencia y evita presentar hipótesis como hechos absolutos.",grammar:"Modal verbs, stance adverbs, reporting frames, approximators and cautious verbs; distinguish evidence from interpretation.",trap:"The results suggest that... is more cautious than The results prove that...; may/might/could express different degrees of possibility. Do not hedge every sentence.",rows:[
+["the evidence suggests","las pruebas sugieren","The evidence suggests that the policy has had a positive effect.","Las pruebas sugieren que la política ha tenido un efecto positivo."],
+["it appears that","parece que","It appears that demand is beginning to recover.","Parece que la demanda está empezando a recuperarse."],
+["it is quite possible that","es muy posible que","It is quite possible that the changes will improve access.","Es muy posible que los cambios mejoren el acceso."],
+["is likely to","es probable que","The new approach is likely to reduce waste.","Es probable que el nuevo enfoque reduzca los residuos."],
+["to some extent","hasta cierto punto","The criticism is justified to some extent.","La crítica está justificada hasta cierto punto."],
+["arguably","podría decirse que","Arguably, the second option offers better value.","Podría decirse que la segunda opción ofrece una mejor relación calidad-precio."],
+["reportedly","según se informa","The meeting has reportedly been moved to Friday.","Según se informa, la reunión se ha trasladado al viernes."],
+["as far as we can tell","por lo que podemos determinar","As far as we can tell, no data was lost.","Por lo que podemos determinar, no se perdió ningún dato."],
+["there is some evidence that","hay ciertos indicios de que","There is some evidence that sleep affects memory.","Hay ciertos indicios de que el sueño afecta a la memoria."],
+["cannot be ruled out","no se puede descartar","A further delay cannot be ruled out.","No se puede descartar otro retraso."],
+["tends to","tiende a","The system tends to perform better under lighter loads.","El sistema tiende a funcionar mejor con cargas menores."],
+["seems to","parece","The plan seems to overlook an important detail.","El plan parece pasar por alto un detalle importante."],
+["relatively","relativamente","The procedure is relatively straightforward.","El procedimiento es relativamente sencillo."],
+["approximately","aproximadamente","Approximately half of the respondents supported the proposal.","Aproximadamente la mitad de los encuestados apoyó la propuesta."],
+["in all probability","con toda probabilidad","In all probability, the figures will be revised.","Con toda probabilidad, se revisarán las cifras."],
+["not automatically","no de forma automática","A higher salary does not automatically lead to greater satisfaction.","Un salario más alto no conduce automáticamente a una mayor satisfacción."],
+["to align with","coincidir con / estar alineado con","The findings align with earlier research.","Los hallazgos coinciden con investigaciones anteriores."],
+["preliminary findings","resultados preliminares","Preliminary findings point to a possible link.","Los resultados preliminares apuntan a una posible relación."],
+["a plausible explanation","una explicación plausible","One plausible explanation is a change in consumer habits.","Una explicación plausible es un cambio en los hábitos de consumo."],
+["a tentative conclusion","una conclusión provisional","At this stage, any conclusion would be tentative.","En esta etapa, cualquier conclusión sería provisional."],
+["to raise the possibility","plantear la posibilidad","The report raises the possibility of further changes.","El informe plantea la posibilidad de nuevos cambios."],
+["within reasonable limits","dentro de límites razonables","The estimate is accurate within reasonable limits.","La estimación es precisa dentro de límites razonables."]],
+lessons:[
+["Afirmaciones basadas en evidencia","Distingue observación, evidencia e interpretación.","Suggest, appear y there is evidence that presentan conclusiones con cautela.",[0,1,2,3],"It appears that demand is beginning to recover."],
+["Grados de probabilidad","Ajusta el grado de certeza según la información disponible.","May well, likely to y cannot be ruled out expresan posibilidades distintas; evita tratarlas como equivalentes.",[4,5,6,7],"Arguably, the second option offers better value."],
+["Alcance y tendencias","Limita generalizaciones y describe patrones con prudencia.","To some extent, tends to y relatively reducen el alcance de una afirmación.",[8,9,10,11],"A further delay cannot be ruled out."],
+["Datos aproximados y consistencia","Comunica cifras aproximadas y compara hallazgos con otras fuentes.","Approximately e in all probability no equivalen a datos exactos; consistent with expresa compatibilidad, no prueba causal.",[12,13,14,15],"Approximately half of the respondents supported the proposal."],
+["Conclusiones provisionales","Presenta hipótesis y conclusiones sin exagerar su solidez.","Preliminary findings, plausible explanation y tentative conclusion marcan etapas de evaluación.",[16,17,18,19,20,21],"Preliminary findings point to a possible link."]]},
+{n:33,title:"Intensificación y atenuación",desc:"Ajusta la fuerza de una evaluación mediante boosters, downtoners y expresiones de postura apropiadas al registro.",grammar:"Intensifying adverbs, downtoners, degree modifiers and stance expressions; collocation determines which modifiers sound natural.",trap:"Highly effective, deeply concerned, slightly different. Avoid very with absolute adjectives (very unique) and avoid stacking intensifiers.",rows:[
+["highly effective","muy eficaz","The new procedure has proved highly effective.","El nuevo procedimiento ha demostrado ser muy eficaz."],
+["deeply concerned","sumamente preocupado","Residents are deeply concerned about the proposal.","Los residentes están sumamente preocupados por la propuesta."],
+["particularly relevant","especialmente relevante","This distinction is particularly relevant to the discussion.","Esta distinción es especialmente relevante para el debate."],
+["extremely unlikely","sumamente improbable","A complete reversal is extremely unlikely.","Un cambio total de rumbo es sumamente improbable."],
+["considerably more","considerablemente más","The revised model is considerably more efficient.","El modelo revisado es considerablemente más eficiente."],
+["slightly different","ligeramente diferente","The second version is slightly different.","La segunda versión es ligeramente diferente."],
+["somewhat limited","algo limitado","The available evidence is somewhat limited.","Las pruebas disponibles son algo limitadas."],
+["fairly common","bastante común","This pattern is fairly common in informal speech.","Este patrón es bastante común en el habla informal."],
+["by no means","de ninguna manera","The task is by no means straightforward.","La tarea no es de ninguna manera sencilla."],
+["far from clear","lejos de estar claro","The reasons for the change are far from clear.","Las razones del cambio están lejos de estar claras."],
+["remarkably similar","notablemente similar","The two accounts are remarkably similar.","Los dos relatos son notablemente similares."],
+["strongly opposed","firmemente opuesto","Several groups are strongly opposed to the measure.","Varios grupos se oponen firmemente a la medida."],
+["fully aware","plenamente consciente","We are fully aware of the potential risks.","Somos plenamente conscientes de los riesgos potenciales."],
+["marginally better","ligeramente mejor","The updated version is marginally better.","La versión actualizada es ligeramente mejor."],
+["a little too","un poco demasiado","The explanation is a little too technical for new users.","La explicación es un poco demasiado técnica para los usuarios nuevos."],
+["not particularly","no especialmente","The result was not particularly surprising.","El resultado no fue especialmente sorprendente."],
+["to a large degree","en gran medida","Success depends to a large degree on preparation.","El éxito depende en gran medida de la preparación."],
+["almost entirely","casi por completo","The process is now almost entirely automated.","El proceso ahora está casi completamente automatizado."],
+["rather disappointing","bastante decepcionante","The response was rather disappointing.","La respuesta fue bastante decepcionante."],
+["exceptionally well","excepcionalmente bien","The team handled the transition exceptionally well.","El equipo gestionó la transición excepcionalmente bien."],
+["reasonably confident","bastante seguros","We are reasonably confident about the estimate.","Tenemos bastante confianza en la estimación."],
+["to some degree","en cierta medida","The two explanations overlap to some degree.","Las dos explicaciones coinciden en cierta medida."]],
+lessons:[
+["Intensificadores fuertes","Refuerza evaluaciones con combinaciones naturales.","Highly, deeply, particularly y extremely se combinan con adjetivos adecuados; aprende colocaciones, no traducciones aisladas.",[0,1,2,3],"Residents are deeply concerned about the proposal."],
+["Grados comparativos","Expresa diferencias grandes y pequeñas con precisión.","Considerably more intensifica comparativos; slightly y marginally atenúan diferencias.",[4,5,6,7],"The second version is slightly different."],
+["Negación e intensidad","Expresa que algo no es simple, claro o aceptable en absoluto.","By no means y far from refuerzan una negación; requieren atención al orden y al adjetivo.",[8,9,10,11],"The reasons for the change are far from clear."],
+["Conciencia y alcance","Matiza el grado de conocimiento, dependencia y automatización.","Fully, to a large degree y almost entirely especifican alcance; no implican necesariamente totalidad.",[12,13,14,15],"The updated version is marginally better."],
+["Atenuación y evaluación","Equilibra críticas, confianza y coincidencias parciales.","Rather, reasonably, a little too y to some degree permiten graduar opiniones según el registro.",[16,17,18,19,20,21],"The process is now almost entirely automated."]]},
+{n:34,title:"Reporting ideas y síntesis",desc:"Atribuye, resume y parafrasea ideas de fuentes sin copiar su formulación ni confundir la postura del autor con la propia.",grammar:"Reporting verbs + that-clause, noun reporting frames, source attribution and paraphrase; maintain tense and stance accurately.",trap:"The report argues that... attributes a claim. The report proves that... implies stronger evidence. A summary preserves central meaning without copying wording.",rows:[
+["the report argues that","el informe sostiene que","The report argues that public transport needs further investment.","El informe sostiene que el transporte público necesita más inversión."],
+["the author points out","el autor señala","The author points out several weaknesses in the current system.","El autor señala varias debilidades del sistema actual."],
+["the study finds that","el estudio concluye que","The study finds that regular feedback improves performance.","El estudio concluye que la retroalimentación regular mejora el rendimiento."],
+["according to the findings","según los hallazgos","According to the findings, access remains unequal.","Según los hallazgos, el acceso sigue siendo desigual."],
+["to highlight","destacar","The article highlights the need for clearer guidance.","El artículo destaca la necesidad de orientaciones más claras."],
+["to emphasize","enfatizar","The researcher emphasizes the role of early intervention.","El investigador enfatiza el papel de la intervención temprana."],
+["to recognize","reconocer","The authors recognize that the sample was limited.","Los autores reconocen que la muestra era limitada."],
+["to challenge the assumption","cuestionar la suposición","The evidence challenges the assumption that price determines quality.","Las pruebas cuestionan la suposición de que el precio determina la calidad."],
+["to draw attention to","llamar la atención sobre","The review draws attention to an overlooked issue.","La revisión llama la atención sobre un asunto pasado por alto."],
+["to outline","esbozar / resumir","The introduction outlines the main stages of the process.","La introducción resume las etapas principales del proceso."],
+["to address the question of","abordar la cuestión de","The chapter addresses the question of long-term sustainability.","El capítulo aborda la cuestión de la sostenibilidad a largo plazo."],
+["to conclude that","concluir que","The panel concludes that further research is needed.","El comité concluye que se necesita más investigación."],
+["to suggest a link between","sugerir una relación entre","The results suggest a link between sleep and concentration.","Los resultados sugieren una relación entre el sueño y la concentración."],
+["to provide an overview","ofrecer una visión general","The first section provides an overview of recent developments.","La primera sección ofrece una visión general de los avances recientes."],
+["in summary","en resumen","In summary, the proposal offers clear benefits but carries risks.","En resumen, la propuesta ofrece beneficios claros, pero conlleva riesgos."],
+["the central argument","el argumento central","The central argument is that prevention is more cost-effective.","El argumento central es que la prevención es más rentable."],
+["a key finding","un hallazgo clave","A key finding was the difference between the two groups.","Un hallazgo clave fue la diferencia entre los dos grupos."],
+["to put it differently","dicho de otra manera","To put it differently, the system rewards speed over accuracy.","Dicho de otra manera, el sistema recompensa la rapidez por encima de la precisión."],
+["to take a broader view","adoptar una perspectiva más amplia","To take a broader view, we must consider social factors.","Para adoptar una perspectiva más amplia, debemos considerar factores sociales."],
+["the available evidence","las pruebas disponibles","The available evidence does not support that conclusion.","Las pruebas disponibles no respaldan esa conclusión."],
+["to distinguish between","distinguir entre","The author distinguishes between short-term gains and lasting progress.","El autor distingue entre beneficios a corto plazo y progreso duradero."],
+["to reach a balanced assessment","llegar a una evaluación equilibrada","We need to reach a balanced assessment of the options.","Necesitamos llegar a una evaluación equilibrada de las opciones."]],
+lessons:[
+["Atribuir argumentos y hallazgos","Identifica quién sostiene, encuentra o reconoce cada idea.","Reporting frames atribuyen una postura; el verbo elegido comunica fuerza y actitud.",[0,1,2,3],"The author points out several weaknesses in the current system."],
+["Verbos de reporte y evaluación","Distingue destacar, enfatizar, cuestionar y reconocer.","Highlight, emphasize, acknowledge y challenge no son intercambiables; conserva la intención del autor.",[4,5,6,7],"The researcher emphasizes the role of early intervention."],
+["Estructura y alcance de fuentes","Resume la organización y el tema de una fuente.","Outline, address y provide an overview describen funciones textuales; no atribuyas conclusiones que la fuente no presenta.",[8,9,10,11],"The introduction outlines the main stages of the process."],
+["Síntesis y reformulación","Resume la idea central con palabras propias y sin alterar su alcance.","In summary y to put it differently reformulan; la paráfrasis conserva significado, grado de certeza y atribución.",[12,13,14,15],"The first section provides an overview of recent developments."],
+["Evaluación equilibrada de evidencia","Integra hallazgos, argumentos y límites en una síntesis prudente.","Distingue evidence, finding y argument; una evaluación equilibrada reconoce tanto apoyo como limitaciones.",[16,17,18,19,20,21],"To put it differently, the system rewards speed over accuracy."]]}
+];
+function build(d){
+ const vocab=d.rows.map((r,i)=>({id:"en_b2_u"+d.n+"_v"+String(i+1).padStart(2,"0"),target:r[0],esp:r[1],ex:r[2],exEsp:r[3],verification:{status:"not_checked",sources:[]}}));
+ const mc=(w,opts)=>{const correct=opts[0];const match=String(w.id).match(/v(\d+)$/);const offset=match?Number(match[1])%opts.length:1;const options=opts.slice(offset).concat(opts.slice(0,offset));return {vocabId:w.id,type:"mc",prompt:"¿Qué significa «"+w.target+"»?",options,answer:options.indexOf(correct),explanation:"Selecciona la opción que conserva la relación lógica y el registro."};};
+ const order=(w,s)=>{const correctOrder=s.replace(/[.,!?;:]/g,"").trim().split(/\s+/).filter(Boolean);let words=correctOrder.length>1?correctOrder.slice(1).concat(correctOrder.slice(0,1)):correctOrder.slice();if(words.join(" ")===correctOrder.join(" "))words=correctOrder.slice().reverse();return {vocabId:w.id,type:"order",prompt:"Ordena la frase.",words,correctOrder,explanation:"Reconstruye la oración y observa cómo se conectan las ideas."};};
+ const lessons=d.lessons.map(l=>({title:l[0],objective:l[1],grammar:l[2],vocabIds:l[3].map(i=>vocab[i].id),reviewVocabIds:[],exercises:[mc(vocab[l[3][0]],[vocab[l[3][0]].esp,vocab[(l[3][0]+7)%22].esp,vocab[(l[3][0]+14)%22].esp]),order(vocab[l[3][1]],l[4])]}));
+ const exercises=[];for(let i=0;i<5;i++)exercises.push(mc(vocab[i],[vocab[i].esp,vocab[(i+8)%22].esp,vocab[(i+15)%22].esp]));
+ for(let i=0;i<5;i++)exercises.push(order(vocab[i+5],vocab[i+5].ex));
+ return {unitNumber:d.n,id:"en_b2_u"+d.n,title:"Unidad "+d.n+": "+d.title,desc:d.desc,grammar:d.grammar,trap:{title:"Precisión y adecuación discursiva",detail:d.trap},vocab,lessons,exercises};
+}
+root.GUARDI_CURRICULUM_BLOCKS=root.GUARDI_CURRICULUM_BLOCKS||{};root.GUARDI_CURRICULUM_BLOCKS.en=root.GUARDI_CURRICULUM_BLOCKS.en||{};root.GUARDI_CURRICULUM_BLOCKS.en.B2=root.GUARDI_CURRICULUM_BLOCKS.en.B2||{};
+root.GUARDI_CURRICULUM_BLOCKS.en.B2["31-34"]={units:defs.map(build)};
+})(typeof window!=="undefined"?window:globalThis);

@@ -1536,9 +1536,10 @@ test('bundled Indonesian recordings work without an installed device voice', () 
   assert.doesNotMatch(html, /grabaciones de voz Piper/);
   assert.equal(audioMetadata.engine, 'piper');
   assert.match(audioMetadata.model_attribution, /Piper Indonesian news_tts voice/);
-  assert.ok(audioEngineSource.includes('grabaciones Piper del curso'));
+  assert.ok(audioEngineSource.includes("language.voiceStatus === 'configured'") && audioEngineSource.includes('La app incluye grabaciones Piper para'));
   assert.ok(audioEngineSource.includes("audioPath: './audio/id/'") && audioEngineSource.includes('playRecorded(text)'));
-  assert.ok(audioEngineSource.includes("new Audio(this.getLanguageConfig().audioPath + id + '.mp3')"));
+  assert.ok(audioEngineSource.includes("const manifestEntry = this.audioManifest.get(language.code + ':' + id)") && audioEngineSource.includes("new Audio(audioPath || (language.audioPath + id + '.mp3'))"));
+  assert.ok(audioEngineSource.includes("fetch(\'./audio/manifest-multilingual.json\'"), "AudioEngine must use the central manifest without replacing offline inventories");
   assert.ok(audioEngineSource.includes("const phrase = String(language.testPhrase || '').trim()") && audioEngineSource.includes('return this.speak(phrase)'));
   assert.doesNotMatch(audioEngineSource, /voz predeterminada del sistema con el idioma id-ID/);
 });
@@ -1580,7 +1581,8 @@ test('tap-to-translate lookup is wired into learning text and uses safe text ren
   assert.match(html, /function tokenAtPoint\(event\)/);
   assert.match(html, /caretRangeFromPoint/);
   assert.match(html, /window\.refreshWordTranslationIndex/);
-  assert.match(html, /Toca una palabra en indonesio para consultar su significado/);
+  assert.match(html, /Toca una palabra para consultar su significado/);
+  assert.doesNotMatch(html, /Toca una palabra en indonesio para consultar su significado/);
   assert.match(html, /termNode\.lang = matches\[0\]\.locale/);
   assert.match(html, /termNode\.textContent = matches\[0\]\.text/);
   assert.match(html, /meaningNode\.textContent = matches\.slice\(0, 3\)/);
@@ -1756,7 +1758,8 @@ test('tap-to-translate lookup is wired into learning text and uses safe text ren
   assert.match(html, /function tokenAtPoint\(event\)/);
   assert.match(html, /caretRangeFromPoint/);
   assert.match(html, /window\.refreshWordTranslationIndex/);
-  assert.match(html, /Toca una palabra en indonesio para consultar su significado/);
+  assert.match(html, /Toca una palabra para consultar su significado/);
+  assert.doesNotMatch(html, /Toca una palabra en indonesio para consultar su significado/);
   assert.match(html, /termNode\.lang = matches\[0\]\.locale/);
   assert.match(html, /termNode\.textContent = matches\[0\]\.text/);
   assert.match(html, /meaningNode\.textContent = matches\.slice\(0, 3\)/);

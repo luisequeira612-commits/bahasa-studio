@@ -1,0 +1,132 @@
+(function(root){
+'use strict';
+const defs=[
+{n:45,title:"Connotation y evaluative language",desc:"Reconoce la carga positiva, negativa o neutral de las palabras y elige evaluaciones adecuadas al propósito y al registro.",grammar:"Connotation, evaluative adjectives and verbs, loaded language, euphemism and neutral alternatives.",trap:"Slim is often positive or neutral; skinny can sound negative. Economical may be positive; cheap can imply poor quality. Context and audience shape connotation.",rows:[
+["cost-effective","rentable","The new system is a cost-effective solution for small teams.","El nuevo sistema es una solución rentable para equipos pequeños."],
+["cheap","barato","The product is cheap, but its quality is inconsistent.","El producto es barato, pero su calidad es irregular."],
+["economical","económico","This model is more economical to run.","Este modelo es más económico de mantener."],
+["inexpensive","de bajo precio","We found an inexpensive alternative.","Encontramos una alternativa de bajo precio."],
+["slim","delgado / esbelto","The device has a slim, modern design.","El dispositivo tiene un diseño delgado y moderno."],
+["skinny","muy delgado / flaco","The skinny branches moved in the wind.","Las ramas delgadas se movían con el viento."],
+["determined","decidido","She is determined to complete the project.","Ella está decidida a completar el proyecto."],
+["stubborn","terco","He can be stubborn when challenged.","Puede ser terco cuando lo cuestionan."],
+["confident","seguro de sí mismo","The candidate gave a confident presentation.","El candidato hizo una presentación segura."],
+["arrogant","arrogante","His arrogant tone annoyed the audience.","Su tono arrogante molestó al público."],
+["assertive","asertivo","An assertive response can still be respectful.","Una respuesta asertiva puede seguir siendo respetuosa."],
+["aggressive","agresivo","The message sounded more aggressive than intended.","El mensaje sonó más agresivo de lo previsto."],
+["to challenge","cuestionar","The journalist challenged the official explanation.","El periodista cuestionó la explicación oficial."],
+["to criticize","criticar","The report criticizes the lack of oversight.","El informe critica la falta de supervisión."],
+["to expose","poner al descubierto","The investigation exposed serious weaknesses.","La investigación puso al descubierto debilidades graves."],
+["to uncover","descubrir / sacar a la luz","The survey uncovered a change in public opinion.","La encuesta reveló un cambio en la opinión pública."],
+["ambitious","ambicioso","The organization has an ambitious growth plan.","La organización tiene un plan de crecimiento ambicioso."],
+["overambitious","excesivamente ambicioso","The original schedule was overambitious.","El calendario original era excesivamente ambicioso."],
+["frugal","austero / ahorrativo","A frugal approach helped the family save money.","Un enfoque austero ayudó a la familia a ahorrar dinero."],
+["miserly","tacaño","The owner was miserly with the repair budget.","El propietario fue tacaño con el presupuesto para reparaciones."],
+["to be laid off","ser despedido por recorte","Several employees were laid off during the restructuring.","Varios empleados fueron despedidos durante la reestructuración."],
+["to be fired","ser despedido","He was fired after repeated policy violations.","Lo despidieron tras incumplir repetidamente las normas."]],
+lessons:[
+["Valoración positiva y negativa","Distingue palabras cercanas con asociaciones diferentes.","Cheap puede sugerir baja calidad; cost-effective y economical suelen destacar valor o eficiencia.",[0,1,2,3],"The product is cheap, but its quality is inconsistent."],
+["Descripción de personas","Elige adjetivos que expresen rasgos y apariencia sin añadir juicios no deseados.","Slim y skinny describen complexión con distinta connotación; determined y stubborn expresan decisión o resistencia con diferente valoración.",[4,5,6,7],"The skinny branches moved in the wind."],
+["Confianza y estilo interpersonal","Evalúa cómo los adjetivos describen seguridad, actitud y tono.","Confident y arrogant distinguen seguridad de superioridad; assertive suele ser respetuoso, mientras aggressive puede implicar hostilidad.",[8,9,10,11],"His arrogant tone annoyed the audience."],
+["Verbos de evaluación","Distingue cuestionar, criticar, exponer y revelar.","Challenge puede cuestionar una idea; expose suele revelar algo oculto; criticize expresa evaluación negativa.",[12,13,14,15],"The report criticizes the lack of oversight."],
+["Connotación en contextos sensibles","Reconoce cómo una elección léxica cambia el juicio transmitido.","Ambitious/overambitious, frugal/miserly y laid off/fired no son equivalentes en tono ni contexto.",[16,17,18,19,20,21],"The original schedule was overambitious."]]},
+{n:46,title:"Idioms y fixed expressions de alta utilidad",desc:"Interpreta expresiones idiomáticas frecuentes en contextos laborales, sociales y de resolución de problemas.",grammar:"Fixed expressions and idioms; meaning is conventional and context-dependent; use register and frequency as selection criteria.",trap:"Get the ball rolling means start an activity; be on the same page means share an understanding. Avoid literal translation and overuse.",rows:[
+["to get the ball rolling","poner algo en marcha","Let's get the ball rolling with a short introduction.","Pongamos esto en marcha con una breve introducción."],
+["to be on the same page","estar de acuerdo / entenderse","Before we proceed, let's make sure we're on the same page.","Antes de continuar, asegurémonos de que estamos de acuerdo."],
+["to be in the same boat","estar en la misma situación","Many small businesses are in the same boat.","Muchas pequeñas empresas están en la misma situación."],
+["to get to the bottom of","averiguar la causa de","We need to get to the bottom of the complaint.","Necesitamos averiguar la causa de la queja."],
+["to be up in the air","estar en el aire / sin decidir","The final schedule is still up in the air.","El calendario definitivo todavía está sin decidir."],
+["to keep an eye on","vigilar / estar pendiente de","Keep an eye on the figures over the next few days.","Vigila las cifras durante los próximos días."],
+["to be a blessing in disguise","ser una bendición disfrazada","The delay turned out to be a blessing in disguise.","El retraso resultó ser una bendición disfrazada."],
+["to miss the point","no entender lo esencial","The criticism misses the point of the proposal.","La crítica no entiende lo esencial de la propuesta."],
+["to go the extra mile","hacer un esfuerzo adicional","The support team went the extra mile to help us.","El equipo de soporte hizo un esfuerzo adicional para ayudarnos."],
+["to get cold feet","echarse atrás por miedo","He got cold feet just before signing the contract.","Se echó atrás justo antes de firmar el contrato."],
+["to be under the weather","sentirse indispuesto","I'm feeling a bit under the weather today.","Hoy me siento un poco indispuesto."],
+["to learn the hard way","aprender por las malas","We learned the hard way that backups are essential.","Aprendimos por las malas que las copias de seguridad son esenciales."],
+["to reconsider a move","reconsiderar una mudanza","She's reconsidering the move.","Está reconsiderando la mudanza."],
+["to take something with a grain of salt","tomar algo con cautela","You should take anonymous reviews with a grain of salt.","Deberías tomar las reseñas anónimas con cautela."],
+["to be worth one's while","valer la pena","It may be worth your while to compare the offers.","Puede que te valga la pena comparar las ofertas."],
+["to get out of hand","descontrolarse","The discussion got out of hand.","La discusión se descontroló."],
+["in the long run","a largo plazo","The investment should pay off in the long run.","La inversión debería dar frutos a largo plazo."],
+["to make ends meet","llegar a fin de mes","Many families struggle to make ends meet.","Muchas familias tienen dificultades para llegar a fin de mes."],
+["to call it a day","dar por terminado el trabajo por hoy","We've made enough progress; let's call it a day.","Hemos avanzado lo suficiente; demos por terminado el trabajo por hoy."],
+["to get the hang of","agarrarle el truco a","It takes time to get the hang of the new software.","Se necesita tiempo para agarrarle el truco al nuevo programa."],
+["to be second to none","no tener igual","The service is second to none.","El servicio no tiene igual."],
+["to have a lot on one's plate","tener muchas cosas que hacer","She's got a lot on her plate this week.","Esta semana tiene muchísimas cosas que hacer."]],
+lessons:[
+["Poner en marcha y coordinar","Usa idioms para iniciar tareas y confirmar entendimiento compartido.","Get the ball rolling, be on the same page, be in the same boat y get to the bottom of expresan coordinación y comprensión compartida.",[0,1,2,3],"Before we proceed, let's make sure we're on the same page."],
+["Problemas y decisiones","Describe incertidumbre, seguimiento y descubrimiento de causas.","Up in the air, keep an eye on, a blessing in disguise y miss the point describen incertidumbre, atención y evaluación.",[4,5,6,7],"Keep an eye on the figures over the next few days."],
+["Esfuerzo y reacciones","Expresa esfuerzo extra, duda y aprendizaje mediante experiencias.","Go the extra mile, get cold feet, be under the weather y learn the hard way expresan esfuerzo, reacción y experiencia.",[8,9,10,11],"He got cold feet just before signing the contract."],
+["Cautela y consecuencias","Evalúa información y resultados sin interpretarlos literalmente.","Reconsider a move, take something with a grain of salt, be worth one's while y get out of hand dependen del contexto y del registro.",[12,13,14,15],"You should take anonymous reviews with a grain of salt."],
+["Vida diaria y expresiones fijas","Integra expresiones sobre dinero, tiempo y capacidad.","In the long run, make ends meet, call it a day, get the hang of, be second to none y have a lot on one's plate son expresiones de alta utilidad.",[16,17,18,19,20,21],"Many families struggle to make ends meet."]]},
+{n:47,title:"Synonyms and near-synonyms",desc:"Distingue sinónimos cercanos por significado, colocación, intensidad y registro para evitar sustituciones imprecisas.",grammar:"Semantic overlap, collocation restrictions, register and degree; near-synonyms are rarely interchangeable in every context.",trap:"Big and large overlap, but large is more natural in large amount; strong coffee, not powerful coffee. Check the noun each adjective collocates with.",rows:[
+["to acquire","adquirir","The company plans to acquire a smaller competitor.","La empresa planea adquirir un competidor más pequeño."],
+["to obtain","obtener","Applicants can obtain the form online.","Los solicitantes pueden obtener el formulario en línea."],
+["to fulfill","cumplir","The team fulfilled its main objective.","El equipo cumplió su objetivo principal."],
+["to accomplish","llevar a cabo / conseguir","She accomplished more than expected.","Ella consiguió más de lo esperado."],
+["to reduce","reducir","The update should reduce processing time.","La actualización debería reducir el tiempo de procesamiento."],
+["to diminish","disminuir","Public confidence began to diminish.","La confianza pública comenzó a disminuir."],
+["to enhance","mejorar / potenciar","The changes are intended to enhance security.","Los cambios pretenden mejorar la seguridad."],
+["to improve","mejorar","The service has improved considerably.","El servicio ha mejorado considerablemente."],
+["to assert","afirmar","The author asserts that the policy is ineffective.","El autor afirma que la política no es eficaz."],
+["to argue","sostener / argumentar","The author argues that prevention is more effective.","El autor sostiene que la prevención es más eficaz."],
+["to put off","aplazar","The committee decided to put off the vote.","El comité decidió aplazar la votación."],
+["to delay","retrasar","Bad weather delayed the flight.","El mal tiempo retrasó el vuelo."],
+["to call for","requerir / exigir","The task calls for careful attention.","La tarea requiere atención cuidadosa."],
+["to demand","exigir","The role demands a high level of flexibility.","El puesto exige un alto nivel de flexibilidad."],
+["cautious","cauteloso","Investors remain cautious about the outlook.","Los inversores siguen siendo cautelosos respecto a las perspectivas."],
+["wary","desconfiado / precavido","Residents are wary of further changes.","Los residentes desconfían de nuevos cambios."],
+["accurate","preciso","The report provides an accurate account of events.","El informe ofrece un relato preciso de los hechos."],
+["precise","exacto","Please give a precise estimate of the costs.","Proporciona una estimación exacta de los costos."],
+["significant","significativo","The study found a significant difference.","El estudio encontró una diferencia significativa."],
+["considerable","considerable","The project requires considerable investment.","El proyecto requiere una inversión considerable."],
+["adequate","adecuado","The current facilities are adequate for the purpose.","Las instalaciones actuales son adecuadas para el propósito."],
+["sufficient","suficiente","We do not have sufficient information to decide.","No tenemos información suficiente para decidir."]],
+lessons:[
+["Adquisición y logro","Distingue obtener algo de conseguir un resultado.","Acquire/obtain se relacionan con conseguir; fulfill/accomplish destacan completar una obligación o alcanzar un resultado.",[0,1,2,3],"Applicants can obtain the form online."],
+["Cambio y mejora","Elige verbos que describen reducción, disminución y mejora.","Reduce/diminish difieren en colocación; enhance suele destacar una mejora de calidad o capacidad.",[4,5,6,7],"Public confidence began to diminish."],
+["Afirmar y argumentar","Distingue presentar una afirmación de desarrollar un razonamiento.","Assert presenta una afirmación; argue destaca las razones que la sustentan.",[8,9,10,11],"The author argues that prevention is more effective."],
+["Requisito y cautela","Compara obligación, exigencia y prudencia.","Call for y demand expresan requisitos con distinta intensidad; cautious y wary describen prudencia o desconfianza.",[12,13,14,15],"The role demands a high level of flexibility."],
+["Grado y suficiencia","Distingue importancia, cantidad y adecuación.","Significant y considerable expresan importancia o magnitud; adequate y sufficient se centran en cumplir un propósito.",[16,17,18,19,20,21],"Please give a precise estimate of the costs."]]},
+{n:48,title:"Metaphor y lenguaje figurado",desc:"Interpreta y utiliza metáforas convencionales para explicar procesos, tendencias y argumentos con naturalidad.",grammar:"Conventional metaphors, source and target domains, metaphorical verbs and register; avoid mixing images that conflict.",trap:"A bottleneck blocks progress; a turning point changes direction; lay the groundwork prepares future action. Interpret the whole phrase, not each word literally.",rows:[
+["to lay the groundwork","sentar las bases","The pilot program laid the groundwork for wider reform.","El programa piloto sentó las bases para una reforma más amplia."],
+["a turning point","un punto de inflexión","The court ruling marked a turning point in the case.","La sentencia marcó un punto de inflexión en el caso."],
+["to bridge the gap","cerrar la brecha","The initiative aims to bridge the gap between training and employment.","La iniciativa pretende cerrar la brecha entre la formación y el empleo."],
+["a bottleneck","un cuello de botella","Limited staff created a bottleneck in the approval process.","La falta de personal creó un cuello de botella en el proceso de aprobación."],
+["to shed light on","arrojar luz sobre","The interviews shed light on the reasons for the change.","Las entrevistas arrojaron luz sobre las razones del cambio."],
+["to create the conditions for","crear las condiciones para","The agreement created the conditions for further cooperation.","El acuerdo creó las condiciones para una mayor cooperación."],
+["to gather pace","cobrar ritmo","The campaign gathered pace after the debate.","La campaña cobró impulso después del debate."],
+["to lose ground","perder terreno","The company has lost ground to its competitors.","La empresa ha perdido terreno frente a sus competidores."],
+["to fuel debate","avivar el debate","The proposal fueled debate across the country.","La propuesta avivó el debate en todo el país."],
+["to spark interest","despertar interés","The documentary sparked interest in local history.","El documental despertó interés por la historia local."],
+["to take center stage","acaparar la atención / ocupar un lugar central","Environmental concerns took center stage at the meeting.","Las preocupaciones ambientales acapararon la atención en la reunión."],
+["to be at the heart of","estar en el centro de","Trust is at the heart of effective teamwork.","La confianza está en el centro del trabajo en equipo eficaz."],
+["to weather a storm","capear una tormenta","The organization managed to weather the financial storm.","La organización logró capear la crisis financiera."],
+["to keep something afloat","mantener algo a flote","Emergency funding kept the project afloat.","La financiación de emergencia mantuvo el proyecto a flote."],
+["to open the door to","abrir la puerta a","The change could open the door to new opportunities.","El cambio podría abrir la puerta a nuevas oportunidades."],
+["to set the stage for","preparar el terreno para","The early negotiations set the stage for an agreement.","Las primeras negociaciones prepararon el terreno para un acuerdo."],
+["a chain reaction","una reacción en cadena","One failure triggered a chain reaction across the network.","Un fallo desencadenó una reacción en cadena en toda la red."],
+["a ripple effect","un efecto dominó / efecto expansivo","The closure had a ripple effect on nearby businesses.","El cierre tuvo un efecto expansivo en los negocios cercanos."],
+["to move the goalposts","cambiar las reglas","The client keeps moving the goalposts.","El cliente sigue cambiando las reglas."],
+["to be on the horizon","estar en el horizonte","Further changes may be on the horizon.","Puede que se avecinen más cambios."],
+["to reach a crossroads","llegar a una encrucijada","The organization has reached a crossroads.","La organización ha llegado a una encrucijada."],
+["to keep the wheels turning","mantener todo en marcha","The support team keeps the wheels turning behind the scenes.","El equipo de soporte mantiene todo en marcha entre bastidores."]],
+lessons:[
+["Metáforas de preparación y cambio","Interpreta imágenes que describen preparación, conexión y obstáculos.","Lay the groundwork presenta preparación; bridge the gap expresa conexión entre grupos o etapas; bottleneck describe un obstáculo que limita el avance.",[0,1,2,3],"The court ruling marked a turning point in the case."],
+["Metáforas de comprensión y progreso","Describe cómo se aclaran problemas y cambia el ritmo de una iniciativa.","Shed light on aporta comprensión; create the conditions for prepara un cambio; gather pace y lose ground describen cambios de ritmo o posición.",[4,5,6,7],"The agreement created the conditions for further cooperation."],
+["Metáforas de debate y prioridad","Expresa cómo una cuestión atrae atención o genera discusión.","Fuel debate, spark interest y take center stage son metáforas convencionales de alta frecuencia.",[8,9,10,11],"The documentary sparked interest in local history."],
+["Metáforas de resistencia y oportunidad","Describe supervivencia, crisis y nuevas posibilidades.","Weather a storm y keep afloat representan resistencia; open the door to expresa oportunidad.",[12,13,14,15],"Emergency funding kept the project afloat."],
+["Metáforas de efectos y decisiones","Explica consecuencias, cambios de reglas y puntos decisivos.","Chain reaction, ripple effect, move the goalposts y crossroads deben interpretarse como unidades figuradas.",[16,17,18,19,20,21],"The closure had a ripple effect on nearby businesses."]]}
+];
+function build(d){
+ const vocab=d.rows.map((r,i)=>({id:"en_b2_u"+d.n+"_v"+String(i+1).padStart(2,"0"),target:r[0],esp:r[1],ex:r[2],exEsp:r[3],verification:{status:"not_checked",sources:[]}}));
+ const mc=(w,opts)=>{const correct=opts[0];const match=String(w.id).match(/v(\d+)$/);const offset=match?Number(match[1])%opts.length:1;const options=opts.slice(offset).concat(opts.slice(0,offset));return {vocabId:w.id,type:"mc",prompt:"¿Qué significa «"+w.target+"»?",options,answer:options.indexOf(correct),explanation:"Selecciona el significado que encaja con el contexto y el matiz."};};
+ const order=(w,s)=>{const correctOrder=s.replace(/[.,!?;:]/g,"").trim().split(/\s+/).filter(Boolean);let words=correctOrder.length>1?correctOrder.slice(1).concat(correctOrder.slice(0,1)):correctOrder.slice();if(words.join(" ")===correctOrder.join(" "))words=correctOrder.slice().reverse();return {vocabId:w.id,type:"order",prompt:"Ordena la frase.",words,correctOrder,explanation:"Reconstruye la frase y reconoce la combinación léxica."};};
+ const lessons=d.lessons.map(l=>({title:l[0],objective:l[1],grammar:l[2],vocabIds:l[3].map(i=>vocab[i].id),reviewVocabIds:[],exercises:[mc(vocab[l[3][0]],[vocab[l[3][0]].esp,vocab[(l[3][0]+7)%22].esp,vocab[(l[3][0]+14)%22].esp]),order(vocab[l[3][1]],l[4])]}));
+ const exercises=[];for(let i=0;i<5;i++)exercises.push(mc(vocab[i],[vocab[i].esp,vocab[(i+8)%22].esp,vocab[(i+15)%22].esp]));
+ for(let i=0;i<5;i++)exercises.push(order(vocab[i+5],vocab[i+5].ex));
+ return {unitNumber:d.n,id:"en_b2_u"+d.n,title:"Unidad "+d.n+": "+d.title,desc:d.desc,grammar:d.grammar,trap:{title:"Matiz y uso contextual",detail:d.trap},vocab,lessons,exercises};
+}
+root.GUARDI_CURRICULUM_BLOCKS=root.GUARDI_CURRICULUM_BLOCKS||{};root.GUARDI_CURRICULUM_BLOCKS.en=root.GUARDI_CURRICULUM_BLOCKS.en||{};root.GUARDI_CURRICULUM_BLOCKS.en.B2=root.GUARDI_CURRICULUM_BLOCKS.en.B2||{};
+root.GUARDI_CURRICULUM_BLOCKS.en.B2["45-48"]={units:defs.map(build)};
+})(typeof window!=="undefined"?window:globalThis);

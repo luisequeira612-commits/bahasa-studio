@@ -228,6 +228,7 @@ window.AudioEngine = {
     speakWithDeviceVoice(text) {
         const language = this.getLanguageConfig();
         const languageName = String(language.name || language.code || 'idioma del curso').toLowerCase();
+        this.stopCurrentAudio();
         if (!this.synth) {
             const status = document.getElementById('audioVoiceStatus');
             if (status) status.textContent = 'Esta frase no tiene una grabación disponible y el navegador no ofrece una voz de respaldo para ' + languageName + '.';

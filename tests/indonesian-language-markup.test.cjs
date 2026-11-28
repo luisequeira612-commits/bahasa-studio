@@ -109,7 +109,7 @@ test('el popup de significado usa texto, traducción y ejemplos con locale diná
 
 test('la ayuda de Palabras nuevas y los ajustes de audio no nombran indonesio de forma fija', () => {
     assert.match(html, /const languageName = \(LanguageManager\.getLanguage\(language\) \|\| \{\}\)\.name/);
-    assert.match(html, /Toca una palabra en \$\{App\.escapeHtml\(languageName\.toLowerCase\(\)\)\}/);
+    assert.match(html, /Toca una palabra para consultar su significado sin salir de la lección/);
     assert.match(html, /<h3>Audio del curso<\/h3>/);
     assert.match(html, /aria-label="Voz del idioma activo"/);
     assert.match(html, /Buscar en el idioma del curso o en español/);

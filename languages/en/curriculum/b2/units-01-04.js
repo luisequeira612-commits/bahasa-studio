@@ -172,7 +172,7 @@ const rows=[
 ];
 const vocab=rows.map((r,i)=>({id:"en_b2_u2_v"+String(i+1).padStart(2,"0"),target:r[0],esp:r[1],ex:r[2],exEsp:r[3],verification:{status:"not_checked",sources:[]}}));
 const lessons=[
-["Antecedentes y punto de referencia","Sitúa una acción anterior a otro momento pasado y explica su relevancia.","Past perfect simple: had + past participle. By the time y up until then fijan el punto de referencia.",[0,1,2,3],"By the time the guests arrived, we had finished dinner."],
+["Antecedentes y punto de referencia","Sitúa una acción anterior a otro momento pasado y explica su relevancia.","Past perfect simple: had + past participle. By the time y up until then fijan el punto de referencia.",[0,1,2,3],"We had finished dinner before the guests arrived."],
 ["Duración antes de un hecho pasado","Enfatiza cuánto tiempo llevaba desarrollándose una actividad antes de otro evento.","Past perfect continuous: had been + -ing. Destaca duración, esfuerzo o repetición previa.",[4,5,6,7],"He had been working on the proposal for weeks before he submitted it."],
 ["Causas y conocimiento previo","Explica causas, suposiciones y falta de información en retrospectiva.","Past perfect simple para estados y hechos previos; no lo uses si el orden ya queda claro y no aporta contraste.",[8,9,10,11],"We were unaware of the changes that had been made."],
 ["Intenciones y situaciones prolongadas","Describe planes, consideraciones y condiciones que precedieron a un resultado.","Past perfect simple frente a continuous: intención/resultado frente a proceso en desarrollo.",[12,13,14,15],"The board had been considering the proposal for months."],

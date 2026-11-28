@@ -1039,3 +1039,9 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - El PR inicial #891 contenía un commit automático de Piper con 263 MP3 en-US sin revisión de pronunciación. Se crea esta rama desde el padre del commit de audio para conservar el currículo U1–U6 y excluir todos esos clips.
 - No se selecciona Piper como voz en-US; el audio no forma parte de la publicación curricular hasta que exista una decisión explícita de modelo y validación.
 - `.github/workflows/audio.yml` deja de dispararse en cada push y queda solo con `workflow_dispatch`, para evitar síntesis y commits automáticos.
+
+
+## 2026-11-28 — Reconciliación A1 U7–U12 sobre la base sin audio
+- Se reconstruye el bloque U7–U12 sobre la PR #959, que excluye el audio Piper en-US no aprobado. La cadena deja de depender de #891/#956 antiguos.
+- Se conserva la prueba de unicidad y alineación de ejemplos; se corrigen desajustes U10/U11. CI pendiente.
+- Inglés permanece no disponible; no fusionar PRs sin aprobación expresa.

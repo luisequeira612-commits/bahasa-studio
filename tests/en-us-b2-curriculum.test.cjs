@@ -409,7 +409,18 @@ test('English B2 U1 sentence-building exercises use examples for their own vocab
 
 test('English B2 U1–U8 lesson and unit sentence exercises match their vocabulary examples', () => {
   const units = loadB2();
-  for (let number = 1; number <= 8; number += 1) {
+  const u1 = units.find((item) => item.unitNumber === 1);
+  assert.ok(u1);
+  for (const lesson of u1.lessons) {
+    const exercise = Array.from(lesson.exercises || []).find((item) => item.type === 'order');
+    assert.ok(exercise);
+    assert.equal(exercise.vocabId, lesson.vocabIds[1]);
+    const word = u1.vocab.find((item) => item.id === exercise.vocabId);
+    assert.ok(word);
+    assert.deepEqual(Array.from(exercise.correctOrder), word.ex
+      .replace(/[.,!?;:]/g, '').trim().split(/\\s+/));
+  }
+  for (let number = 2; number <= 8; number += 1) {
     const unit = units.find((item) => item.unitNumber === number);
     assert.ok(unit, 'B2 unit must exist: U' + number);
     for (const lesson of unit.lessons) {

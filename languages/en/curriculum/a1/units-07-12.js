@@ -37,12 +37,12 @@ unit(7,'Demostrativos this, that, these y those','Señala objetos cercanos y lej
 'map~mapa~This map is new.~Este mapa es nuevo.',
 'place~lugar~This place is quiet.~Este lugar es tranquilo.'
 ],[
-['Lección 1: Cerca y lejos','Distingue this de that al señalar un objeto.','This indica cercanía; that indica distancia. Ambos se usan con sustantivos singulares.',[0,1,4,5],'This is a book.'],
-['Lección 2: Singular y plural','Distingue this/that de these/those.','This/that se usan en singular; these/those se usan en plural.',[0,1,2,3],'These are my books.'],
+['Lección 1: Cerca y lejos','Distingue this de that al señalar un objeto.','This indica cercanía; that indica distancia. Ambos se usan con sustantivos singulares.',[0,1,4,5],'That is a house.'],
+['Lección 2: Singular y plural','Distingue this/that de these/those.','This/that se usan en singular; these/those se usan en plural.',[0,2,1,3],'These are my books.'],
 ['Lección 3: Ubicación','Usa here, there, near y far para indicar ubicación.','Here significa aquí; there significa allí. Near y far describen distancia.',[4,5,6,7],'The house is there.'],
-['Lección 4: Objetos del aula','Señala objetos cotidianos con demostrativos.','Usa demostrativo + sustantivo: this notebook, that desk, these keys.',[8,9,10,11,12,13],'This notebook is new.'],
-['Lección 5: Describir lo que señalas','Combina demostrativos con objetos y lugares.','El demostrativo concuerda en número con el sustantivo: those chairs, this map.',[14,15,16,17,18,19,20,21],'Those chairs are white.']
-],['That is a house.','These are my books.','The bag is here.','This notebook is new.','Those chairs are white.']),
+['Lección 4: Objetos del aula','Señala objetos cotidianos con demostrativos.','Usa demostrativo + sustantivo: this notebook, that desk, these keys.',[8,10,9,11,12,13],'This notebook is new.'],
+['Lección 5: Describir lo que señalas','Combina demostrativos con objetos y lugares.','El demostrativo concuerda en número con el sustantivo: those chairs, this map.',[14,15,16,17,18,19,20,21],'That ruler is blue.']
+],['The house is there.','The school is near.','The city is far.','This item is small.','What is that thing?']),
 unit(8,'Colores y descripciones','Describe objetos y personas con colores, tamaño, forma y adjetivos básicos.','En inglés el adjetivo normalmente va antes del sustantivo: a red bag, a small room. El adjetivo no cambia por género ni número.','Orden del adjetivo','Se dice “a blue book”, no “a book blue”. El adjetivo inglés no lleva marca de plural: two red bags.',[
 'color~color~What color is the bag?~¿De qué color es la mochila?',
 'red~rojo / roja~The apple is red.~La manzana es roja.',
@@ -68,11 +68,11 @@ unit(8,'Colores y descripciones','Describe objetos y personas con colores, tama�
 'beautiful~bonito / bonita~The picture is beautiful.~El cuadro es bonito.'
 ],[
 ['Lección 1: Colores básicos','Reconoce y nombra colores frecuentes.','Los nombres de colores funcionan como adjetivos: a red apple, a blue book.',[0,1,2,3,4],'The apple is red.'],
-['Lección 2: Más colores','Describe objetos con colores adicionales.','El adjetivo va antes del sustantivo: a black phone, a white table.',[5,6,7,8,9],'The phone is black.'],
-['Lección 3: Colores y objetos','Combina colores con objetos conocidos.','Los adjetivos no cambian por género ni número: a purple flower / two purple flowers.',[10,11,1,2,5],'The flower is purple.'],
-['Lección 4: Tamaño y longitud','Describe tamaño, altura y longitud.','Big, small, long, short y tall preceden al sustantivo cuando lo describen.',[12,13,14,15,16],'The house is big.'],
-['Lección 5: Edad, forma y valoración','Describe objetos con new, old, round, square y beautiful.','Puedes combinar dos adjetivos simples antes del sustantivo: a small red bag.',[17,18,19,20,21],'The table is round.']
-],['The book is blue.','The table is white.','The flower is purple.','The building is tall.','The picture is beautiful.']),
+['Lección 2: Más colores','Describe objetos con colores adicionales.','El adjetivo va antes del sustantivo: a black phone, a white table.',[5,6,7,8,9],'The table is white.'],
+['Lección 3: Colores y objetos','Combina colores con objetos conocidos.','Los adjetivos no cambian por género ni número: a purple flower / two purple flowers.',[10,11,1,2,5],'The room is pink.'],
+['Lección 4: Tamaño y longitud','Describe tamaño, altura y longitud.','Big, small, long, short y tall preceden al sustantivo cuando lo describen.',[12,13,14,15,16],'The bag is small.'],
+['Lección 5: Edad, forma y valoración','Describe objetos con new, old, round, square y beautiful.','Puedes combinar dos adjetivos simples antes del sustantivo: a small red bag.',[17,18,19,20,21],'The young man is here.']
+],['The phone is black.','The table is white.','The cat is gray.','The desk is brown.','The orange bag is small.']),
 unit(9,'Adjetivos posesivos','Indica a quién pertenece algo usando my, your, his, her, its, our y their.','Los adjetivos posesivos preceden al sustantivo y no llevan artículo: my book, her bag. His/her dependen del poseedor; its se usa para animales o cosas.','His y her indican al poseedor','El posesivo concuerda con quien posee, no con el objeto: Ana and her book; Luis and his book. Its no lleva apóstrofo.',[
 'my~mi / mis~My book is new.~Mi libro es nuevo.',
 'your~tu / tus / su / sus~Your bag is blue.~Tu mochila es azul.',
@@ -97,12 +97,12 @@ unit(9,'Adjetivos posesivos','Indica a quién pertenece algo usando my, your, hi
 'leash~correa~The leash is long.~La correa es larga.',
 'bowl~cuenco / plato hondo~Its bowl is clean.~Su cuenco está limpio.'
 ],[
-['Lección 1: My y your','Expresa posesión desde la perspectiva de quien habla y quien escucha.','My significa mi/mis; your puede significar tu/tus o su/sus según el contexto.',[0,1,15,18],'My friend is Ana.'],
-['Lección 2: His y her','Distingue el poseedor masculino y femenino.','His se refiere a un poseedor masculino; her a uno femenino. El objeto poseído puede ser cualquiera.',[2,3,10,11],'His dog is friendly.'],
-['Lección 3: Its','Usa its para pertenencias de animales o cosas.','Its es un adjetivo posesivo; no lleva apóstrofo. It’s significa it is o it has.',[4,9,10,11],'The dog has its bed.'],
-['Lección 4: Our y their','Habla de pertenencias de un grupo.','Our significa nuestro/a(s); their significa su/sus cuando el poseedor es plural.',[5,6,12,13,14,16],'Our house is big.'],
-['Lección 5: Posesión en contexto','Combina posesivos con personas, mascotas y objetos.','Estructura: adjetivo posesivo + sustantivo. No se usa a/an delante del posesivo: my car, no a my car.',[7,8,17,18,19,20,21],'Their computer is new.']
-],['Your bag is blue.','Her room is small.','The dog has its bed.','Their parents are here.','My brother is tall.']),
+['Lección 1: My y your','Expresa posesión desde la perspectiva de quien habla y quien escucha.','My significa mi/mis; your puede significar tu/tus o su/sus según el contexto.',[0,1,15,18],'Your bag is blue.'],
+['Lección 2: His y her','Distingue el poseedor masculino y femenino.','His se refiere a un poseedor masculino; her a uno femenino. El objeto poseído puede ser cualquiera.',[2,3,10,11],'Her cat is gray.'],
+['Lección 3: Its','Usa its para pertenencias de animales o cosas.','Its es un adjetivo posesivo; no lleva apóstrofo. It’s significa it is o it has.',[4,9,10,11],'Our pet is small.'],
+['Lección 4: Our y their','Habla de pertenencias de un grupo.','Our significa nuestro/a(s); their significa su/sus cuando el poseedor es plural.',[5,6,12,13,14,16],'Their parents are here.'],
+['Lección 5: Posesión en contexto','Combina posesivos con personas, mascotas y objetos.','Estructura: adjetivo posesivo + sustantivo. No se usa a/an delante del posesivo: my car, no a my car.',[7,8,17,18,19,20,21],'This book belongs to Ana.']
+],['Our house is big.','Her cat is gray.','The dog has its bed.','Their parents are here.','Our pet is small.']),
 unit(10,'Familia y relaciones','Nombra familiares y describe relaciones cercanas con vocabulario básico.','Los sustantivos de familia pueden combinarse con adjetivos posesivos: my mother, his brother, their children. Para presentar a alguien: This is my…','Family es singular colectivo','Family suele tratarse como sustantivo singular en inglés americano: “My family is here”. Para hablar de varias familias: families.',[
 'mother~madre~My mother is Ana.~Mi madre es Ana.',
 'father~padre~His father is tall.~Su padre es alto.',
@@ -127,12 +127,12 @@ unit(10,'Familia y relaciones','Nombra familiares y describe relaciones cercanas
 'godfather~padrino~My godfather is here.~Mi padrino está aquí.',
 'couple~pareja~The couple is happy.~La pareja está feliz.'
 ],[
-['Lección 1: Padres e hijos','Nombra a mother, father, parent, son y daughter.','Mother y father son padres; son y daughter indican hijos por género.',[0,1,2,3,4],'My mother is Ana.'],
-['Lección 2: Hermanos y pareja','Nombra hermanos, esposo y esposa.','Brother y sister son hermanos; husband y wife describen a los cónyuges.',[5,6,7,8],'His wife is Ana.'],
+['Lección 1: Padres e hijos','Nombra a mother, father, parent, son y daughter.','Mother y father son padres; son y daughter indican hijos por género.',[0,1,2,3,4],'His father is tall.'],
+['Lección 2: Hermanos y pareja','Nombra hermanos, esposo y esposa.','Brother y sister son hermanos; husband y wife describen a los cónyuges.',[5,6,7,8],'My sister is a teacher.'],
 ['Lección 3: Sobrinos y familia política','Nombra sobrinas, sobrinos y familiares políticos.','Niece significa sobrina; nephew, sobrino. Stepmother y stepfather nombran a la madrastra y al padrastro.',[9,10,11,17],'My nephew is at home.'],
-['Lección 4: Abuelos y otros parientes','Nombra abuelos, tíos y primos.','Grandmother/grandfather; aunt/uncle; cousin puede ser primo o prima.',[12,13,14,15,16,18,19],'My grandmother is kind.'],
-['Lección 5: Familia en contexto','Describe a la familia y a una pareja.','Family suele llevar verbo singular en inglés americano: my family is. Parents y grandparents son plurales.',[11,18,19,20,21],'My family is big.']
-],['His father is tall.','My sister is a teacher.','My niece is happy.','My aunt is here.','The couple is happy.']),
+['Lección 4: Abuelos y otros parientes','Nombra abuelos, tíos y primos.','Grandmother/grandfather; aunt/uncle; cousin puede ser primo o prima.',[12,13,14,15,16,18,19],'Her grandfather is old.'],
+['Lección 5: Familia en contexto','Describe a la familia y a una pareja.','Family suele llevar verbo singular en inglés americano: my family is. Parents y grandparents son plurales.',[11,18,19,20,21],'My godmother is here.']
+],['My brother is Luis.','My sister is a teacher.','Her husband is Daniel.','His wife is Ana.','My niece is happy.']),
 unit(11,'Pronombres posesivos','Sustituye un grupo posesivo completo con mine, yours, his, hers, ours y theirs.','Los pronombres posesivos sustituyen al sustantivo: This book is mine. No llevan sustantivo después. Whose pregunta por el dueño.','No confundas my y mine','My es adjetivo posesivo y necesita un sustantivo (my bag); mine es pronombre y lo sustituye (the bag is mine).',[
 'mine~mío / mía / míos / mías~This book is mine.~Este libro es mío.',
 'yours~tuyo / tuya / suyos / suyas~The blue bag is yours.~La mochila azul es tuya.',
@@ -157,12 +157,12 @@ unit(11,'Pronombres posesivos','Sustituye un grupo posesivo completo con mine, y
 'property~propiedad~This property is ours.~Esta propiedad es nuestra.',
 'personal item~objeto personal~This personal item is mine.~Este objeto personal es mío.'
 ],[
-['Lección 1: Mine y yours','Usa mine y yours para sustituir my/your + sustantivo.','Mine = my + sustantivo; yours = your + sustantivo. El pronombre aparece sin sustantivo después.',[0,1,6,8],'This book is mine.'],
+['Lección 1: Mine y yours','Usa mine y yours para sustituir my/your + sustantivo.','Mine = my + sustantivo; yours = your + sustantivo. El pronombre aparece sin sustantivo después.',[0,1,6,8],'The blue bag is yours.'],
 ['Lección 2: His y hers','Distingue posesión de él y de ella.','His y hers pueden funcionar como pronombres posesivos; hers lleva -s, his no cambia.',[2,3,11,15],'The room is hers.',['en_a1_u9_v03']],
-['Lección 3: Ours y theirs','Expresa posesión de un grupo.','Ours y theirs sustituyen our/their + sustantivo.',[4,5,16,17],'The house is ours.'],
-['Lección 4: Preguntar por el dueño','Usa whose y owner para identificar pertenencias.','Whose + sustantivo pregunta “¿de quién…?”. Whose book is this? — It is mine.',[6,7,20,21],'Whose book is this?'],
-['Lección 5: Pertenencias personales','Identifica objetos y expresa a quién pertenecen.','El pronombre posesivo concuerda con el poseedor, no con el objeto: the glasses are mine.',[12,13,14,15,18,19],'The laptop is yours.']
-],['The blue bag is yours.','The phone is his.','The keys are theirs.','Who is the owner?','The passport is mine.']),
+['Lección 3: Ours y theirs','Expresa posesión de un grupo.','Ours y theirs sustituyen our/their + sustantivo.',[4,5,16,17],'The keys are theirs.'],
+['Lección 4: Preguntar por el dueño','Usa whose y owner para identificar pertenencias.','Whose + sustantivo pregunta “¿de quién…?”. Whose book is this? — It is mine.',[6,7,20,21],'This is a personal possession.'],
+['Lección 5: Pertenencias personales','Identifica objetos y expresa a quién pertenecen.','El pronombre posesivo concuerda con el poseedor, no con el objeto: the glasses are mine.',[12,13,14,15,18,19],'The charger is his.']
+],['The keys are theirs.','Whose book is this?','This is a personal possession.','We have the same bag.','Our books are different.']),
 unit(12,'La casa y there is / there are','Describe habitaciones y muebles e indica qué existe en un lugar.','There is se usa con un sustantivo singular o incontable; there are con plural. Preguntas: Is there…? / Are there…? Negativas: there isn’t / there aren’t.','There is no equivale a “allí está”','En “There is a bed in the room”, there is introduce la existencia de algo. No se traduce palabra por palabra como “allí está”.',[
 'house~casa~Our house is big.~Nuestra casa es grande.',
 'apartment~apartamento~The apartment is small.~El apartamento es pequeño.',
@@ -188,11 +188,11 @@ unit(12,'La casa y there is / there are','Describe habitaciones y muebles e indi
 'balcony~balcón~The apartment has a balcony.~El apartamento tiene un balcón.'
 ],[
 ['Lección 1: Tipos de vivienda','Nombra house y apartment y sus espacios principales.','House es casa; apartment es apartamento. Bedroom, bathroom y kitchen nombran habitaciones.',[0,1,2,3],'The apartment is small.'],
-['Lección 2: Habitaciones comunes','Identifica kitchen, living room, dining room y hallway.','Los nombres de habitaciones suelen aparecer después de in: in the kitchen, in the living room.',[4,5,6,7],'The kitchen is clean.'],
+['Lección 2: Habitaciones comunes','Identifica kitchen, living room, dining room y hallway.','Los nombres de habitaciones suelen aparecer después de in: in the kitchen, in the living room.',[4,5,6,7],'There is a sofa in the living room.'],
 ['Lección 3: Partes de la habitación','Nombra floor, wall y ceiling.','Floor es suelo/piso; wall es pared; ceiling es techo. No confundas ceiling con roof.',[8,9,10,11],'The picture is on the wall.'],
-['Lección 4: Muebles y objetos','Identifica muebles y objetos básicos de la casa.','There is + singular: there is a sofa. There are + plural: there are two lamps.',[12,13,14,15,16],'There is a sofa in the living room.'],
-['Lección 5: Describir lo que hay','Usa there is/there are en afirmaciones y preguntas sencillas.','Is there a…? pregunta por un elemento singular; are there…? pregunta por varios.',[17,18,19,20,21],'There are two lamps.']
-],['There is a bed in the bedroom.','The kitchen is clean.','The lamp is on the ceiling.','There is a mirror in the bathroom.','There is a garden behind the house.'])
+['Lección 4: Muebles y objetos','Identifica muebles y objetos básicos de la casa.','There is + singular: there is a sofa. There are + plural: there are two lamps.',[12,13,14,15,16],'There is a cupboard in the kitchen.'],
+['Lección 5: Describir lo que hay','Usa there is/there are en afirmaciones y preguntas sencillas.','Is there a…? pregunta por un elemento singular; are there…? pregunta por varios.',[17,18,19,20,21],'The stove is in the kitchen.']
+],['There is a sofa in the living room.','The table is in the dining room.','The hallway is long.','The bag is on the floor.','The picture is on the wall.'])
 ];
 root.GUARDI_CURRICULUM_BLOCKS=root.GUARDI_CURRICULUM_BLOCKS||{};
 root.GUARDI_CURRICULUM_BLOCKS.en=root.GUARDI_CURRICULUM_BLOCKS.en||{};

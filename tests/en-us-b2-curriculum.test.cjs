@@ -447,6 +447,53 @@ test('English B2 U1–U8 lesson and unit sentence exercises match their vocabula
   }
 });
 
+test('English B2 U7–U9 lesson themes match their vocabulary and sentence examples', () => {
+  const units = loadB2();
+  const cases = [
+    [7, [
+      ['Tendencias, hábitos y propensión', ['to tend to', 'to be prone to', 'to have a habit of', 'to break a habit', 'to take place regularly']],
+      ['Hábitos pasados y acciones repetidas', ['used to', 'would often', 'to keep doing', 'to go on doing']],
+      ['Adaptación y cambio gradual', ['to be accustomed to', 'to get used to', 'to gradually become', 'to gradually fade']],
+      ['Tendencias y frecuencia', ['to increasingly rely on', 'repeatedly', 'once in a while', 'to be constantly doing']],
+      ['Situaciones actuales y continuidad', ['on a regular basis', 'for the time being', 'at present', 'to remain unchanged', 'to be in the process of']],
+    ]],
+    [8, [
+      ['Pensamiento y reflexión', ['to think', 'to be thinking about']],
+      ['Posesión y experiencias', ['to have', 'to be having', 'to own', 'to belong to']],
+      ['Percepción y sentidos', ['to see', 'to be seeing', 'to taste', 'to be tasting', 'to smell', 'to be smelling']],
+      ['Sensaciones y apariencia', ['to feel', 'to be feeling', 'to look', 'to be looking', 'to appear', 'to be appearing']],
+      ['Medición y dependencia', ['to weigh', 'to be weighing', 'to depend on', 'to be depending on']],
+    ]],
+    [9, [
+      ['Estructuras cleft y foco informativo', ['what matters most is', 'it is the timing that', 'the main reason why']],
+      ['Inversión tras expresiones negativas', ['not until', 'only after', 'little did we know', 'not once', 'hardly had', 'no sooner had', 'at no point']],
+      ['Frecuencia, continuidad y perspectiva temporal', ['for the first time', 'ever since', 'time and again', 'to this day', 'no longer', 'all along', 'for much of the time']],
+      ['Secuencia e inmediatez', ['as soon as', 'the moment']],
+      ['Concesión, contraste y circunstancias ajenas', ['through no fault of', 'far from', 'much as']],
+    ]],
+  ];
+  const normalize = (value) => value.replace(/[.,!?;:]/g, '').trim().split(/\\s+/);
+  for (const [number, expectedLessons] of cases) {
+    const unit = units.find((item) => item.unitNumber === number);
+    assert.ok(unit, 'B2 unit must exist: U' + number);
+    assert.equal(unit.lessons.length, expectedLessons.length);
+    for (let index = 0; index < expectedLessons.length; index += 1) {
+      const [title, expectedTargets] = expectedLessons[index];
+      const lesson = unit.lessons[index];
+      assert.equal(lesson.title, title, 'Unexpected lesson focus in U' + number);
+      const targets = lesson.vocabIds.map((id) => unit.vocab.find((word) => word.id === id)?.target);
+      assert.deepEqual(targets, expectedTargets, 'Lesson vocabulary must match its focus: U' + number + ' ' + title);
+      const exercise = lesson.exercises.find((item) => item.type === 'order');
+      assert.ok(exercise, 'Lesson needs a sentence-building activity: U' + number + ' ' + title);
+      assert.equal(exercise.vocabId, lesson.vocabIds[1]);
+      const word = unit.vocab.find((item) => item.id === exercise.vocabId);
+      assert.ok(word);
+      assert.deepEqual(Array.from(exercise.correctOrder), normalize(word.ex),
+        'Sentence activity must match its assigned target: U' + number + ' ' + title);
+    }
+  }
+});
+
 test('English B2 U8 uses the stative meaning of feel consistently', () => {
   const unit = loadB2().find((item) => item.unitNumber === 8);
   assert.ok(unit);

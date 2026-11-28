@@ -458,6 +458,39 @@ test('English B2 U8 uses the stative meaning of feel consistently', () => {
 });
 
 
+test('English B2 lesson sentence examples match all 12 audited vocabulary targets', () => {
+  const cases = [
+    [11, 'Posibilidad y alternativas', 'must have', 'They must have missed the last announcement.'],
+    [12, 'Ausencia de necesidad y posibilidad pasada', 'might have', 'He might have misunderstood the deadline.'],
+    [13, 'Lenguaje normativo y cumplimiento', 'be necessary for', 'A valid ID is necessary for entry.'],
+    [22, 'Causativa y experiencias no deseadas', 'to get a refund issued', 'She got a refund issued after contacting support.'],
+    [25, 'Foco temporal, causal y de necesidad', 'it is precisely because', 'It is precisely because costs have risen that we need a review.'],
+    [25, 'What-clefts y estructuras de identificación', 'it was John who', 'It was John who suggested the alternative.'],
+    [34, 'Síntesis y reformulación', 'to provide an overview', 'The first section provides an overview of recent developments.'],
+    [37, 'Retomar temas y gestionar turnos', 'if I could just come in', 'If I could just come in, I have a question about the timeline.'],
+    [37, 'Gestionar turnos y avanzar', 'to hold that thought', 'Hold that thought; I want to check one detail first.'],
+    [45, 'Descripción de personas', 'skinny', 'The runner looked too skinny after the illness.'],
+    [47, 'Aplazamiento y cautela', 'to delay', 'Bad weather delayed the flight.'],
+    [52, 'Propuesta completa', 'to be cost-effective', 'The recommended option is likely to be cost-effective.'],
+  ];
+  const normalize = (value) => value.replace(/[.,!?;:]/g, '').trim().split(/\\s+/);
+  const units = loadB2();
+  for (const [number, title, target, sentence] of cases) {
+    const unit = units.find((item) => item.unitNumber === number);
+    assert.ok(unit, 'Missing B2 unit ' + number);
+    const lesson = unit.lessons.find((item) => item.title === title);
+    assert.ok(lesson, 'Missing lesson in U' + number + ': ' + title);
+    const exercise = lesson.exercises.find((item) => item.type === 'order');
+    assert.ok(exercise, 'Missing sentence exercise in U' + number + ': ' + title);
+    assert.equal(exercise.vocabId, lesson.vocabIds[1],
+      'Sentence exercise must use the lesson second vocabulary target: U' + number + ' ' + title);
+    const word = unit.vocab.find((item) => item.id === exercise.vocabId);
+    assert.equal(word?.target, target, 'Unexpected vocabulary target in U' + number + ' ' + title);
+    assert.deepEqual(Array.from(exercise.correctOrder), normalize(sentence),
+      'Sentence must match its assigned target in U' + number + ' ' + title);
+  }
+});
+
 test('English B2 U35 keeps plural data agreement consistent in vocabulary and lesson examples', () => {
   const unit = loadB2().find((item) => item.unitNumber === 35);
   assert.ok(unit);

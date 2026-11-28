@@ -1580,7 +1580,7 @@ test('tap-to-translate lookup is wired into learning text and uses safe text ren
   assert.match(html, /function tokenAtPoint\(event\)/);
   assert.match(html, /caretRangeFromPoint/);
   assert.match(html, /window\.refreshWordTranslationIndex/);
-  assert.match(html, /Toca una palabra en \$\{App\.escapeHtml\(languageName\.toLowerCase\(\)\)\} para consultar su significado/);
+  assert.match(html, /Toca una palabra para consultar su significado sin salir de la lección/);
   assert.match(html, /window\.getTapTranslationVocabulary/);
   assert.match(html, /activeLanguage === 'id'/, 'only the legacy Indonesian phrase fallback remains language-gated');
   assert.match(html, /termNode\.lang = matches\[0\]\.locale/);
@@ -1758,7 +1758,7 @@ test('tap-to-translate lookup is wired into learning text and uses safe text ren
   assert.match(html, /function tokenAtPoint\(event\)/);
   assert.match(html, /caretRangeFromPoint/);
   assert.match(html, /window\.refreshWordTranslationIndex/);
-  assert.match(html, /Toca una palabra en \$\{App\.escapeHtml\(languageName\.toLowerCase\(\)\)\} para consultar su significado/);
+  assert.match(html, /Toca una palabra para consultar su significado sin salir de la lección/);
   assert.match(html, /termNode\.lang = matches\[0\]\.locale/);
   assert.match(html, /termNode\.textContent = matches\[0\]\.text/);
   assert.match(html, /meaningNode\.textContent = matches\.slice\(0, 3\)/);

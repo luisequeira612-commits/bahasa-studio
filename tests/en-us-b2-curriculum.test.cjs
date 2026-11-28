@@ -482,7 +482,7 @@ test('English B2 lesson sentence examples match all 21 audited vocabulary target
     [47, 'Aplazamiento y cautela', 'to delay', 'Bad weather delayed the flight.'],
     [52, 'Propuesta completa', 'to be cost-effective', 'The recommended option is likely to be cost-effective.'],
   ];
-  const normalize = (value) => value.replace(/[.,!?;:]/g, '').trim().split(/\\s+/);
+  const normalize = (value) => value.replace(/[.,!?;:]/g, '').trim().split(' ');
   const units = loadB2();
   for (const [number, title, target, sentence] of cases) {
     const unit = units.find((item) => item.unitNumber === number);
@@ -531,7 +531,7 @@ test('English B2 U9, U11, U17, and U19 unit review banks match their source voca
       ["it's high time", "It's high time the company reviewed its policy."],
     ]],
   ];
-  const normalize = (value) => value.replace(/[.,!?;:]/g, '').trim().split(/\\s+/);
+  const normalize = (value) => value.replace(/[.,!?;:]/g, '').trim().split(' ');
   const units = loadB2();
   for (const [number, expected] of cases) {
     const unit = units.find((item) => item.unitNumber === number);

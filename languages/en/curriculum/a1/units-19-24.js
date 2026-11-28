@@ -162,7 +162,7 @@ unit(23,'Ropa y clima','Nombra prendas y describe el tiempo atmosférico y lo qu
 ['Lección 3: Calzado y abrigo','Nombra zapatos, calcetines y prendas para el frío.','Shoes, socks, boots y sneakers suelen usarse en plural.',[6,7,10,11,12,13],'These socks are white.'],
 ['Lección 4: Describir el clima','Describe sol, nubes, lluvia, viento y nieve.','It is + adjetivo: it is sunny, cloudy, rainy, windy o snowy.',[14,15,16,17,18],'It is sunny now.'],
 ['Lección 5: Temperatura y ropa','Combina ropa y temperatura en descripciones sencillas.','Hot/cold describen temperatura; be wearing describe lo que una persona tiene puesto ahora.',[19,20,21,8,10],'It is hot today.']
-],['My shoes are new.','These socks are white.','I need a sweater.','Her boots are brown.','My sneakers are comfortable.']),
+],['She is wearing a dress.','My shoes are new.','These socks are white.','I need a jacket.','The hat is blue.']),
 unit(24,'Lugares de la ciudad','Reconoce lugares y elementos urbanos comunes para describir dónde están.','Usa there is/are para indicar existencia y preposiciones básicas para situar lugares: on the corner, next to, across from.','Street, road y avenue','Street, road y avenue se relacionan con vías, pero no son intercambiables en todos los nombres propios. Aprende las expresiones como unidades.',[
 ['street','calle','The bank is on this street.','El banco está en esta calle.'],
 ['avenue','avenida','The hotel is on the avenue.','El hotel está en la avenida.'],

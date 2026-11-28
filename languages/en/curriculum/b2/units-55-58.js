@@ -17,7 +17,7 @@ const defs=[
 ["to remain dissatisfied","seguir insatisfecho","The customer remained dissatisfied with the response.","El cliente siguió insatisfecho con la respuesta."],
 ["to reach a mutually acceptable outcome","llegar a un resultado aceptable para ambas partes","We hope to reach a mutually acceptable outcome.","Esperamos llegar a un resultado aceptable para ambas partes."],
 ["to address the root cause","abordar la causa principal","The new procedure addresses the root cause of the problem.","El nuevo procedimiento aborda la causa principal del problema."],
-["to prevent a recurrence","evitar que se repita","Staff training should help prevent a recurrence.","La formación del personal debería ayudar a evitar que se repita."],
+["to prevent a recurrence","evitar que se repita","Staff training should help prevent a recurrence.","La capacitación del personal debería ayudar a evitar que se repita."],
 ["to compensate for a loss","compensar una pérdida","The company agreed to compensate customers for the loss.","La empresa aceptó compensar a los clientes por la pérdida."],
 ["to seek clarification","solicitar una aclaración","I am writing to seek clarification about the charges.","Le escribo para solicitar una aclaración sobre los cargos."],
 ["to handle a complaint","gestionar una queja","All complaints are handled by a specialist team.","Todas las quejas son gestionadas por un equipo especializado."],
@@ -28,12 +28,12 @@ lessons:[
 ["Presentar una queja fundamentada","Explica el problema y el impacto con un tono adecuado.","Lodge a complaint, voice a concern y express dissatisfaction sirven para iniciar una reclamación formal.",[0,1,2,3],"I'd like to voice a concern about the service provided."],
 ["Reconocer y responder","Reconoce molestias y explica qué acciones se tomarán.","Acknowledge the inconvenience, investigate the matter y offer an apology muestran responsabilidad.",[4,5,6,7],"The team will investigate the matter before responding."],
 ["Soluciones y medidas correctivas","Propón remedios y vías de resolución.","Amicable resolution, corrective action y escalate an issue describen niveles de respuesta.",[8,9,10,11],"The provider promised to take corrective action."],
-["Causas y prevención","Aborda el origen del conflicto y evita que vuelva a ocurrir.","Root cause, prevent a recurrence y compensate for a loss precisan el tipo de solución.",[12,13,14,15],"We hope to reach a mutually acceptable outcome."],
-["Cierre diplomático","Mantén profesionalidad y busca un resultado aceptable.","Seek clarification, find common ground y draw the matter to a close ayudan a cerrar una disputa.",[16,17,18,19,20,21],"We contacted the supplier to seek clarification about the invoice."]]},
+["Resultados, causas y prevención","Evalúa la satisfacción, busca un resultado aceptable y aborda el origen del conflicto para evitar que se repita.","Remain dissatisfied expresa una respuesta persistente; mutually acceptable outcome busca un resultado aceptable para ambas partes; address the root cause y prevent a recurrence se centran en la solución duradera.",[12,13,14,15],"We hope to reach a mutually acceptable outcome."],
+["Cierre diplomático","Mantén la profesionalidad, gestiona la queja y busca puntos en común para concluir el asunto.","Compensate for a loss ofrece reparación; seek clarification aclara dudas; handle a complaint gestiona el proceso; maintain a professional tone y find common ground facilitan el diálogo; draw the matter to a close concluye la disputa.",[16,17,18,19,20,21],"We contacted the supplier to seek clarification about the invoice."]]},
 {n:56,title:"Media literacy: hechos, opiniones, sesgos y fuentes",desc:"Evalúa credibilidad, evidencia, sesgos y encuadres mediáticos antes de aceptar o compartir información.",grammar:"Fact/opinion distinction, source evaluation, bias, framing, corroboration and misinformation vocabulary.",trap:"A claim is not a fact merely because it is widely shared. Corroborate with independent sources and distinguish evidence from interpretation.",rows:[
 ["to verify a source","verificar una fuente","Readers should verify a source before sharing the claim.","Los lectores deberían verificar una fuente antes de compartir la afirmación."],
 ["to cross-check information","contrastar información","Journalists cross-check information with independent records.","Los periodistas contrastan la información con registros independientes."],
-["a credible source","una fuente fiable","The article relies on a credible source.","El artículo se basa en una fuente fiable."],
+["a credible source","una fuente confiable","The article relies on a credible source.","El artículo se basa en una fuente confiable."],
 ["a misleading headline","un titular engañoso","The misleading headline exaggerates the findings.","El titular engañoso exagera los hallazgos."],
 ["a biased account","un relato sesgado","The report offers a biased account of the dispute.","El informe ofrece un relato sesgado de la disputa."],
 ["selective reporting","presentación selectiva de información","Selective reporting can distort public understanding.","La presentación selectiva de información puede distorsionar la comprensión pública."],
@@ -62,7 +62,7 @@ lessons:[
 {n:57,title:"Explaining complex processes",desc:"Explica procesos complejos mediante secuenciación, relaciones causales, precisión y reformulación para distintas audiencias.",grammar:"Process description, sequencing, cause/effect, passive process verbs, conditions and explanatory reformulation.",trap:"Ensure that each step has a clear subject or agent. Use once/after/before to sequence; use thereby to explain a result, not simply the next step.",rows:[
 ["to consist of","constar de","The process consists of four main stages.","El proceso consta de cuatro etapas principales."],
 ["to be divided into","dividirse en","The procedure is divided into three phases.","El procedimiento se divide en tres fases."],
-["to begin with","para empezar","To begin with, the raw data is collected.","Para empezar, se recopilan los datos sin procesar."],
+["to begin with","para empezar","To begin with, the raw data are collected.","Para empezar, se recopilan los datos sin procesar."],
 ["subsequently","posteriormente","The samples are subsequently tested in a laboratory.","Posteriormente, las muestras se analizan en un laboratorio."],
 ["after completion","después de completarse","After completion, the form is checked for errors.","Después de completarse, el formulario se revisa para detectar errores."],
 ["to trigger a response","desencadenar una respuesta","A temperature change triggers a response in the sensor.","Un cambio de temperatura desencadena una respuesta en el sensor."],
@@ -72,7 +72,7 @@ lessons:[
 ["to be checked for","ser revisado para detectar","Each batch is checked for quality.","Cada lote se revisa para comprobar su calidad."],
 ["to ensure that","garantizar que","A final review ensures that all entries are accurate.","Una revisión final garantiza que todas las entradas sean exactas."],
 ["to prevent something from happening","evitar que algo ocurra","The filter prevents dust from entering the system.","El filtro evita que el polvo entre en el sistema."],
-["to lead to","conducir a / provocar","A failure at this stage may lead to data loss.","Un fallo en esta etapa puede provocar la pérdida de datos."],
+["to lead to","conducir a / provocar","A failure at this stage may lead to data loss.","Una falla en esta etapa puede provocar la pérdida de datos."],
 ["to be followed by","ir seguido de","The initial test is followed by a full inspection.","La prueba inicial va seguida de una inspección completa."],
 ["in the event of","en caso de","In the event of a power failure, the backup starts automatically.","En caso de fallo eléctrico, la copia de respaldo se inicia automáticamente."],
 ["to occur","ocurrir","The final stage occurs in a controlled environment.","La etapa final ocurre en un entorno controlado."],
@@ -114,8 +114,8 @@ lessons:[
 lessons:[
 ["Tesis y organización","Planifica una tesis y una línea argumental coherente.","Thesis, coherent line of argument y topic sentence organizan el texto desde el inicio.",[0,1,2,3],"A clearly defined thesis helps focus the discussion."],
 ["Evidencia y contraargumentos","Desarrolla ideas con evidencia y aborda objeciones sin perder la coherencia.","Substantiate an observation, maintain coherence, avoid repetition y address the counterargument conectan evidencia, cohesión y respuesta a objeciones.",[4,5,6,7],"Clear transitions help maintain coherence throughout the essay."],
-["Evaluación y conclusiones","Redacta reseñas equilibradas y evaluaciones críticas y extrae conclusiones basadas en pruebas.","Balanced review, critical assessment y draw a conclusion requieren evidencia y criterios explícitos.",[8,9,10,11],"The final section offers a critical assessment of the evidence."],
-["Revisión y estructura","Revisa borradores, perfecciona argumentos, justifica cambios y organiza párrafos alrededor de ideas centrales.","Revise a draft, refine an argument, provide a clear rationale y structure a paragraph requieren precisión y organización.",[12,13,14,15],"The proposal provides a clear rationale for the change."],
+["Evaluación, conclusiones y revisión","Redacta reseñas equilibradas, evalúa propuestas, extrae conclusiones y revisa el borrador.","Balanced review y critical assessment requieren criterios explícitos; draw a conclusion conecta la evidencia con el cierre; revise a draft permite corregir el texto antes de entregarlo.",[8,9,10,11],"The final section offers a critical assessment of the evidence."],
+["Argumentos, párrafos y citas","Perfecciona el razonamiento, justifica decisiones, organiza párrafos e integra fuentes.","Refine an argument, provide a clear rationale y structure a paragraph exigen precisión; integrate a quotation requiere insertar la cita en la propia oración sin perder fluidez.",[12,13,14,15],"The proposal provides a clear rationale for the change."],
 ["Fuentes y edición final","Integra y parafrasea fuentes, reconoce límites, fortalece la conclusión y cumple los requisitos formales.","Integrate a quotation, paraphrase a source, acknowledge a limitation, strengthen the conclusion, meet the word limit y edit for clarity antes de entregar.",[16,17,18,19,20,21],"The conclusion acknowledges a limitation of the study."]]}
 ];
 function build(d){

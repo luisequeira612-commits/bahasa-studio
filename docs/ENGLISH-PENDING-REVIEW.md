@@ -30,7 +30,12 @@ En cada muestra comprobar únicamente: correspondencia entre objetivos, ejemplos
 2. Integrar la corrección B2 de #948 y las correcciones A1 U16 de #893 una vez que se autorice la integración; ambos heads tienen CI completo exitoso.
 3. Solo después de integrar los cuatro niveles, registrar el manifiesto inglés A1–B2 en `language-manager.js`, habilitar inglés y actualizar `README.md` en el mismo cambio. Mantener la prueba `tests/readme-language-catalog.test.cjs`.
 
-**Estado de CI comprobado (2026-11-27):**
+**Estado de CI comprobado (2026-11-28):**
+- B2 PR #948, último head documental `7846b84830263eb8af3fce4e4e20f2e4e83d52cc`: regression run #4903 finalizó **success** tras reintentar el job E2E que había agotado el tiempo esperando `#adaptiveRecommendationLearn button`; el reintento completó los 103 pasos. Offline quality **success**. No queda un fallo de CI en este head.
+- El timeout inicial fue una intermitencia de E2E general, no un defecto curricular inglés. El reintento pasó sin cambios de código.
+- A1 #891: head sincronizado `a40cc62a714dd576970bc14bc6844f2d3c7cc6ea` sigue sin check-runs registrados (consulta actual: 0); GitHub no ofrece resultado de CI para este head, así que no se marca como aprobado.
+- A1 #892: continúa con estado de merge `dirty` y sin check-runs; depende de la integración previa de #891.
+
 - A1 #893, head `f2cedff3dffb338fb4eda9b13fd9749e30dbc65d`: regression #4897 success; type checks #1017 success; offline quality success.
 - B2 #948, head `90062bf28cfe19f0587ab1d1769340c4d0cb026a`: regression #4896 success; type checks #1016 success; offline quality success.
 - A1 #891: head anterior regression #4900 falló solo en `tests/service-worker-install.test.cjs` porque faltaba `audio/en/manifest.json`; type checks #1020 success y offline quality success. El branch ya incluye `main` y es mergeable; head actual `a40cc62a714dd576970bc14bc6844f2d3c7cc6ea` tiene ejecución #4901 en `action_required`.

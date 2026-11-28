@@ -235,8 +235,14 @@ test('PT-BR A1-B2 global lexical progression documents every exact repeated targ
 
  const b2u12=get(b2,12),b2u19=get(b2,19),b2u20=get(b2,20),b2u25=get(b2,25),b2u28=get(b2,28);
  assert.ok(b2u12.lessons.some(lesson=>lesson.grammar.includes('no necesariamente idéntico')&&lesson.grammar.includes('misma proporción')));
- assert.ok(b2u19.lessons.some(lesson=>lesson.grammar.includes('categoría gramatical')&&lesson.grammar.includes('transparente')));\n assert.ok(b2u19.lessons.some(lesson=>(lesson.reviewVocabIds||[]).includes('ptbr_a2_u12_v07')&&(lesson.reviewVocabIds||[]).includes('ptbr_b1_u11_v06')));
- assert.ok(b2u20.lessons.some(lesson=>lesson.grammar.includes('locución fija')&&lesson.grammar.includes('levar em conta')));\n assert.ok(get(b2,1).lessons.some(lesson=>(lesson.reviewVocabIds||[]).includes('ptbr_b1_u2_v09')));\n assert.ok(get(b2,2).lessons.some(lesson=>(lesson.reviewVocabIds||[]).includes('ptbr_b1_u2_v03')));\n assert.ok(get(b2,3).lessons.some(lesson=>(lesson.reviewVocabIds||[]).includes('ptbr_b1_u2_v03')));\n assert.ok(get(b2,11).lessons.some(lesson=>(lesson.reviewVocabIds||[]).includes('ptbr_b1_u2_v03')));\n assert.ok(b2u12.lessons.some(lesson=>(lesson.reviewVocabIds||[]).includes('ptbr_b1_u2_v09')));\n assert.ok(b2u21.lessons.some(lesson=>(lesson.reviewVocabIds||[]).includes('ptbr_b1_u4_v06')));\n assert.ok(b2u21.lessons.some(lesson=>(lesson.reviewVocabIds||[]).includes('ptbr_b1_u4_v06')));
+ assert.ok(b2u19.lessons.some(lesson=>lesson.grammar.includes('categoría gramatical')&&lesson.grammar.includes('transparente')));
+ assert.ok(b2u19.lessons.some(lesson=>(lesson.reviewVocabIds||[]).includes('ptbr_a2_u12_v07')&&(lesson.reviewVocabIds||[]).includes('ptbr_b1_u11_v06')));
+ assert.ok(b2u20.lessons.some(lesson=>lesson.grammar.includes('locución fija')&&lesson.grammar.includes('levar em conta')));
+ assert.ok(get(b2,1).lessons.some(lesson=>(lesson.reviewVocabIds||[]).includes('ptbr_b1_u2_v09')));
+ assert.ok(get(b2,2).lessons.some(lesson=>(lesson.reviewVocabIds||[]).includes('ptbr_b1_u2_v03')));
+ assert.ok(get(b2,3).lessons.some(lesson=>(lesson.reviewVocabIds||[]).includes('ptbr_b1_u2_v03')));
+ assert.ok(get(b2,11).lessons.some(lesson=>(lesson.reviewVocabIds||[]).includes('ptbr_b1_u2_v03')));
+ assert.ok(get(b2,21).lessons.some(lesson=>(lesson.reviewVocabIds||[]).includes('ptbr_b1_u4_v06')));
  assert.ok(b2u25.lessons.some(lesson=>lesson.grammar.includes('sustantivo')&&lesson.grammar.includes('Anticipação')));
  assert.ok(b2u28.lessons.some(lesson=>lesson.grammar.includes('cada fila representa un caso')&&lesson.grammar.includes('hallazgo')));
 });

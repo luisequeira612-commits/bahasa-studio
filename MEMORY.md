@@ -1049,3 +1049,10 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 ## 2026-11-28 — Inventarios vacíos de audio para inglés A1
 - El Service Worker descubre idiomas con currículo y exige que sus rutas de inventario existan durante la instalación offline. Para el curso en-US sin audio se añaden `audio/en/manifest.json` vacío y `audio/en/metadata.json` con `audio_hashes: {}`.
 - Son archivos bootstrap: no contienen clips, hashes inventados ni modelo de voz. El audio en-US sigue sin seleccionar y fuera del alcance de publicación.
+
+
+## 2026-11-28 — Inglés americano A2 U1–U40 preparado sobre A1 completo
+- Se consolida A2 U1–U40 sobre la cadena actualizada A1 U1–U32 sin audio Piper en-US no aprobado.
+- 40 unidades, 200 lecciones, 800 ejercicios y 792 objetivos léxicos únicos; U10/U20/U30/U40 son repasos sin vocabulario nuevo.
+- Las pruebas comparan A2 contra el inventario completo A1 y validan referencias. CI pendiente.
+- Las entradas permanecen `not_checked`; trazabilidad lema por lema CEFR-J/NGSL y validación nativa pendientes. Inglés `available: false`; no fusionar ni publicar sin aprobación expresa.

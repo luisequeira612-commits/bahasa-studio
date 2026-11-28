@@ -41,3 +41,13 @@ Estado: bloque U1–U6 en preparación; no publicado. Fecha: 26 de noviembre de 
 - U19–U24: gustos y pasatiempos; want/need/plan/hope/decide + to-infinitive; preguntas WH de seguimiento; presente continuo; ropa y clima; lugares de la ciudad.
 - 132 entradas nuevas previstas (22 por unidad), con ejemplos originales y estado not_checked. No se agregan campos POS/audio al contrato runtime.
 - La trazabilidad lema por lema con CEFR-J/NGSL sigue pendiente; no afirmar cotejo individual hasta documentar fuente por entrada.
+
+
+## Bloque U25–U30 — 28 nov 2026
+- U25–U29: dar indicaciones; dinero y compras; contables/incontables con some/any; cantidades; restaurante.
+- U30 es repaso integrador sin vocabulario nuevo. Las unidades mantienen cinco lecciones y veinte ejercicios; U30 reutiliza referencias previas.
+- Vocabulario nuevo permanece not_checked; trazabilidad CEFR-J/NGSL pendiente.
+
+## Bloque U31–U32 — 28 nov 2026
+- U31 integra conversaciones cotidianas; U32 es evaluación final A1. Ambas unidades reutilizan vocabulario previo, con cinco lecciones y veinte ejercicios.
+- El motor actual solo admite mc/order; U32 no afirma evaluar escucha real, pronunciación, expresión oral ni escritura libre.

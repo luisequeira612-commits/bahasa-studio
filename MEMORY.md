@@ -1017,3 +1017,9 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Se documentan audio Piper ID/PT-BR, límites offline, persistencia local IndexedDB, backup JSON v3 y pruebas sin afirmar certificación lingüística.
 - Cambio en rama `docs/readme-multilingual-20261127`, PR separada para mantener el alcance de documentación aislado de la revisión curricular #946.
 - Fuente de disponibilidad: `language-manager.js` en `main`; README actualizado el 27 nov 2026.
+
+## 2026-11-27 — Revisión editorial asistida de inglés B2 U1–U60 (PR #946)
+- La revisión editorial asistida cubre U1–U60: alineación de vocabulario, ejemplos, traducciones españolas, foco de lecciones y bancos de repaso. Se corrigieron asociaciones erróneas en U1/U2 y matices de glosa/ejemplo en U7/U8; las seis unidades de repaso tienen pruebas de asociación.
+- Se añadieron comprobaciones de regresión para U1–U8 y bloques posteriores. El currículo conserva 60 unidades, 300 lecciones, 1.200 actividades y 1.188 objetivos léxicos únicos.
+- PR #946 sigue draft y sin fusionar; inglés B2 permanece oculto/no publicado. Los tests estructurales no certifican naturalidad estadounidense, equivalencia semántica completa ni nivel MCER; la revisión lingüística independiente sigue pendiente.
+- Fuente: PR #946, languages/en/curriculum/b2/ y tests/en-us-b2-curriculum.test.cjs; 27 nov 2026.

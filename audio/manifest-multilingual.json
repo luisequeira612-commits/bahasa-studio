@@ -121,6 +121,74 @@
   },
   "entries": [
     {
+      "id": "009e058c883c",
+      "language": "en",
+      "locale": "en-US",
+      "text": "bedroom",
+      "file": "./audio/en/009e058c883c.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u12",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "0154c0dabe71",
+      "language": "en",
+      "locale": "en-US",
+      "text": "here",
+      "file": "./audio/en/0154c0dabe71.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "0183faa07583",
+      "language": "en",
+      "locale": "en-US",
+      "text": "This window is big.",
+      "file": "./audio/en/0183faa07583.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "022fe33b5fff",
+      "language": "en",
+      "locale": "en-US",
+      "text": "Ownership is important.",
+      "file": "./audio/en/022fe33b5fff.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "039794a643ef",
       "language": "en",
       "locale": "en-US",
@@ -172,6 +240,23 @@
       ]
     },
     {
+      "id": "05b18c056c6f",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The table is round.",
+      "file": "./audio/en/05b18c056c6f.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "086a8ef82d9a",
       "language": "en",
       "locale": "en-US",
@@ -206,6 +291,23 @@
       ]
     },
     {
+      "id": "09649207a9b5",
+      "language": "en",
+      "locale": "en-US",
+      "text": "tall",
+      "file": "./audio/en/09649207a9b5.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "09960df8e05e",
       "language": "en",
       "locale": "en-US",
@@ -215,6 +317,40 @@
         {
           "level": "A1",
           "unit": "en_a1_u2",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "09d3811a5363",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The keys are theirs.",
+      "file": "./audio/en/09d3811a5363.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "09d5f620386e",
+      "language": "en",
+      "locale": "en-US",
+      "text": "coat",
+      "file": "./audio/en/09d5f620386e.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
           "kind": "vocabulary"
         }
       ],
@@ -291,6 +427,40 @@
       ]
     },
     {
+      "id": "0c0bfc5e4fdc",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The desk is brown.",
+      "file": "./audio/en/0c0bfc5e4fdc.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "0c8b090b38a9",
+      "language": "en",
+      "locale": "en-US",
+      "text": "Their team is new.",
+      "file": "./audio/en/0c8b090b38a9.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "0d0965064039",
       "language": "en",
       "locale": "en-US",
@@ -318,6 +488,23 @@
           "level": "A1",
           "unit": "en_a1_u2",
           "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "0e66b49d04a4",
+      "language": "en",
+      "locale": "en-US",
+      "text": "picture",
+      "file": "./audio/en/0e66b49d04a4.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
+          "kind": "vocabulary"
         }
       ],
       "levels": [
@@ -376,6 +563,57 @@
       ]
     },
     {
+      "id": "122604decb5a",
+      "language": "en",
+      "locale": "en-US",
+      "text": "living room",
+      "file": "./audio/en/122604decb5a.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u12",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "136d33a81968",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The pencil is short.",
+      "file": "./audio/en/136d33a81968.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "153e21957763",
+      "language": "en",
+      "locale": "en-US",
+      "text": "My grandmother is kind.",
+      "file": "./audio/en/153e21957763.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "157a7173c07e",
       "language": "en",
       "locale": "en-US",
@@ -385,6 +623,23 @@
         {
           "level": "A1",
           "unit": "en_a1_u1",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "15bbddc39120",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The door is open.",
+      "file": "./audio/en/15bbddc39120.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
           "kind": "example"
         }
       ],
@@ -512,6 +767,40 @@
       ]
     },
     {
+      "id": "197426c12a14",
+      "language": "en",
+      "locale": "en-US",
+      "text": "This is a personal possession.",
+      "file": "./audio/en/197426c12a14.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "1a929464443b",
+      "language": "en",
+      "locale": "en-US",
+      "text": "This personal item is mine.",
+      "file": "./audio/en/1a929464443b.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "1ab89fef08e0",
       "language": "en",
       "locale": "en-US",
@@ -522,6 +811,23 @@
           "level": "A1",
           "unit": "en_a1_u5",
           "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "1b034c38bec0",
+      "language": "en",
+      "locale": "en-US",
+      "text": "pet",
+      "file": "./audio/en/1b034c38bec0.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
+          "kind": "vocabulary"
         }
       ],
       "levels": [
@@ -546,6 +852,23 @@
       ]
     },
     {
+      "id": "1ceec824e0fb",
+      "language": "en",
+      "locale": "en-US",
+      "text": "Those bottles are white.",
+      "file": "./audio/en/1ceec824e0fb.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "1dcc1008b11b",
       "language": "en",
       "locale": "en-US",
@@ -556,6 +879,23 @@
           "level": "A1",
           "unit": "en_a1_u1",
           "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "1dd09baa19dc",
+      "language": "en",
+      "locale": "en-US",
+      "text": "sister",
+      "file": "./audio/en/1dd09baa19dc.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
+          "kind": "vocabulary"
         }
       ],
       "levels": [
@@ -614,6 +954,23 @@
       ]
     },
     {
+      "id": "1f0acfb09cf8",
+      "language": "en",
+      "locale": "en-US",
+      "text": "There is a sofa in the living room.",
+      "file": "./audio/en/1f0acfb09cf8.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u12",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "1f1945e76692",
       "language": "en",
       "locale": "en-US",
@@ -623,6 +980,23 @@
         {
           "level": "A1",
           "unit": "en_a1_u1",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "2012b675ad92",
+      "language": "en",
+      "locale": "en-US",
+      "text": "What color is the bag?",
+      "file": "./audio/en/2012b675ad92.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
           "kind": "example"
         }
       ],
@@ -682,6 +1056,23 @@
       ]
     },
     {
+      "id": "21c04a5096c6",
+      "language": "en",
+      "locale": "en-US",
+      "text": "godfather",
+      "file": "./audio/en/21c04a5096c6.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "21e715faad49",
       "language": "en",
       "locale": "en-US",
@@ -716,6 +1107,23 @@
       ]
     },
     {
+      "id": "23fc1637e79e",
+      "language": "en",
+      "locale": "en-US",
+      "text": "His stepmother is kind.",
+      "file": "./audio/en/23fc1637e79e.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "25018d83422a",
       "language": "en",
       "locale": "en-US",
@@ -726,6 +1134,23 @@
           "level": "A1",
           "unit": "en_a1_u2",
           "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "250412fa57e2",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The picture is on the wall.",
+      "file": "./audio/en/250412fa57e2.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u12",
+          "kind": "example"
         }
       ],
       "levels": [
@@ -750,6 +1175,23 @@
       ]
     },
     {
+      "id": "252567f6961f",
+      "language": "en",
+      "locale": "en-US",
+      "text": "His uncle is a teacher.",
+      "file": "./audio/en/252567f6961f.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "259d2ff9d0a9",
       "language": "en",
       "locale": "en-US",
@@ -760,6 +1202,74 @@
           "level": "A1",
           "unit": "en_a1_u2",
           "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "2680b6746cf8",
+      "language": "en",
+      "locale": "en-US",
+      "text": "door",
+      "file": "./audio/en/2680b6746cf8.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "269fe3733d17",
+      "language": "en",
+      "locale": "en-US",
+      "text": "property",
+      "file": "./audio/en/269fe3733d17.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "26b99989814c",
+      "language": "en",
+      "locale": "en-US",
+      "text": "hers",
+      "file": "./audio/en/26b99989814c.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "28909cfb89b1",
+      "language": "en",
+      "locale": "en-US",
+      "text": "aunt",
+      "file": "./audio/en/28909cfb89b1.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
+          "kind": "vocabulary"
         }
       ],
       "levels": [
@@ -852,6 +1362,57 @@
       ]
     },
     {
+      "id": "2cd7484bc1b1",
+      "language": "en",
+      "locale": "en-US",
+      "text": "our",
+      "file": "./audio/en/2cd7484bc1b1.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "2cdbffdcaef5",
+      "language": "en",
+      "locale": "en-US",
+      "text": "apartment",
+      "file": "./audio/en/2cdbffdcaef5.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u12",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "2e087d6f44bd",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The flower is purple.",
+      "file": "./audio/en/2e087d6f44bd.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "2eda8ad1632a",
       "language": "en",
       "locale": "en-US",
@@ -861,6 +1422,23 @@
         {
           "level": "A1",
           "unit": "en_a1_u3",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "2f56c0ac09ef",
+      "language": "en",
+      "locale": "en-US",
+      "text": "kitchen",
+      "file": "./audio/en/2f56c0ac09ef.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u12",
           "kind": "vocabulary"
         }
       ],
@@ -886,6 +1464,57 @@
       ]
     },
     {
+      "id": "2fbaf7fd215c",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The couple is happy.",
+      "file": "./audio/en/2fbaf7fd215c.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "300394d50e46",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The door is green.",
+      "file": "./audio/en/300394d50e46.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "30bc3e477d95",
+      "language": "en",
+      "locale": "en-US",
+      "text": "Her husband is Daniel.",
+      "file": "./audio/en/30bc3e477d95.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "30f088ea6673",
       "language": "en",
       "locale": "en-US",
@@ -895,6 +1524,23 @@
         {
           "level": "A1",
           "unit": "en_a1_u2",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "316be803af63",
+      "language": "en",
+      "locale": "en-US",
+      "text": "husband",
+      "file": "./audio/en/316be803af63.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
           "kind": "vocabulary"
         }
       ],
@@ -937,6 +1583,23 @@
       ]
     },
     {
+      "id": "320ad267d8d9",
+      "language": "en",
+      "locale": "en-US",
+      "text": "window",
+      "file": "./audio/en/320ad267d8d9.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "32c70cebf110",
       "language": "en",
       "locale": "en-US",
@@ -946,6 +1609,23 @@
         {
           "level": "A1",
           "unit": "en_a1_u6",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "32c8bbff09c3",
+      "language": "en",
+      "locale": "en-US",
+      "text": "father",
+      "file": "./audio/en/32c8bbff09c3.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
           "kind": "vocabulary"
         }
       ],
@@ -971,6 +1651,23 @@
       ]
     },
     {
+      "id": "33b82201081e",
+      "language": "en",
+      "locale": "en-US",
+      "text": "that",
+      "file": "./audio/en/33b82201081e.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "33cdb55381f8",
       "language": "en",
       "locale": "en-US",
@@ -988,6 +1685,40 @@
       ]
     },
     {
+      "id": "33fc2d930ae9",
+      "language": "en",
+      "locale": "en-US",
+      "text": "couple",
+      "file": "./audio/en/33fc2d930ae9.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "3405a46a1ab1",
+      "language": "en",
+      "locale": "en-US",
+      "text": "name tag",
+      "file": "./audio/en/3405a46a1ab1.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "3406aca115a3",
       "language": "en",
       "locale": "en-US",
@@ -997,6 +1728,91 @@
         {
           "level": "A1",
           "unit": "en_a1_u5",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "346d34a0f0d9",
+      "language": "en",
+      "locale": "en-US",
+      "text": "ticket",
+      "file": "./audio/en/346d34a0f0d9.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "34ecb4962ed5",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The bag is on the floor.",
+      "file": "./audio/en/34ecb4962ed5.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u12",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "353435fcbae5",
+      "language": "en",
+      "locale": "en-US",
+      "text": "There is a bed in the room.",
+      "file": "./audio/en/353435fcbae5.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u12",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "3684c9d3c05e",
+      "language": "en",
+      "locale": "en-US",
+      "text": "floor",
+      "file": "./audio/en/3684c9d3c05e.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u12",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "36db73f0eab2",
+      "language": "en",
+      "locale": "en-US",
+      "text": "There is a cupboard in the kitchen.",
+      "file": "./audio/en/36db73f0eab2.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u12",
           "kind": "example"
         }
       ],
@@ -1039,6 +1855,23 @@
       ]
     },
     {
+      "id": "37745ed7a0f0",
+      "language": "en",
+      "locale": "en-US",
+      "text": "map",
+      "file": "./audio/en/37745ed7a0f0.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "37a9d6966711",
       "language": "en",
       "locale": "en-US",
@@ -1049,6 +1882,23 @@
           "level": "A1",
           "unit": "en_a1_u1",
           "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "37f572be1beb",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The glasses are mine.",
+      "file": "./audio/en/37f572be1beb.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
+          "kind": "example"
         }
       ],
       "levels": [
@@ -1073,6 +1923,40 @@
       ]
     },
     {
+      "id": "38612e28a6ed",
+      "language": "en",
+      "locale": "en-US",
+      "text": "A relative is here.",
+      "file": "./audio/en/38612e28a6ed.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "3894762316ed",
+      "language": "en",
+      "locale": "en-US",
+      "text": "That ruler is blue.",
+      "file": "./audio/en/3894762316ed.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "392d7871944a",
       "language": "en",
       "locale": "en-US",
@@ -1082,6 +1966,57 @@
         {
           "level": "A1",
           "unit": "en_a1_u2",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "3a6692b5099c",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The leash is long.",
+      "file": "./audio/en/3a6692b5099c.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "3a7d9767b123",
+      "language": "en",
+      "locale": "en-US",
+      "text": "item",
+      "file": "./audio/en/3a7d9767b123.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "3a82c7a5e370",
+      "language": "en",
+      "locale": "en-US",
+      "text": "fridge",
+      "file": "./audio/en/3a82c7a5e370.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u12",
           "kind": "vocabulary"
         }
       ],
@@ -1116,6 +2051,23 @@
         {
           "level": "A1",
           "unit": "en_a1_u1",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "3bbd7d9121e7",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The table is white.",
+      "file": "./audio/en/3bbd7d9121e7.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
           "kind": "example"
         }
       ],
@@ -1175,6 +2127,57 @@
       ]
     },
     {
+      "id": "3e27badda3fd",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The phone is black.",
+      "file": "./audio/en/3e27badda3fd.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "3ece1471f44f",
+      "language": "en",
+      "locale": "en-US",
+      "text": "my",
+      "file": "./audio/en/3ece1471f44f.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "3f0715ca14fe",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The ticket is yours.",
+      "file": "./audio/en/3f0715ca14fe.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "3ff95ac9e6b1",
       "language": "en",
       "locale": "en-US",
@@ -1185,6 +2188,57 @@
           "level": "A1",
           "unit": "en_a1_u5",
           "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "406ddf8031ad",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The passport is mine.",
+      "file": "./audio/en/406ddf8031ad.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "4123d153f519",
+      "language": "en",
+      "locale": "en-US",
+      "text": "His phone is black.",
+      "file": "./audio/en/4123d153f519.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "4187be525977",
+      "language": "en",
+      "locale": "en-US",
+      "text": "These markers are here.",
+      "file": "./audio/en/4187be525977.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
+          "kind": "example"
         }
       ],
       "levels": [
@@ -1226,6 +2280,40 @@
       ]
     },
     {
+      "id": "44328fbca903",
+      "language": "en",
+      "locale": "en-US",
+      "text": "Our books are different.",
+      "file": "./audio/en/44328fbca903.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "450a2220a71a",
+      "language": "en",
+      "locale": "en-US",
+      "text": "What is that thing?",
+      "file": "./audio/en/450a2220a71a.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "456ec63727cb",
       "language": "en",
       "locale": "en-US",
@@ -1260,6 +2348,40 @@
       ]
     },
     {
+      "id": "45b5f9c2be8d",
+      "language": "en",
+      "locale": "en-US",
+      "text": "Her grandfather is old.",
+      "file": "./audio/en/45b5f9c2be8d.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "45c50babcb74",
+      "language": "en",
+      "locale": "en-US",
+      "text": "Their son is a student.",
+      "file": "./audio/en/45c50babcb74.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "46148cc3b4d2",
       "language": "en",
       "locale": "en-US",
@@ -1269,6 +2391,40 @@
         {
           "level": "A1",
           "unit": "en_a1_u3",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "466bc8cef3e7",
+      "language": "en",
+      "locale": "en-US",
+      "text": "black",
+      "file": "./audio/en/466bc8cef3e7.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "46e7cfa08091",
+      "language": "en",
+      "locale": "en-US",
+      "text": "desk",
+      "file": "./audio/en/46e7cfa08091.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
           "kind": "vocabulary"
         }
       ],
@@ -1287,6 +2443,91 @@
           "level": "A1",
           "unit": "en_a1_u3",
           "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "48537f613ab8",
+      "language": "en",
+      "locale": "en-US",
+      "text": "ours",
+      "file": "./audio/en/48537f613ab8.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "4862b605803a",
+      "language": "en",
+      "locale": "en-US",
+      "text": "hallway",
+      "file": "./audio/en/4862b605803a.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u12",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "4885d3179a33",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The wallet is mine.",
+      "file": "./audio/en/4885d3179a33.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "48eda733f81c",
+      "language": "en",
+      "locale": "en-US",
+      "text": "wife",
+      "file": "./audio/en/48eda733f81c.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "490528f36deb",
+      "language": "en",
+      "locale": "en-US",
+      "text": "there",
+      "file": "./audio/en/490528f36deb.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
+          "kind": "vocabulary"
         }
       ],
       "levels": [
@@ -1345,6 +2586,23 @@
       ]
     },
     {
+      "id": "4a07eca09938",
+      "language": "en",
+      "locale": "en-US",
+      "text": "bowl",
+      "file": "./audio/en/4a07eca09938.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "4a240ec058b4",
       "language": "en",
       "locale": "en-US",
@@ -1379,6 +2637,23 @@
       ]
     },
     {
+      "id": "4adb633e0b33",
+      "language": "en",
+      "locale": "en-US",
+      "text": "My sister is a teacher.",
+      "file": "./audio/en/4adb633e0b33.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "4ae04680d5d0",
       "language": "en",
       "locale": "en-US",
@@ -1389,6 +2664,23 @@
           "level": "A1",
           "unit": "en_a1_u4",
           "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "4c9a82ce72ca",
+      "language": "en",
+      "locale": "en-US",
+      "text": "blue",
+      "file": "./audio/en/4c9a82ce72ca.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
+          "kind": "vocabulary"
         }
       ],
       "levels": [
@@ -1413,6 +2705,57 @@
       ]
     },
     {
+      "id": "4dc73741b947",
+      "language": "en",
+      "locale": "en-US",
+      "text": "your",
+      "file": "./audio/en/4dc73741b947.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "4e781972ad46",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The cat is gray.",
+      "file": "./audio/en/4e781972ad46.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "4eae12271106",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The owner is here.",
+      "file": "./audio/en/4eae12271106.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "4f1a188f00ac",
       "language": "en",
       "locale": "en-US",
@@ -1423,6 +2766,23 @@
           "level": "A1",
           "unit": "en_a1_u4",
           "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "4f7da5b94d36",
+      "language": "en",
+      "locale": "en-US",
+      "text": "cupboard",
+      "file": "./audio/en/4f7da5b94d36.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u12",
+          "kind": "vocabulary"
         }
       ],
       "levels": [
@@ -1481,6 +2841,74 @@
       ]
     },
     {
+      "id": "5116e40694ac",
+      "language": "en",
+      "locale": "en-US",
+      "text": "mother",
+      "file": "./audio/en/5116e40694ac.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "51530c6f31e7",
+      "language": "en",
+      "locale": "en-US",
+      "text": "nephew",
+      "file": "./audio/en/51530c6f31e7.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "517d5a724086",
+      "language": "en",
+      "locale": "en-US",
+      "text": "different",
+      "file": "./audio/en/517d5a724086.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "5196ac662c18",
+      "language": "en",
+      "locale": "en-US",
+      "text": "His car is red.",
+      "file": "./audio/en/5196ac662c18.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "51a77267f19f",
       "language": "en",
       "locale": "en-US",
@@ -1515,6 +2943,40 @@
       ]
     },
     {
+      "id": "5280933cbca1",
+      "language": "en",
+      "locale": "en-US",
+      "text": "notebook",
+      "file": "./audio/en/5280933cbca1.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "528cef87d0bf",
+      "language": "en",
+      "locale": "en-US",
+      "text": "white",
+      "file": "./audio/en/528cef87d0bf.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "52ab86a87214",
       "language": "en",
       "locale": "en-US",
@@ -1525,6 +2987,23 @@
           "level": "A1",
           "unit": "en_a1_u5",
           "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "52c79c4a24b0",
+      "language": "en",
+      "locale": "en-US",
+      "text": "Your bag is blue.",
+      "file": "./audio/en/52c79c4a24b0.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
+          "kind": "example"
         }
       ],
       "levels": [
@@ -1549,6 +3028,23 @@
       ]
     },
     {
+      "id": "5455327f9953",
+      "language": "en",
+      "locale": "en-US",
+      "text": "Their parents are here.",
+      "file": "./audio/en/5455327f9953.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "565cecd7e8f5",
       "language": "en",
       "locale": "en-US",
@@ -1566,6 +3062,23 @@
       ]
     },
     {
+      "id": "574980752348",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The street is long.",
+      "file": "./audio/en/574980752348.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "57800cc07560",
       "language": "en",
       "locale": "en-US",
@@ -1576,6 +3089,23 @@
           "level": "A1",
           "unit": "en_a1_u5",
           "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "579233b2c479",
+      "language": "en",
+      "locale": "en-US",
+      "text": "owner",
+      "file": "./audio/en/579233b2c479.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
+          "kind": "vocabulary"
         }
       ],
       "levels": [
@@ -1634,6 +3164,57 @@
       ]
     },
     {
+      "id": "5be93480bd8b",
+      "language": "en",
+      "locale": "en-US",
+      "text": "house",
+      "file": "./audio/en/5be93480bd8b.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u12",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "5ca7251297af",
+      "language": "en",
+      "locale": "en-US",
+      "text": "These are my books.",
+      "file": "./audio/en/5ca7251297af.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "5cd7e5eb4ee4",
+      "language": "en",
+      "locale": "en-US",
+      "text": "Her daughter is nice.",
+      "file": "./audio/en/5cd7e5eb4ee4.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "5cf896e678bd",
       "language": "en",
       "locale": "en-US",
@@ -1644,6 +3225,23 @@
           "level": "A1",
           "unit": "en_a1_u4",
           "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "5dbe0ff03387",
+      "language": "en",
+      "locale": "en-US",
+      "text": "Whose book is this?",
+      "file": "./audio/en/5dbe0ff03387.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
+          "kind": "example"
         }
       ],
       "levels": [
@@ -1753,6 +3351,23 @@
       ]
     },
     {
+      "id": "5f55d09a5132",
+      "language": "en",
+      "locale": "en-US",
+      "text": "ruler",
+      "file": "./audio/en/5f55d09a5132.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "602aa520f142",
       "language": "en",
       "locale": "en-US",
@@ -1804,6 +3419,40 @@
       ]
     },
     {
+      "id": "61e2f51ca8ba",
+      "language": "en",
+      "locale": "en-US",
+      "text": "gray",
+      "file": "./audio/en/61e2f51ca8ba.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "6393bcdfe36c",
+      "language": "en",
+      "locale": "en-US",
+      "text": "beautiful",
+      "file": "./audio/en/6393bcdfe36c.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "63b3ea556378",
       "language": "en",
       "locale": "en-US",
@@ -1814,6 +3463,57 @@
           "level": "A1",
           "unit": "en_a1_u6",
           "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "64292b1c2b2e",
+      "language": "en",
+      "locale": "en-US",
+      "text": "group",
+      "file": "./audio/en/64292b1c2b2e.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "6490e67e8283",
+      "language": "en",
+      "locale": "en-US",
+      "text": "daughter",
+      "file": "./audio/en/6490e67e8283.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "64f8483dc47c",
+      "language": "en",
+      "locale": "en-US",
+      "text": "Her cat is gray.",
+      "file": "./audio/en/64f8483dc47c.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
+          "kind": "example"
         }
       ],
       "levels": [
@@ -1855,6 +3555,40 @@
       ]
     },
     {
+      "id": "676fe2de0988",
+      "language": "en",
+      "locale": "en-US",
+      "text": "That desk is brown.",
+      "file": "./audio/en/676fe2de0988.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "68e0dce54a9e",
+      "language": "en",
+      "locale": "en-US",
+      "text": "sofa",
+      "file": "./audio/en/68e0dce54a9e.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u12",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "690cbaec5725",
       "language": "en",
       "locale": "en-US",
@@ -1864,6 +3598,23 @@
         {
           "level": "A1",
           "unit": "en_a1_u5",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "695002b77f65",
+      "language": "en",
+      "locale": "en-US",
+      "text": "There are two lamps.",
+      "file": "./audio/en/695002b77f65.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u12",
           "kind": "example"
         }
       ],
@@ -1916,6 +3667,28 @@
           "level": "A1",
           "unit": "en_a1_u5",
           "kind": "example"
+        },
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "6ccf720ae2a6",
+      "language": "en",
+      "locale": "en-US",
+      "text": "those",
+      "file": "./audio/en/6ccf720ae2a6.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
+          "kind": "vocabulary"
         }
       ],
       "levels": [
@@ -1933,6 +3706,57 @@
           "level": "A1",
           "unit": "en_a1_u6",
           "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "6d55c0974cae",
+      "language": "en",
+      "locale": "en-US",
+      "text": "balcony",
+      "file": "./audio/en/6d55c0974cae.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u12",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "6dd0fe800114",
+      "language": "en",
+      "locale": "en-US",
+      "text": "color",
+      "file": "./audio/en/6dd0fe800114.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "6e292893d6bf",
+      "language": "en",
+      "locale": "en-US",
+      "text": "My godfather is here.",
+      "file": "./audio/en/6e292893d6bf.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
+          "kind": "example"
         }
       ],
       "levels": [
@@ -1967,6 +3791,74 @@
           "level": "A1",
           "unit": "en_a1_u1",
           "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "6f2b83563239",
+      "language": "en",
+      "locale": "en-US",
+      "text": "sink",
+      "file": "./audio/en/6f2b83563239.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u12",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "6fcc7f86c1a8",
+      "language": "en",
+      "locale": "en-US",
+      "text": "My mother is Ana.",
+      "file": "./audio/en/6fcc7f86c1a8.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "7098a8129045",
+      "language": "en",
+      "locale": "en-US",
+      "text": "His wife is Ana.",
+      "file": "./audio/en/7098a8129045.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "70b2db8ae957",
+      "language": "en",
+      "locale": "en-US",
+      "text": "far",
+      "file": "./audio/en/70b2db8ae957.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
+          "kind": "vocabulary"
         }
       ],
       "levels": [
@@ -2025,6 +3917,57 @@
       ]
     },
     {
+      "id": "723f69429ba8",
+      "language": "en",
+      "locale": "en-US",
+      "text": "There is a sink in the bathroom.",
+      "file": "./audio/en/723f69429ba8.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u12",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "72ab788c02c1",
+      "language": "en",
+      "locale": "en-US",
+      "text": "My niece is happy.",
+      "file": "./audio/en/72ab788c02c1.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "72bfb05496f9",
+      "language": "en",
+      "locale": "en-US",
+      "text": "bathroom",
+      "file": "./audio/en/72bfb05496f9.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u12",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "72e47f8daf4e",
       "language": "en",
       "locale": "en-US",
@@ -2059,6 +4002,23 @@
       ]
     },
     {
+      "id": "7347b9080894",
+      "language": "en",
+      "locale": "en-US",
+      "text": "shelf",
+      "file": "./audio/en/7347b9080894.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u12",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "7398f3488d11",
       "language": "en",
       "locale": "en-US",
@@ -2068,6 +4028,23 @@
         {
           "level": "A1",
           "unit": "en_a1_u1",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "7495c410248c",
+      "language": "en",
+      "locale": "en-US",
+      "text": "Our home is quiet.",
+      "file": "./audio/en/7495c410248c.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
           "kind": "example"
         }
       ],
@@ -2110,6 +4087,23 @@
       ]
     },
     {
+      "id": "78988010b890",
+      "language": "en",
+      "locale": "en-US",
+      "text": "red",
+      "file": "./audio/en/78988010b890.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "78c9a53e2f28",
       "language": "en",
       "locale": "en-US",
@@ -2127,6 +4121,40 @@
       ]
     },
     {
+      "id": "78d0c696aee2",
+      "language": "en",
+      "locale": "en-US",
+      "text": "stepfather",
+      "file": "./audio/en/78d0c696aee2.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "78f346b897c0",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The suitcase is theirs.",
+      "file": "./audio/en/78f346b897c0.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "790b0d26ec2e",
       "language": "en",
       "locale": "en-US",
@@ -2136,6 +4164,40 @@
         {
           "level": "A1",
           "unit": "en_a1_u5",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "7b10f38def50",
+      "language": "en",
+      "locale": "en-US",
+      "text": "His dog is friendly.",
+      "file": "./audio/en/7b10f38def50.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "7c225d514e3a",
+      "language": "en",
+      "locale": "en-US",
+      "text": "My godmother is here.",
+      "file": "./audio/en/7c225d514e3a.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
           "kind": "example"
         }
       ],
@@ -2178,6 +4240,57 @@
       ]
     },
     {
+      "id": "7fd8a38a9536",
+      "language": "en",
+      "locale": "en-US",
+      "text": "His father is tall.",
+      "file": "./audio/en/7fd8a38a9536.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "801a3e090d9a",
+      "language": "en",
+      "locale": "en-US",
+      "text": "Her room is small.",
+      "file": "./audio/en/801a3e090d9a.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "8034c43d15bb",
+      "language": "en",
+      "locale": "en-US",
+      "text": "mine",
+      "file": "./audio/en/8034c43d15bb.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "80387d19918c",
       "language": "en",
       "locale": "en-US",
@@ -2204,6 +4317,23 @@
         {
           "level": "A1",
           "unit": "en_a1_u1",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "80d2c5d7876f",
+      "language": "en",
+      "locale": "en-US",
+      "text": "My friend is Ana.",
+      "file": "./audio/en/80d2c5d7876f.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
           "kind": "example"
         }
       ],
@@ -2246,6 +4376,40 @@
       ]
     },
     {
+      "id": "81b781d39d62",
+      "language": "en",
+      "locale": "en-US",
+      "text": "these",
+      "file": "./audio/en/81b781d39d62.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "828a3c95542e",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The house is ours.",
+      "file": "./audio/en/828a3c95542e.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "8405dec312b8",
       "language": "en",
       "locale": "en-US",
@@ -2255,6 +4419,23 @@
         {
           "level": "A1",
           "unit": "en_a1_u1",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "841a8972d732",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The house is big.",
+      "file": "./audio/en/841a8972d732.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
           "kind": "example"
         }
       ],
@@ -2324,6 +4505,40 @@
           "level": "A1",
           "unit": "en_a1_u5",
           "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "863cc374e6dc",
+      "language": "en",
+      "locale": "en-US",
+      "text": "thing",
+      "file": "./audio/en/863cc374e6dc.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "86dd50893dd4",
+      "language": "en",
+      "locale": "en-US",
+      "text": "personal item",
+      "file": "./audio/en/86dd50893dd4.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
+          "kind": "vocabulary"
         }
       ],
       "levels": [
@@ -2425,6 +4640,40 @@
         {
           "level": "A1",
           "unit": "en_a1_u2",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "89b8d783289b",
+      "language": "en",
+      "locale": "en-US",
+      "text": "whose",
+      "file": "./audio/en/89b8d783289b.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "89f6229a11ac",
+      "language": "en",
+      "locale": "en-US",
+      "text": "small",
+      "file": "./audio/en/89f6229a11ac.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
           "kind": "vocabulary"
         }
       ],
@@ -2535,6 +4784,40 @@
       ]
     },
     {
+      "id": "8be7374f058a",
+      "language": "en",
+      "locale": "en-US",
+      "text": "His toy is small.",
+      "file": "./audio/en/8be7374f058a.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "8c40e014efd5",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The lamp is on the ceiling.",
+      "file": "./audio/en/8c40e014efd5.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u12",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "8cf9f2db1f45",
       "language": "en",
       "locale": "en-US",
@@ -2603,6 +4886,57 @@
       ]
     },
     {
+      "id": "8ef1db5abc32",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The fridge is in the kitchen.",
+      "file": "./audio/en/8ef1db5abc32.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u12",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "8ffb3d317525",
+      "language": "en",
+      "locale": "en-US",
+      "text": "This notebook is new.",
+      "file": "./audio/en/8ffb3d317525.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "9111f1f85cc0",
+      "language": "en",
+      "locale": "en-US",
+      "text": "leash",
+      "file": "./audio/en/9111f1f85cc0.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "914756ae92d9",
       "language": "en",
       "locale": "en-US",
@@ -2612,6 +4946,108 @@
         {
           "level": "A1",
           "unit": "en_a1_u2",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "914fb82ef86c",
+      "language": "en",
+      "locale": "en-US",
+      "text": "possession",
+      "file": "./audio/en/914fb82ef86c.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "9166eeff1e50",
+      "language": "en",
+      "locale": "en-US",
+      "text": "brown",
+      "file": "./audio/en/9166eeff1e50.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "922cce49ed16",
+      "language": "en",
+      "locale": "en-US",
+      "text": "yours",
+      "file": "./audio/en/922cce49ed16.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "9338aa5b38dd",
+      "language": "en",
+      "locale": "en-US",
+      "text": "stove",
+      "file": "./audio/en/9338aa5b38dd.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u12",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "93f66a9e55e3",
+      "language": "en",
+      "locale": "en-US",
+      "text": "There is a garden behind the house.",
+      "file": "./audio/en/93f66a9e55e3.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u12",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "94543ff5063c",
+      "language": "en",
+      "locale": "en-US",
+      "text": "A parent is here.",
+      "file": "./audio/en/94543ff5063c.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
           "kind": "example"
         }
       ],
@@ -2637,6 +5073,23 @@
       ]
     },
     {
+      "id": "95c4bea12e4e",
+      "language": "en",
+      "locale": "en-US",
+      "text": "big",
+      "file": "./audio/en/95c4bea12e4e.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "9668ce72dd96",
       "language": "en",
       "locale": "en-US",
@@ -2647,6 +5100,23 @@
           "level": "A1",
           "unit": "en_a1_u4",
           "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "96de5543d183",
+      "language": "en",
+      "locale": "en-US",
+      "text": "yellow",
+      "file": "./audio/en/96de5543d183.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
+          "kind": "vocabulary"
         }
       ],
       "levels": [
@@ -2688,6 +5158,74 @@
       ]
     },
     {
+      "id": "978cd2afb77e",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The city is far.",
+      "file": "./audio/en/978cd2afb77e.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "97e319b0106b",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The room is pink.",
+      "file": "./audio/en/97e319b0106b.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "97f3a18606a5",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The laptop is yours.",
+      "file": "./audio/en/97f3a18606a5.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "980578c262f7",
+      "language": "en",
+      "locale": "en-US",
+      "text": "cousin",
+      "file": "./audio/en/980578c262f7.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "98aadb37083e",
       "language": "en",
       "locale": "en-US",
@@ -2697,6 +5235,23 @@
         {
           "level": "A1",
           "unit": "en_a1_u3",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "999400659233",
+      "language": "en",
+      "locale": "en-US",
+      "text": "her",
+      "file": "./audio/en/999400659233.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
           "kind": "vocabulary"
         }
       ],
@@ -2739,6 +5294,57 @@
       ]
     },
     {
+      "id": "9d989e8d27dc",
+      "language": "en",
+      "locale": "en-US",
+      "text": "cat",
+      "file": "./audio/en/9d989e8d27dc.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "9da8f1fa7d3a",
+      "language": "en",
+      "locale": "en-US",
+      "text": "place",
+      "file": "./audio/en/9da8f1fa7d3a.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "9ddd0bc34f0d",
+      "language": "en",
+      "locale": "en-US",
+      "text": "godmother",
+      "file": "./audio/en/9ddd0bc34f0d.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "9e08dcce3533",
       "language": "en",
       "locale": "en-US",
@@ -2748,6 +5354,40 @@
         {
           "level": "A1",
           "unit": "en_a1_u3",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "9e10b162b856",
+      "language": "en",
+      "locale": "en-US",
+      "text": "There is a mirror in the bathroom.",
+      "file": "./audio/en/9e10b162b856.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u12",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "9e32521dd2f8",
+      "language": "en",
+      "locale": "en-US",
+      "text": "car",
+      "file": "./audio/en/9e32521dd2f8.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
           "kind": "vocabulary"
         }
       ],
@@ -2790,6 +5430,23 @@
       ]
     },
     {
+      "id": "9f6b7dbb735c",
+      "language": "en",
+      "locale": "en-US",
+      "text": "niece",
+      "file": "./audio/en/9f6b7dbb735c.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "9f8f7eec5dea",
       "language": "en",
       "locale": "en-US",
@@ -2807,6 +5464,40 @@
       ]
     },
     {
+      "id": "9f97a9dd6ef9",
+      "language": "en",
+      "locale": "en-US",
+      "text": "Our group is small.",
+      "file": "./audio/en/9f97a9dd6ef9.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "9fea79407360",
+      "language": "en",
+      "locale": "en-US",
+      "text": "ownership",
+      "file": "./audio/en/9fea79407360.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "a00bbe560e6b",
       "language": "en",
       "locale": "en-US",
@@ -2816,6 +5507,23 @@
         {
           "level": "A1",
           "unit": "en_a1_u4",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "a0f4ea7d9149",
+      "language": "en",
+      "locale": "en-US",
+      "text": "short",
+      "file": "./audio/en/a0f4ea7d9149.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
           "kind": "vocabulary"
         }
       ],
@@ -2858,6 +5566,40 @@
       ]
     },
     {
+      "id": "a185f5d089fc",
+      "language": "en",
+      "locale": "en-US",
+      "text": "stepmother",
+      "file": "./audio/en/a185f5d089fc.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "a232ad2937b8",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The kitchen is clean.",
+      "file": "./audio/en/a232ad2937b8.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u12",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "a2ea07451f79",
       "language": "en",
       "locale": "en-US",
@@ -2892,6 +5634,91 @@
       ]
     },
     {
+      "id": "a3404013c754",
+      "language": "en",
+      "locale": "en-US",
+      "text": "passport",
+      "file": "./audio/en/a3404013c754.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "a384cff1a369",
+      "language": "en",
+      "locale": "en-US",
+      "text": "scarf",
+      "file": "./audio/en/a384cff1a369.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "a4660e050174",
+      "language": "en",
+      "locale": "en-US",
+      "text": "My book is new.",
+      "file": "./audio/en/a4660e050174.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "a46832b6a360",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The flower is yellow.",
+      "file": "./audio/en/a46832b6a360.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "a5afc8df8baa",
+      "language": "en",
+      "locale": "en-US",
+      "text": "uncle",
+      "file": "./audio/en/a5afc8df8baa.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "a62f2225bf70",
       "language": "en",
       "locale": "en-US",
@@ -2918,6 +5745,40 @@
         {
           "level": "A1",
           "unit": "en_a1_u1",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "a7b06f246173",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The young man is here.",
+      "file": "./audio/en/a7b06f246173.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "a7e546716acb",
+      "language": "en",
+      "locale": "en-US",
+      "text": "purse",
+      "file": "./audio/en/a7e546716acb.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
           "kind": "vocabulary"
         }
       ],
@@ -3113,6 +5974,142 @@
       ]
     },
     {
+      "id": "ae69d6a2feed",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The scarf is hers.",
+      "file": "./audio/en/ae69d6a2feed.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "af764f988057",
+      "language": "en",
+      "locale": "en-US",
+      "text": "marker",
+      "file": "./audio/en/af764f988057.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "afaed75406bd",
+      "language": "en",
+      "locale": "en-US",
+      "text": "purple",
+      "file": "./audio/en/afaed75406bd.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "afaf74c0a41e",
+      "language": "en",
+      "locale": "en-US",
+      "text": "This item is small.",
+      "file": "./audio/en/afaf74c0a41e.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "afcac3549c93",
+      "language": "en",
+      "locale": "en-US",
+      "text": "bottle",
+      "file": "./audio/en/afcac3549c93.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "afffdd08d81d",
+      "language": "en",
+      "locale": "en-US",
+      "text": "folder",
+      "file": "./audio/en/afffdd08d81d.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "b0c3069a40e9",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The purse is hers.",
+      "file": "./audio/en/b0c3069a40e9.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "b0f7f128338b",
+      "language": "en",
+      "locale": "en-US",
+      "text": "pink",
+      "file": "./audio/en/b0f7f128338b.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "b180a590e577",
       "language": "en",
       "locale": "en-US",
@@ -3130,6 +6127,40 @@
       ]
     },
     {
+      "id": "b187a9ed471e",
+      "language": "en",
+      "locale": "en-US",
+      "text": "his",
+      "file": "./audio/en/b187a9ed471e.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "b1ade531057f",
+      "language": "en",
+      "locale": "en-US",
+      "text": "garden",
+      "file": "./audio/en/b1ade531057f.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u12",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "b1e11da2fe27",
       "language": "en",
       "locale": "en-US",
@@ -3139,6 +6170,23 @@
         {
           "level": "A1",
           "unit": "en_a1_u1",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "b3020b2c2659",
+      "language": "en",
+      "locale": "en-US",
+      "text": "This property is ours.",
+      "file": "./audio/en/b3020b2c2659.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
           "kind": "example"
         }
       ],
@@ -3164,6 +6212,23 @@
       ]
     },
     {
+      "id": "b4b463db4bc6",
+      "language": "en",
+      "locale": "en-US",
+      "text": "That is a house.",
+      "file": "./audio/en/b4b463db4bc6.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "b4ddce182ecf",
       "language": "en",
       "locale": "en-US",
@@ -3174,6 +6239,23 @@
           "level": "A1",
           "unit": "en_a1_u4",
           "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "b50aea4878d2",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The apple is red.",
+      "file": "./audio/en/b50aea4878d2.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
+          "kind": "example"
         }
       ],
       "levels": [
@@ -3215,6 +6297,23 @@
       ]
     },
     {
+      "id": "b6d198482927",
+      "language": "en",
+      "locale": "en-US",
+      "text": "suitcase",
+      "file": "./audio/en/b6d198482927.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "b76a9a5d7130",
       "language": "en",
       "locale": "en-US",
@@ -3249,6 +6348,40 @@
       ]
     },
     {
+      "id": "b7d351e420cc",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The apartment has a balcony.",
+      "file": "./audio/en/b7d351e420cc.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u12",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "b7f257b02067",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The book is blue.",
+      "file": "./audio/en/b7f257b02067.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "b802f384302c",
       "language": "en",
       "locale": "en-US",
@@ -3259,6 +6392,159 @@
           "level": "A1",
           "unit": "en_a1_u4",
           "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "b882098c04c6",
+      "language": "en",
+      "locale": "en-US",
+      "text": "Its bowl is clean.",
+      "file": "./audio/en/b882098c04c6.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "b94ae4f118e0",
+      "language": "en",
+      "locale": "en-US",
+      "text": "My nephew is at home.",
+      "file": "./audio/en/b94ae4f118e0.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "ba22ef34f8bf",
+      "language": "en",
+      "locale": "en-US",
+      "text": "glasses",
+      "file": "./audio/en/ba22ef34f8bf.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "baacee0a140d",
+      "language": "en",
+      "locale": "en-US",
+      "text": "ceiling",
+      "file": "./audio/en/baacee0a140d.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u12",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "bc4edcce8a85",
+      "language": "en",
+      "locale": "en-US",
+      "text": "lamp",
+      "file": "./audio/en/bc4edcce8a85.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u12",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "bc74f4f071a5",
+      "language": "en",
+      "locale": "en-US",
+      "text": "green",
+      "file": "./audio/en/bc74f4f071a5.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "bd3027fa569e",
+      "language": "en",
+      "locale": "en-US",
+      "text": "long",
+      "file": "./audio/en/bd3027fa569e.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "bd702267cc73",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The dog has its bed.",
+      "file": "./audio/en/bd702267cc73.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "be24b50db114",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The school is near.",
+      "file": "./audio/en/be24b50db114.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
+          "kind": "example"
         }
       ],
       "levels": [
@@ -3292,6 +6578,23 @@
         {
           "level": "A1",
           "unit": "en_a1_u4",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "bfed89e80ea0",
+      "language": "en",
+      "locale": "en-US",
+      "text": "square",
+      "file": "./audio/en/bfed89e80ea0.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
           "kind": "vocabulary"
         }
       ],
@@ -3402,6 +6705,57 @@
       ]
     },
     {
+      "id": "c2543fff3bfa",
+      "language": "en",
+      "locale": "en-US",
+      "text": "this",
+      "file": "./audio/en/c2543fff3bfa.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "c2a6b03f190d",
+      "language": "en",
+      "locale": "en-US",
+      "text": "new",
+      "file": "./audio/en/c2a6b03f190d.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "c307b632ca37",
+      "language": "en",
+      "locale": "en-US",
+      "text": "wallet",
+      "file": "./audio/en/c307b632ca37.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "c3255528973f",
       "language": "en",
       "locale": "en-US",
@@ -3453,6 +6807,57 @@
       ]
     },
     {
+      "id": "c438401d2387",
+      "language": "en",
+      "locale": "en-US",
+      "text": "Our pet is small.",
+      "file": "./audio/en/c438401d2387.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "c4910d4a5964",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The bag is here.",
+      "file": "./audio/en/c4910d4a5964.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "c4a38649f372",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The blue bag is yours.",
+      "file": "./audio/en/c4a38649f372.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "c4d2a2cec764",
       "language": "en",
       "locale": "en-US",
@@ -3497,6 +6902,23 @@
           "level": "A1",
           "unit": "en_a1_u6",
           "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "c5ac4fe12e51",
+      "language": "en",
+      "locale": "en-US",
+      "text": "collar",
+      "file": "./audio/en/c5ac4fe12e51.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
+          "kind": "vocabulary"
         }
       ],
       "levels": [
@@ -3606,6 +7028,23 @@
       ]
     },
     {
+      "id": "c79936b9659c",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The charger is his.",
+      "file": "./audio/en/c79936b9659c.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "c7d8a6d722a1",
       "language": "en",
       "locale": "en-US",
@@ -3691,6 +7130,40 @@
       ]
     },
     {
+      "id": "cd1933db799b",
+      "language": "en",
+      "locale": "en-US",
+      "text": "toy",
+      "file": "./audio/en/cd1933db799b.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "ce03d5f5fa54",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The orange bag is small.",
+      "file": "./audio/en/ce03d5f5fa54.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "ce0b1612aa71",
       "language": "en",
       "locale": "en-US",
@@ -3708,6 +7181,23 @@
       ]
     },
     {
+      "id": "ce10147259ec",
+      "language": "en",
+      "locale": "en-US",
+      "text": "This book is mine.",
+      "file": "./audio/en/ce10147259ec.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "ce433eecb0e7",
       "language": "en",
       "locale": "en-US",
@@ -3717,6 +7207,23 @@
         {
           "level": "A1",
           "unit": "en_a1_u4",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "ced90ab56ede",
+      "language": "en",
+      "locale": "en-US",
+      "text": "My name tag is blue.",
+      "file": "./audio/en/ced90ab56ede.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
           "kind": "example"
         }
       ],
@@ -3752,6 +7259,108 @@
           "level": "A1",
           "unit": "en_a1_u5",
           "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "d16d74303205",
+      "language": "en",
+      "locale": "en-US",
+      "text": "theirs",
+      "file": "./audio/en/d16d74303205.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "d17f3b803d3d",
+      "language": "en",
+      "locale": "en-US",
+      "text": "That picture is beautiful.",
+      "file": "./audio/en/d17f3b803d3d.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "d25187dc137f",
+      "language": "en",
+      "locale": "en-US",
+      "text": "team",
+      "file": "./audio/en/d25187dc137f.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "d2847647c02c",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The apartment is small.",
+      "file": "./audio/en/d2847647c02c.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u12",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "d2a833544510",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The house is there.",
+      "file": "./audio/en/d2a833544510.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "d2caddbaa27f",
+      "language": "en",
+      "locale": "en-US",
+      "text": "My aunt is here.",
+      "file": "./audio/en/d2caddbaa27f.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
+          "kind": "example"
         }
       ],
       "levels": [
@@ -3878,6 +7487,23 @@
       ]
     },
     {
+      "id": "d4bc4b26274e",
+      "language": "en",
+      "locale": "en-US",
+      "text": "This eraser is small.",
+      "file": "./audio/en/d4bc4b26274e.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "d4d0660bfe6d",
       "language": "en",
       "locale": "en-US",
@@ -3887,6 +7513,23 @@
         {
           "level": "A1",
           "unit": "en_a1_u2",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "d559d05089f6",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The coat is ours.",
+      "file": "./audio/en/d559d05089f6.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
           "kind": "example"
         }
       ],
@@ -3946,6 +7589,23 @@
       ]
     },
     {
+      "id": "d67cca5aaed6",
+      "language": "en",
+      "locale": "en-US",
+      "text": "brother",
+      "file": "./audio/en/d67cca5aaed6.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "d686150386e7",
       "language": "en",
       "locale": "en-US",
@@ -3980,6 +7640,40 @@
       ]
     },
     {
+      "id": "d89972fe17d6",
+      "language": "en",
+      "locale": "en-US",
+      "text": "relative",
+      "file": "./audio/en/d89972fe17d6.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "d8c46683a8f9",
+      "language": "en",
+      "locale": "en-US",
+      "text": "near",
+      "file": "./audio/en/d8c46683a8f9.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "d8f5ceb05917",
       "language": "en",
       "locale": "en-US",
@@ -3989,6 +7683,57 @@
         {
           "level": "A1",
           "unit": "en_a1_u2",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "d8fd39d0bbdd",
+      "language": "en",
+      "locale": "en-US",
+      "text": "parent",
+      "file": "./audio/en/d8fd39d0bbdd.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "d9686fa54df9",
+      "language": "en",
+      "locale": "en-US",
+      "text": "Her stepfather is a teacher.",
+      "file": "./audio/en/d9686fa54df9.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "da48d824d3b2",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The window is square.",
+      "file": "./audio/en/da48d824d3b2.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
           "kind": "example"
         }
       ],
@@ -4099,6 +7844,23 @@
       ]
     },
     {
+      "id": "dd6708dd64fa",
+      "language": "en",
+      "locale": "en-US",
+      "text": "grandfather",
+      "file": "./audio/en/dd6708dd64fa.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "dd7b1d0288f0",
       "language": "en",
       "locale": "en-US",
@@ -4184,6 +7946,96 @@
       ]
     },
     {
+      "id": "df055c669423",
+      "language": "en",
+      "locale": "en-US",
+      "text": "their",
+      "file": "./audio/en/df055c669423.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "df0ab65a0efc",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The room is hers.",
+      "file": "./audio/en/df0ab65a0efc.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "e0434d3b0a1a",
+      "language": "en",
+      "locale": "en-US",
+      "text": "Our house is big.",
+      "file": "./audio/en/e0434d3b0a1a.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
+          "kind": "example"
+        },
+        {
+          "level": "A1",
+          "unit": "en_a1_u12",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "e068381bbd9e",
+      "language": "en",
+      "locale": "en-US",
+      "text": "laptop",
+      "file": "./audio/en/e068381bbd9e.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "e0f71686d2bd",
+      "language": "en",
+      "locale": "en-US",
+      "text": "Her collar is red.",
+      "file": "./audio/en/e0f71686d2bd.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "e13005ee66ec",
       "language": "en",
       "locale": "en-US",
@@ -4235,6 +8087,23 @@
       ]
     },
     {
+      "id": "e20851469d59",
+      "language": "en",
+      "locale": "en-US",
+      "text": "dining room",
+      "file": "./audio/en/e20851469d59.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u12",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "e274eeff768c",
       "language": "en",
       "locale": "en-US",
@@ -4244,6 +8113,40 @@
         {
           "level": "A1",
           "unit": "en_a1_u3",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "e2faa9211ea1",
+      "language": "en",
+      "locale": "en-US",
+      "text": "charger",
+      "file": "./audio/en/e2faa9211ea1.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "e49512524f47",
+      "language": "en",
+      "locale": "en-US",
+      "text": "dog",
+      "file": "./audio/en/e49512524f47.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
           "kind": "vocabulary"
         }
       ],
@@ -4269,6 +8172,40 @@
       ]
     },
     {
+      "id": "e69867ca7d5a",
+      "language": "en",
+      "locale": "en-US",
+      "text": "friend",
+      "file": "./audio/en/e69867ca7d5a.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "e75cd44f2cfb",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The building is tall.",
+      "file": "./audio/en/e75cd44f2cfb.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "e7e694c58cd5",
       "language": "en",
       "locale": "en-US",
@@ -4286,6 +8223,57 @@
       ]
     },
     {
+      "id": "e83249bd3ba7",
+      "language": "en",
+      "locale": "en-US",
+      "text": "home",
+      "file": "./audio/en/e83249bd3ba7.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "e8503ddf2ef9",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The bag is small.",
+      "file": "./audio/en/e8503ddf2ef9.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "e85092361ec6",
+      "language": "en",
+      "locale": "en-US",
+      "text": "This map is new.",
+      "file": "./audio/en/e85092361ec6.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "e8e247215657",
       "language": "en",
       "locale": "en-US",
@@ -4295,6 +8283,74 @@
         {
           "level": "A1",
           "unit": "en_a1_u3",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "ea39210a09e7",
+      "language": "en",
+      "locale": "en-US",
+      "text": "grandmother",
+      "file": "./audio/en/ea39210a09e7.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "eb4b4395dade",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The phone is new.",
+      "file": "./audio/en/eb4b4395dade.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "eb7ada766135",
+      "language": "en",
+      "locale": "en-US",
+      "text": "wall",
+      "file": "./audio/en/eb7ada766135.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u12",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "ed41d9a12778",
+      "language": "en",
+      "locale": "en-US",
+      "text": "My cousin is young.",
+      "file": "./audio/en/ed41d9a12778.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
           "kind": "example"
         }
       ],
@@ -4320,6 +8376,40 @@
       ]
     },
     {
+      "id": "ee97d2f28ccf",
+      "language": "en",
+      "locale": "en-US",
+      "text": "young",
+      "file": "./audio/en/ee97d2f28ccf.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "eedef02ea680",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The hallway is long.",
+      "file": "./audio/en/eedef02ea680.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u12",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "eeebeb15de35",
       "language": "en",
       "locale": "en-US",
@@ -4330,6 +8420,57 @@
           "level": "A1",
           "unit": "en_a1_u6",
           "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "ef0ebbb77298",
+      "language": "en",
+      "locale": "en-US",
+      "text": "orange",
+      "file": "./audio/en/ef0ebbb77298.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "ef42d04d0d2f",
+      "language": "en",
+      "locale": "en-US",
+      "text": "This place is quiet.",
+      "file": "./audio/en/ef42d04d0d2f.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "f0590a6dd366",
+      "language": "en",
+      "locale": "en-US",
+      "text": "round",
+      "file": "./audio/en/f0590a6dd366.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
+          "kind": "vocabulary"
         }
       ],
       "levels": [
@@ -4354,6 +8495,23 @@
       ]
     },
     {
+      "id": "f0cbc0ee7d55",
+      "language": "en",
+      "locale": "en-US",
+      "text": "son",
+      "file": "./audio/en/f0cbc0ee7d55.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "f1fdd46d8d22",
       "language": "en",
       "locale": "en-US",
@@ -4364,6 +8522,23 @@
           "level": "A1",
           "unit": "en_a1_u2",
           "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "f299c16fac30",
+      "language": "en",
+      "locale": "en-US",
+      "text": "There is a shelf on the wall.",
+      "file": "./audio/en/f299c16fac30.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u12",
+          "kind": "example"
         }
       ],
       "levels": [
@@ -4388,6 +8563,23 @@
       ]
     },
     {
+      "id": "f2eb89757528",
+      "language": "en",
+      "locale": "en-US",
+      "text": "These folders are black.",
+      "file": "./audio/en/f2eb89757528.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "f2f2806cf73b",
       "language": "en",
       "locale": "en-US",
@@ -4397,6 +8589,23 @@
         {
           "level": "A1",
           "unit": "en_a1_u4",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "f3c9adb85c76",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The stove is in the kitchen.",
+      "file": "./audio/en/f3c9adb85c76.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u12",
           "kind": "example"
         }
       ],
@@ -4431,6 +8640,23 @@
         {
           "level": "A1",
           "unit": "en_a1_u4",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "f5b113182e86",
+      "language": "en",
+      "locale": "en-US",
+      "text": "This book belongs to Ana.",
+      "file": "./audio/en/f5b113182e86.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
           "kind": "example"
         }
       ],
@@ -4490,6 +8716,91 @@
       ]
     },
     {
+      "id": "f74bf505b99f",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The picture is beautiful.",
+      "file": "./audio/en/f74bf505b99f.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u8",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "f7cd30d7d23e",
+      "language": "en",
+      "locale": "en-US",
+      "text": "We have the same bag.",
+      "file": "./audio/en/f7cd30d7d23e.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "f803b2638836",
+      "language": "en",
+      "locale": "en-US",
+      "text": "its",
+      "file": "./audio/en/f803b2638836.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "f89baaebed1c",
+      "language": "en",
+      "locale": "en-US",
+      "text": "There is a bed in the bedroom.",
+      "file": "./audio/en/f89baaebed1c.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u12",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "f94eff1d3710",
+      "language": "en",
+      "locale": "en-US",
+      "text": "My brother is Luis.",
+      "file": "./audio/en/f94eff1d3710.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u10",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "f9c4b5b48266",
       "language": "en",
       "locale": "en-US",
@@ -4500,6 +8811,23 @@
           "level": "A1",
           "unit": "en_a1_u6",
           "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "f9e0fbf34d40",
+      "language": "en",
+      "locale": "en-US",
+      "text": "belong",
+      "file": "./audio/en/f9e0fbf34d40.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u9",
+          "kind": "vocabulary"
         }
       ],
       "levels": [
@@ -4524,6 +8852,23 @@
       ]
     },
     {
+      "id": "fbceb88f442c",
+      "language": "en",
+      "locale": "en-US",
+      "text": "Those are chairs.",
+      "file": "./audio/en/fbceb88f442c.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "fbd53dce1156",
       "language": "en",
       "locale": "en-US",
@@ -4541,6 +8886,23 @@
       ]
     },
     {
+      "id": "fc6a9e9d7c67",
+      "language": "en",
+      "locale": "en-US",
+      "text": "The table is in the dining room.",
+      "file": "./audio/en/fc6a9e9d7c67.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u12",
+          "kind": "example"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
       "id": "fc955a19ae4f",
       "language": "en",
       "locale": "en-US",
@@ -4550,6 +8912,23 @@
         {
           "level": "A1",
           "unit": "en_a1_u4",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "fd761b6e2ada",
+      "language": "en",
+      "locale": "en-US",
+      "text": "eraser",
+      "file": "./audio/en/fd761b6e2ada.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u7",
           "kind": "vocabulary"
         }
       ],
@@ -4584,6 +8963,57 @@
         {
           "level": "A1",
           "unit": "en_a1_u4",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "fefe2393a7fc",
+      "language": "en",
+      "locale": "en-US",
+      "text": "bed",
+      "file": "./audio/en/fefe2393a7fc.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u12",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "ff3390557335",
+      "language": "en",
+      "locale": "en-US",
+      "text": "same",
+      "file": "./audio/en/ff3390557335.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u11",
+          "kind": "vocabulary"
+        }
+      ],
+      "levels": [
+        "A1"
+      ]
+    },
+    {
+      "id": "ffff80d25a26",
+      "language": "en",
+      "locale": "en-US",
+      "text": "mirror",
+      "file": "./audio/en/ffff80d25a26.mp3",
+      "sources": [
+        {
+          "level": "A1",
+          "unit": "en_a1_u12",
           "kind": "vocabulary"
         }
       ],

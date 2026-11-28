@@ -549,6 +549,25 @@ test('English B2 U9, U11, U17, and U19 unit review banks match their source voca
   }
 });
 
+test('English B2 Spanish examples retain Latin American vocabulary choices', () => {
+  const cases = [
+    [1, 'to have completed', 'capacitación'],
+    [25, 'the key question', 'confiable'],
+    [31, 'whereas', 'confiable'],
+    [55, 'a credible source', 'confiable'],
+    [55, 'to lead to', 'falla'],
+  ];
+  const units = loadB2();
+  for (const [number, target, expected] of cases) {
+    const unit = units.find((item) => item.unitNumber === number);
+    assert.ok(unit, 'Missing B2 unit ' + number);
+    const word = unit.vocab.find((item) => item.target === target);
+    assert.ok(word, 'Missing target ' + target + ' in U' + number);
+    assert.ok(word.exEsp.toLocaleLowerCase().includes(expected),
+      'Expected Latin American term "' + expected + '" in U' + number + ' ' + target);
+  }
+});
+
 test('English B2 U35 keeps plural data agreement consistent in vocabulary and lesson examples', () => {
   const unit = loadB2().find((item) => item.unitNumber === 35);
   assert.ok(unit);

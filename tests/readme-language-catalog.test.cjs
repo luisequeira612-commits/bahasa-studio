@@ -26,5 +26,5 @@ test('README lists the four Indonesian levels that are actually present in Cours
 
   assert.deepEqual([a1.id, a2.id, b1.id, b2.id], ['A1', 'A2', 'B1', 'B2']);
   const readme = fs.readFileSync(path.join(root, 'README.md'), 'utf8');
-  assert.match(readme, /\| Indonesio \\(id\\) \| Disponible: A1, A2, B1 y B2 \|/);
+  assert.ok(readme.includes('| Indonesio (id) | Disponible: A1, A2, B1 y B2 |'));
 });

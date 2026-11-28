@@ -458,8 +458,17 @@ test('English B2 U8 uses the stative meaning of feel consistently', () => {
 });
 
 
-test('English B2 lesson sentence examples match all 12 audited vocabulary targets', () => {
+test('English B2 lesson sentence examples match all 21 audited vocabulary targets', () => {
   const cases = [
+    [1, 'Resultados y experiencias acumuladas', 'ongoing', 'The investigation is still ongoing.'],
+    [1, 'Duración y actividad reciente', 'lately', "I've been sleeping poorly lately."],
+    [1, 'Cambios y evolución', 'to undergo', 'The building has undergone extensive renovations.'],
+    [1, 'Logros, objetivos y dificultades', 'to achieve', 'The project has achieved most of its goals.'],
+    [1, 'Síntesis y contraste temporal', 'to remain', 'The issue has remained unresolved.'],
+    [9, 'Énfasis con estructuras cleft', 'it is the timing that', 'It is the timing that makes the decision difficult.'],
+    [9, 'Frecuencia, continuidad y marco temporal', 'to this day', 'To this day, nobody has explained the discrepancy.'],
+    [9, 'Secuencia e inmediatez', 'for much of the time', 'For much of the time, the team had been working remotely.'],
+    [9, 'Contraste y evaluación', 'no sooner had', 'No sooner had the meeting begun than the alarm rang.'],
     [11, 'Posibilidad y alternativas', 'must have', 'They must have missed the last announcement.'],
     [12, 'Ausencia de necesidad y posibilidad pasada', 'might have', 'He might have misunderstood the deadline.'],
     [13, 'Lenguaje normativo y cumplimiento', 'be necessary for', 'A valid ID is necessary for entry.'],

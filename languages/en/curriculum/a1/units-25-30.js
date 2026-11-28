@@ -90,7 +90,7 @@ unit(26,'Dinero y compras','Pregunta precios, compara productos y realiza compra
 ['credit card','tarjeta de crédito','Can I pay by credit card?','¿Puedo pagar con tarjeta de crédito?'],
 ['debit card','tarjeta de débito','I use a debit card.','Uso una tarjeta de débito.'],
 ['receipt','recibo / comprobante','Keep the receipt.','Guarda el recibo.'],
-['change','cambio / vuelto','Here is your change.','Aquí está tu cambio.'],
+['change','cambio / vuelto','The customer receives the change.','Aquí está tu cambio.'],
 ['customer','cliente','The customer is waiting.','El cliente está esperando.'],
 ['sale','rebaja / oferta','The shoes are on sale.','Los zapatos están en oferta.'],
 ['discount','descuento','Is there a discount?','¿Hay algún descuento?'],

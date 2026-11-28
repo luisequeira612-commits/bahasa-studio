@@ -51,7 +51,7 @@ function createEngine(options = {}) {
             speechSynthesis: options.noSynth ? null : synth,
             LanguageManager: {
                 getActiveLanguage: () => (options.language || { code: 'id' }).code,
-                getLanguage: () => options.language || { code: 'id', locale: 'id-ID', name: 'Indonesio', audioPath: './audio/id/', testPhrase: 'terima kasih' }
+                getLanguage: () => options.language || { code: 'id', locale: 'id-ID', name: 'Indonesio', voiceStatus: 'configured', audioPath: './audio/id/', testPhrase: 'terima kasih' }
             }
         },
         document: {

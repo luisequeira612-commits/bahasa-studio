@@ -236,9 +236,9 @@ window.AudioEngine = {
         }
         this.refreshVoices();
         const voice = this.selectedVoice || this.activeLanguageVoice;
-        if (!voice && this.voices.length > 0) {
+        if (!voice && (this.voices.length > 0 || language.allowSystemVoiceFallback !== true)) {
             const status = document.getElementById('audioVoiceStatus');
-            if (status) status.textContent = 'No hay una voz instalada compatible con ' + languageName + '.';
+            if (status) status.textContent = 'No se encontró una grabación ni una voz instalada compatible con ' + languageName + '.';
             return false;
         }
         this.synth.cancel();
@@ -321,7 +321,7 @@ window.AudioEngine = {
             return false;
         }
         this.refreshVoices();
-        if (status) status.textContent = language.audioMode === 'speechSynthesis'
+        if (status) status.textContent = language.audioMode === 'speechSynthesis' || language.audioAvailable === false
             ? 'Probando la voz del dispositivo para ' + String(language.name || language.code).toLowerCase() + '.'
             : 'Probando una grabación Piper incluida. No necesitas instalar una voz.';
         return this.speak(phrase);

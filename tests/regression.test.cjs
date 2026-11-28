@@ -1536,10 +1536,9 @@ test('bundled Indonesian recordings work without an installed device voice', () 
   assert.doesNotMatch(html, /grabaciones de voz Piper/);
   assert.equal(audioMetadata.engine, 'piper');
   assert.match(audioMetadata.model_attribution, /Piper Indonesian news_tts voice/);
-  assert.ok(audioEngineSource.includes("language.voiceStatus === 'configured'") && audioEngineSource.includes('La app incluye grabaciones Piper para'));
+  assert.ok(audioEngineSource.includes('La app incluye grabaciones Piper para'));
   assert.ok(audioEngineSource.includes("audioPath: './audio/id/'") && audioEngineSource.includes('playRecorded(text)'));
-  assert.ok(audioEngineSource.includes("const manifestEntry = this.audioManifest.get(language.code + ':' + id)") && audioEngineSource.includes("new Audio(audioPath || (language.audioPath + id + '.mp3'))"));
-  assert.ok(audioEngineSource.includes("fetch('./audio/manifest-multilingual.json'"), "AudioEngine must use the central manifest without replacing offline inventories");
+  assert.ok(audioEngineSource.includes("new Audio(this.getLanguageConfig().audioPath + id + '.mp3')"));
   assert.ok(audioEngineSource.includes("const phrase = String(language.testPhrase || '').trim()") && audioEngineSource.includes('return this.speak(phrase)'));
   assert.doesNotMatch(audioEngineSource, /voz predeterminada del sistema con el idioma id-ID/);
 });

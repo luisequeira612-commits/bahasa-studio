@@ -79,7 +79,7 @@ unit(25,'Dar indicaciones','Da instrucciones sencillas para caminar por una ciud
 ['Lección 3: Cruces y cuadras','Da indicaciones usando cuadras e intersecciones.','Usa walk/cross + objeto y expresiones como one block.',[8,9,10,11],'Stop at the intersection.'],
 ['Lección 4: Posición de lugares','Explica dónde queda un sitio respecto a otro.','Between requiere dos referencias; behind, in front of, next to y across from indican posición.',[12,13,14,15,16],'The bank is between the hotel and the store.'],
 ['Lección 5: Dar una ruta completa','Combina giros, orientación y expresiones de ubicación.','Las instrucciones se encadenan con and: Go straight and turn left.',[17,18,19,20,21],'The school is on the left.']
-],['The bank is on the left.','Turn right at the light.','Go straight for two blocks.','The airport is north of town.','The beach is south of the city.']),
+],['The beach is south of the city.','The station is east of the park.','The hotel is west of the bank.','Walk one block.','Stop at the intersection.']),
 unit(26,'Dinero y compras','Pregunta precios, compara productos y realiza compras sencillas.','How much is/are…? pregunta el precio. Usa can I have…? y I’d like… para pedir productos; cheap/expensive describen el precio.','How much para el precio','How much pregunta por el precio o una cantidad incontable; how many se usa con sustantivos contables plurales.',[
 ['money','dinero','I need some money.','Necesito algo de dinero.'],
 ['price','precio','What is the price?','¿Cuál es el precio?'],

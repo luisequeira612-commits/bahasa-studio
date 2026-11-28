@@ -555,7 +555,7 @@ test('English B2 Spanish examples retain Latin American vocabulary choices', () 
     [27, 'the key question', 'confiable'],
     [31, 'whereas', 'confiable'],
     [56, 'a credible source', 'confiable'],
-    [55, 'to lead to', 'falla'],
+    [57, 'to lead to', 'falla'],
   ];
   const units = loadB2();
   for (const [number, target, expected] of cases) {

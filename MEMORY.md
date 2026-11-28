@@ -1045,3 +1045,9 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Se prepara el bloque U13–U18 encima de la rama reconciliada U1–U12; la cadena deja de depender de la rama divergente histórica #892.
 - Se alinean los ejemplos de lección y del banco con los objetivos léxicos y se conserva la prueba focalizada de U16. CI del nuevo head pendiente.
 - No se publica ni habilita inglés; no fusionar PRs de inglés sin aprobación expresa.
+
+
+## 2026-11-28 — Reconciliación A1 U19–U24
+- Se añade U19–U24 encima de la cadena reconciliada U1–U18, sustituyendo la dependencia histórica de las ramas divergentes A1.
+- Se alinean ejemplos de lección y banco con sus objetivos léxicos y la prueba de regresión general comprueba esta asociación. CI del nuevo head pendiente.
+- Mantener inglés no disponible; no fusionar PR de inglés sin aprobación expresa.

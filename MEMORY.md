@@ -1010,3 +1010,10 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Se añadió al generador una poda limitada a `audio/<idioma>/*.mp3`: elimina únicamente clips cuyo hash ya no está en el manifiesto actual de ese idioma. No toca OPUS, archivos no MP3 ni otros idiomas. Esto mantiene el directorio generado y su inventario sincronizados al cambiar los currículos.
 - Cambio en `tools/generar_audio.py`, commit `a7b6738`; requiere una nueva ejecución del workflow de generación y CI posterior.
 - Fuente: árbol Git de la rama y búsqueda exacta de IDs, 27 nov 2026.
+
+
+## 2026-11-27 — README actualizado a Guardi multilingüe
+- README ya no describe el proyecto como una app exclusiva de indonesio ni documenta Gemini como función opcional. Ahora refleja el catálogo real: pt-BR A1–B2 e indonesio A1–A2 disponibles; inglés en desarrollo con B2 bajo revisión editorial/no seleccionable; siete idiomas restantes en preparación.
+- Se documentan audio Piper ID/PT-BR, límites offline, persistencia local IndexedDB, backup JSON v3 y pruebas sin afirmar certificación lingüística.
+- Cambio en rama `docs/readme-multilingual-20261127`, PR separada para mantener el alcance de documentación aislado de la revisión curricular #946.
+- Fuente de disponibilidad: `language-manager.js` en `main`; README actualizado el 27 nov 2026.

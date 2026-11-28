@@ -568,6 +568,21 @@ test('English B2 Spanish examples retain Latin American vocabulary choices', () 
   }
 });
 
+test('English B2 keeps data plural in U26 and U32 academic examples', () => {
+  const cases = [
+    [26, 'only when + clause + inversion', 'Only when the data are complete can we draw a conclusion.'],
+    [32, 'as far as we can tell', 'As far as we can tell, no data were lost.'],
+  ];
+  const units = loadB2();
+  for (const [number, target, example] of cases) {
+    const unit = units.find((item) => item.unitNumber === number);
+    assert.ok(unit, 'Missing B2 unit ' + number);
+    const word = unit.vocab.find((item) => item.target === target);
+    assert.ok(word, 'Missing target ' + target + ' in U' + number);
+    assert.equal(word.ex, example);
+  }
+});
+
 test('English B2 U35 keeps plural data agreement consistent in vocabulary and lesson examples', () => {
   const unit = loadB2().find((item) => item.unitNumber === 35);
   assert.ok(unit);

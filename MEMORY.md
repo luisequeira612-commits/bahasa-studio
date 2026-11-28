@@ -1013,10 +1013,18 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 
 
 ## 2026-11-27 — README actualizado a Guardi multilingüe
-- README ya no describe el proyecto como una app exclusiva de indonesio ni documenta Gemini como función opcional. Ahora refleja el catálogo real: pt-BR A1–B2 e indonesio A1–A2 disponibles; inglés en desarrollo con B2 bajo revisión editorial/no seleccionable; siete idiomas restantes en preparación.
+- README ya no describe el proyecto como una app exclusiva de indonesio ni documenta Gemini como función opcional. Ahora refleja el catálogo real: pt-BR A1–B2 e indonesio A1–B2 disponibles; inglés en desarrollo con B2 bajo revisión editorial/no seleccionable; siete idiomas restantes en preparación.
 - Se documentan audio Piper ID/PT-BR, límites offline, persistencia local IndexedDB, backup JSON v3 y pruebas sin afirmar certificación lingüística.
 - Cambio en rama `docs/readme-multilingual-20261127`, PR separada para mantener el alcance de documentación aislado de la revisión curricular #946.
 - Fuente de disponibilidad: `language-manager.js` en `main`; README actualizado el 27 nov 2026.
+
+
+## 2026-11-27 — Regla permanente: README sincronizado con cada publicación de idioma
+- Corrección: el README anterior indicaba por error que el indonesio solo tenía A1 y A2. El currículo indonesio también tiene B1 y B2; el catálogo correcto es A1, A2, B1 y B2. README corregido en la rama `docs/readme-indonesian-a1-b2-20261127`.
+- Regla obligatoria para cada publicación: en el mismo cambio/PR que habilite y publique un idioma o nivel, actualizar `README.md` con el estado real de disponibilidad, niveles, audio y limitaciones relevantes. Verificar la tabla contra los currículos y el selector/registro de idiomas; no deducir niveles disponibles solo del manifiesto de audio ni de documentación histórica.
+- Añadir/ejecutar una prueba de regresión que compruebe que la tabla del README coincide con los niveles realmente disponibles. No marcar un nivel como disponible antes de que el curso sea seleccionable y esté publicado.
+- Esta regla aplica a todos los idiomas futuros y a nuevas ampliaciones de niveles. Fuente: corrección explícita del usuario y currículos indonesios A1–B2 comprobados con los cargadores `scripts/load-inline-b1-curriculum.mjs`, `scripts/load-inline-b2-curriculum.mjs` y pruebas de preparación; 27 nov 2026.
+
 
 ## 2026-11-27 — Revisión editorial asistida de inglés B2 U1–U60 (PR #946)
 - La revisión editorial asistida cubre U1–U60: alineación de vocabulario, ejemplos, traducciones españolas, foco de lecciones y bancos de repaso. Se corrigieron asociaciones erróneas en U1/U2 y matices de glosa/ejemplo en U7/U8; las seis unidades de repaso tienen pruebas de asociación.

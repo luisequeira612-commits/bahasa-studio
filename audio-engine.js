@@ -33,7 +33,7 @@ window.AudioEngine = {
         return exactIndex < 0 ? preferredLocales.length : exactIndex;
     },
     getActiveLanguageVoices() {
-        return this.getActiveLanguageVoices()
+        return this.voices.filter(voice => this.matchesActiveLanguage(voice))
             .sort((a, b) => this.voicePriority(a) - this.voicePriority(b));
     },
     voiceKey(voice) {

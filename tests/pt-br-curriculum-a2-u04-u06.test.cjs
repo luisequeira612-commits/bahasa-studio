@@ -69,7 +69,7 @@ test('A2 U4-U6 review references resolve to earlier published A1-A2 vocabulary',
   loader.loadUnits('pt-BR','A2',[1,2,3,4,5,6])
  ]);
  const earlier=new Set([...a1,...a2.slice(0,3)].flatMap(unit=>unit.vocab.map(word=>word.id)));
- for(const unit of units.slice(3)) for(const lesson of unit.lessons) for(const id of lesson.reviewVocabIds) assert.ok(earlier.has(id),id);
+ for(const unit of a2.slice(3)) for(const lesson of unit.lessons) for(const id of lesson.reviewVocabIds) assert.ok(earlier.has(id),id);
 });
 test('service worker precaches A2 U4-U6 with a new cache namespace',()=>{
  const source=fs.readFileSync(path.join(repo,'service-worker.js'),'utf8');

@@ -69,9 +69,9 @@ unit(14,'Presente simple II: he, she e it','Describe rutinas de otras personas y
 ],[
 ['Lección 1: Profesiones y personas','Nombra profesiones y describe quién es alguien.','Usa he/she + is para profesiones: She is a doctor; he is a nurse.',[0,1,2,3],'He is a nurse.'],
 ['Lección 2: Trabajos y lugares','Relaciona profesiones con lugares de trabajo.','El lugar se introduce con in/at: in an office, at a hospital.',[12,13,14,15],'He works at a hospital.'],
-['Lección 3: Verbos en tercera persona','Aplica -s/-es a verbos regulares frecuentes.','La tercera persona singular añade -s/-es: teaches, manages, fixes.',[5,4,6,18,21],'He is a manager and manages a small team.'],
-['Lección 4: Servicios y comercios','Describe trabajos en servicios y tiendas.','Con he/she el verbo afirmativo lleva la terminación de tercera persona.',[8,7,9,16,17],'She is a driver and drives a bus.'],
-['Lección 5: Actividades y producción','Describe acciones de profesiones diversas.','Fixes, grows y manages muestran cambios ortográficos de tercera persona.',[11,10,19,20],'He is a dentist and helps his patients.']
+['Lección 3: Verbos en tercera persona','Aplica -s/-es a verbos regulares frecuentes.','La tercera persona singular añade -s/-es: teaches, manages, fixes.',[4,5,6,18,21],'He is a manager and manages a small team.'],
+['Lección 4: Servicios y comercios','Describe trabajos en servicios y tiendas.','Con he/she el verbo afirmativo lleva la terminación de tercera persona.',[7,8,9,16,17],'She is a driver and drives a bus.'],
+['Lección 5: Actividades y producción','Describe acciones de profesiones diversas.','Fixes, grows y manages muestran cambios ortográficos de tercera persona.',[10,11,19,20],'He is a dentist and helps his patients.']
 ],['He is a manager.','She is a receptionist.','He is a chef.','She is a driver.','He is a cashier.']),
 unit(15,'Presente simple III: negativas','Niega hábitos y rutinas usando don’t y doesn’t.','Usa don’t + verbo base con I/you/we/they y doesn’t + verbo base con he/she/it. Después de doesn’t, el verbo pierde la -s: she doesn’t work.','Después de doesn’t va la forma base','No combines doesn’t con una forma terminada en -s: “doesn’t works” es incorrecto; usa “doesn’t work”.',[
 ['always','siempre','I always eat breakfast.','Siempre desayuno.'],

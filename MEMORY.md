@@ -1080,3 +1080,13 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Audio en-US excluido por falta de validación: manifest vacío, metadata sin hashes; workflow solo `workflow_dispatch`. No incluir clips Piper no revisados.
 - Vocabulario `not_checked`; no declarar cotejo CEFR-J/NGSL completo, revisión nativa integral ni certificación MCER. Muestra editorial cerrada; no reabrir pulido salvo defecto pedagógico o CI.
 - Siguiente: confirmar CI del commit documental final de #973 y dejar PR lista para revisión. No fusionar ni publicar sin aprobación expresa.
+
+
+## 2026-11-28 — Integración PT-BR de audio y consulta por toque
+
+- Se prepara una integración nueva desde el `main` vigente para evitar fusionar ramas antiguas; conserva las mejoras de inglés A1–B2 y la auditoría léxica PT-BR ya integradas.
+- PT-BR declara `audioMode: 'speechSynthesis'`, prioriza voces `pt-BR` y permite `pt-PT` como alternativa explícita; no intenta reproducir MP3 inexistentes. Indonesio conserva el manifiesto multilingüe y el audio grabado.
+- La interfaz, las frases interactivas, SRS y diccionario se adaptan al idioma activo; el diccionario usa `CurriculumLoader.adaptVocabulary`. El generador heredado de lecciones queda bloqueado fuera de Indonesio.
+- PR #941 se cerró sin fusionar; se incorpora solo su mejora pequeña de fallback neutral en el motor de pronunciación. PR #940 es la fuente funcional principal.
+- PR [#975](https://github.com/luisequeira612-commits/bahasa-studio/pull/975) integra estos cambios sobre el main actual; CI pendiente. No se alteran currículo, IndexedDB v1, backup JSON v3 ni dependencias.
+- Fuentes: PR #940, #941 y #975; `main` base `47032363d753f13a7fde2ff1a40a737df8acf793`; 28 nov 2026.

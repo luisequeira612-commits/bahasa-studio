@@ -6,7 +6,7 @@
             const manager = window.LanguageManager;
             const code = manager && typeof manager.getActiveLanguage === 'function' ? manager.getActiveLanguage() : 'id';
             const language = manager && typeof manager.getLanguage === 'function' ? manager.getLanguage(code) : null;
-            return language || { code: 'id', locale: 'id-ID', name: 'indonesio' };
+            return language || { code: 'id', locale: 'id-ID', name: 'idioma del curso' };
         },
         stop() {
             if (!this.activeRecognition) return;

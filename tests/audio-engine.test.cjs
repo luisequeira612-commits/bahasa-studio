@@ -203,7 +203,7 @@ test('acepta una voz pt-PT como respaldo para el curso pt-BR', () => {
     setup.engine.speak('bom dia');
     setup.createdAudio[0].fail();
     assert.equal(setup.spoken.length, 1);
-    assert.equal(setup.spoken[0].lang, 'pt-BR');
+    assert.equal(setup.spoken[0].lang, 'pt-PT');
     assert.equal(setup.spoken[0].voice, voice);
 });
 
@@ -289,4 +289,65 @@ test('el botón de prueba usa la frase portuguesa y su clip del manifiesto', () 
     assert.equal(setup.createdAudio.length, 1);
     assert.equal(setup.createdAudio[0].src, './audio/pt-BR/olá.mp3');
     assert.equal(setup.spoken.length, 0);
+});
+
+
+test('PT-BR con audioMode speechSynthesis prioriza pt-BR y no intenta MP3', () => {
+    const preferred = { name: 'Brazilian Portuguese', lang: 'pt-BR' };
+    const fallback = { name: 'European Portuguese', lang: 'pt-PT' };
+    const language = {
+        code: 'pt-BR', locale: 'pt-BR', name: 'Portugués de Brasil',
+        audioPath: './audio/pt-BR/', audioMode: 'speechSynthesis',
+        voiceFallbackLocales: ['pt-PT'], testPhrase: 'olá'
+    };
+    const setup = createEngine({ language, voices: [fallback, preferred] });
+    assert.equal(setup.engine.speak('bom dia'), true);
+    assert.equal(setup.createdAudio.length, 0);
+    assert.equal(setup.spoken.length, 1);
+    assert.equal(setup.spoken[0].lang, 'pt-BR');
+    assert.equal(setup.spoken[0].voice, preferred);
+    assert.equal(setup.engine.activeLanguageVoice, preferred);
+});
+
+test('PT-BR usa pt-PT como respaldo explícito cuando falta una voz pt-BR', () => {
+    const fallback = { name: 'European Portuguese', lang: 'pt-PT' };
+    const language = {
+        code: 'pt-BR', locale: 'pt-BR', name: 'Portugués de Brasil',
+        audioPath: './audio/pt-BR/', audioMode: 'speechSynthesis',
+        voiceFallbackLocales: ['pt-PT']
+    };
+    const setup = createEngine({ language, voices: [fallback] });
+    assert.equal(setup.engine.speak('bom dia'), true);
+    assert.equal(setup.createdAudio.length, 0);
+    assert.equal(setup.spoken.length, 1);
+    assert.equal(setup.spoken[0].lang, 'pt-PT');
+    assert.equal(setup.spoken[0].voice, fallback);
+});
+
+test('PT-BR no usa voces de otros idiomas y mantiene el locale solicitado si no hay voz portuguesa', () => {
+    const language = {
+        code: 'pt-BR', locale: 'pt-BR', name: 'Portugués de Brasil',
+        audioPath: './audio/pt-BR/', audioMode: 'speechSynthesis',
+        voiceFallbackLocales: ['pt-PT']
+    };
+    const setup = createEngine({ language, voices: [{ name: 'Indonesian voice', lang: 'id-ID' }] });
+    assert.equal(setup.engine.speak('bom dia'), true);
+    assert.equal(setup.createdAudio.length, 0);
+    assert.equal(setup.spoken.length, 1);
+    assert.equal(setup.spoken[0].lang, 'pt-BR');
+    assert.equal(setup.spoken[0].voice, null);
+});
+
+test('PT-BR puede usar el locale solicitado mientras el navegador todavía no enumera voces', () => {
+    const language = {
+        code: 'pt-BR', locale: 'pt-BR', name: 'Portugués',
+        audioPath: './audio/pt-BR/', audioMode: 'speechSynthesis',
+        voiceFallbackLocales: ['pt-PT']
+    };
+    const setup = createEngine({ language, voices: [] });
+    assert.equal(setup.engine.speak('bom dia'), true);
+    assert.equal(setup.createdAudio.length, 0);
+    assert.equal(setup.spoken.length, 1);
+    assert.equal(setup.spoken[0].lang, 'pt-BR');
+    assert.equal(setup.spoken[0].voice, null);
 });

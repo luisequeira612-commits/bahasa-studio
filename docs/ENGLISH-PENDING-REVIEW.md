@@ -1,39 +1,51 @@
 # English — release readiness
 
-Estado: candidato de publicación en una PR de preparación. La rama publicada todavía no habilita inglés; no se ha fusionado ni publicado.
+Estado: **candidato técnicamente validado en PR #973**. Esta rama prepara la publicación, pero no se ha fusionado ni desplegado en `main`.
 
-## Alcance curricular preparado
+## Alcance curricular
 
-| Nivel | Unidades | Lecciones | Objetivos léxicos nuevos | Repasos sin vocabulario nuevo |
-|---|---:|---:|---:|---|
-| A1 | 32 | 160 | 638 | U30, U31–U32 |
-| A2 | 40 | 200 | 792 | U10, U20, U30, U40 |
-| B1 | 52 | 260 | 1.012 | U10, U20, U30, U40, U50, U52 |
-| B2 | 60 | 300 | 1.188 | U10, U20, U30, U40, U50, U60 |
-| **Total** | **184** | **920** | **3.630** | — |
+| Nivel | Unidades | Lecciones | Objetivos léxicos |
+|---|---:|---:|---:|
+| A1 | 32 | 160 | 638 |
+| A2 | 40 | 200 | 792 |
+| B1 | 52 | 260 | 1.012 |
+| B2 | 60 | 300 | 1.188 |
+| **Total** | **184** | **920** | **3.630** |
 
-Cada unidad conserva cinco lecciones y veinte actividades. Los inventarios nuevos están marcados `not_checked`; no se afirma cotejo individual completo contra CEFR-J/NGSL ni certificación oficial MCER.
+Cada unidad tiene cinco lecciones y veinte actividades. Los 3.630 son registros/objetivos curriculares, no un recuento deduplicado de expresiones únicas. En B2 hay 63 cadenas léxicas exactas que ya aparecen en A1–B1; se conservan como reciclaje entre niveles y no se cuentan como 63 expresiones nuevas. B2 tiene 1.125 objetivos distintos de los niveles anteriores.
 
-## Integración y CI
+## Cadena de integración y CI
 
-- A1: PR #964, HEAD `7b0a68a663d08c2c30aa2c6e19612b8affb9d693`; Regression #46118413968 y JavaScript type checks #46118414710: **success**.
-- A2: PR #971, HEAD `b0e2377c8e69ccb6f88ee17fa0494f9f39b80e79`; type checks #46118665947: **success**; regresión #46118665928 tuvo un fallo intermitente de Phase 5B y se solicitó repetir solo el job fallido. Confirmar el resultado de la repetición antes de cerrar.
-- B1: PR #972, HEAD `bb8a37b5a7ea9bc5626e812060ce837bff71c54c`; CI pendiente.
-- B2: correcciones editoriales en PR #948; mantener el HEAD y sus checks actuales como fuente de verdad y volver a validar en la rama final.
-- La PR de preparación combina B2 editorial, manifiesto B2, disponibilidad A1–B2 y README. No fusionar sin aprobación expresa.
+La cadena está ordenada y cada PR es mergeable; ninguna se ha fusionado:
 
-## Decisiones y límites
+| PR | Alcance | Regresión | Type checks |
+|---|---|---|---|
+| [#959](https://github.com/luisequeira612-commits/bahasa-studio/pull/959) | A1 U1–U6 | #46116828316 success | #46116828376 success |
+| [#964](https://github.com/luisequeira612-commits/bahasa-studio/pull/964) | A1 U7–U32 | #46118413968 success | #46118414710 success |
+| [#971](https://github.com/luisequeira612-commits/bahasa-studio/pull/971) | A2 U1–U40 | #46118665928 success | #46118665947 success |
+| [#972](https://github.com/luisequeira612-commits/bahasa-studio/pull/972) | B1 U1–U52 | #46118748152 success | #46118748177 success |
+| [#973](https://github.com/luisequeira612-commits/bahasa-studio/pull/973) | Release A1–B2 + B2 editorial | #46121049593 success | #46121049577 success |
 
-- Inglés no se habilita hasta que los cuatro manifiestos A1–B2 estén integrados y sus pruebas pasen.
-- No se incluye audio en-US. Se excluyeron los MP3 Piper no revisados; `audio/en/manifest.json` y `metadata.json` están vacíos como bootstrap offline.
-- El workflow de audio queda manual (`workflow_dispatch`); un push de currículo no debe generar audio.
-- No se afirma revisión por hablante nativo ni certificación oficial. Los pendientes de naturalidad fina y trazabilidad de fuentes quedan documentados como límites, no se convierten en otra ronda interminable de pulido.
-- No reabrir la muestra editorial ya acordada salvo que CI o una prueba de alineación descubra un error que cambie el aprendizaje.
+PR #973 añade el manifiesto B2, registra los cuatro manifiestos en `language-manager.js`, habilita inglés en la rama de release, actualiza README y prueba el selector de idiomas. En su head validado, regresión terminó 104/104 pasos sin fallos; informe de calidad offline y type checks también success.
 
-## Gate final de publicación
+## Audio y modo sin conexión
 
-1. CI verde en A1, A2, B1 y B2 sobre la cadena actual.
-2. Manifiestos A1–B2 registrados en `language-manager.js`; prueba del loader cubre 184 unidades.
-3. README sincronizado con el catálogo: inglés disponible A1–B2 y sin audio.
-4. Instalación offline verificada con inventarios de audio vacíos.
-5. Inglés solo se activa en una PR de release; no se fusiona ni publica sin aprobación expresa.
+- Inglés se prepara **sin audio**. No se incluyen los MP3 Piper en-US que no han sido validados.
+- `audio/en/manifest.json` es `[]`; `audio/en/metadata.json` no contiene hashes.
+- El workflow de generación de audio tiene únicamente `workflow_dispatch`; un push curricular no dispara generación.
+- La carga del curso y la caché offline se prueban con inventarios de audio vacíos.
+
+## Límites editoriales declarados
+
+- Las entradas de vocabulario siguen marcadas `not_checked`; no se afirma cotejo individual completo contra CEFR-J/NGSL.
+- No se afirma revisión integral por hablante nativo ni certificación oficial MCER.
+- La muestra editorial acordada (A1 U16, A2 U19, B1 U25 y B2 U29) está cerrada. Se corrigieron los dos desajustes pedagógicos encontrados y se añadieron pruebas. No abrir otra ronda de pulido estilístico.
+- Las repeticiones entre niveles se mantienen como reciclaje; el recuento de objetivos no debe presentarse como número de palabras únicas.
+
+## Gate final
+
+1. CI verde en toda la cadena #959 → #964 → #971 → #972 → #973.
+2. Manifiestos A1–B2 y loader registrados y cubiertos por pruebas.
+3. README y selector reflejan Inglés A1–B2 como disponible en la rama de release.
+4. Audio ausente de forma explícita y compatible con el modo offline.
+5. PR #973 lista para revisión. **No fusionar ni publicar sin aprobación expresa.**

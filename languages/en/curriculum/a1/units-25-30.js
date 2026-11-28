@@ -106,7 +106,7 @@ unit(26,'Dinero y compras','Pregunta precios, compara productos y realiza compra
 ],[
 ['Lección 1: Dinero y precios','Nombra dinero y pregunta cuánto cuesta algo.','How much does it cost? usa does + sujeto + verbo base.',[0,1,2,3],'What is the price?'],
 ['Lección 2: Formas de pago','Habla de efectivo y tarjetas.','Pay in cash / pay by card son expresiones frecuentes.',[4,5,6,7],'I pay in cash.'],
-['Lección 3: Recibos y ofertas','Pregunta por recibos, cambio y descuentos.','Usa is/are para preguntar por precios y disponibilidad.',[8,9,10,11,12],'Is there a discount?'],
+['Lección 3: Recibos y ofertas','Pregunta por recibos, cambio y descuentos.','Usa is/are para preguntar por precios y disponibilidad.',[8,9,10,11,12],'Here is your change.'],
 ['Lección 4: Ropa y tallas','Pregunta por tallas y prueba prendas.','Can I try on…? pide permiso; what size…? pregunta por una talla.',[13,14,15,17,18],'This shirt is cheap.'],
 ['Lección 5: Pagar la compra','Habla del producto, total e impuestos.','I want to pay usa want + to-infinitive; el total se expresa con is.',[16,19,20,21],'This product is new.']
 ],['I pay in cash.','Can I pay by credit card?','I use a debit card.','Keep the receipt.','Here is your change.']),

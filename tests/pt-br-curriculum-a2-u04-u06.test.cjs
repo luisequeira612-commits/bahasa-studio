@@ -8,6 +8,8 @@ const repo=path.join(__dirname,'..');
 const managerSource=fs.readFileSync(path.join(repo,'language-manager.js'),'utf8');
 const loaderSource=fs.readFileSync(path.join(repo,'curriculum-loader.js'),'utf8');
 const sources={
+ './languages/pt-BR/curriculum/a1/index.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a1/index.js'),'utf8'),
+ './languages/pt-BR/curriculum/a1/units-07-12.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a1/units-07-12.js'),'utf8'),
  './languages/pt-BR/curriculum/a2/index.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2/index.js'),'utf8'),
  './languages/pt-BR/curriculum/a2/units-01-03.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2/units-01-03.js'),'utf8'),
  './languages/pt-BR/curriculum/a2/units-04-06.js':fs.readFileSync(path.join(repo,'languages/pt-BR/curriculum/a2/units-04-06.js'),'utf8')
@@ -63,7 +65,7 @@ test('A2 manifest publishes U1-U30 as a partial level of thirty units',()=>{
 test('A2 U4-U6 review references resolve to earlier published A1-A2 vocabulary',async()=>{
  const {loader}=createPilot();
  const [{units:a1},{units:a2}]=await Promise.all([
-  loader.loadUnits('pt-BR','A1',Array.from({length:24},(_,i)=>i+1)),
+  loader.loadUnits('pt-BR','A1',[10,12]),
   loader.loadUnits('pt-BR','A2',[1,2,3,4,5,6])
  ]);
  const earlier=new Set([...a1,...a2.slice(0,3)].flatMap(unit=>unit.vocab.map(word=>word.id)));

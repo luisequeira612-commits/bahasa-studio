@@ -1051,3 +1051,10 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Un push del currículo A1 activó el workflow de audio y produjo un commit automático con MP3 no solicitados dentro de la rama de trabajo. Se revirtió íntegramente ese commit antes de continuar.
 - `.github/workflows/audio.yml` vuelve a ejecutarse únicamente mediante `workflow_dispatch`; no generar ni publicar audio automáticamente al modificar currículos.
 - El audio en-US permanece sin aprobación de pronunciación y no forma parte de esta preparación curricular.
+
+
+## 2026-11-28 — Reconciliación A1 U19–U24
+- Se añade U19–U24 encima de la cadena reconciliada U1–U18, sustituyendo la dependencia histórica de las ramas divergentes A1.
+- Se alinean ejemplos de lección y banco con sus objetivos léxicos y la prueba de regresión general comprueba esta asociación. CI del nuevo head pendiente.
+- La generación de audio queda manual (`workflow_dispatch`); los clips en-US no forman parte de esta PR.
+- Mantener inglés no disponible; no fusionar PRs de inglés sin aprobación expresa.

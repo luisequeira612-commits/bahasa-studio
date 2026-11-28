@@ -132,7 +132,7 @@ unit(16,'Presente simple IV: preguntas','Formula preguntas sobre hábitos, horar
 ['Lección 3: Horarios y frecuencia','Pregunta por horas y frecuencia.','What time y how often preceden a do/does + sujeto.',[3,6,9,11,13],'What time does he start?'],
 ['Lección 4: Disponibilidad','Pregunta por citas, reuniones y tiempo libre.','Be se usa en preguntas de estado: Are you available? Do se usa con verbos: Do you work?',[10,14,15,16],'Are you available today?'],
 ['Lección 5: Fechas y agenda','Habla de hoy, mañana, ayer y fechas.','Today/tomorrow suelen acompañar presente simple para horarios; yesterday normalmente requiere pasado.',[17,18,19,20,21],'Does he study tomorrow?']
-],['How much water do you drink?','This question is easy.','Her answer is correct.','My schedule is busy.','I have an appointment today.']),
+],['How much water do you drink?','What time does he start?','This question is easy.','Her answer is correct.','My schedule is busy.']),
 unit(17,'La hora, el calendario y las comidas','Expresa horas, días, meses y momentos habituales de comida.','Usa at con horas: at seven o’clock. Los días y meses se escriben con mayúscula. Para horas: o’clock, half past, quarter past y quarter to.','Mayúsculas en días y meses','En inglés los nombres de días y meses llevan mayúscula inicial: Monday, January. No se usa “the” delante del día para una fecha ordinaria.',[
 ['Monday','lunes','I work on Monday.','Trabajo el lunes.'],
 ['Tuesday','martes','She studies on Tuesday.','Ella estudia el martes.'],

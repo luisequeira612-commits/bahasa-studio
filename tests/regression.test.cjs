@@ -1581,7 +1581,7 @@ test('tap-to-translate lookup is wired into learning text and uses safe text ren
   assert.match(html, /function tokenAtPoint\(event\)/);
   assert.match(html, /caretRangeFromPoint/);
   assert.match(html, /window\.refreshWordTranslationIndex/);
-  assert.match(html, /Toca una palabra en \\$\\{App\\.escapeHtml\\(languageName\\.toLowerCase\\(\\)\\)\\} para consultar su significado/);
+  assert.match(html, /Toca una palabra en \$\{App\.escapeHtml\(languageName\.toLowerCase\(\)\)\} para consultar su significado/);
   assert.doesNotMatch(html, /Toca una palabra en indonesio para consultar su significado/);
   assert.match(html, /termNode\.lang = matches\[0\]\.locale/);
   assert.match(html, /termNode\.textContent = matches\[0\]\.text/);
@@ -1758,7 +1758,7 @@ test('tap-to-translate lookup is wired into learning text and uses safe text ren
   assert.match(html, /function tokenAtPoint\(event\)/);
   assert.match(html, /caretRangeFromPoint/);
   assert.match(html, /window\.refreshWordTranslationIndex/);
-  assert.match(html, /Toca una palabra en \\$\\{App\\.escapeHtml\\(languageName\\.toLowerCase\\(\\)\\)\\} para consultar su significado/);
+  assert.match(html, /Toca una palabra en \$\{App\.escapeHtml\(languageName\.toLowerCase\(\)\)\} para consultar su significado/);
   assert.doesNotMatch(html, /Toca una palabra en indonesio para consultar su significado/);
   assert.match(html, /termNode\.lang = matches\[0\]\.locale/);
   assert.match(html, /termNode\.textContent = matches\[0\]\.text/);

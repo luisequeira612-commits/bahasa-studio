@@ -35,3 +35,9 @@ Estado: bloque U1–U6 en preparación; no publicado. Fecha: 26 de noviembre de 
 - U13–U18: presente simple afirmativo con I/you/we/they; tercera persona singular; negativas don’t/doesn’t; preguntas do/does; hora/calendario/comidas; habilidades y permiso con can.
 - 132 entradas nuevas previstas (22 por unidad), ejemplos originales y estado inicial not_checked. Se evitó introducir pasado simple en la unidad de preguntas; la expresión temporal “this afternoon” se practica con presente simple de horario.
 - La lista se mantiene sin campos POS/audio porque no existen en el contrato PT-BR actual. CEFR-J/NGSL requieren trazabilidad por lema antes de afirmar cotejo individual.
+
+
+## Bloque U19–U24 — 28 nov 2026
+- U19–U24: gustos y pasatiempos; want/need/plan/hope/decide + to-infinitive; preguntas WH de seguimiento; presente continuo; ropa y clima; lugares de la ciudad.
+- 132 entradas nuevas previstas (22 por unidad), con ejemplos originales y estado not_checked. No se agregan campos POS/audio al contrato runtime.
+- La trazabilidad lema por lema con CEFR-J/NGSL sigue pendiente; no afirmar cotejo individual hasta documentar fuente por entrada.

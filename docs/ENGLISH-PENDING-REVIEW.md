@@ -2,8 +2,8 @@
 
 Esta sección refleja los resultados más recientes; las notas históricas posteriores conservan los estados que tenían en su fecha.
 
-- **B2 #948 — HEAD documental actual** `d9c1e0dd1c45d25e906a7d42422effefb0606973`. Regression pull_request #46112102811: success; Type checks #46112102822: success; Offline quality reports: success. PR abierta, draft, mergeable y sin fusionar.
-- En Regression #46112102811, el test dedicado `tests/learning-screen-phase-5b.e2e.test.cjs` pasó **16/16**. El caso concreto `Aprender review card starts the existing SRS session when due reviews exist` pasó (subtest 155, ~760 ms). La suite `tests/browser-e2e.test.cjs` también pasó **16/16**, incluido el mismo flujo SRS (subtest 12, ~789 ms). El paso `Run local quality tests` terminó success.
+- **B2 #948 — HEAD documental actual** `a54ef5583f8b0c1b24a23c27755d8188f85a2d02`. Regression pull_request #46112815670: success; Type checks #46112815635: success; Offline quality reports: success. PR abierta, draft, mergeable y sin fusionar.
+- En Regression #46112815670, la suite dedicada `tests/learning-screen-phase-5b.e2e.test.cjs` pasó **16/16**; el caso `Aprender review card starts the existing SRS session when due reviews exist` pasó como subtest 12 (~1,860 ms). En la ejecución agrupada de regresión, el mismo caso pasó como subtest 155. La suite `tests/browser-e2e.test.cjs` terminó correctamente con **34/34** pruebas. El paso `Run local quality tests` terminó success.
 - **Historial de intermitencia:** en el SHA anterior `e230cdfcd938e6de4b98b1d67b75c33b0b45c23b`, Regression push #46111251689 falló dos veces en el test SRS, mientras Regression pull_request #46111258021 pasó. El nuevo commit solo actualiza documentación; no cambia código de aplicación ni el test. Por tanto, el último CI confirma que el test vuelve a pasar, pero no demuestra por sí solo la causa de los fallos anteriores. No modificar UI ni motor SRS sin evidencia nueva.
 - **A1 #891:** head `a40cc62a714dd576970bc14bc6844f2d3c7cc6ea`; Regression #46105596121 y type checks #46105596115: success. PR abierta y mergeable, no fusionada.
 - **A1 #892:** sigue abierta y `dirty`/no mergeable; su head `18da11d8b0ea251c3f0d6645c20ab147d2ffcfd4` no tiene check-runs. Tiene dependencia de #891 y requiere reconciliación/sincronización antes de validar.
@@ -11,7 +11,7 @@ Esta sección refleja los resultados más recientes; las notas históricas poste
 - **Muestra editorial cerrada:** A1 U16, A2 U19, B1 U25 y B2 U29. No abrir otra ronda ni ampliar los no bloqueantes.
 - **Publicación completa sigue bloqueada por integración:** integrar A1→A2→B1→B2 en orden, reconciliar #892, validar CI en cada head integrado, registrar el manifiesto inglés, habilitarlo y actualizar README en el mismo cambio. Mantener `available: false` hasta entonces.
 
-Fuentes: [PR #948](https://github.com/luisequeira612-commits/bahasa-studio/pull/948), [Regression actual #46112102811](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/46112102811), [Type checks actual #46112102822](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/46112102822), [Regression push anterior #46111251689](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/46111251689), [Regression PR anterior #46111258021](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/46111258021), [PR #891](https://github.com/luisequeira612-commits/bahasa-studio/pull/891), [PR #892](https://github.com/luisequeira612-commits/bahasa-studio/pull/892).
+Fuentes: [PR #948](https://github.com/luisequeira612-commits/bahasa-studio/pull/948), [Regression actual #46112815670](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/46112815670), [Type checks actual #46112815635](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/46112815635), [Regression push anterior #46111251689](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/46111251689), [Regression PR anterior #46111258021](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/46111258021), [PR #891](https://github.com/luisequeira612-commits/bahasa-studio/pull/891), [PR #892](https://github.com/luisequeira612-commits/bahasa-studio/pull/892).
 
 
 # Inglés — pendientes de revisión no bloqueantes
@@ -47,7 +47,7 @@ En cada muestra comprobar únicamente: correspondencia entre objetivos, ejemplos
 3. Solo después de integrar los cuatro niveles, registrar el manifiesto inglés A1–B2 en `language-manager.js`, habilitar inglés y actualizar `README.md` en el mismo cambio. Mantener y ejecutar `tests/readme-language-catalog.test.cjs`.
 
 **CI actual comprobado (2026-11-28):**
-- B2 #948, HEAD `539defb5d1206ae6e18c03520748e185499243ae`: Regression #46110814184 y type checks #46110814175 **success**. El test aislado Phase 5B pasó 16/16; el test SRS previamente inestable también pasó. Offline quality report success.
+- B2 #948, HEAD documental `a54ef5583f8b0c1b24a23c27755d8188f85a2d02`: Regression #46112815670 y type checks #46112815635 **success**; Offline quality reports **success**. Phase 5B aislado pasó 16/16, el caso SRS pasó en la suite agrupada y en la dedicada, y browser E2E pasó 34/34.
 - A1 #891, HEAD `a40cc62a714dd576970bc14bc6844f2d3c7cc6ea`: Regression #46105596121 y type checks #46105596115 **success**.
 - A1 #892, HEAD `18da11d8b0ea251c3f0d6645c20ab147d2ffcfd4`: cero check-runs y merge state dirty.
 - #899, #900, #912, #915 y #916: los heads consultados tienen regresión y type checks success. Verificar cada head nuevo después de la integración secuencial.

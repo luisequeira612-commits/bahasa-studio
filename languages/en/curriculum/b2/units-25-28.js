@@ -42,7 +42,7 @@ lessons:[
 ["only after + noun + inversion","solo después de... se...","Only after the review did the errors become clear.","Solo después de la revisión quedaron claros los errores."],
 ["little did I know","ni me imaginaba que","Little did I know that the decision would change everything.","Ni me imaginaba que la decisión lo cambiaría todo."],
 ["not only does","no solo","Not only does the plan save time, but it also reduces costs.","El plan no solo ahorra tiempo, sino que también reduce los costos."],
-["only when + clause + inversion","solo cuando... se puede...","Only when the data is complete can we draw a conclusion.","Solo cuando los datos estén completos podremos sacar una conclusión."],
+["only when + clause + inversion","solo cuando... se puede...","Only when the data are complete can we draw a conclusion.","Solo cuando los datos estén completos podremos sacar una conclusión."],
 ["in no way does","de ninguna manera","In no way does this guarantee success.","Esto de ninguna manera garantiza el éxito."],
 ["nowhere else can","en ningún otro lugar se puede","Nowhere else can you find the same level of support.","En ningún otro lugar puedes encontrar el mismo nivel de apoyo."],
 ["not once did","ni una sola vez","Not once did he apologize for the mistake.","Ni una sola vez se disculpó por el error."],

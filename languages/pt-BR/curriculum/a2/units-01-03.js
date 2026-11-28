@@ -48,7 +48,7 @@ vocab(3,9,'talvez','quizá / tal vez','Talvez eu viaje amanhã.','Tal vez viaje 
 vocab(3,10,'disponível','disponible','Você está disponível no sábado?','¿Estás disponible el sábado?')
 ];
 const unit1=makeUnit(1,'Ayer y la semana pasada','Cuenta hechos terminados y sitúa acontecimientos en el pasado reciente.','El pretérito perfeito presenta acciones terminadas: viajei, visitei, cheguei, saí, voltei. Las expresiones ontem, anteontem y semana passada sitúan el hecho en el pasado.','Pretérito perfeito','No confundas el infinitivo (viajar) con la forma conjugada (eu viajei). En esta unidad se practican formas frecuentes del pasado.',u1,[
-['Lección 1: Ayer y anteayer','Sitúa acontecimientos en los días anteriores.','Ontem significa ayer y anteontem significa anteayer.',[0,1],[]],
+['Lección 1: Ayer y anteayer','Recupera ontem y amplía la referencia temporal con anteontem.','Ontem significa ayer y se retoma de A1 U12; anteontem significa anteayer y amplía la secuencia temporal.',[0,1],['ptbr_a1_u12_v10']],
 ['Lección 2: La semana pasada','Habla de un periodo pasado.','Semana passada suele aparecer con na: na semana passada.',[2,3],[]],
 ['Lección 3: Viajes y visitas','Cuenta un viaje o una visita terminados.','Viajar y visitar forman viajei y visitei en primera persona singular.',[3,4],[]],
 ['Lección 4: Llegar, salir y volver','Ordena acciones de un día pasado.','Cheguei, saí y voltei son formas de pretérito perfeito.',[5,6],[]],

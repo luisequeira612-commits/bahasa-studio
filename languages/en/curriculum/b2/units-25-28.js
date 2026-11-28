@@ -38,7 +38,7 @@ lessons:[
 ["not until the meeting ended did","no fue hasta que terminó la reunión cuando","Not until the meeting ended did we understand the impact.","No fue hasta que terminó la reunión cuando entendimos el impacto."],
 ["under no circumstances should","bajo ninguna circunstancia debería","Under no circumstances should personal data be shared.","Bajo ninguna circunstancia deberían compartirse datos personales."],
 ["at no point did","en ningún momento","At no point did the witness change her account.","En ningún momento la testigo cambió su versión."],
-["not until later did","no fue hasta más tarde que","Not until later did we understand the impact.","No fue hasta más tarde que entendimos el impacto."],
+["not until later did","no fue sino hasta más tarde cuando","Not until later did we understand the impact.","No fue sino hasta más tarde cuando entendimos el impacto."],
 ["only after + noun + inversion","solo después de... se...","Only after the review did the errors become clear.","Solo después de la revisión quedaron claros los errores."],
 ["little did I know","ni me imaginaba que","Little did I know that the decision would change everything.","Ni me imaginaba que la decisión lo cambiaría todo."],
 ["not only does","no solo","Not only does the plan save time, but it also reduces costs.","El plan no solo ahorra tiempo, sino que también reduce los costos."],

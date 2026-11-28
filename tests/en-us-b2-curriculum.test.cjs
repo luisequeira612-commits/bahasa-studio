@@ -393,20 +393,6 @@ test('English B2 U10 and U30 review lesson and unit banks match their source voc
 });
 
 
-test('English B2 U1 sentence-building exercises use examples for their own vocabulary targets', () => {
-  const unit = loadB2().find((item) => item.unitNumber === 1);
-  assert.ok(unit);
-  const orderExercises = Array.from(unit.exercises || []).filter((exercise) => exercise.type === 'order');
-  assert.equal(orderExercises.length, 5);
-  for (const exercise of orderExercises) {
-    const word = unit.vocab.find((item) => item.id === exercise.vocabId);
-    assert.ok(word);
-    assert.deepEqual(Array.from(exercise.correctOrder), word.ex
-      .replace(/[.,!?;:]/g, '').trim().split(/\s+/));
-  }
-});
-
-
 test('English B2 U1–U8 lesson and unit sentence exercises match their vocabulary examples', () => {
   const units = loadB2();
   const u1 = units.find((item) => item.unitNumber === 1);

@@ -228,3 +228,213 @@ test('English B2 U1 sentence-building bank matches each target vocabulary ID', (
       .replace(/[.,!?;:]/g, '').trim().split(/\s+/));
   }
 });
+
+
+test('English B2 U40 review sentence bank keeps each example paired with its source vocabulary', () => {
+  const units = loadB2();
+  const unit = units.find((item) => item.unitNumber === 40);
+  assert.ok(unit);
+  const allVocabulary = units.flatMap((item) => Array.from(item.vocab || []));
+  const orderExercises = Array.from(unit.exercises || []).filter((exercise) => exercise.type === 'order');
+  const expected = [
+    ['to put forward an argument', 'The researchers put forward an argument for stricter standards.'],
+    ['to acknowledge an objection', 'We should acknowledge the objection before responding.'],
+    ['to pick up on that', "I'd like to pick up on that point about costs."],
+    ['I was wondering if', 'I was wondering if you could send the details today.'],
+    ['to be in a position to', 'We are now in a position to make a final recommendation.'],
+  ];
+  assert.equal(orderExercises.length, expected.length);
+  for (let index = 0; index < expected.length; index += 1) {
+    const [target, sentence] = expected[index];
+    const vocabulary = allVocabulary.find((word) => word.target === target);
+    assert.ok(vocabulary, 'review target must exist: ' + target);
+    assert.equal(orderExercises[index].vocabId, vocabulary.id);
+    assert.deepEqual(Array.from(orderExercises[index].correctOrder), sentence
+      .replace(/[.,!?;:]/g, '').trim().split(/\s+/));
+  }
+});
+
+
+test('English B2 U49–U50 and U59–U60 keep review lessons aligned with their vocabulary', () => {
+  const units = loadB2();
+  const getUnit = (number) => {
+    const unit = units.find((item) => item.unitNumber === number);
+    assert.ok(unit, 'B2 unit must exist: U' + number);
+    return unit;
+  };
+
+  const u49 = getUnit(49);
+  assert.match(u49.trap.detail, /Vulnerable to y susceptible to/);
+  assert.doesNotMatch(u49.trap.detail, /Prone to/);
+  assert.match(u49.lessons[0].grammar, /be vulnerable to/);
+  assert.match(u49.lessons[4].grammar, /Avoid ambiguity/);
+  assert.match(u49.lessons[4].grammar, /more precisely/);
+
+  for (const number of [50, 60]) {
+    const unit = getUnit(number);
+    assert.equal(unit.lessons.length, 5);
+    for (const lesson of unit.lessons) {
+      const orderExercise = Array.from(lesson.exercises || []).find((exercise) => exercise.type === 'order');
+      assert.ok(orderExercise, 'review lesson must contain an order exercise: U' + number + ' ' + lesson.title);
+      assert.equal(orderExercise.vocabId, lesson.reviewVocabIds[1]);
+    }
+  }
+
+  const u59 = getUnit(59);
+  assert.equal(u59.lessons.length, 5);
+  for (const lesson of u59.lessons) {
+    const orderExercise = Array.from(lesson.exercises || []).find((exercise) => exercise.type === 'order');
+    assert.ok(orderExercise, 'integrated lesson must contain an order exercise: ' + lesson.title);
+    assert.equal(orderExercise.vocabId, lesson.vocabIds[1]);
+    const target = u59.vocab.find((word) => word.id === orderExercise.vocabId);
+    assert.ok(target);
+    assert.deepEqual(Array.from(orderExercise.correctOrder), target.ex
+      .replace(/[.,!?;:]/g, '').trim().split(/\s+/));
+  }
+});
+
+
+test('English B2 U16 inverted-conditional lessons cover all targets and use matching examples', () => {
+  const unit = loadB2().find((item) => item.unitNumber === 16);
+  assert.ok(unit);
+  const lessonIds = unit.lessons.flatMap((lesson) => Array.from(lesson.vocabIds || []));
+  assert.equal(lessonIds.length, 22);
+  assert.equal(new Set(lessonIds).size, 22);
+  for (const lesson of unit.lessons) {
+    const orderExercise = Array.from(lesson.exercises || []).find((exercise) => exercise.type === 'order');
+    assert.ok(orderExercise);
+    assert.equal(orderExercise.vocabId, lesson.vocabIds[1]);
+    const word = unit.vocab.find((item) => item.id === orderExercise.vocabId);
+    assert.ok(word);
+    assert.deepEqual(Array.from(orderExercise.correctOrder), word.ex
+      .replace(/[.,!?;:]/g, '').trim().split(/\s+/));
+  }
+});
+
+
+test('English B2 U15–U18 lesson targets are covered once and match their sentence examples', () => {
+  const units = loadB2();
+  for (const number of [15, 16, 17, 18]) {
+    const unit = units.find((item) => item.unitNumber === number);
+    assert.ok(unit);
+    const lessonIds = unit.lessons.flatMap((lesson) => Array.from(lesson.vocabIds || []));
+    assert.equal(lessonIds.length, 22, 'U' + number + ' must cover 22 targets');
+    assert.equal(new Set(lessonIds).size, 22, 'U' + number + ' must not duplicate lesson targets');
+    for (const lesson of unit.lessons) {
+      const orderExercise = Array.from(lesson.exercises || []).find((exercise) => exercise.type === 'order');
+      assert.ok(orderExercise);
+      assert.equal(orderExercise.vocabId, lesson.vocabIds[1]);
+      const word = unit.vocab.find((item) => item.id === orderExercise.vocabId);
+      assert.ok(word);
+      assert.deepEqual(Array.from(orderExercise.correctOrder), word.ex
+        .replace(/[.,!?;:]/g, '').trim().split(/\s+/));
+    }
+  }
+});
+
+
+test('English B2 U19–U20 cover their targets and keep review examples aligned', () => {
+  const units = loadB2();
+  const u19 = units.find((item) => item.unitNumber === 19);
+  const u20 = units.find((item) => item.unitNumber === 20);
+  assert.ok(u19);
+  assert.ok(u20);
+
+  const lessonIds = u19.lessons.flatMap((lesson) => Array.from(lesson.vocabIds || []));
+  assert.equal(lessonIds.length, 22);
+  assert.equal(new Set(lessonIds).size, 22);
+  for (const lesson of u19.lessons) {
+    const exercise = Array.from(lesson.exercises || []).find((item) => item.type === 'order');
+    assert.ok(exercise);
+    assert.equal(exercise.vocabId, lesson.vocabIds[1]);
+    const word = u19.vocab.find((item) => item.id === exercise.vocabId);
+    assert.ok(word);
+    assert.deepEqual(Array.from(exercise.correctOrder), word.ex
+      .replace(/[.,!?;:]/g, '').trim().split(/\s+/));
+  }
+
+  const allVocabulary = units.flatMap((unit) => Array.from(unit.vocab || []));
+  for (const lesson of u20.lessons) {
+    const exercise = Array.from(lesson.exercises || []).find((item) => item.type === 'order');
+    assert.ok(exercise);
+    assert.equal(exercise.vocabId, lesson.reviewVocabIds[1]);
+    const word = allVocabulary.find((item) => item.id === exercise.vocabId);
+    assert.ok(word);
+    assert.deepEqual(Array.from(exercise.correctOrder), word.ex
+      .replace(/[.,!?;:]/g, '').trim().split(/\s+/));
+  }
+});
+
+
+test('English B2 U10 and U30 review lesson and unit banks match their source vocabulary', () => {
+  const units = loadB2();
+  const allVocabulary = units.flatMap((unit) => Array.from(unit.vocab || []));
+  for (const number of [10, 30]) {
+    const unit = units.find((item) => item.unitNumber === number);
+    assert.ok(unit);
+    for (const lesson of unit.lessons) {
+      const exercise = Array.from(lesson.exercises || []).find((item) => item.type === 'order');
+      assert.ok(exercise);
+      assert.equal(exercise.vocabId, lesson.reviewVocabIds[1]);
+      const word = allVocabulary.find((item) => item.id === exercise.vocabId);
+      assert.ok(word);
+      assert.deepEqual(Array.from(exercise.correctOrder), word.ex
+        .replace(/[.,!?;:]/g, '').trim().split(/\s+/));
+    }
+    const bankExercises = Array.from(unit.exercises || []).filter((item) => item.type === 'order');
+    assert.equal(bankExercises.length, 5);
+    for (const exercise of bankExercises) {
+      const word = allVocabulary.find((item) => item.id === exercise.vocabId);
+      assert.ok(word);
+      assert.deepEqual(Array.from(exercise.correctOrder), word.ex
+        .replace(/[.,!?;:]/g, '').trim().split(/\s+/));
+    }
+  }
+});
+
+
+test('English B2 U1–U8 lesson and unit sentence exercises match their vocabulary examples', () => {
+  const units = loadB2();
+  const u1 = units.find((item) => item.unitNumber === 1);
+  assert.ok(u1);
+  for (const lesson of u1.lessons) {
+    const exercise = Array.from(lesson.exercises || []).find((item) => item.type === 'order');
+    assert.ok(exercise);
+    assert.equal(exercise.vocabId, lesson.vocabIds[1]);
+    const word = u1.vocab.find((item) => item.id === exercise.vocabId);
+    assert.ok(word);
+    assert.deepEqual(Array.from(exercise.correctOrder), word.ex
+      .replace(/[.,!?;:]/g, '').trim().split(/\s+/));
+  }
+  for (let number = 2; number <= 8; number += 1) {
+    const unit = units.find((item) => item.unitNumber === number);
+    assert.ok(unit, 'B2 unit must exist: U' + number);
+    for (const lesson of unit.lessons) {
+      const exercise = Array.from(lesson.exercises || []).find((item) => item.type === 'order');
+      assert.ok(exercise, 'lesson must contain a sentence exercise: U' + number);
+      assert.equal(exercise.vocabId, lesson.vocabIds[1]);
+      const word = unit.vocab.find((item) => item.id === exercise.vocabId);
+      assert.ok(word);
+      assert.deepEqual(Array.from(exercise.correctOrder), word.ex
+        .replace(/[.,!?;:]/g, '').trim().split(/\s+/));
+    }
+    const bank = Array.from(unit.exercises || []).filter((item) => item.type === 'order');
+    assert.equal(bank.length, 5);
+    for (const exercise of bank) {
+      const word = unit.vocab.find((item) => item.id === exercise.vocabId);
+      assert.ok(word);
+      assert.deepEqual(Array.from(exercise.correctOrder), word.ex
+        .replace(/[.,!?;:]/g, '').trim().split(/\s+/));
+    }
+  }
+});
+
+test('English B2 U8 uses the stative meaning of feel consistently', () => {
+  const unit = loadB2().find((item) => item.unitNumber === 8);
+  assert.ok(unit);
+  const feel = unit.vocab.find((word) => word.target === 'to feel');
+  assert.ok(feel);
+  assert.equal(feel.esp, 'sentirse');
+  assert.equal(feel.ex, 'I feel exhausted after the trip.');
+  assert.equal(feel.exEsp, 'Me siento agotado después del viaje.');
+});

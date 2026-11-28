@@ -34,7 +34,7 @@ function loadB2() {
 test('English B2 U5–U8 source registers its curriculum block only once', () => {
   const filename = path.join(root, 'languages/en/curriculum/b2/units-05-08.js');
   const source = fs.readFileSync(filename, 'utf8');
-  assert.equal((source.match(/\\(function\\(root\\)\\{/g) || []).length, 1);
+  assert.equal((source.match(/\(function\(root\)\{/g) || []).length, 1);
 });
 
 test('American English B2 has 60 sequential units with five lessons and 20 activities each', () => {

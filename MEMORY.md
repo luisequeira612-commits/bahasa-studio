@@ -85,3 +85,9 @@ test('English A1 vocabulary introduces no duplicate targets across U1-U12',async
   seen.add(key);
  }
 });
+
+## 2026-11-26 — Inglés A1 U19–U24 en PR apilada
+- Rama feat/en-us-a1-u19-u24 y PR prevista U19–U24: gustos/pasatiempos; deseos y planes; preguntas WH de seguimiento; presente continuo; ropa/clima; lugares de ciudad.
+- 6 unidades, 5 lecciones, 22 términos nuevos y 20 ejercicios por unidad. Manifiesto y pruebas amplían inventario a U1–U24; mantener en unavailable/«Próximamente».
+- Esta PR depende de #893 → #892 → #891. Retargetear a main y repetir CI solo después de integrar manualmente las anteriores; no fusionar sin aprobación expresa.
+- Vocabulario not_checked; sin POS/audio ni cambios a IndexedDB v1, backup JSON v3 u otros idiomas. Auditoría estática de los cuatro bloques: 528 entradas en U1–U24 y 0 targets duplicados.

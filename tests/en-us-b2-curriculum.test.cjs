@@ -508,6 +508,60 @@ test('English B2 U5–U9 lesson themes match their vocabulary and sentence examp
   }
 });
 
+test('English B2 U11–U14 lesson themes match their vocabulary and sentence examples', () => {
+  const units = loadB2();
+  const cases = [
+    [11, [
+      ['Certeza y deducción presente', ['must be', "can't be", 'may be', 'might be']],
+      ['Posibilidad y alternativas', ['could be', 'must have', "can't have", 'may well']],
+      ['Probabilidad y expectativas', ['might conceivably', 'be bound to', 'be unlikely to', 'be highly likely to']],
+      ['Fuentes e inferencias prudentes', ['apparently', 'presumably', 'evidently', 'there is little doubt that']],
+      ['Evaluación de evidencia', ['it seems reasonable to assume', 'to rule out', 'to point to', 'to suggest', 'to be consistent with', 'to be at odds with']],
+    ]],
+    [12, [
+      ['Crítica, arrepentimiento y deseo retrospectivo', ['should have', 'ought to have', "shouldn't have", 'to regret doing', 'to wish one had']],
+      ['Ausencia de necesidad', ["needn't have", "didn't need to", 'there was no need to']],
+      ['Posibilidad e imposibilidad pasadas', ['might have', "couldn't have", 'could conceivably have', 'could have']],
+      ['Resultados hipotéticos y expectativas retrospectivas', ['would have', 'was supposed to have', 'was meant to have', 'in hindsight', 'with the benefit of hindsight']],
+      ['Responsabilidad y consecuencias', ['to blame someone for', 'to take responsibility for', 'to be accountable for', 'to miss an opportunity', 'to make up for']],
+    ]],
+    [13, [
+      ['Obligación y requisito externo', ['be required to', 'be obliged to', 'have to', 'need to']],
+      ['Prohibición y ausencia de obligación', ['must', "mustn't", "don't have to", "needn't"]],
+      ['Expectativa, permiso y derecho', ['be under no obligation to', 'be expected to', 'be supposed to', 'be allowed to']],
+      ['Permiso, derechos y recomendaciones', ['be permitted to', 'be entitled to', 'be free to', 'be advisable to']],
+      ['Lenguaje normativo y cumplimiento', ['be essential to', 'be necessary for', "at one's discretion", 'unless otherwise stated', 'in accordance with', 'to comply with']],
+    ]],
+    [14, [
+      ['Probabilidad con adjetivos', ['likely to', 'unlikely to', 'highly likely', 'almost certain to', 'it is unlikely that']],
+      ['Certeza y fuerza de la afirmación', ['bound to', 'it is probable that', 'there is a strong possibility that', 'there is a slight chance that']],
+      ['Expresiones de expectativa y atribución', ['in all likelihood', 'more than likely', 'by all accounts', 'to be expected to']],
+      ['Pronósticos y proyecciones', ['to be forecast to', 'to be projected to', 'to stand a good chance of']],
+      ['Posibilidades de éxito y resultados', ['to be on course to', 'to fall short of', 'to exceed expectations', 'to meet expectations', 'to expect', 'to be subject to change']],
+    ]],
+  ];
+  const normalize = (value) => value.replace(/[.,!?;:]/g, '').trim().split(/\\s+/);
+  for (const [number, expectedLessons] of cases) {
+    const unit = units.find((item) => item.unitNumber === number);
+    assert.ok(unit, 'B2 unit must exist: U' + number);
+    assert.equal(unit.lessons.length, expectedLessons.length);
+    for (let index = 0; index < expectedLessons.length; index += 1) {
+      const [title, expectedTargets] = expectedLessons[index];
+      const lesson = unit.lessons[index];
+      assert.equal(lesson.title, title, 'Unexpected lesson focus in U' + number);
+      const targets = lesson.vocabIds.map((id) => unit.vocab.find((word) => word.id === id)?.target);
+      assert.deepEqual(targets, expectedTargets, 'Lesson vocabulary must match its focus: U' + number + ' ' + title);
+      const exercise = lesson.exercises.find((item) => item.type === 'order');
+      assert.ok(exercise, 'Lesson needs a sentence-building activity: U' + number + ' ' + title);
+      assert.equal(exercise.vocabId, lesson.vocabIds[1]);
+      const word = unit.vocab.find((item) => item.id === exercise.vocabId);
+      assert.ok(word);
+      assert.deepEqual(Array.from(exercise.correctOrder), normalize(word.ex),
+        'Sentence activity must match its assigned target: U' + number + ' ' + title);
+    }
+  }
+});
+
 test('English B2 U8 uses the stative meaning of feel consistently', () => {
   const unit = loadB2().find((item) => item.unitNumber === 8);
   assert.ok(unit);
@@ -531,7 +585,7 @@ test('English B2 lesson sentence examples match all 21 audited vocabulary target
     [9, 'Secuencia e inmediatez', 'the moment', 'The moment I saw the results, I knew something was wrong.'],
     [9, 'Concesión, contraste y circunstancias ajenas', 'far from', 'Far from solving the issue, the update made it worse.'],
     [11, 'Posibilidad y alternativas', 'must have', 'They must have missed the last announcement.'],
-    [12, 'Ausencia de necesidad y posibilidad pasada', 'might have', 'He might have misunderstood the deadline.'],
+    [12, 'Posibilidad e imposibilidad pasadas', "couldn't have", 'They couldn’t have completed the audit in one day.'],
     [13, 'Lenguaje normativo y cumplimiento', 'be necessary for', 'A valid ID is necessary for entry.'],
     [22, 'Causativa y experiencias no deseadas', 'to get a refund issued', 'She got a refund issued after contacting support.'],
     [25, 'Foco temporal, causal y de necesidad', 'it is precisely because', 'It is precisely because costs have risen that we need a review.'],

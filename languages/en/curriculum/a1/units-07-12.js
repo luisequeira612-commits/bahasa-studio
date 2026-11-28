@@ -102,7 +102,7 @@ unit(9,'Adjetivos posesivos','Indica a quién pertenece algo usando my, your, hi
 ['Lección 3: Its','Usa its para pertenencias de animales o cosas.','Its es un adjetivo posesivo; no lleva apóstrofo. It’s significa it is o it has.',[4,9,10,11],'Our pet is small.'],
 ['Lección 4: Our y their','Habla de pertenencias de un grupo.','Our significa nuestro/a(s); their significa su/sus cuando el poseedor es plural.',[5,6,12,13,14,16],'Their parents are here.'],
 ['Lección 5: Posesión en contexto','Combina posesivos con personas, mascotas y objetos.','Estructura: adjetivo posesivo + sustantivo. No se usa a/an delante del posesivo: my car, no a my car.',[7,8,17,18,19,20,21],'This book belongs to Ana.']
-],['Our house is big.','Her cat is gray.','The dog has its bed.','Their parents are here.','Our pet is small.']),
+],['Our house is big.','Their parents are here.','The owner is here.','This book belongs to Ana.','Our pet is small.']),
 unit(10,'Familia y relaciones','Nombra familiares y describe relaciones cercanas con vocabulario básico.','Los sustantivos de familia pueden combinarse con adjetivos posesivos: my mother, his brother, their children. Para presentar a alguien: This is my…','Family es singular colectivo','Family suele tratarse como sustantivo singular en inglés americano: “My family is here”. Para hablar de varias familias: families.',[
 'mother~madre~My mother is Ana.~Mi madre es Ana.',
 'father~padre~His father is tall.~Su padre es alto.',
@@ -131,7 +131,7 @@ unit(10,'Familia y relaciones','Nombra familiares y describe relaciones cercanas
 ['Lección 2: Hermanos y pareja','Nombra hermanos, esposo y esposa.','Brother y sister son hermanos; husband y wife describen a los cónyuges.',[5,6,7,8],'My sister is a teacher.'],
 ['Lección 3: Sobrinos y familia política','Nombra sobrinas, sobrinos y familiares políticos.','Niece significa sobrina; nephew, sobrino. Stepmother y stepfather nombran a la madrastra y al padrastro.',[9,10,11,17],'My nephew is at home.'],
 ['Lección 4: Abuelos y otros parientes','Nombra abuelos, tíos y primos.','Grandmother/grandfather; aunt/uncle; cousin puede ser primo o prima.',[12,13,14,15,16,18,19],'Her grandfather is old.'],
-['Lección 5: Familia en contexto','Describe a la familia y a una pareja.','Family suele llevar verbo singular en inglés americano: my family is. Parents y grandparents son plurales.',[11,18,19,20,21],'My godmother is here.']
+['Lección 5: Familia en contexto','Describe a la familia y a una pareja.','Family suele llevar verbo singular en inglés americano: my family is. Parents y grandparents son plurales.',[11,18,19,20,21],'My godmother is here.',['en_a1_u6_v11']]
 ],['My brother is Luis.','My sister is a teacher.','Her husband is Daniel.','His wife is Ana.','My niece is happy.']),
 unit(11,'Pronombres posesivos','Sustituye un grupo posesivo completo con mine, yours, his, hers, ours y theirs.','Los pronombres posesivos sustituyen al sustantivo: This book is mine. No llevan sustantivo después. Whose pregunta por el dueño.','No confundas my y mine','My es adjetivo posesivo y necesita un sustantivo (my bag); mine es pronombre y lo sustituye (the bag is mine).',[
 'mine~mío / mía / míos / mías~This book is mine.~Este libro es mío.',

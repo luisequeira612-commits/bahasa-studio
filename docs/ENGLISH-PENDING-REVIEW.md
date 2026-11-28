@@ -12,12 +12,15 @@ Estado: lista única de pulido posterior. Estos puntos no bloquean una publicaci
 
 ## Muestra final acotada
 
-La PR actual contiene inglés B2, pero no contiene currículos ingleses A1, A2 ni B1: el registro del idioma sigue con `available: false` y `curriculum: {}`, y `languages/en/curriculum/` solo incluye `b2/`.
+Los currículos A1/A2/B1 están desarrollados en ramas y PRs apiladas, pero todavía no están integrados en `main`; inglés sigue con `available: false` hasta completar la integración y el gate de publicación. A1: PRs #891–899; A2: #900–912; B1: #915–936. B2 se integró con #945 y recibe correcciones editoriales en #948.
 
-- B2: U29 (unidad intermedia con vocabulario nuevo y grupos nominales complejos), una única muestra final. U30 es una unidad de repaso y resulta menos representativa para comprobar enseñanza nueva.
+- A1: U16 (preguntas con do/does y palabras interrogativas), PR #893.
+- A2: U19 (matices e intensidad), PR #904.
+- B1: U25 (consejos, recomendaciones y críticas), secuencia PR #922.
+- B2: U29 (grupos nominales complejos), PR #948. U30 es repaso y resulta menos representativa para comprobar enseñanza nueva.
 - A1/A2/B1: no hay unidades inglesas que seleccionar en el estado actual. Si el objetivo de publicación es el curso completo A1–B2, la ausencia de esos tres niveles es un bloqueante de alcance, no una tarea de pulido.
 
-En U30 comprobar únicamente: correspondencia entre objetivos, ejemplos y lecciones; fidelidad de traducciones; validez de respuestas; y ausencia de errores gramaticales que enseñen algo incorrecto. No ampliar la muestra ni reabrir otras unidades.
+En cada muestra comprobar únicamente: correspondencia entre objetivos, ejemplos y lecciones; fidelidad de traducciones; validez de respuestas; y ausencia de errores gramaticales que enseñen algo incorrecto. No ampliar la muestra ni reabrir otras unidades.
 
 ## Regla de cierre
 

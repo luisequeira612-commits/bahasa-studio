@@ -1012,6 +1012,12 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Fuente: árbol Git de la rama y búsqueda exacta de IDs, 27 nov 2026.
 
 
+## 2026-11-27 — README actualizado a Guardi multilingüe
+- README ya no describe el proyecto como una app exclusiva de indonesio ni documenta Gemini como función opcional. Ahora refleja el catálogo real: pt-BR A1–B2 e indonesio A1–A2 disponibles; inglés en desarrollo con B2 bajo revisión editorial/no seleccionable; siete idiomas restantes en preparación.
+- Se documentan audio Piper ID/PT-BR, límites offline, persistencia local IndexedDB, backup JSON v3 y pruebas sin afirmar certificación lingüística.
+- Cambio en rama `docs/readme-multilingual-20261127`, PR separada para mantener el alcance de documentación aislado de la revisión curricular #946.
+- Fuente de disponibilidad: `language-manager.js` en `main`; README actualizado el 27 nov 2026.
+
 ## 2026-11-27 — Revisión editorial asistida de inglés B2 U1–U60 (PR #946)
 - La revisión editorial asistida cubre U1–U60: alineación de vocabulario, ejemplos, traducciones españolas, foco de lecciones y bancos de repaso. Se corrigieron asociaciones erróneas en U1/U2 y matices de glosa/ejemplo en U7/U8; las seis unidades de repaso tienen pruebas de asociación.
 - Se añadieron comprobaciones de regresión para U1–U8 y bloques posteriores. El currículo conserva 60 unidades, 300 lecciones, 1.200 actividades y 1.188 objetivos léxicos únicos.

@@ -1033,3 +1033,9 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Fuentes y límites de licencia: docs/EN_US_A1_SOURCES.md; CEFR-J/NGSL aún requieren trazabilidad por lema antes de afirmar cotejo. Ejemplos originales. Inglés americano (en-US); notas británicas solo cuando contrasten un punto útil.
 - CI del head #891 `0fe8cc5ae807c61cbbeb0d26a72af5cae448cd5f`: regresión #4131 y type checks #253 success. El PR mantiene conflicto de merge con main hasta sincronizar los archivos compartidos.
 - La directiva específica de no fusionar PRs de inglés sin aprobación expresa prevalece sobre reglas generales antiguas de fusión automática.
+
+
+## 2026-11-28 — Reconciliación A1 U7–U12 sobre el HEAD vigente de U1–U6
+- Se reconstruye una rama nueva basada directamente en el HEAD actual de #891 para eliminar la divergencia histórica de #892 sin reescribir #891.
+- Se conserva el bloque U7–U12 y se amplían manifiesto, pruebas y trazabilidad documental. Esta rama no publica inglés ni habilita el selector.
+- La reconstrucción requiere CI completo antes de sustituir la PR dependiente anterior. No fusionar PR de inglés sin aprobación expresa.

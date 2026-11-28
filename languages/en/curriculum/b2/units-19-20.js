@@ -16,12 +16,12 @@ const rows=[
 ["irrespective of","independientemente de","The service is available irrespective of location.","El servicio está disponible independientemente de la ubicación."],
 ["on the proviso that","con la condición de que","You can leave early on the proviso that your tasks are complete.","Puedes salir temprano con la condición de que hayas terminado tus tareas."],
 ["so long as","siempre que","The arrangement is acceptable so long as the terms remain clear.","El acuerdo es aceptable siempre que los términos sigan siendo claros."],
-["on the understanding that","con el acuerdo de que","We agreed on the understanding that costs would be shared.","Aceptamos con el acuerdo de que los costos se compartirían."],
+["on the understanding that","con el entendimiento de que","We agreed on the understanding that costs would be shared.","Aceptamos con el entendimiento de que compartiríamos los costos."],
 ["if that is not possible","si eso no es posible","We can meet on Thursday; if that is not possible, Friday would work.","Podemos reunirnos el jueves; si eso no es posible, el viernes serviría."],
 ["in spite of","a pesar de","In spite of the delay, the project stayed within budget.","A pesar del retraso, el proyecto se mantuvo dentro del presupuesto."],
 ["despite the fact that","a pesar de que","Despite the fact that demand fell, revenue remained stable.","A pesar de que la demanda cayó, los ingresos se mantuvieron estables."],
 ["to make provision for","prever / contemplar","The schedule makes provision for unexpected delays.","El calendario contempla retrasos imprevistos."],
-["to make allowances for","hacer concesiones por / tener en cuenta","We should make allowances for different levels of experience.","Deberíamos tener en cuenta los distintos niveles de experiencia."],
+["to make allowances for","tener en cuenta / hacer concesiones para","We should make allowances for different levels of experience.","Deberíamos tener en cuenta los distintos niveles de experiencia."],
 ["under any circumstances","bajo ninguna circunstancia","The data must not be shared under any circumstances.","Los datos no deben compartirse bajo ninguna circunstancia."]
 ];
 const vocab=rows.map((r,i)=>({id:"en_b2_u19_v"+String(i+1).padStart(2,"0"),target:r[0],esp:r[1],ex:r[2],exEsp:r[3],verification:{status:"not_checked",sources:[]}}));

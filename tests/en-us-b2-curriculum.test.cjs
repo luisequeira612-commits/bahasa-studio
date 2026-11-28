@@ -826,7 +826,7 @@ test('B2 manifest exposes all 60 units exactly once and every block file exists'
   assert.ok(manifest,'English B2 manifest must register');
   assert.equal(manifest.totalUnits,60);
   assert.deepEqual(Array.from(manifest.publishedUnits),Array.from({length:60},(_,i)=>i+1));
-  const units=manifest.blocks.flatMap(block=>Array.from(block.units||[])).sort((a,b)=>a-b);
+  const units=Array.from(manifest.blocks).flatMap(block=>Array.from(block.units||[])).sort((a,b)=>a-b);
   assert.deepEqual(units,Array.from({length:60},(_,i)=>i+1));
   for(const block of manifest.blocks){
     assert.ok(fs.existsSync(path.join(root,block.path.replace(/^\.\//,''))),block.path+' must exist');
@@ -852,13 +852,25 @@ function loadAllEnglishLevels(){
 
 test('B2 adds 1,188 unique vocabulary targets without exact A1, A2 or B1 overlap',()=>{
   const levels=loadAllEnglishLevels();
-  const prior=new Set([...levels.a1,...levels.a2,...levels.b1].flatMap(unit=>
-    Array.from(unit.vocab||[]).map(word=>word.target.trim().toLocaleLowerCase('en-US'))));
-  const targets=levels.b2.filter(unit=>unit.unitNumber%10!==0).flatMap(unit=>
-    Array.from(unit.vocab||[]).map(word=>word.target.trim().toLocaleLowerCase('en-US')));
+  const prior=new Map();
+  for(const unit of [...levels.a1,...levels.a2,...levels.b1]){
+    for(const word of Array.from(unit.vocab||[])){
+      const target=word.target.trim().toLocaleLowerCase('en-US');
+      if(!prior.has(target))prior.set(target,unit.id+':'+word.id);
+    }
+  }
+  const b2Units=levels.b2.filter(unit=>unit.unitNumber%10!==0);
+  const targets=b2Units.flatMap(unit=>Array.from(unit.vocab||[]).map(word=>word.target.trim().toLocaleLowerCase('en-US')));
+  const duplicates=[];
+  for(const unit of b2Units){
+    for(const word of Array.from(unit.vocab||[])){
+      const target=word.target.trim().toLocaleLowerCase('en-US');
+      if(prior.has(target))duplicates.push(unit.id+':'+word.id+' "'+target+'" overlaps '+prior.get(target));
+    }
+  }
   assert.equal(targets.length,1188);
   assert.equal(new Set(targets).size,1188);
-  assert.deepEqual(targets.filter(target=>prior.has(target)),[]);
+  assert.equal(duplicates.length,0,duplicates.join('\\n'));
 });
 
 test('English release catalog enables en-US only with A1-B2 manifests and no audio inventory',()=>{

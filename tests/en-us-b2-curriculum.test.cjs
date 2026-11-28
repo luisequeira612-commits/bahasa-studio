@@ -551,7 +551,7 @@ test('English B2 U9, U11, U17, and U19 unit review banks match their source voca
 
 test('English B2 Spanish examples retain Latin American vocabulary choices', () => {
   const cases = [
-    [1, 'to have completed', 'capacitación'],
+    [2, 'to have completed', 'capacitación'],
     [25, 'the key question', 'confiable'],
     [31, 'whereas', 'confiable'],
     [55, 'a credible source', 'confiable'],

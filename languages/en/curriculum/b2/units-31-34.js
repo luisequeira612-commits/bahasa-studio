@@ -4,7 +4,7 @@ const defs=[
 {n:31,title:"Linking devices avanzados",desc:"Conecta ideas mediante relaciones precisas de contraste, concesión, consecuencia, reformulación y secuencia.",grammar:"Conjunctive adverbs, subordinating conjunctions and prepositional linkers; punctuation and clause structure vary by linker.",trap:"Although + clause; despite + noun/-ing. However links independent clauses and usually needs punctuation. Do not join two complete sentences with a comma alone.",rows:[
 ["conversely","por el contrario","The first approach reduces costs; conversely, the second improves flexibility.","El primer enfoque reduce los costos; por el contrario, el segundo mejora la flexibilidad."],
 ["by contrast","en cambio","Urban areas grew rapidly; by contrast, rural populations remained stable.","Las zonas urbanas crecieron rápidamente; en cambio, las poblaciones rurales se mantuvieron estables."],
-["whereas","mientras que","The older model is cheaper, whereas the newer one is more reliable.","El modelo antiguo es más barato, mientras que el nuevo es más fiable."],
+["whereas","mientras que","The older model is cheaper, whereas the newer one is more reliable.","El modelo antiguo es más barato, mientras que el nuevo es más confiable."],
 ["all the same","aun así","The sample was small; all the same, the results were consistent.","La muestra era pequeña; aun así, los resultados fueron coherentes."],
 ["notwithstanding","a pesar de","Notwithstanding these concerns, the project will proceed.","A pesar de estas preocupaciones, el proyecto seguirá adelante."],
 ["insofar as","en la medida en que","The proposal is useful insofar as it addresses the main risk.","La propuesta es útil en la medida en que aborda el riesgo principal."],

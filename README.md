@@ -12,7 +12,7 @@ Guardi se está convirtiendo en una plataforma multilingüe. Los idiomas del cat
 |---|---|
 | Portugués brasileño (pt-BR) | Disponible: A1, A2, B1 y B2 |
 | Indonesio (id) | Disponible: A1, A2, B1 y B2 |
-| Inglés estadounidense (en-US) | En desarrollo; el currículo B2 está en revisión editorial y todavía no se publica ni se puede seleccionar |
+| Inglés estadounidense (en-US) | Disponible: A1, A2, B1 y B2 (sin audio) |
 | Italiano, francés, alemán, neerlandés, ruso, japonés y coreano | En preparación; todavía no son cursos seleccionables |
 
 El catálogo técnico contempla diez idiomas, pero eso no significa que los diez cursos estén terminados. La disponibilidad real depende del contenido y de las pruebas de cada curso.
@@ -23,7 +23,7 @@ El catálogo técnico contempla diez idiomas, pero eso no significa que los diez
 - Cursos organizados por niveles y unidades, con vocabulario, lecciones y ejercicios.
 - Práctica y repaso del vocabulario con progreso guardado en el dispositivo.
 - Diccionario del vocabulario incluido en los cursos.
-- Audio sintético pregenerado para indonesio y portugués brasileño, con descarga bajo demanda y almacenamiento en caché para reutilizarlo sin conexión cuando ya se haya descargado.
+- Audio sintético pregenerado para indonesio y portugués brasileño; el curso de inglés estadounidense se publica sin audio hasta que se apruebe y valide una voz.
 - Instalación como PWA y almacenamiento en caché para uso offline.
 - Exportación e importación del progreso mediante copias JSON versión 3.
 

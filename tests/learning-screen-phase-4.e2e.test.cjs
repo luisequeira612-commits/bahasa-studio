@@ -478,7 +478,7 @@ test('compact language picker is accessible, catalog-driven and fits the 360px l
     assert.equal(await page.locator('#studyLanguageAvailableSection').isHidden(), false,
       'Disponibles appears when English, Indonesian and Brazilian Portuguese are ready');
     assert.deepEqual(await page.locator('#studyLanguageAvailableList .language-picker-name strong').allTextContents(),
-      ['Inglés', 'Portugués', 'Indonesio']);
+      ['Portugués', 'Inglés', 'Indonesio']);
     assert.equal(await page.locator('#studyLanguageUpcomingList .language-picker-row').count(), 7);
     assert.equal(await page.locator('#studyLanguageUpcomingList .language-picker-row button').count(), 0,
       'upcoming languages must not be interactive buttons');

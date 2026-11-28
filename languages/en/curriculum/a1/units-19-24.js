@@ -109,7 +109,7 @@ unit(22,'Presente continuo I: acciones ahora','Describe acciones que ocurren en 
 ['sit','sentarse / estar sentado','She is sitting by the window.','Ella está sentada junto a la ventana.'],
 ['stand','estar de pie','He is standing near the door.','Él está de pie cerca de la puerta.'],
 ['hold','sostener / sujetar','I am holding a cup.','Estoy sosteniendo una taza.'],
-['smile','sonreír','The baby is smiling.','El bebé está sonriendo.'],
+['smile','sonreír','The baby is smiling and has a smile.','El bebé está sonriendo.'],
 ['cry','llorar','The child is crying.','El niño está llorando.'],
 ['laugh','reír','They are laughing.','Se están riendo.'],
 ['look','mirar','She is looking at the picture.','Ella está mirando el cuadro.'],

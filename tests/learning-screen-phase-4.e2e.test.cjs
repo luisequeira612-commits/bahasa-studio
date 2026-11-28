@@ -474,17 +474,17 @@ test('compact language picker is accessible, catalog-driven and fits the 360px l
     assert.ok(currentProgress.includes('A1 · ' + levelChipPercent + ' completado'),
       'language sheet and level chip must use the same active-course progress');
     assert.deepEqual(await page.locator('#studyLanguageUpcomingList .language-picker-name strong').allTextContents(),
-      ['Inglés', 'Italiano', 'Francés', 'Alemán', 'Neerlandés', 'Ruso', 'Japonés', 'Coreano']);
+      ['Italiano', 'Francés', 'Alemán', 'Neerlandés', 'Ruso', 'Japonés', 'Coreano']);
     assert.equal(await page.locator('#studyLanguageAvailableSection').isHidden(), false,
-      'Disponibles appears when Indonesian and Brazilian Portuguese are ready');
+      'Disponibles appears when English, Indonesian and Brazilian Portuguese are ready');
     assert.deepEqual(await page.locator('#studyLanguageAvailableList .language-picker-name strong').allTextContents(),
-      ['Portugués', 'Indonesio']);
-    assert.equal(await page.locator('#studyLanguageUpcomingList .language-picker-row').count(), 8);
+      ['Portugués', 'Inglés', 'Indonesio']);
+    assert.equal(await page.locator('#studyLanguageUpcomingList .language-picker-row').count(), 7);
     assert.equal(await page.locator('#studyLanguageUpcomingList .language-picker-row button').count(), 0,
       'upcoming languages must not be interactive buttons');
     assert.equal(await page.locator('#studyLanguageUpcomingList input[type=radio]').count(), 0,
       'upcoming languages must not look like radio options');
-    assert.equal(await page.locator('#studyLanguageUpcomingList .language-picker-soon').count(), 8);
+    assert.equal(await page.locator('#studyLanguageUpcomingList .language-picker-soon').count(), 7);
     assert.equal(await page.locator('#studyLanguageUpcomingList .language-picker-soon').first().innerText(), 'Pronto');
 
     await page.locator('.learning-sheet-close[aria-label="Cerrar selector de idioma"]').click();

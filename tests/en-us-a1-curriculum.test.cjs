@@ -35,13 +35,13 @@ function createEnglishPilot(){
  vm.runInNewContext(loaderSource,sandbox);
  return {window,loader:window.CurriculumLoader};
 }
-test('English en-US is registered but remains unavailable until release approval',async()=>{
+test('English en-US is available with all four level manifests at release',async()=>{
  const {window,loader}=createEnglishPilot();
  assert.equal(window.LanguageManager.getLocale('en'),'en-US');
  assert.equal(window.LanguageManager.isSupported('en'),true);
- assert.equal(window.LanguageManager.isAvailable('en'),false);
- assert.equal(loader.resolve('en','A1'),null);
- await assert.rejects(window.LanguageManager.setActiveLanguage('en'),/todavía no está disponible/);
+ assert.equal(window.LanguageManager.isAvailable('en'),true);
+ for(const level of ['A1','A2','B1','B2']) assert.ok(loader.resolve('en',level),level+' manifest must be registered');
+ await window.LanguageManager.setActiveLanguage('en');
 });
 test('English A1 manifest exposes the authored U1-U32 blocks',async()=>{
  const {loader}=createEnglishPilot();

@@ -1063,3 +1063,20 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - 52 unidades, 260 lecciones, 1.040 ejercicios y 1.012 objetivos léxicos nuevos; U10/U20/U30/U40/U50/U52 son repasos/evaluaciones sin vocabulario nuevo.
 - Las pruebas comparan B1 contra todos los objetivos A1/A2 y validan referencias de lecciones/bancos. CI pendiente sobre la cadena actualizada.
 - Entradas `not_checked`; trazabilidad individual CEFR-J/NGSL y revisión nativa pendientes. Inglés permanece `available: false`; no fusionar ni publicar sin aprobación expresa.
+
+
+## 2026-11-28 — Candidato de publicación inglés A1–B2
+- Se prepara una PR de release sobre la cadena A1/A2/B1 y las correcciones B2; añade manifiesto B2, registra A1–B2, habilita inglés y sincroniza README en la misma rama de preparación.
+- Alcance: 184 unidades, 920 lecciones y 3.630 objetivos léxicos nuevos; cada unidad mantiene cinco lecciones y veinte actividades.
+- Inglés se publica sin audio; `audio/en/manifest.json` y `metadata.json` permanecen vacíos. Audio manual únicamente.
+- Los inventarios léxicos siguen `not_checked`; no afirmar trazabilidad CEFR-J/NGSL completa ni certificación oficial. No fusionar ni publicar sin aprobación expresa.
+
+
+## 2026-11-28 — Inglés A1–B2: candidato técnico validado
+- Cadena de publicación: PR #959 A1 U1–U6 → #964 A1 U7–U32 → #971 A2 U1–U40 → #972 B1 U1–U52 → #973 release A1–B2. Todas las PR están abiertas, draft y mergeable; ninguna está fusionada.
+- CI en heads actuales al cierre: #959 regression/type checks success; #964 success/success; #971 success/success; #972 success/success; #973 regression #46121049593 success y type checks #46121049577 success (104/104 pasos de regresión, sin fallos).
+- Currículo: 184 unidades, 920 lecciones, 3.630 registros de objetivos léxicos; cinco lecciones y veinte actividades por unidad. B2 tiene 1.188 objetivos y 63 cadenas exactas repetidas desde A1–B1; se consideran reciclaje, no 63 términos nuevos. No presentar 3.630 como vocabulario único.
+- En PR #973, English `available:true` con manifiestos A1–B2; README sincronizado. Aún no está en main ni desplegado.
+- Audio en-US excluido por falta de validación: manifest vacío, metadata sin hashes; workflow solo `workflow_dispatch`. No incluir clips Piper no revisados.
+- Vocabulario `not_checked`; no declarar cotejo CEFR-J/NGSL completo, revisión nativa integral ni certificación MCER. Muestra editorial cerrada; no reabrir pulido salvo defecto pedagógico o CI.
+- Siguiente: confirmar CI del commit documental final de #973 y dejar PR lista para revisión. No fusionar ni publicar sin aprobación expresa.

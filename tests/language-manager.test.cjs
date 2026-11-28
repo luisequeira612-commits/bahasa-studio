@@ -80,11 +80,15 @@ test('unknown stored values fall back safely to Indonesian', async () => {
 });
 
 
-test('an unavailable future course cannot become active through stale local storage', async () => {
+test('published English en-US can be restored and selected from local storage', async () => {
     const { api, document, values } = createManager({ guardi_active_language: 'en' });
-    assert.equal(await api.init({ read: async () => null, write: async () => {}, onChange: () => {} }), 'id');
+    assert.equal(api.isAvailable('en'), true);
+    assert.equal(api.getLocale('en'), 'en-US');
+    assert.equal(await api.init({ read: async () => null, write: async () => {}, onChange: () => {} }), 'en');
     assert.equal(document.documentElement.lang, 'es');
-    assert.equal(values.get('guardi_active_language'), 'id');
+    assert.equal(values.get('guardi_active_language'), 'en');
+    await api.setActiveLanguage('en');
+    assert.equal(api.getActiveLanguage(), 'en');
 });
 
 

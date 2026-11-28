@@ -29,3 +29,9 @@ Estado: bloque U1–U6 en preparación; no publicado. Fecha: 26 de noviembre de 
 
 - Temas: demostrativos; colores y adjetivos; adjetivos posesivos; familia; pronombres posesivos; casa y there is/are.
 - 132 entradas nuevas previstas para este bloque, en estado not_checked. La trazabilidad por lema contra CEFR-J/NGSL sigue pendiente; no afirmar cotejo individual hasta completar el registro de fuente.
+
+
+## Bloque U13–U18 — 28 nov 2026
+- U13–U18: presente simple afirmativo con I/you/we/they; tercera persona singular; negativas don’t/doesn’t; preguntas do/does; hora/calendario/comidas; habilidades y permiso con can.
+- 132 entradas nuevas previstas (22 por unidad), ejemplos originales y estado inicial not_checked. Se evitó introducir pasado simple en la unidad de preguntas; la expresión temporal “this afternoon” se practica con presente simple de horario.
+- La lista se mantiene sin campos POS/audio porque no existen en el contrato PT-BR actual. CEFR-J/NGSL requieren trazabilidad por lema antes de afirmar cotejo individual.

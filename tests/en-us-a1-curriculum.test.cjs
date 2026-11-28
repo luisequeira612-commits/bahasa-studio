@@ -84,3 +84,18 @@ test('English A1 vocabulary introduces no duplicate targets across U1-U12',async
   seen.add(key);
  }
 });
+
+test('English A1 lesson and unit ordering examples match their vocabulary targets in U7-U12',async()=>{
+ const {loader}=createEnglishPilot();
+ const {units}=await loader.loadUnits('en','A1',[1,2,3,4,5,6,7,8,9,10,11,12]);
+ const words=new Map(units.flatMap(unit=>unit.vocab.map(word=>[word.id,word.target.toLocaleLowerCase()])));
+ const includesTarget=(sentence,id)=>sentence.toLocaleLowerCase().includes(words.get(id));
+ for(const unit of units.filter(item=>item.unitNumber>=7)){
+  for(const lesson of unit.lessons){
+   assert.ok(includesTarget(lesson.exercises[1].correctOrder.join(' '),lesson.exercises[1].vocabId),unit.id+' lesson example mismatch: '+lesson.title);
+  }
+  for(const exercise of unit.exercises.filter(item=>item.type==='order')){
+   assert.ok(includesTarget(exercise.correctOrder.join(' '),exercise.vocabId),unit.id+' unit exercise mismatch: '+exercise.vocabId);
+  }
+ }
+});

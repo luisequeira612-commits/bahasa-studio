@@ -23,3 +23,9 @@ Estado: bloque U1–U6 en preparación; no publicado. Fecha: 26 de noviembre de 
 - Este bloque no afirma que cada lema haya sido cotejado individualmente contra CEFR-J o NGSL. La selección es una primera redacción pedagógica y requiere una pasada de trazabilidad por lema antes de cambiar estados.
 - Las frases de ejemplo son originales para este curso. No se han copiado frases de Tatoeba ni de materiales comerciales.
 - No se incorpora audio ni un campo POS nuevo: el contrato actual de vocabulario no contiene esos campos. No hay modelo de voz en-US aprobado ni clips incluidos en este bloque. Cualquier selección de modelo o extensión de audio se propondrá por separado y no cambiará IndexedDB v1 ni backup JSON v3.
+
+
+## Bloque U7–U12
+
+- Temas: demostrativos; colores y adjetivos; adjetivos posesivos; familia; pronombres posesivos; casa y there is/are.
+- 132 entradas nuevas previstas para este bloque, en estado not_checked. La trazabilidad por lema contra CEFR-J/NGSL sigue pendiente; no afirmar cotejo individual hasta completar el registro de fuente.

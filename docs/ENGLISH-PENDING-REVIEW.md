@@ -6,6 +6,7 @@ Estado: lista única de pulido posterior. Estos puntos no bloquean una publicaci
 
 - Naturalidad fina de expresiones y colocaciones: una segunda opinión nativa puede sugerir alternativas; corregir solo si hay un error claro o una frase confusa.
 - Preferencias de registro y variantes regionales del inglés estadounidense cuando ambas formas sean correctas.
+- A2 U19: afinar el título «Grados pequeños y medios» para reflejar que también introduce `extremely`; la forma y el ejemplo son correctos, así que queda como ajuste de foco no bloqueante.
 - Alternativas de traducción al español latinoamericano cuando la glosa actual sea comprensible y fiel, aunque exista una opción más elegante.
 - Consistencia estilística menor en puntuación, redacción de objetivos y notas gramaticales.
 - Revisión externa MCER/naturalidad nativa, únicamente si más adelante se busca una validación formal. No se afirma que el curso esté certificado.
@@ -18,7 +19,7 @@ Los currículos A1/A2/B1 están desarrollados en ramas y PRs apiladas, pero toda
 - A2: U19 (matices e intensidad), PR #904.
 - B1: U25 (consejos, recomendaciones y críticas), secuencia PR #922.
 - B2: U29 (grupos nominales complejos), PR #948. U30 es repaso y resulta menos representativa para comprobar enseñanza nueva.
-- A1/A2/B1: no hay unidades inglesas que seleccionar en el estado actual. Si el objetivo de publicación es el curso completo A1–B2, la ausencia de esos tres niveles es un bloqueante de alcance, no una tarea de pulido.
+- Bloqueante de publicación completa: integrar en `main` las cadenas A1/A2/B1 y registrar sus manifiestos; el material ya existe en ramas/PRs, pero todavía no forma parte de la rama publicada.
 
 En cada muestra comprobar únicamente: correspondencia entre objetivos, ejemplos y lecciones; fidelidad de traducciones; validez de respuestas; y ausencia de errores gramaticales que enseñen algo incorrecto. No ampliar la muestra ni reabrir otras unidades.
 

@@ -1039,3 +1039,8 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - El PR inicial #891 contenía un commit automático de Piper con 263 MP3 en-US sin revisión de pronunciación. Se crea esta rama desde el padre del commit de audio para conservar el currículo U1–U6 y excluir todos esos clips.
 - No se selecciona Piper como voz en-US; el audio no forma parte de la publicación curricular hasta que exista una decisión explícita de modelo y validación.
 - `.github/workflows/audio.yml` deja de dispararse en cada push y queda solo con `workflow_dispatch`, para evitar síntesis y commits automáticos.
+
+
+## 2026-11-28 — Inventarios vacíos de audio para inglés A1
+- El Service Worker descubre idiomas con currículo y exige que sus rutas de inventario existan durante la instalación offline. Para el curso en-US sin audio se añadieron `audio/en/manifest.json` vacío y `audio/en/metadata.json` con `audio_hashes: {}`.
+- Estos archivos son solo bootstrap: no contienen clips, hashes inventados ni modelo de voz. El audio en-US sigue sin seleccionar y fuera del alcance de publicación.

@@ -30,7 +30,7 @@ const data=[
 ["evidently","evidentemente","The team has evidently misunderstood the instructions.","Evidentemente, el equipo ha entendido mal las instrucciones."],
 ["there is little doubt that","hay pocas dudas de que","There is little doubt that costs will rise.","Hay pocas dudas de que los costos aumentarán."],
 ["it seems reasonable to assume","parece razonable suponer","It seems reasonable to assume that demand will remain stable.","Parece razonable suponer que la demanda se mantendrá estable."],
-["to rule out","descartar","We cannot rule out a technical fault.","No podemos descartar un fallo técnico."],
+["to rule out","descartar","We cannot rule out a technical fault.","No podemos descartar una falla técnica."],
 ["to point to","apuntar a / indicar","All the evidence points to a software problem.","Todas las pruebas apuntan a un problema de software."],
 ["to suggest","sugerir / indicar","The latest results suggest a gradual recovery.","Los últimos resultados indican una recuperación gradual."],
 ["to be consistent with","ser compatible con","Her account is consistent with the available evidence.","Su relato es compatible con las pruebas disponibles."],

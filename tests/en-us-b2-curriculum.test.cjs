@@ -561,7 +561,7 @@ test('English B2 Spanish examples retain Latin American vocabulary choices', () 
   for (const [number, target, expected] of cases) {
     const unit = units.find((item) => item.unitNumber === number);
     assert.ok(unit, 'Missing B2 unit ' + number);
-    const word = unit.vocab.find((item) => item.target === target);
+    const word = unit.vocab.find((item) => item.target.trim() === target.trim());
     assert.ok(word, 'Missing target ' + target + ' in U' + number);
     assert.ok(word.exEsp.toLocaleLowerCase().includes(expected),
       'Expected Latin American term "' + expected + '" in U' + number + ' ' + target);

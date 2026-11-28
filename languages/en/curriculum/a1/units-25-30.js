@@ -169,7 +169,7 @@ unit(28,'Cantidades: much, many y expresiones','Pregunta y responde sobre cantid
 ['Lección 3: Demasiado y pocos','Describe cantidades excesivas o pequeñas.','Too much + incontable; too many + plural contable; few/little indican cantidad pequeña.',[8,9,12,13],'There are too many people.'],
 ['Lección 4: Medidas y unidades','Expresa cantidades con medidas comunes.','Usa a/an + medida + of: a kilo of rice, a liter of milk.',[14,15,16,17],'I need a kilo of rice.'],
 ['Lección 5: Paquetes y grupos','Habla de docenas, paquetes y pares.','Dozen, packet, bunch y pair permiten cuantificar grupos de objetos.',[18,19,20,21],'Buy a packet of sugar.']
-],['How many apples are there?','Add a little sugar.','We have enough water.','There is too much salt.','There are too many people.']),
+],['I have a few apples.','Add a little sugar.','We have enough water.','There is too much salt.','There are too many people.']),
 unit(29,'En un restaurante','Lee un menú, pide comida y bebida y solicita la cuenta con expresiones corteses.','Usa I’d like… para pedir; Can I have…? para solicitar; Could we have the bill? para pedir la cuenta.','Pedir con cortesía','En un restaurante, I’d like… suena más cortés que I want… para hacer un pedido.',[
 ['menu','menú / carta','Can I see the menu?','¿Puedo ver el menú?'],
 ['server','mesero / camarero','The server is friendly.','El mesero es amable.'],

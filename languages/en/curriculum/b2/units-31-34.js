@@ -12,7 +12,7 @@ const defs=[
 ["thereby","con ello / de ese modo","The update simplifies the process, thereby reducing delays.","La actualización simplifica el proceso y, con ello, reduce los retrasos."],
 ["hence","por lo tanto","Demand has fallen; hence, production will be reduced.","La demanda ha caído; por lo tanto, se reducirá la producción."],
 ["accordingly","en consecuencia","The requirements have changed; the schedule was adjusted accordingly.","Los requisitos han cambiado; el calendario se ajustó en consecuencia."],
-["in turn","a su vez","Better training improves confidence and, in turn, performance.","Una mejor formación aumenta la confianza y, a su vez, el rendimiento."],
+["in turn","a su vez","Better training improves confidence and, in turn, performance.","Una mejor capacitación aumenta la confianza y, a su vez, el rendimiento."],
 ["as a result","como resultado","The supplier withdrew; as a result, the launch was postponed.","El proveedor se retiró; como resultado, se pospuso el lanzamiento."],
 ["in addition to","además de","In addition to the fee, applicants must submit proof of identity.","Además de la tarifa, los solicitantes deben presentar una prueba de identidad."],
 ["alongside","junto con","The report examines costs alongside environmental effects.","El informe examina los costos junto con los efectos ambientales."],

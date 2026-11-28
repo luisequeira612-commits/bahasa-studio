@@ -8,6 +8,7 @@ Revisión fijada: 5ec43b186ef915a195d3ddbcfd9916e76c503c3f
 
 ## Voces usadas
 
+- **Inglés** (`en`): `en_US-lessac-medium` — [MODEL_CARD](./voices/en/MODEL_CARD)
 - **Indonesio** (`id`): `id_ID-news_tts-medium` — [MODEL_CARD](./voices/id/MODEL_CARD)
 - **Portugués** (`pt-BR`): `pt_BR-faber-medium` — [MODEL_CARD](./voices/pt-BR/MODEL_CARD)
 

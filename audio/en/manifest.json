@@ -1,0 +1,4473 @@
+[
+  {
+    "id": "039794a643ef",
+    "language": "en",
+    "locale": "en-US",
+    "text": "phone number",
+    "file": "./audio/en/039794a643ef.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "03ddebefddfd",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I eat an apple.",
+    "file": "./audio/en/03ddebefddfd.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "042dc4512fa3",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I",
+    "file": "./audio/en/042dc4512fa3.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "086a8ef82d9a",
+    "language": "en",
+    "locale": "en-US",
+    "text": "The bus number is sixteen.",
+    "file": "./audio/en/086a8ef82d9a.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "08d2b9a6015b",
+    "language": "en",
+    "locale": "en-US",
+    "text": "My classes are small.",
+    "file": "./audio/en/08d2b9a6015b.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "09960df8e05e",
+    "language": "en",
+    "locale": "en-US",
+    "text": "you’re welcome",
+    "file": "./audio/en/09960df8e05e.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "0aa42062bca7",
+    "language": "en",
+    "locale": "en-US",
+    "text": "This noun is singular.",
+    "file": "./audio/en/0aa42062bca7.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "0aca995b93ad",
+    "language": "en",
+    "locale": "en-US",
+    "text": "singular",
+    "file": "./audio/en/0aca995b93ad.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "0b064373fb4d",
+    "language": "en",
+    "locale": "en-US",
+    "text": "how",
+    "file": "./audio/en/0b064373fb4d.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "0b1e95cfd977",
+    "language": "en",
+    "locale": "en-US",
+    "text": "from",
+    "file": "./audio/en/0b1e95cfd977.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "0d0965064039",
+    "language": "en",
+    "locale": "en-US",
+    "text": "The house number is nineteen.",
+    "file": "./audio/en/0d0965064039.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "0e526282e0d3",
+    "language": "en",
+    "locale": "en-US",
+    "text": "It is nice to meet you.",
+    "file": "./audio/en/0e526282e0d3.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "0e93069c4011",
+    "language": "en",
+    "locale": "en-US",
+    "text": "child",
+    "file": "./audio/en/0e93069c4011.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "1015e782ae23",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Hi, Luis!",
+    "file": "./audio/en/1015e782ae23.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "107d8a6cfae6",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Write the letter A.",
+    "file": "./audio/en/107d8a6cfae6.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "157a7173c07e",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Please say it again.",
+    "file": "./audio/en/157a7173c07e.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "15d32ab7f9bd",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I am a student.",
+    "file": "./audio/en/15d32ab7f9bd.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "15f96db9ec06",
+    "language": "en",
+    "locale": "en-US",
+    "text": "The men are teachers.",
+    "file": "./audio/en/15f96db9ec06.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "1615307cc452",
+    "language": "en",
+    "locale": "en-US",
+    "text": "object",
+    "file": "./audio/en/1615307cc452.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "176e809d3d84",
+    "language": "en",
+    "locale": "en-US",
+    "text": "My teeth are clean.",
+    "file": "./audio/en/176e809d3d84.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "1817d317394a",
+    "language": "en",
+    "locale": "en-US",
+    "text": "The book is on a table.",
+    "file": "./audio/en/1817d317394a.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "18cc852c9ac8",
+    "language": "en",
+    "locale": "en-US",
+    "text": "letter",
+    "file": "./audio/en/18cc852c9ac8.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "19647db2fbfa",
+    "language": "en",
+    "locale": "en-US",
+    "text": "animals",
+    "file": "./audio/en/19647db2fbfa.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "1ab89fef08e0",
+    "language": "en",
+    "locale": "en-US",
+    "text": "It takes an hour.",
+    "file": "./audio/en/1ab89fef08e0.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "1b98711ee3f0",
+    "language": "en",
+    "locale": "en-US",
+    "text": "We are students.",
+    "file": "./audio/en/1b98711ee3f0.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "1dcc1008b11b",
+    "language": "en",
+    "locale": "en-US",
+    "text": "This word is short.",
+    "file": "./audio/en/1dcc1008b11b.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "1ddb4c0498a6",
+    "language": "en",
+    "locale": "en-US",
+    "text": "What is your name?",
+    "file": "./audio/en/1ddb4c0498a6.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "1e2c22194035",
+    "language": "en",
+    "locale": "en-US",
+    "text": "She has an umbrella.",
+    "file": "./audio/en/1e2c22194035.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "1e469587d5d8",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Goodbye, Ana.",
+    "file": "./audio/en/1e469587d5d8.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "1f1945e76692",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Please write your full name.",
+    "file": "./audio/en/1f1945e76692.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "204036a1ef6e",
+    "language": "en",
+    "locale": "en-US",
+    "text": "student",
+    "file": "./audio/en/204036a1ef6e.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "20a193e59001",
+    "language": "en",
+    "locale": "en-US",
+    "text": "What is your phone number?",
+    "file": "./audio/en/20a193e59001.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "2147a9e5f9e8",
+    "language": "en",
+    "locale": "en-US",
+    "text": "listen",
+    "file": "./audio/en/2147a9e5f9e8.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "21e715faad49",
+    "language": "en",
+    "locale": "en-US",
+    "text": "ID card",
+    "file": "./audio/en/21e715faad49.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "239e7d4e44bf",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Write your name with a capital letter.",
+    "file": "./audio/en/239e7d4e44bf.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "25018d83422a",
+    "language": "en",
+    "locale": "en-US",
+    "text": "excuse me",
+    "file": "./audio/en/25018d83422a.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "250e77f12a5a",
+    "language": "en",
+    "locale": "en-US",
+    "text": "banana",
+    "file": "./audio/en/250e77f12a5a.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "259d2ff9d0a9",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Good afternoon, Ms. Lee.",
+    "file": "./audio/en/259d2ff9d0a9.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "28d92c505730",
+    "language": "en",
+    "locale": "en-US",
+    "text": "B is a consonant.",
+    "file": "./audio/en/28d92c505730.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "292b0901993f",
+    "language": "en",
+    "locale": "en-US",
+    "text": "watch",
+    "file": "./audio/en/292b0901993f.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "2b0618478387",
+    "language": "en",
+    "locale": "en-US",
+    "text": "last name",
+    "file": "./audio/en/2b0618478387.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "2bec2da4830f",
+    "language": "en",
+    "locale": "en-US",
+    "text": "What is your age?",
+    "file": "./audio/en/2bec2da4830f.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "2c54892c40a1",
+    "language": "en",
+    "locale": "en-US",
+    "text": "city",
+    "file": "./audio/en/2c54892c40a1.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "2eda8ad1632a",
+    "language": "en",
+    "locale": "en-US",
+    "text": "job",
+    "file": "./audio/en/2eda8ad1632a.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "2f94522912c7",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Where are you from?",
+    "file": "./audio/en/2f94522912c7.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "30f088ea6673",
+    "language": "en",
+    "locale": "en-US",
+    "text": "he",
+    "file": "./audio/en/30f088ea6673.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "3199ea056253",
+    "language": "en",
+    "locale": "en-US",
+    "text": "animal",
+    "file": "./audio/en/3199ea056253.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "31a841af7b2f",
+    "language": "en",
+    "locale": "en-US",
+    "text": "pen",
+    "file": "./audio/en/31a841af7b2f.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "32c70cebf110",
+    "language": "en",
+    "locale": "en-US",
+    "text": "bus",
+    "file": "./audio/en/32c70cebf110.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "32cb9138ce24",
+    "language": "en",
+    "locale": "en-US",
+    "text": "foot",
+    "file": "./audio/en/32cb9138ce24.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "33cdb55381f8",
+    "language": "en",
+    "locale": "en-US",
+    "text": "This is a greeting.",
+    "file": "./audio/en/33cdb55381f8.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "3406aca115a3",
+    "language": "en",
+    "locale": "en-US",
+    "text": "He eats an egg.",
+    "file": "./audio/en/3406aca115a3.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "3729c1ae997e",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I am twenty years old.",
+    "file": "./audio/en/3729c1ae997e.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "372a37e1ceed",
+    "language": "en",
+    "locale": "en-US",
+    "text": "That is an idea.",
+    "file": "./audio/en/372a37e1ceed.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "37a9d6966711",
+    "language": "en",
+    "locale": "en-US",
+    "text": "consonant",
+    "file": "./audio/en/37a9d6966711.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "3807939e4538",
+    "language": "en",
+    "locale": "en-US",
+    "text": "The village is small.",
+    "file": "./audio/en/3807939e4538.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "392d7871944a",
+    "language": "en",
+    "locale": "en-US",
+    "text": "meet",
+    "file": "./audio/en/392d7871944a.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "3ad5afbdd2df",
+    "language": "en",
+    "locale": "en-US",
+    "text": "What is your job?",
+    "file": "./audio/en/3ad5afbdd2df.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "3bbae7c106d9",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Say your name, please.",
+    "file": "./audio/en/3bbae7c106d9.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "3bdc3ec682bf",
+    "language": "en",
+    "locale": "en-US",
+    "text": "village",
+    "file": "./audio/en/3bdc3ec682bf.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "3c8ec4874488",
+    "language": "en",
+    "locale": "en-US",
+    "text": "goodbye",
+    "file": "./audio/en/3c8ec4874488.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "3cbcd90adc4b",
+    "language": "en",
+    "locale": "en-US",
+    "text": "word",
+    "file": "./audio/en/3cbcd90adc4b.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "3ff95ac9e6b1",
+    "language": "en",
+    "locale": "en-US",
+    "text": "umbrella",
+    "file": "./audio/en/3ff95ac9e6b1.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "41e411e66a8a",
+    "language": "en",
+    "locale": "en-US",
+    "text": "It is a chair.",
+    "file": "./audio/en/41e411e66a8a.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "42685f11da91",
+    "language": "en",
+    "locale": "en-US",
+    "text": "children",
+    "file": "./audio/en/42685f11da91.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "456ec63727cb",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Hello, I am Ana.",
+    "file": "./audio/en/456ec63727cb.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "45849707a3a1",
+    "language": "en",
+    "locale": "en-US",
+    "text": "The women are students.",
+    "file": "./audio/en/45849707a3a1.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "46148cc3b4d2",
+    "language": "en",
+    "locale": "en-US",
+    "text": "where",
+    "file": "./audio/en/46148cc3b4d2.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "477570067a6f",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I am single.",
+    "file": "./audio/en/477570067a6f.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "491f3b51ff22",
+    "language": "en",
+    "locale": "en-US",
+    "text": "The bus is number six.",
+    "file": "./audio/en/491f3b51ff22.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "498950c72e2c",
+    "language": "en",
+    "locale": "en-US",
+    "text": "My last name is García.",
+    "file": "./audio/en/498950c72e2c.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "49a6897e7a31",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I work in a school.",
+    "file": "./audio/en/49a6897e7a31.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "4a240ec058b4",
+    "language": "en",
+    "locale": "en-US",
+    "text": "she",
+    "file": "./audio/en/4a240ec058b4.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "4a82cb6db537",
+    "language": "en",
+    "locale": "en-US",
+    "text": "teacher",
+    "file": "./audio/en/4a82cb6db537.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "4ae04680d5d0",
+    "language": "en",
+    "locale": "en-US",
+    "text": "My room number is zero.",
+    "file": "./audio/en/4ae04680d5d0.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "4db2c1df4610",
+    "language": "en",
+    "locale": "en-US",
+    "text": "five",
+    "file": "./audio/en/4db2c1df4610.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "4f1a188f00ac",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I have one phone.",
+    "file": "./audio/en/4f1a188f00ac.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "4fa6024f1249",
+    "language": "en",
+    "locale": "en-US",
+    "text": "egg",
+    "file": "./audio/en/4fa6024f1249.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "4ff0b1538469",
+    "language": "en",
+    "locale": "en-US",
+    "text": "year",
+    "file": "./audio/en/4ff0b1538469.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "50b14c17adf6",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I am from Nicaragua.",
+    "file": "./audio/en/50b14c17adf6.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "51a77267f19f",
+    "language": "en",
+    "locale": "en-US",
+    "text": "The babies are sleeping.",
+    "file": "./audio/en/51a77267f19f.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "526df71b1a25",
+    "language": "en",
+    "locale": "en-US",
+    "text": "There is one box.",
+    "file": "./audio/en/526df71b1a25.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "52ab86a87214",
+    "language": "en",
+    "locale": "en-US",
+    "text": "hour",
+    "file": "./audio/en/52ab86a87214.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "52d081ef4d70",
+    "language": "en",
+    "locale": "en-US",
+    "text": "married",
+    "file": "./audio/en/52d081ef4d70.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "565cecd7e8f5",
+    "language": "en",
+    "locale": "en-US",
+    "text": "article",
+    "file": "./audio/en/565cecd7e8f5.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "57800cc07560",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I have a book.",
+    "file": "./audio/en/57800cc07560.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "5929e58a5aa1",
+    "language": "en",
+    "locale": "en-US",
+    "text": "nice",
+    "file": "./audio/en/5929e58a5aa1.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "5afcbbf6ae4b",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I have a bag.",
+    "file": "./audio/en/5afcbbf6ae4b.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "5b8bb3c3093f",
+    "language": "en",
+    "locale": "en-US",
+    "text": "The spelling is easy.",
+    "file": "./audio/en/5b8bb3c3093f.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "5cf896e678bd",
+    "language": "en",
+    "locale": "en-US",
+    "text": "fifteen",
+    "file": "./audio/en/5cf896e678bd.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "5dc56b9aab61",
+    "language": "en",
+    "locale": "en-US",
+    "text": "age",
+    "file": "./audio/en/5dc56b9aab61.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "5dff4cb5c57b",
+    "language": "en",
+    "locale": "en-US",
+    "text": "An article comes before a noun.",
+    "file": "./audio/en/5dff4cb5c57b.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "5e1d647827a9",
+    "language": "en",
+    "locale": "en-US",
+    "text": "The address has three numbers.",
+    "file": "./audio/en/5e1d647827a9.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "5e2e97c3c7ba",
+    "language": "en",
+    "locale": "en-US",
+    "text": "sound",
+    "file": "./audio/en/5e2e97c3c7ba.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "5f0b3108257e",
+    "language": "en",
+    "locale": "en-US",
+    "text": "The word is in lowercase letters.",
+    "file": "./audio/en/5f0b3108257e.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "5f2321ee78ec",
+    "language": "en",
+    "locale": "en-US",
+    "text": "nationality",
+    "file": "./audio/en/5f2321ee78ec.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "602aa520f142",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I meet my new teacher today.",
+    "file": "./audio/en/602aa520f142.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "6030eceb9374",
+    "language": "en",
+    "locale": "en-US",
+    "text": "The animal is small.",
+    "file": "./audio/en/6030eceb9374.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "610f06363235",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Listen to the first sound.",
+    "file": "./audio/en/610f06363235.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "63b3ea556378",
+    "language": "en",
+    "locale": "en-US",
+    "text": "tooth",
+    "file": "./audio/en/63b3ea556378.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "6711b9ebf598",
+    "language": "en",
+    "locale": "en-US",
+    "text": "men",
+    "file": "./audio/en/6711b9ebf598.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "676e6f35cfc1",
+    "language": "en",
+    "locale": "en-US",
+    "text": "we",
+    "file": "./audio/en/676e6f35cfc1.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "690cbaec5725",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I have a phone.",
+    "file": "./audio/en/690cbaec5725.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "6965756fd429",
+    "language": "en",
+    "locale": "en-US",
+    "text": "See you later!",
+    "file": "./audio/en/6965756fd429.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "6ae999552a0d",
+    "language": "en",
+    "locale": "en-US",
+    "text": "name",
+    "file": "./audio/en/6ae999552a0d.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "6bbcd860e680",
+    "language": "en",
+    "locale": "en-US",
+    "text": "This is a book.",
+    "file": "./audio/en/6bbcd860e680.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "6cf34755b9de",
+    "language": "en",
+    "locale": "en-US",
+    "text": "baby",
+    "file": "./audio/en/6cf34755b9de.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "6e3f5ad7c109",
+    "language": "en",
+    "locale": "en-US",
+    "text": "thanks",
+    "file": "./audio/en/6e3f5ad7c109.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "6ebb427c77bb",
+    "language": "en",
+    "locale": "en-US",
+    "text": "My name is Ana.",
+    "file": "./audio/en/6ebb427c77bb.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "70c6adb61515",
+    "language": "en",
+    "locale": "en-US",
+    "text": "eighteen",
+    "file": "./audio/en/70c6adb61515.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "70fc5d1d9418",
+    "language": "en",
+    "locale": "en-US",
+    "text": "She is a teacher.",
+    "file": "./audio/en/70fc5d1d9418.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "7134c80b9391",
+    "language": "en",
+    "locale": "en-US",
+    "text": "The buses are here.",
+    "file": "./audio/en/7134c80b9391.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "72e47f8daf4e",
+    "language": "en",
+    "locale": "en-US",
+    "text": "lowercase letter",
+    "file": "./audio/en/72e47f8daf4e.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "733e0dca13b9",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Please repeat the word.",
+    "file": "./audio/en/733e0dca13b9.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "7398f3488d11",
+    "language": "en",
+    "locale": "en-US",
+    "text": "The English alphabet has twenty-six letters.",
+    "file": "./audio/en/7398f3488d11.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "766250612b00",
+    "language": "en",
+    "locale": "en-US",
+    "text": "idea",
+    "file": "./audio/en/766250612b00.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "77a0b498fece",
+    "language": "en",
+    "locale": "en-US",
+    "text": "capital letter",
+    "file": "./audio/en/77a0b498fece.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "78c9a53e2f28",
+    "language": "en",
+    "locale": "en-US",
+    "text": "bye",
+    "file": "./audio/en/78c9a53e2f28.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "790b0d26ec2e",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Choose an object.",
+    "file": "./audio/en/790b0d26ec2e.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "7e637b214983",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Read the word aloud.",
+    "file": "./audio/en/7e637b214983.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "7f04b34add32",
+    "language": "en",
+    "locale": "en-US",
+    "text": "The room is number ten.",
+    "file": "./audio/en/7f04b34add32.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "80387d19918c",
+    "language": "en",
+    "locale": "en-US",
+    "text": "The animals are small.",
+    "file": "./audio/en/80387d19918c.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "80d02412fd58",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Spell it, please.",
+    "file": "./audio/en/80d02412fd58.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "8146160c40ca",
+    "language": "en",
+    "locale": "en-US",
+    "text": "uniform",
+    "file": "./audio/en/8146160c40ca.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "8175e3c8753a",
+    "language": "en",
+    "locale": "en-US",
+    "text": "man",
+    "file": "./audio/en/8175e3c8753a.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "8405dec312b8",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Listen and repeat.",
+    "file": "./audio/en/8405dec312b8.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "8469887c1f43",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Sorry, I am late.",
+    "file": "./audio/en/8469887c1f43.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "84d64c85e7eb",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Thanks, Luis!",
+    "file": "./audio/en/84d64c85e7eb.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "851e13a65333",
+    "language": "en",
+    "locale": "en-US",
+    "text": "chair",
+    "file": "./audio/en/851e13a65333.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "8590bef00672",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I want a banana.",
+    "file": "./audio/en/8590bef00672.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "86f7e437faa5",
+    "language": "en",
+    "locale": "en-US",
+    "text": "a",
+    "file": "./audio/en/86f7e437faa5.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "882dce509f9d",
+    "language": "en",
+    "locale": "en-US",
+    "text": "They are married.",
+    "file": "./audio/en/882dce509f9d.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "885c39aca07c",
+    "language": "en",
+    "locale": "en-US",
+    "text": "nineteen",
+    "file": "./audio/en/885c39aca07c.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "894151c40851",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I wear a uniform.",
+    "file": "./audio/en/894151c40851.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "897709c0c2c1",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I need a pencil.",
+    "file": "./audio/en/897709c0c2c1.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "897a1c598764",
+    "language": "en",
+    "locale": "en-US",
+    "text": "thank you",
+    "file": "./audio/en/897a1c598764.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "8a082cd5d811",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I live at number seven.",
+    "file": "./audio/en/8a082cd5d811.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "8a13a01d705b",
+    "language": "en",
+    "locale": "en-US",
+    "text": "fourteen",
+    "file": "./audio/en/8a13a01d705b.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "8a2189d07b16",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I am Luis.",
+    "file": "./audio/en/8a2189d07b16.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "8a7d8f7e9688",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I live in Managua.",
+    "file": "./audio/en/8a7d8f7e9688.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "8af56de68279",
+    "language": "en",
+    "locale": "en-US",
+    "text": "you",
+    "file": "./audio/en/8af56de68279.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "8b9c4b13a6f2",
+    "language": "en",
+    "locale": "en-US",
+    "text": "see you",
+    "file": "./audio/en/8b9c4b13a6f2.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "8cf9f2db1f45",
+    "language": "en",
+    "locale": "en-US",
+    "text": "This is my address.",
+    "file": "./audio/en/8cf9f2db1f45.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "8d767bf5b723",
+    "language": "en",
+    "locale": "en-US",
+    "text": "class",
+    "file": "./audio/en/8d767bf5b723.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "8e64f33f3cd8",
+    "language": "en",
+    "locale": "en-US",
+    "text": "address book",
+    "file": "./audio/en/8e64f33f3cd8.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "8e68b3e5af63",
+    "language": "en",
+    "locale": "en-US",
+    "text": "country",
+    "file": "./audio/en/8e68b3e5af63.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "914756ae92d9",
+    "language": "en",
+    "locale": "en-US",
+    "text": "You are my friend.",
+    "file": "./audio/en/914756ae92d9.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "9513f7b8c130",
+    "language": "en",
+    "locale": "en-US",
+    "text": "The women are at home.",
+    "file": "./audio/en/9513f7b8c130.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "9668ce72dd96",
+    "language": "en",
+    "locale": "en-US",
+    "text": "The apartment is number seventeen.",
+    "file": "./audio/en/9668ce72dd96.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "9705791a4a10",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Fourteen is the house number.",
+    "file": "./audio/en/9705791a4a10.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "970c80660165",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Excuse me, are you Ana?",
+    "file": "./audio/en/970c80660165.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "98aadb37083e",
+    "language": "en",
+    "locale": "en-US",
+    "text": "live",
+    "file": "./audio/en/98aadb37083e.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "9b4e473e4de7",
+    "language": "en",
+    "locale": "en-US",
+    "text": "bag",
+    "file": "./audio/en/9b4e473e4de7.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "9bdb51b68097",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Four people are here.",
+    "file": "./audio/en/9bdb51b68097.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "9e08dcce3533",
+    "language": "en",
+    "locale": "en-US",
+    "text": "how old",
+    "file": "./audio/en/9e08dcce3533.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "9e3d0f5fc2bf",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Our families are here.",
+    "file": "./audio/en/9e3d0f5fc2bf.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "9e8fbda8d5ff",
+    "language": "en",
+    "locale": "en-US",
+    "text": "spell",
+    "file": "./audio/en/9e8fbda8d5ff.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "9f8f7eec5dea",
+    "language": "en",
+    "locale": "en-US",
+    "text": "four",
+    "file": "./audio/en/9f8f7eec5dea.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "a00bbe560e6b",
+    "language": "en",
+    "locale": "en-US",
+    "text": "seven",
+    "file": "./audio/en/a00bbe560e6b.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "a0f7e779f924",
+    "language": "en",
+    "locale": "en-US",
+    "text": "greeting",
+    "file": "./audio/en/a0f7e779f924.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "a110e6b9a361",
+    "language": "en",
+    "locale": "en-US",
+    "text": "what",
+    "file": "./audio/en/a110e6b9a361.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "a2ea07451f79",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Bye, see you tomorrow.",
+    "file": "./audio/en/a2ea07451f79.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "a2fa12e51c9c",
+    "language": "en",
+    "locale": "en-US",
+    "text": "The children are happy.",
+    "file": "./audio/en/a2fa12e51c9c.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "a62f2225bf70",
+    "language": "en",
+    "locale": "en-US",
+    "text": "key",
+    "file": "./audio/en/a62f2225bf70.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "a7afddb68260",
+    "language": "en",
+    "locale": "en-US",
+    "text": "read",
+    "file": "./audio/en/a7afddb68260.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "a8133bcb54c2",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Nine is the last number.",
+    "file": "./audio/en/a8133bcb54c2.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "a81fecb038e8",
+    "language": "en",
+    "locale": "en-US",
+    "text": "teeth",
+    "file": "./audio/en/a81fecb038e8.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "a88b7dcd1a9e",
+    "language": "en",
+    "locale": "en-US",
+    "text": "email",
+    "file": "./audio/en/a88b7dcd1a9e.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "a8af66be862b",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Her address is in my address book.",
+    "file": "./audio/en/a8af66be862b.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "a8cbec7254dd",
+    "language": "en",
+    "locale": "en-US",
+    "text": "good morning",
+    "file": "./audio/en/a8cbec7254dd.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "aa8c41330509",
+    "language": "en",
+    "locale": "en-US",
+    "text": "zero",
+    "file": "./audio/en/aa8c41330509.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "aaa4d5f872be",
+    "language": "en",
+    "locale": "en-US",
+    "text": "again",
+    "file": "./audio/en/aaa4d5f872be.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "aadc40f4881f",
+    "language": "en",
+    "locale": "en-US",
+    "text": "first name",
+    "file": "./audio/en/aadc40f4881f.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "aaf4c61ddcc5",
+    "language": "en",
+    "locale": "en-US",
+    "text": "hello",
+    "file": "./audio/en/aaf4c61ddcc5.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "ab3ccc8dba2a",
+    "language": "en",
+    "locale": "en-US",
+    "text": "people",
+    "file": "./audio/en/ab3ccc8dba2a.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "ad782ecdac77",
+    "language": "en",
+    "locale": "en-US",
+    "text": "two",
+    "file": "./audio/en/ad782ecdac77.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "b180a590e577",
+    "language": "en",
+    "locale": "en-US",
+    "text": "He is Daniel.",
+    "file": "./audio/en/b180a590e577.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "b1e11da2fe27",
+    "language": "en",
+    "locale": "en-US",
+    "text": "A is a vowel.",
+    "file": "./audio/en/b1e11da2fe27.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "b3ae4f722a30",
+    "language": "en",
+    "locale": "en-US",
+    "text": "women",
+    "file": "./audio/en/b3ae4f722a30.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "b4ddce182ecf",
+    "language": "en",
+    "locale": "en-US",
+    "text": "nine",
+    "file": "./audio/en/b4ddce182ecf.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "b521f9394fab",
+    "language": "en",
+    "locale": "en-US",
+    "text": "twelve",
+    "file": "./audio/en/b521f9394fab.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "b6a552dade86",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Who is your teacher?",
+    "file": "./audio/en/b6a552dade86.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "b76a9a5d7130",
+    "language": "en",
+    "locale": "en-US",
+    "text": "She has an apple.",
+    "file": "./audio/en/b76a9a5d7130.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "b7adf77905f5",
+    "language": "en",
+    "locale": "en-US",
+    "text": "who",
+    "file": "./audio/en/b7adf77905f5.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "b802f384302c",
+    "language": "en",
+    "locale": "en-US",
+    "text": "three",
+    "file": "./audio/en/b802f384302c.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "be908a0ac863",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I have two keys.",
+    "file": "./audio/en/be908a0ac863.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "bec9703f7a45",
+    "language": "en",
+    "locale": "en-US",
+    "text": "six",
+    "file": "./audio/en/bec9703f7a45.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "c00dbbc9dadf",
+    "language": "en",
+    "locale": "en-US",
+    "text": "old",
+    "file": "./audio/en/c00dbbc9dadf.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "c0ac4842418e",
+    "language": "en",
+    "locale": "en-US",
+    "text": "repeat",
+    "file": "./audio/en/c0ac4842418e.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "c0d94d09a927",
+    "language": "en",
+    "locale": "en-US",
+    "text": "sixteen",
+    "file": "./audio/en/c0d94d09a927.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "c1777d8e8486",
+    "language": "en",
+    "locale": "en-US",
+    "text": "seventeen",
+    "file": "./audio/en/c1777d8e8486.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "c22b5f917834",
+    "language": "en",
+    "locale": "en-US",
+    "text": "hi",
+    "file": "./audio/en/c22b5f917834.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "c24f5cff02c0",
+    "language": "en",
+    "locale": "en-US",
+    "text": "thirteen",
+    "file": "./audio/en/c24f5cff02c0.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "c3255528973f",
+    "language": "en",
+    "locale": "en-US",
+    "text": "The code has eight digits.",
+    "file": "./audio/en/c3255528973f.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "c33f059b0ca7",
+    "language": "en",
+    "locale": "en-US",
+    "text": "family",
+    "file": "./audio/en/c33f059b0ca7.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "c3ee137d4f22",
+    "language": "en",
+    "locale": "en-US",
+    "text": "table",
+    "file": "./audio/en/c3ee137d4f22.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "c4d2a2cec764",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Can you spell your name?",
+    "file": "./audio/en/c4d2a2cec764.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "c58325d745a9",
+    "language": "en",
+    "locale": "en-US",
+    "text": "She studies at a university.",
+    "file": "./audio/en/c58325d745a9.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "c5a7b793a302",
+    "language": "en",
+    "locale": "en-US",
+    "text": "The plural is different.",
+    "file": "./audio/en/c5a7b793a302.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "c60266a8adad",
+    "language": "en",
+    "locale": "en-US",
+    "text": "computer",
+    "file": "./audio/en/c60266a8adad.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "c65dc3b9a9ee",
+    "language": "en",
+    "locale": "en-US",
+    "text": "alphabet",
+    "file": "./audio/en/c65dc3b9a9ee.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "c662180230ca",
+    "language": "en",
+    "locale": "en-US",
+    "text": "address",
+    "file": "./audio/en/c662180230ca.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "c69718020f99",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Two men are here.",
+    "file": "./audio/en/c69718020f99.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "c6cfcab65809",
+    "language": "en",
+    "locale": "en-US",
+    "text": "How do you spell it?",
+    "file": "./audio/en/c6cfcab65809.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "c70b24803f39",
+    "language": "en",
+    "locale": "en-US",
+    "text": "My email is on the form.",
+    "file": "./audio/en/c70b24803f39.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "c7d8a6d722a1",
+    "language": "en",
+    "locale": "en-US",
+    "text": "box",
+    "file": "./audio/en/c7d8a6d722a1.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "ca1bc4c23d25",
+    "language": "en",
+    "locale": "en-US",
+    "text": "My first name is Luis.",
+    "file": "./audio/en/ca1bc4c23d25.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "cae355b615b6",
+    "language": "en",
+    "locale": "en-US",
+    "text": "please",
+    "file": "./audio/en/cae355b615b6.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "cbeac09d5214",
+    "language": "en",
+    "locale": "en-US",
+    "text": "One person is here.",
+    "file": "./audio/en/cbeac09d5214.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "cc5a0c506761",
+    "language": "en",
+    "locale": "en-US",
+    "text": "eleven",
+    "file": "./audio/en/cc5a0c506761.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "ce0b1612aa71",
+    "language": "en",
+    "locale": "en-US",
+    "text": "single",
+    "file": "./audio/en/ce0b1612aa71.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "ce433eecb0e7",
+    "language": "en",
+    "locale": "en-US",
+    "text": "The address is number twelve.",
+    "file": "./audio/en/ce433eecb0e7.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "d09bfa96b41c",
+    "language": "en",
+    "locale": "en-US",
+    "text": "good evening",
+    "file": "./audio/en/d09bfa96b41c.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "d0be2dc421be",
+    "language": "en",
+    "locale": "en-US",
+    "text": "apple",
+    "file": "./audio/en/d0be2dc421be.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "d2ccc0740fab",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Good evening, Mr. Brown.",
+    "file": "./audio/en/d2ccc0740fab.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "d2fc512490a1",
+    "language": "en",
+    "locale": "en-US",
+    "text": "pencil",
+    "file": "./audio/en/d2fc512490a1.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "d349b66fa7e9",
+    "language": "en",
+    "locale": "en-US",
+    "text": "What is your nationality?",
+    "file": "./audio/en/d349b66fa7e9.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "d39a47507bbe",
+    "language": "en",
+    "locale": "en-US",
+    "text": "person",
+    "file": "./audio/en/d39a47507bbe.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "d3c00bb4e1ed",
+    "language": "en",
+    "locale": "en-US",
+    "text": "spelling",
+    "file": "./audio/en/d3c00bb4e1ed.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "d444f0b37105",
+    "language": "en",
+    "locale": "en-US",
+    "text": "good afternoon",
+    "file": "./audio/en/d444f0b37105.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "d479fa0ef925",
+    "language": "en",
+    "locale": "en-US",
+    "text": "eight",
+    "file": "./audio/en/d479fa0ef925.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "d4d0660bfe6d",
+    "language": "en",
+    "locale": "en-US",
+    "text": "They are friends.",
+    "file": "./audio/en/d4d0660bfe6d.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "d58a59ee33ba",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Eleven is my bus number.",
+    "file": "./audio/en/d58a59ee33ba.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "d59121a1a489",
+    "language": "en",
+    "locale": "en-US",
+    "text": "My feet are cold.",
+    "file": "./audio/en/d59121a1a489.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "d62f168fb29b",
+    "language": "en",
+    "locale": "en-US",
+    "text": "The code has thirteen digits.",
+    "file": "./audio/en/d62f168fb29b.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "d686150386e7",
+    "language": "en",
+    "locale": "en-US",
+    "text": "It is a pen.",
+    "file": "./audio/en/d686150386e7.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "d703a7f8f0e6",
+    "language": "en",
+    "locale": "en-US",
+    "text": "You’re welcome, Ana.",
+    "file": "./audio/en/d703a7f8f0e6.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "d8f5ceb05917",
+    "language": "en",
+    "locale": "en-US",
+    "text": "She is Ana.",
+    "file": "./audio/en/d8f5ceb05917.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "db5494b306b1",
+    "language": "en",
+    "locale": "en-US",
+    "text": "The first letter is A.",
+    "file": "./audio/en/db5494b306b1.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "db5b40150051",
+    "language": "en",
+    "locale": "en-US",
+    "text": "plural",
+    "file": "./audio/en/db5b40150051.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "dc01c6b7487a",
+    "language": "en",
+    "locale": "en-US",
+    "text": "say",
+    "file": "./audio/en/dc01c6b7487a.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "dcb93bd72059",
+    "language": "en",
+    "locale": "en-US",
+    "text": "digit",
+    "file": "./audio/en/dcb93bd72059.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "dd3562449147",
+    "language": "en",
+    "locale": "en-US",
+    "text": "ten",
+    "file": "./audio/en/dd3562449147.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "dd55e6e8a8a1",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I brush my teeth.",
+    "file": "./audio/en/dd55e6e8a8a1.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "dd7b1d0288f0",
+    "language": "en",
+    "locale": "en-US",
+    "text": "sorry",
+    "file": "./audio/en/dd7b1d0288f0.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "dddd95bcdbde",
+    "language": "en",
+    "locale": "en-US",
+    "text": "This is a computer.",
+    "file": "./audio/en/dddd95bcdbde.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "de73eac0c305",
+    "language": "en",
+    "locale": "en-US",
+    "text": "an",
+    "file": "./audio/en/de73eac0c305.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "de82176c7e62",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Managua is a city.",
+    "file": "./audio/en/de82176c7e62.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "dec2396c3ac4",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Good morning, everyone.",
+    "file": "./audio/en/dec2396c3ac4.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "e13005ee66ec",
+    "language": "en",
+    "locale": "en-US",
+    "text": "The code ends in eighteen.",
+    "file": "./audio/en/e13005ee66ec.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "e1d0c6c1c29e",
+    "language": "en",
+    "locale": "en-US",
+    "text": "write",
+    "file": "./audio/en/e1d0c6c1c29e.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "e202c56630fd",
+    "language": "en",
+    "locale": "en-US",
+    "text": "My phone has twenty contacts.",
+    "file": "./audio/en/e202c56630fd.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "e274eeff768c",
+    "language": "en",
+    "locale": "en-US",
+    "text": "work",
+    "file": "./audio/en/e274eeff768c.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "e52d514b7c8a",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I have a key.",
+    "file": "./audio/en/e52d514b7c8a.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "e7e694c58cd5",
+    "language": "en",
+    "locale": "en-US",
+    "text": "book",
+    "file": "./audio/en/e7e694c58cd5.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "e8e247215657",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Nicaragua is my country.",
+    "file": "./audio/en/e8e247215657.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "edb1f42a0bd4",
+    "language": "en",
+    "locale": "en-US",
+    "text": "woman",
+    "file": "./audio/en/edb1f42a0bd4.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "eeebeb15de35",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Many people are here.",
+    "file": "./audio/en/eeebeb15de35.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "f06dae3f85ed",
+    "language": "en",
+    "locale": "en-US",
+    "text": "My class is room fifteen.",
+    "file": "./audio/en/f06dae3f85ed.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "f1fdd46d8d22",
+    "language": "en",
+    "locale": "en-US",
+    "text": "they",
+    "file": "./audio/en/f1fdd46d8d22.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "f2d494f23cdd",
+    "language": "en",
+    "locale": "en-US",
+    "text": "vowel",
+    "file": "./audio/en/f2d494f23cdd.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "f2f2806cf73b",
+    "language": "en",
+    "locale": "en-US",
+    "text": "My phone number starts with five.",
+    "file": "./audio/en/f2f2806cf73b.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "f534e139cd9b",
+    "language": "en",
+    "locale": "en-US",
+    "text": "The children are at school.",
+    "file": "./audio/en/f534e139cd9b.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "f57659b254c9",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Say each digit slowly.",
+    "file": "./audio/en/f57659b254c9.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "f626892d30cd",
+    "language": "en",
+    "locale": "en-US",
+    "text": "full name",
+    "file": "./audio/en/f626892d30cd.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u1",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "f666f82a7b3e",
+    "language": "en",
+    "locale": "en-US",
+    "text": "How old are you?",
+    "file": "./audio/en/f666f82a7b3e.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u3",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "f6be6ca91098",
+    "language": "en",
+    "locale": "en-US",
+    "text": "phone",
+    "file": "./audio/en/f6be6ca91098.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "f9c4b5b48266",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I have two watches.",
+    "file": "./audio/en/f9c4b5b48266.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u6",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "f9f914060ccb",
+    "language": "en",
+    "locale": "en-US",
+    "text": "university",
+    "file": "./audio/en/f9f914060ccb.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "fbd53dce1156",
+    "language": "en",
+    "locale": "en-US",
+    "text": "This is an ID card.",
+    "file": "./audio/en/fbd53dce1156.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u5",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "fc955a19ae4f",
+    "language": "en",
+    "locale": "en-US",
+    "text": "twenty",
+    "file": "./audio/en/fc955a19ae4f.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "fd7d5b1eab8d",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Thank you for your help.",
+    "file": "./audio/en/fd7d5b1eab8d.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u2",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "fe05bcdcdc49",
+    "language": "en",
+    "locale": "en-US",
+    "text": "one",
+    "file": "./audio/en/fe05bcdcdc49.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u4",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  }
+]

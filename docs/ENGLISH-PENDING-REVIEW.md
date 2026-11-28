@@ -1,24 +1,16 @@
-## Diagnóstico ampliado del control E2E — 2026-11-28
+## Estado técnico verificado — 2026-11-28
 
-- El test Phase 5B «Aprender review card starts the existing SRS session when due reviews exist» no es nuevo ni específico del contenido inglés. Ya apareció en el run #45965883973 del 27 nov; en el segundo intento de ese run, el mismo test **pasó** (TAP 12, 675 ms). En el run #46107587919, el intento 1 falló por timeout de 30 s y el intento 2 volvió a fallar; el intento 3 se acaba de solicitar y está `queued`.
-- La prueba falla al consultar `#adaptiveRecommendationLearn button` después de llamar a `App.renderAdaptiveRecommendation({ dueCount: 18, ... })`. En el mismo job Phase 5B, los tests 1–11 y 13–16 pasan; el resto de pruebas de la suite no muestra fallo. El patrón entre ejecuciones (pasa una vez y falla en otra) apunta a flakiness/estado no determinista en el E2E, pero hasta que un intento actual no pase, la regresión sigue bloqueada.
-- No se cambió el código de interfaz ni el test a ciegas. No modificar este comportamiento hasta tener evidencia que distinga un defecto de producto de una carrera/aislamiento del test.
+Esta sección refleja los resultados más recientes; las notas históricas posteriores conservan los estados que tenían en su fecha.
 
-[Run B2 #46107587919](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/46107587919) · [run previo #45965883973](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45965883973).
+- **B2 #948 — CI verde en HEAD actual** `539defb5d1206ae6e18c03520748e185499243ae`. Regression #46110814184: success; Phase 5B dedicado ejecutó `node --test tests/learning-screen-phase-5b.e2e.test.cjs` y pasó 16/16, incluido el test SRS que antes fallaba (TAP 12; 0 fallos). E2E y evaluación también pasaron. Type checks #46110814175: success. PR abierta, draft, mergeable y sin fusionar.
+- La corrección fue solo de test: devolver `App.renderAdaptiveRecommendation(...)` desde `page.evaluate()` para que Playwright espere el render asíncrono. No se modificó UI, motor SRS, currículo ni dependencias.
+- **A1 #891:** head `a40cc62a714dd576970bc14bc6844f2d3c7cc6ea`; Regression #46105596121 y type checks #46105596115: success. PR abierta y mergeable, no fusionada.
+- **A1 #892:** sigue abierta y `dirty`/no mergeable; su head `18da11d8b0ea251c3f0d6645c20ab147d2ffcfd4` no tiene check-runs. Tiene dependencia de #891 y requiere reconciliación/sincronización antes de validar.
+- **Cadena restante:** #899, #900, #912, #915 y #916 están abiertas y mergeable; los heads consultados tienen Regression y Type checks en success. Esto no sustituye la comprobación de cada PR intermedia ni la validación de los heads resultantes al integrarlas.
+- **Muestra editorial cerrada:** A1 U16, A2 U19, B1 U25 y B2 U29. No abrir otra ronda ni ampliar los no bloqueantes.
+- **Publicación completa sigue bloqueada por integración**, no por el test Phase 5B: integrar A1→A2→B1→B2 en orden, reconciliar #892, validar CI en los heads integrados, registrar el manifiesto inglés, habilitarlo y actualizar README en el mismo cambio. Mantener `available: false` hasta entonces.
 
----
-
-## Estado técnico más reciente — 2026-11-28
-
-Esta sección reemplaza los estados de CI anteriores más abajo; esos registros conservan el historial de cada comprobación.
-
-- **A1 #891:** Regression #46105596121 y type checks #46105596115 ahora terminaron `success` en el head `a40cc62a714dd576970bc14bc6844f2d3c7cc6ea`. La PR es mergeable, pero no se ha fusionado.
-- **A1 #892:** sigue `dirty`/no mergeable. La comparación entre los heads de #891 y #892 confirma ramas divergentes: #892 tiene 9 commits propios y está 16 commits detrás de #891. Debe reconciliarse después de integrar #891; no forzar la rama ni cambiar la base para ocultar la dependencia.
-- **B2 #948:** el head documental `f0b173b24ac6609400c6d8849d263e616709e387` tiene type checks y offline quality correctos, pero Regression #46107587919 falló en Phase 5B. La prueba «Aprender review card starts the existing SRS session when due reviews exist» no encontró `#adaptiveRecommendationLearn button` tras 30 segundos. El mismo test había pasado antes en otra suite del mismo job (TAP 155) y falló en Phase 5B (TAP 12), por lo que el indicio actual es una inconsistencia de estado/aislamiento entre pruebas, no un error del currículo inglés. No modificar la interfaz sin aislar la causa.
-- **Muestra editorial:** A1 U16, A2 U19, B1 U25 y B2 U29 permanece cerrada. No abrir otra ronda ni ampliar los no bloqueantes.
-- **Publicación:** no se ha fusionado ningún PR ni habilitado inglés. Aún falta integrar A1–B2 en orden, validar los heads integrados, registrar el manifiesto inglés, habilitarlo y actualizar README en el mismo cambio.
-
-Fuentes: [PR #891](https://github.com/luisequeira612-commits/bahasa-studio/pull/891), [PR #892](https://github.com/luisequeira612-commits/bahasa-studio/pull/892), [PR #948](https://github.com/luisequeira612-commits/bahasa-studio/pull/948), [A1 Regression](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/46105596121), [A1 type checks](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/46105596115), [B2 Regression](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/46107587919).
+Fuentes: [PR #948](https://github.com/luisequeira612-commits/bahasa-studio/pull/948), [Regression #46110814184](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/46110814184), [Type checks #46110814175](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/46110814175), [PR #891](https://github.com/luisequeira612-commits/bahasa-studio/pull/891), [PR #892](https://github.com/luisequeira612-commits/bahasa-studio/pull/892).
 
 ---
 
@@ -50,26 +42,20 @@ En cada muestra comprobar únicamente: correspondencia entre objetivos, ejemplos
 
 ## Bloqueantes de publicación (no son pendientes editoriales)
 
-1. Integrar A1/A2/B1 en `main` en orden de dependencias. A1 #891 es mergeable, pero su head actual requiere aprobación/ejecución de Actions: Regression #46105596121 y type checks #46105596115 terminaron `action_required` sin jobs. A1 #892 está `dirty` y sin check-runs; debe actualizarse después de resolver su dependencia #891. A2 #900–912 y B1 #915–936 siguen apiladas y requieren integración secuencial. Los heads #912, #915 y #916 muestran typecheck/regresión exitosos.
-2. Integrar la corrección B2 de #948 y las correcciones A1 U16 de #893 una vez que se autorice la integración; ambos heads tienen CI completo exitoso.
-3. Solo después de integrar los cuatro niveles, registrar el manifiesto inglés A1–B2 en `language-manager.js`, habilitar inglés y actualizar `README.md` en el mismo cambio. Mantener la prueba `tests/readme-language-catalog.test.cjs`.
+1. Integrar A1/A2/B1 en `main` en orden de dependencias. A1 #891 es mergeable y sus dos checks actuales están en success. A1 #892 sigue dirty, sin check-runs y necesita reconciliación después de #891. Las PRs posteriores dependen de esa cadena; no asumir que sus checks de ramas previas validan los nuevos heads integrados.
+2. Integrar las correcciones editoriales de A1 U16 (#893) y B2 (#948) cuando se autorice la integración. #948 tiene CI verde en su HEAD actual; #893 ya tuvo regresión, type checks y offline quality success en el head documentado.
+3. Solo después de integrar los cuatro niveles, registrar el manifiesto inglés A1–B2 en `language-manager.js`, habilitar inglés y actualizar `README.md` en el mismo cambio. Mantener y ejecutar `tests/readme-language-catalog.test.cjs`.
 
-**Estado de CI comprobado (2026-11-28):**
-- B2 PR #948, último head documental `744631e119fe4ae170bc6245f5f9c3dc68c6d860`: regression run #46106687721 finalizó **success** (103 pasos, incluido E2E); Offline quality y type checks #46106687741 también **success**. CI completo verde en este head.
-- El timeout inicial fue una intermitencia de E2E general, no un defecto curricular inglés. El reintento pasó sin cambios de código.
-- A1 #891: head sincronizado `a40cc62a714dd576970bc14bc6844f2d3c7cc6ea`; Regression #46105596121 y type checks #46105596115 finalizaron `action_required` sin jobs. No equivale a fallo ni a éxito: el gate de ejecución/aprobación de Actions impide obtener resultado de CI. La PR es mergeable, pero no está aprobada para integración.
-- A1 #892: continúa con estado de merge `dirty` y sin check-runs; depende de la integración/sincronización previa de #891 y deberá actualizarse antes de revalidar.
+**CI actual comprobado (2026-11-28):**
+- B2 #948, HEAD `539defb5d1206ae6e18c03520748e185499243ae`: Regression #46110814184 y type checks #46110814175 **success**. El test aislado Phase 5B pasó 16/16; el test SRS previamente inestable también pasó. Offline quality report success.
+- A1 #891, HEAD `a40cc62a714dd576970bc14bc6844f2d3c7cc6ea`: Regression #46105596121 y type checks #46105596115 **success**.
+- A1 #892, HEAD `18da11d8b0ea251c3f0d6645c20ab147d2ffcfd4`: cero check-runs y merge state dirty.
+- #899, #900, #912, #915 y #916: los heads consultados tienen regresión y type checks success. Verificar cada head nuevo después de la integración secuencial.
+- A1 #893, HEAD `f2cedff3dffb338fb4eda9b13fd9749e30dbc65d`: regresión #4897, type checks #1017 y offline quality success.
+- A2 #912: regresión #4203 y type checks #325 success. B1 #915: regresión #4210 y type checks #332 success. B1 #916: regresión #4725 y type checks #846 success.
+- El workflow `.github/workflows/audio.yml` se activó anteriormente por push y generó 263 MP3 en inglés A1 (biblioteca total reportada: 54.66 MiB). No se validó auditivamente; esto no es un control de calidad del audio. Mantener este efecto automático separado de la validación editorial.
 
-- A1 #893, head `f2cedff3dffb338fb4eda9b13fd9749e30dbc65d`: regression #4897 success; type checks #1017 success; offline quality success.
-- B2 #948, head de código `90062bf28cfe19f0587ab1d1769340c4d0cb026a`: regression #4896, type checks #1016 y offline quality success. El head documental `7846b84830263eb8af3fce4e4e20f2e4e83d52cc` también pasó regression #4903 (incluido E2E), offline quality y type checks; el head documental más reciente `744631e119fe4ae170bc6245f5f9c3dc68c6d860` tiene CI completo verde (#46106687721/#46106687741).
-- A1 #891: head anterior regression #4900 falló porque faltaba `audio/en/manifest.json`; type checks #1020 y offline quality success. El head actual `a40cc62a714dd576970bc14bc6844f2d3c7cc6ea` recibió dos runs `action_required` sin jobs; sigue sin CI ejecutado.
-- Durante el push, el workflow `.github/workflows/audio.yml` se activó por su trigger `push` y generó 263 MP3 de inglés A1; el tamaño total de la biblioteca quedó en 54.66 MiB. Esto fue automático, no una escucha ni aprobación de calidad. La política acordada era generación manual; el trigger automático debe tratarse aparte.
-- A1 #892: no hay check-runs registrados para el head actual; su merge state sigue `dirty`.
-- A2 #912: regression #4203 success; type checks #325 success.
-- B1 #915: regression #4210 success; type checks #332 success.
-- B1 #916: regression #4725 success; type checks #846 success.
-
-**Restricción de integración:** la memoria del proyecto registra que no se deben fusionar PRs de inglés sin aprobación expresa. Esta tarea cierra la validación editorial; no autoriza por sí sola a fusionar ni a publicar.
+**Restricción de integración:** no fusionar PRs de inglés sin aprobación expresa. Esta validación editorial y el CI verde de #948 no autorizan por sí solos fusiones ni publicación.
 
 ## Regla de cierre
 

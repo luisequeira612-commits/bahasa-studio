@@ -344,7 +344,7 @@ test('English B2 U27 fronting lessons match their vocabulary focus', () => {
     const [title, targets] = expected[index];
     const lesson = unit.lessons[index];
     assert.equal(lesson.title, title);
-    assert.deepEqual(lesson.vocabIds.map((id) => unit.vocab.find((word) => word.id === id)?.target), targets);
+    assert.deepEqual(Array.from(lesson.vocabIds, (id) => unit.vocab.find((word) => word.id === id)?.target), targets);
     const exercise = lesson.exercises.find((item) => item.type === 'order');
     assert.ok(exercise);
     assert.equal(exercise.vocabId, lesson.vocabIds[1]);
@@ -359,7 +359,7 @@ test('English B2 U15 mixed-conditional lesson themes match their vocabulary', ()
   const unit = loadB2().find((item) => item.unitNumber === 15);
   assert.ok(unit);
   const expected = [
-    ['Condición pasada y resultado presente', ['if I had known', "if it hadn't been for", 'would be doing', 'to be better off']],
+    ['Condición pasada y resultado presente', ['if I had known', "if it hadn't been for", 'would be doing', 'to be in a better position', 'to be better off']],
     ['Condición presente y resultado pasado', ['would have been', 'could have avoided', 'to have been able to', 'to make a difference']],
     ['Consecuencias y resultados alternativos', ['might still be', 'otherwise', 'to have a different outcome', 'to affect the outcome', 'to have turned out differently']],
     ['Arrepentimiento y evaluación retrospectiva', ['to look back on', 'to regret not doing', 'to wish things were', 'to wish I had']],
@@ -369,7 +369,7 @@ test('English B2 U15 mixed-conditional lesson themes match their vocabulary', ()
     const [title, targets] = expected[index];
     const lesson = unit.lessons[index];
     assert.equal(lesson.title, title);
-    assert.deepEqual(lesson.vocabIds.map((id) => unit.vocab.find((word) => word.id === id)?.target), targets);
+    assert.deepEqual(Array.from(lesson.vocabIds, (id) => unit.vocab.find((word) => word.id === id)?.target), targets);
     const exercise = lesson.exercises.find((item) => item.type === 'order');
     assert.ok(exercise);
     assert.equal(exercise.vocabId, lesson.vocabIds[1]);
@@ -415,7 +415,7 @@ test('English B2 U19 concession lessons match their vocabulary focus', () => {
     const [title, targets] = expected[index];
     const lesson = unit.lessons[index];
     assert.equal(lesson.title, title);
-    assert.deepEqual(lesson.vocabIds.map((id) => unit.vocab.find((word) => word.id === id)?.target), targets);
+    assert.deepEqual(Array.from(lesson.vocabIds, (id) => unit.vocab.find((word) => word.id === id)?.target), targets);
     const exercise = lesson.exercises.find((item) => item.type === 'order');
     assert.ok(exercise);
     assert.equal(exercise.vocabId, lesson.vocabIds[1]);
@@ -570,7 +570,7 @@ test('English B2 U5–U9 lesson themes match their vocabulary and sentence examp
       const [title, expectedTargets] = expectedLessons[index];
       const lesson = unit.lessons[index];
       assert.equal(lesson.title, title, 'Unexpected lesson focus in U' + number);
-      const targets = lesson.vocabIds.map((id) => unit.vocab.find((word) => word.id === id)?.target);
+      const targets = Array.from(lesson.vocabIds, (id) => unit.vocab.find((word) => word.id === id)?.target);
       assert.deepEqual(targets, expectedTargets, 'Lesson vocabulary must match its focus: U' + number + ' ' + title);
       const exercise = lesson.exercises.find((item) => item.type === 'order');
       assert.ok(exercise, 'Lesson needs a sentence-building activity: U' + number + ' ' + title);
@@ -624,7 +624,7 @@ test('English B2 U11–U14 lesson themes match their vocabulary and sentence exa
       const [title, expectedTargets] = expectedLessons[index];
       const lesson = unit.lessons[index];
       assert.equal(lesson.title, title, 'Unexpected lesson focus in U' + number);
-      const targets = lesson.vocabIds.map((id) => unit.vocab.find((word) => word.id === id)?.target);
+      const targets = Array.from(lesson.vocabIds, (id) => unit.vocab.find((word) => word.id === id)?.target);
       assert.deepEqual(targets, expectedTargets, 'Lesson vocabulary must match its focus: U' + number + ' ' + title);
       const exercise = lesson.exercises.find((item) => item.type === 'order');
       assert.ok(exercise, 'Lesson needs a sentence-building activity: U' + number + ' ' + title);

@@ -566,6 +566,10 @@ test('English B2 Spanish examples retain Latin American vocabulary choices', () 
     assert.ok(word.exEsp.toLocaleLowerCase().includes(expected),
       'Expected Latin American term "' + expected + '" in U' + number + ' ' + target);
   }
+  const credibleSource = units.find((item) => item.unitNumber === 55)
+    .vocab.find((item) => item.target === 'a credible source');
+  assert.ok(credibleSource.esp.includes('confiable'),
+    'The Spanish gloss must use the same Latin American term as its example');
 });
 
 test('English B2 keeps data plural in U26 and U32 academic examples', () => {

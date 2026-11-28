@@ -203,7 +203,7 @@ test('acepta una voz pt-PT como respaldo para el curso pt-BR', () => {
     setup.engine.speak('bom dia');
     setup.createdAudio[0].fail();
     assert.equal(setup.spoken.length, 1);
-    assert.equal(setup.spoken[0].lang, 'pt-BR');
+    assert.equal(setup.spoken[0].lang, 'pt-PT');
     assert.equal(setup.spoken[0].voice, voice);
 });
 

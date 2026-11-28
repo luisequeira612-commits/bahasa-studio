@@ -26,7 +26,7 @@ const defs=[
 ["a well-founded conclusion","una conclusión bien fundamentada","The review reached a well-founded conclusion.","La revisión llegó a una conclusión bien fundamentada."]],
 lessons:[
 ["Tesis y afirmación central","Formula una postura clara y delimitada.","Claim expresa lo que se sostiene; central claim identifica la tesis que organiza el argumento.",[0,1,2,3],"The central claim needs stronger supporting evidence."],
-["Razones y evidencia","Conecta razones con pruebas pertinentes y verificables.","Grounds, supporting evidence y substantiate distinguen motivos de datos que respaldan una afirmación.",[4,5,6,7],"Additional data is needed to substantiate the claim."],
+["Razones y evidencia","Conecta razones con pruebas pertinentes y verificables.","Grounds, supporting evidence y substantiate distinguen motivos de datos que respaldan una afirmación.",[4,5,6,7],"Additional data are needed to substantiate the claim."],
 ["Relaciones y explicaciones","Explica cómo los factores se relacionan con la conclusión.","Establish a link expresa una relación; explain the difference identifica una posible explicación; be supported by y indicate atribuyen el respaldo o la señal que ofrecen los datos. No confundas correlación con causalidad.",[8,9,10,11],"This factor may explain the difference in results."],
 ["Evaluar y ponderar","Considera la evidencia a favor y en contra antes de concluir.","Weigh the evidence, counterexample e inference ayudan a evaluar la fuerza del razonamiento.",[12,13,14,15],"We need to weigh the evidence before reaching a decision."],
 ["Inferencia, coherencia y conclusión","Relaciona inferencias, supuestos y evidencia para construir una conclusión bien fundamentada.","Reasonable inference expresa una deducción justificada; reinforce the point fortalece una línea argumental; follow from conecta una conclusión con sus pruebas; underlying assumption y take into account hacen explícitos los supuestos y el contexto.",[16,17,18,19,20,21],"The second example reinforces the point."]]},
@@ -44,7 +44,7 @@ lessons:[
 ["a valid counterargument","un contraargumento válido","The author presents a valid counterargument.","El autor presenta un contraargumento válido."],
 ["to overlook a factor","pasar por alto un factor","The criticism overlooks an important practical factor.","La crítica pasa por alto un factor práctico importante."],
 ["to rest on the assumption","basarse en la suposición","The objection rests on the assumption that demand will remain constant.","La objeción se basa en la suposición de que la demanda seguirá constante."],
-["to be open to question","ser cuestionable","The reliability of the estimate remains open to question.","La fiabilidad de la estimación sigue siendo cuestionable."],
+["to be open to question","ser cuestionable","The reliability of the estimate remains open to question.","La confiabilidad de la estimación sigue siendo cuestionable."],
 ["to hold up under scrutiny","resistir un examen riguroso","The explanation does not hold up under scrutiny.","La explicación no resiste un examen riguroso."],
 ["to put things into perspective","poner las cosas en perspectiva","A comparison with previous years puts the figures into perspective.","Una comparación con años anteriores pone las cifras en perspectiva."],
 ["to separate intention from outcome","separar la intención del resultado","We must separate intention from outcome when assessing the case.","Debemos separar la intención del resultado al evaluar el caso."],

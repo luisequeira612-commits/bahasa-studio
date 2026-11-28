@@ -1,5 +1,22 @@
 [
   {
+    "id": "002b7ecc9521",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Thursday",
+    "file": "./audio/en/002b7ecc9521.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "009e058c883c",
     "language": "en",
     "locale": "en-US",
@@ -9,6 +26,23 @@
       {
         "level": "A1",
         "unit": "en_a1_u12",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "012da8a947ea",
+    "language": "en",
+    "locale": "en-US",
+    "text": "routine",
+    "file": "./audio/en/012da8a947ea.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
         "kind": "vocabulary"
       }
     ],
@@ -27,6 +61,23 @@
         "level": "A1",
         "unit": "en_a1_u7",
         "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "015ce695d84a",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Can you open the window?",
+    "file": "./audio/en/015ce695d84a.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
+        "kind": "example"
       }
     ],
     "levels": [
@@ -85,6 +136,23 @@
     ]
   },
   {
+    "id": "03bfe1c7f407",
+    "language": "en",
+    "locale": "en-US",
+    "text": "We travel in May.",
+    "file": "./audio/en/03bfe1c7f407.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "03ddebefddfd",
     "language": "en",
     "locale": "en-US",
@@ -119,6 +187,23 @@
     ]
   },
   {
+    "id": "04489a12bbaa",
+    "language": "en",
+    "locale": "en-US",
+    "text": "use",
+    "file": "./audio/en/04489a12bbaa.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "05b18c056c6f",
     "language": "en",
     "locale": "en-US",
@@ -128,6 +213,57 @@
       {
         "level": "A1",
         "unit": "en_a1_u8",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "06e96bdf8b2b",
+    "language": "en",
+    "locale": "en-US",
+    "text": "He works at a store.",
+    "file": "./audio/en/06e96bdf8b2b.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "0759f56c5c8c",
+    "language": "en",
+    "locale": "en-US",
+    "text": "remember",
+    "file": "./audio/en/0759f56c5c8c.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "080e7da7e66a",
+    "language": "en",
+    "locale": "en-US",
+    "text": "She teaches math.",
+    "file": "./audio/en/080e7da7e66a.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
         "kind": "example"
       }
     ],
@@ -163,6 +299,40 @@
         "level": "A1",
         "unit": "en_a1_u6",
         "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "09249557fb37",
+    "language": "en",
+    "locale": "en-US",
+    "text": "December is the last month.",
+    "file": "./audio/en/09249557fb37.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "094530549b5e",
+    "language": "en",
+    "locale": "en-US",
+    "text": "lunch",
+    "file": "./audio/en/094530549b5e.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
+        "kind": "vocabulary"
       }
     ],
     "levels": [
@@ -272,6 +442,23 @@
     ]
   },
   {
+    "id": "0afde56699db",
+    "language": "en",
+    "locale": "en-US",
+    "text": "fast",
+    "file": "./audio/en/0afde56699db.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "0b064373fb4d",
     "language": "en",
     "locale": "en-US",
@@ -340,6 +527,23 @@
     ]
   },
   {
+    "id": "0cfff351f747",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I rarely watch TV.",
+    "file": "./audio/en/0cfff351f747.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "0d0965064039",
     "language": "en",
     "locale": "en-US",
@@ -349,6 +553,57 @@
       {
         "level": "A1",
         "unit": "en_a1_u4",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "0d2783c6a587",
+    "language": "en",
+    "locale": "en-US",
+    "text": "They clean the kitchen.",
+    "file": "./audio/en/0d2783c6a587.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "0d53ea02174b",
+    "language": "en",
+    "locale": "en-US",
+    "text": "have breakfast",
+    "file": "./audio/en/0d53ea02174b.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "0df33396e9d0",
+    "language": "en",
+    "locale": "en-US",
+    "text": "She answers the phone.",
+    "file": "./audio/en/0df33396e9d0.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
         "kind": "example"
       }
     ],
@@ -408,6 +663,74 @@
     ]
   },
   {
+    "id": "0f324daf2782",
+    "language": "en",
+    "locale": "en-US",
+    "text": "He is a nurse.",
+    "file": "./audio/en/0f324daf2782.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "0f4451057240",
+    "language": "en",
+    "locale": "en-US",
+    "text": "brush",
+    "file": "./audio/en/0f4451057240.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "0f863a29efe5",
+    "language": "en",
+    "locale": "en-US",
+    "text": "She works for a company.",
+    "file": "./audio/en/0f863a29efe5.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "0ff11fb076d3",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Tuesday",
+    "file": "./audio/en/0ff11fb076d3.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "1015e782ae23",
     "language": "en",
     "locale": "en-US",
@@ -442,6 +765,57 @@
     ]
   },
   {
+    "id": "10cff4034ced",
+    "language": "en",
+    "locale": "en-US",
+    "text": "why",
+    "file": "./audio/en/10cff4034ced.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "11484fd7ad4d",
+    "language": "en",
+    "locale": "en-US",
+    "text": "He manages a small team.",
+    "file": "./audio/en/11484fd7ad4d.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "11e9ba26c91a",
+    "language": "en",
+    "locale": "en-US",
+    "text": "schedule",
+    "file": "./audio/en/11e9ba26c91a.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "122604decb5a",
     "language": "en",
     "locale": "en-US",
@@ -469,6 +843,57 @@
         "level": "A1",
         "unit": "en_a1_u8",
         "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "1390470c09da",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Sunday",
+    "file": "./audio/en/1390470c09da.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "13dd2aa9f8e6",
+    "language": "en",
+    "locale": "en-US",
+    "text": "My birthday is in January.",
+    "file": "./audio/en/13dd2aa9f8e6.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "145b3d9d56d7",
+    "language": "en",
+    "locale": "en-US",
+    "text": "commute",
+    "file": "./audio/en/145b3d9d56d7.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
+        "kind": "vocabulary"
       }
     ],
     "levels": [
@@ -578,6 +1003,23 @@
     ]
   },
   {
+    "id": "163001e29033",
+    "language": "en",
+    "locale": "en-US",
+    "text": "arrive",
+    "file": "./audio/en/163001e29033.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "176e809d3d84",
     "language": "en",
     "locale": "en-US",
@@ -587,6 +1029,23 @@
       {
         "level": "A1",
         "unit": "en_a1_u6",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "17c5d5ed48be",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I have a snack in the afternoon.",
+    "file": "./audio/en/17c5d5ed48be.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
         "kind": "example"
       }
     ],
@@ -612,6 +1071,23 @@
     ]
   },
   {
+    "id": "1863835675e3",
+    "language": "en",
+    "locale": "en-US",
+    "text": "once",
+    "file": "./audio/en/1863835675e3.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "18cc852c9ac8",
     "language": "en",
     "locale": "en-US",
@@ -622,6 +1098,40 @@
         "level": "A1",
         "unit": "en_a1_u1",
         "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "18cea895fb1d",
+    "language": "en",
+    "locale": "en-US",
+    "text": "He fixes computers.",
+    "file": "./audio/en/18cea895fb1d.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "195ca2454629",
+    "language": "en",
+    "locale": "en-US",
+    "text": "It rains in April.",
+    "file": "./audio/en/195ca2454629.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
+        "kind": "example"
       }
     ],
     "levels": [
@@ -656,6 +1166,23 @@
         "level": "A1",
         "unit": "en_a1_u11",
         "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "1a8565a9dc72",
+    "language": "en",
+    "locale": "en-US",
+    "text": "manager",
+    "file": "./audio/en/1a8565a9dc72.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
+        "kind": "vocabulary"
       }
     ],
     "levels": [
@@ -731,6 +1258,40 @@
     ]
   },
   {
+    "id": "1ba61a115400",
+    "language": "en",
+    "locale": "en-US",
+    "text": "snack",
+    "file": "./audio/en/1ba61a115400.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "1c2338132508",
+    "language": "en",
+    "locale": "en-US",
+    "text": "this afternoon",
+    "file": "./audio/en/1c2338132508.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "1ceec824e0fb",
     "language": "en",
     "locale": "en-US",
@@ -799,6 +1360,23 @@
     ]
   },
   {
+    "id": "1de1687d36e1",
+    "language": "en",
+    "locale": "en-US",
+    "text": "We cook at home.",
+    "file": "./audio/en/1de1687d36e1.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "1e2c22194035",
     "language": "en",
     "locale": "en-US",
@@ -826,6 +1404,23 @@
         "level": "A1",
         "unit": "en_a1_u2",
         "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "1f0160076c9f",
+    "language": "en",
+    "locale": "en-US",
+    "text": "doctor",
+    "file": "./audio/en/1f0160076c9f.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
+        "kind": "vocabulary"
       }
     ],
     "levels": [
@@ -918,6 +1513,23 @@
     ]
   },
   {
+    "id": "2121b4b14405",
+    "language": "en",
+    "locale": "en-US",
+    "text": "The meeting starts at ten.",
+    "file": "./audio/en/2121b4b14405.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "2147a9e5f9e8",
     "language": "en",
     "locale": "en-US",
@@ -962,6 +1574,74 @@
         "level": "A1",
         "unit": "en_a1_u5",
         "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "2235faa17a1f",
+    "language": "en",
+    "locale": "en-US",
+    "text": "We get dressed quickly.",
+    "file": "./audio/en/2235faa17a1f.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "22603866992e",
+    "language": "en",
+    "locale": "en-US",
+    "text": "She opens the store at nine.",
+    "file": "./audio/en/22603866992e.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "22668bf14ea7",
+    "language": "en",
+    "locale": "en-US",
+    "text": "wake up",
+    "file": "./audio/en/22668bf14ea7.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "234ba8a6abcc",
+    "language": "en",
+    "locale": "en-US",
+    "text": "He can skate.",
+    "file": "./audio/en/234ba8a6abcc.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
+        "kind": "example"
       }
     ],
     "levels": [
@@ -1088,6 +1768,23 @@
     ]
   },
   {
+    "id": "25dc282b5a3d",
+    "language": "en",
+    "locale": "en-US",
+    "text": "answer",
+    "file": "./audio/en/25dc282b5a3d.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "2680b6746cf8",
     "language": "en",
     "locale": "en-US",
@@ -1131,6 +1828,91 @@
       {
         "level": "A1",
         "unit": "en_a1_u11",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "271e9a568c0e",
+    "language": "en",
+    "locale": "en-US",
+    "text": "jump",
+    "file": "./audio/en/271e9a568c0e.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "2760666e0552",
+    "language": "en",
+    "locale": "en-US",
+    "text": "October",
+    "file": "./audio/en/2760666e0552.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "27a11321a35d",
+    "language": "en",
+    "locale": "en-US",
+    "text": "He sometimes cooks dinner.",
+    "file": "./audio/en/27a11321a35d.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "27ef936232ca",
+    "language": "en",
+    "locale": "en-US",
+    "text": "What time does he start?",
+    "file": "./audio/en/27ef936232ca.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "285f9a003f67",
+    "language": "en",
+    "locale": "en-US",
+    "text": "nurse",
+    "file": "./audio/en/285f9a003f67.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
         "kind": "vocabulary"
       }
     ],
@@ -1190,6 +1972,57 @@
     ]
   },
   {
+    "id": "297f31f02b99",
+    "language": "en",
+    "locale": "en-US",
+    "text": "sometimes",
+    "file": "./audio/en/297f31f02b99.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "2abe04235c03",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I have an appointment today.",
+    "file": "./audio/en/2abe04235c03.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "2b020927d3c6",
+    "language": "en",
+    "locale": "en-US",
+    "text": "start",
+    "file": "./audio/en/2b020927d3c6.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "2b0618478387",
     "language": "en",
     "locale": "en-US",
@@ -1199,6 +2032,23 @@
       {
         "level": "A1",
         "unit": "en_a1_u1",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "2b2d005e88ce",
+    "language": "en",
+    "locale": "en-US",
+    "text": "hospital",
+    "file": "./audio/en/2b2d005e88ce.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
         "kind": "vocabulary"
       }
     ],
@@ -1241,6 +2091,23 @@
     ]
   },
   {
+    "id": "2cce4a92f41f",
+    "language": "en",
+    "locale": "en-US",
+    "text": "finish",
+    "file": "./audio/en/2cce4a92f41f.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "2cd7484bc1b1",
     "language": "en",
     "locale": "en-US",
@@ -1275,6 +2142,40 @@
     ]
   },
   {
+    "id": "2dac81d65dd4",
+    "language": "en",
+    "locale": "en-US",
+    "text": "tomorrow",
+    "file": "./audio/en/2dac81d65dd4.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "2dd2bed72567",
+    "language": "en",
+    "locale": "en-US",
+    "text": "today",
+    "file": "./audio/en/2dd2bed72567.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "2e087d6f44bd",
     "language": "en",
     "locale": "en-US",
@@ -1284,6 +2185,23 @@
       {
         "level": "A1",
         "unit": "en_a1_u8",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "2e950eba85a9",
+    "language": "en",
+    "locale": "en-US",
+    "text": "They don’t travel in winter.",
+    "file": "./audio/en/2e950eba85a9.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
         "kind": "example"
       }
     ],
@@ -1302,6 +2220,23 @@
         "level": "A1",
         "unit": "en_a1_u3",
         "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "2f3bfd92edbb",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Her answer is correct.",
+    "file": "./audio/en/2f3bfd92edbb.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
+        "kind": "example"
       }
     ],
     "levels": [
@@ -1377,6 +2312,40 @@
     ]
   },
   {
+    "id": "30603fa9e0f6",
+    "language": "en",
+    "locale": "en-US",
+    "text": "when",
+    "file": "./audio/en/30603fa9e0f6.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "30ad52a9d525",
+    "language": "en",
+    "locale": "en-US",
+    "text": "get dressed",
+    "file": "./audio/en/30ad52a9d525.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "30bc3e477d95",
     "language": "en",
     "locale": "en-US",
@@ -1404,6 +2373,23 @@
         "level": "A1",
         "unit": "en_a1_u2",
         "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "3113de7072e1",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I rest on Sunday.",
+    "file": "./audio/en/3113de7072e1.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
+        "kind": "example"
       }
     ],
     "levels": [
@@ -1462,6 +2448,23 @@
     ]
   },
   {
+    "id": "31aed9e37eb9",
+    "language": "en",
+    "locale": "en-US",
+    "text": "leave",
+    "file": "./audio/en/31aed9e37eb9.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "320ad267d8d9",
     "language": "en",
     "locale": "en-US",
@@ -1471,6 +2474,23 @@
       {
         "level": "A1",
         "unit": "en_a1_u7",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "3240aa0fe3ca",
+    "language": "en",
+    "locale": "en-US",
+    "text": "try",
+    "file": "./audio/en/3240aa0fe3ca.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
         "kind": "vocabulary"
       }
     ],
@@ -1615,6 +2635,23 @@
     ]
   },
   {
+    "id": "344558c68d4e",
+    "language": "en",
+    "locale": "en-US",
+    "text": "July is warm here.",
+    "file": "./audio/en/344558c68d4e.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "346d34a0f0d9",
     "language": "en",
     "locale": "en-US",
@@ -1624,6 +2661,23 @@
       {
         "level": "A1",
         "unit": "en_a1_u11",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "34b33e00b199",
+    "language": "en",
+    "locale": "en-US",
+    "text": "skill",
+    "file": "./audio/en/34b33e00b199.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
         "kind": "vocabulary"
       }
     ],
@@ -1666,6 +2720,23 @@
     ]
   },
   {
+    "id": "35bc82231a76",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I can ride a bike.",
+    "file": "./audio/en/35bc82231a76.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "3684c9d3c05e",
     "language": "en",
     "locale": "en-US",
@@ -1676,6 +2747,23 @@
         "level": "A1",
         "unit": "en_a1_u12",
         "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "36c1aa1e325a",
+    "language": "en",
+    "locale": "en-US",
+    "text": "We commute by train.",
+    "file": "./audio/en/36c1aa1e325a.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
+        "kind": "example"
       }
     ],
     "levels": [
@@ -1785,6 +2873,23 @@
     ]
   },
   {
+    "id": "3800515d4b6d",
+    "language": "en",
+    "locale": "en-US",
+    "text": "habit",
+    "file": "./audio/en/3800515d4b6d.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "3807939e4538",
     "language": "en",
     "locale": "en-US",
@@ -1794,6 +2899,40 @@
       {
         "level": "A1",
         "unit": "en_a1_u6",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "381488da7b37",
+    "language": "en",
+    "locale": "en-US",
+    "text": "The child can jump.",
+    "file": "./audio/en/381488da7b37.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "38379ff22a78",
+    "language": "en",
+    "locale": "en-US",
+    "text": "We study English every day.",
+    "file": "./audio/en/38379ff22a78.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
         "kind": "example"
       }
     ],
@@ -1845,6 +2984,40 @@
       {
         "level": "A1",
         "unit": "en_a1_u2",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "396f9974da4e",
+    "language": "en",
+    "locale": "en-US",
+    "text": "stay",
+    "file": "./audio/en/396f9974da4e.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "3a21295d813c",
+    "language": "en",
+    "locale": "en-US",
+    "text": "store",
+    "file": "./audio/en/3a21295d813c.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
         "kind": "vocabulary"
       }
     ],
@@ -1914,6 +3087,57 @@
         "level": "A1",
         "unit": "en_a1_u3",
         "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "3b2be2e26344",
+    "language": "en",
+    "locale": "en-US",
+    "text": "question",
+    "file": "./audio/en/3b2be2e26344.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "3b65c898b23f",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Classes start in September.",
+    "file": "./audio/en/3b65c898b23f.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "3b6f5b1c6ffd",
+    "language": "en",
+    "locale": "en-US",
+    "text": "receptionist",
+    "file": "./audio/en/3b6f5b1c6ffd.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
+        "kind": "vocabulary"
       }
     ],
     "levels": [
@@ -2057,6 +3281,40 @@
     ]
   },
   {
+    "id": "3f282fcba893",
+    "language": "en",
+    "locale": "en-US",
+    "text": "manage",
+    "file": "./audio/en/3f282fcba893.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "3f2d515e5af8",
+    "language": "en",
+    "locale": "en-US",
+    "text": "get up",
+    "file": "./audio/en/3f2d515e5af8.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "3ff95ac9e6b1",
     "language": "en",
     "locale": "en-US",
@@ -2091,6 +3349,23 @@
     ]
   },
   {
+    "id": "40dd42363556",
+    "language": "en",
+    "locale": "en-US",
+    "text": "They travel on Friday.",
+    "file": "./audio/en/40dd42363556.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "4123d153f519",
     "language": "en",
     "locale": "en-US",
@@ -2100,6 +3375,23 @@
       {
         "level": "A1",
         "unit": "en_a1_u9",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "41659ee87f34",
+    "language": "en",
+    "locale": "en-US",
+    "text": "They don’t go out on weekdays.",
+    "file": "./audio/en/41659ee87f34.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
         "kind": "example"
       }
     ],
@@ -2159,6 +3451,40 @@
     ]
   },
   {
+    "id": "42972d771548",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Are they free tomorrow?",
+    "file": "./audio/en/42972d771548.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "43cf2e256880",
+    "language": "en",
+    "locale": "en-US",
+    "text": "farmer",
+    "file": "./audio/en/43cf2e256880.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "44328fbca903",
     "language": "en",
     "locale": "en-US",
@@ -2168,6 +3494,40 @@
       {
         "level": "A1",
         "unit": "en_a1_u11",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "44d455722c73",
+    "language": "en",
+    "locale": "en-US",
+    "text": "take a shower",
+    "file": "./audio/en/44d455722c73.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "44dfda6d754e",
+    "language": "en",
+    "locale": "en-US",
+    "text": "The calendar is on the wall.",
+    "file": "./audio/en/44dfda6d754e.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
         "kind": "example"
       }
     ],
@@ -2278,6 +3638,23 @@
     ]
   },
   {
+    "id": "465dccd92c9d",
+    "language": "en",
+    "locale": "en-US",
+    "text": "He can remember names.",
+    "file": "./audio/en/465dccd92c9d.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "466bc8cef3e7",
     "language": "en",
     "locale": "en-US",
@@ -2288,6 +3665,23 @@
         "level": "A1",
         "unit": "en_a1_u8",
         "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "46955ebbc648",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Is it possible?",
+    "file": "./audio/en/46955ebbc648.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
+        "kind": "example"
       }
     ],
     "levels": [
@@ -2431,6 +3825,23 @@
     ]
   },
   {
+    "id": "4979d619a7b7",
+    "language": "en",
+    "locale": "en-US",
+    "text": "drive",
+    "file": "./audio/en/4979d619a7b7.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "498950c72e2c",
     "language": "en",
     "locale": "en-US",
@@ -2491,6 +3902,23 @@
       {
         "level": "A1",
         "unit": "en_a1_u2",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "4a4b1ab4fa1a",
+    "language": "en",
+    "locale": "en-US",
+    "text": "weekday",
+    "file": "./audio/en/4a4b1ab4fa1a.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
         "kind": "vocabulary"
       }
     ],
@@ -2567,6 +3995,23 @@
     ]
   },
   {
+    "id": "4d8f35e9ae90",
+    "language": "en",
+    "locale": "en-US",
+    "text": "February",
+    "file": "./audio/en/4d8f35e9ae90.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "4db2c1df4610",
     "language": "en",
     "locale": "en-US",
@@ -2593,6 +4038,23 @@
       {
         "level": "A1",
         "unit": "en_a1_u9",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "4df45ef0ae87",
+    "language": "en",
+    "locale": "en-US",
+    "text": "how much",
+    "file": "./audio/en/4df45ef0ae87.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
         "kind": "vocabulary"
       }
     ],
@@ -2635,6 +4097,23 @@
     ]
   },
   {
+    "id": "4ef4eaff75f3",
+    "language": "en",
+    "locale": "en-US",
+    "text": "He can sing.",
+    "file": "./audio/en/4ef4eaff75f3.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "4f1a188f00ac",
     "language": "en",
     "locale": "en-US",
@@ -2661,6 +4140,23 @@
       {
         "level": "A1",
         "unit": "en_a1_u12",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "4f9cac8dbc4c",
+    "language": "en",
+    "locale": "en-US",
+    "text": "break",
+    "file": "./audio/en/4f9cac8dbc4c.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
         "kind": "vocabulary"
       }
     ],
@@ -2703,6 +4199,57 @@
     ]
   },
   {
+    "id": "4ff88aaddbd2",
+    "language": "en",
+    "locale": "en-US",
+    "text": "free",
+    "file": "./audio/en/4ff88aaddbd2.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "505eabdfb808",
+    "language": "en",
+    "locale": "en-US",
+    "text": "weekend",
+    "file": "./audio/en/505eabdfb808.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "506ed6a128f4",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Can I borrow a pen?",
+    "file": "./audio/en/506ed6a128f4.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "50b14c17adf6",
     "language": "en",
     "locale": "en-US",
@@ -2712,6 +4259,23 @@
       {
         "level": "A1",
         "unit": "en_a1_u3",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "50d0f5fad213",
+    "language": "en",
+    "locale": "en-US",
+    "text": "We have lunch at noon.",
+    "file": "./audio/en/50d0f5fad213.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
         "kind": "example"
       }
     ],
@@ -2737,6 +4301,23 @@
     ]
   },
   {
+    "id": "5134f5d2f507",
+    "language": "en",
+    "locale": "en-US",
+    "text": "She doesn’t play tennis.",
+    "file": "./audio/en/5134f5d2f507.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "51530c6f31e7",
     "language": "en",
     "locale": "en-US",
@@ -2746,6 +4327,23 @@
       {
         "level": "A1",
         "unit": "en_a1_u10",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "516626bf8a50",
+    "language": "en",
+    "locale": "en-US",
+    "text": "play",
+    "file": "./audio/en/516626bf8a50.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
         "kind": "vocabulary"
       }
     ],
@@ -2805,6 +4403,23 @@
     ]
   },
   {
+    "id": "51a9a345187f",
+    "language": "en",
+    "locale": "en-US",
+    "text": "They get up early.",
+    "file": "./audio/en/51a9a345187f.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "526df71b1a25",
     "language": "en",
     "locale": "en-US",
@@ -2815,6 +4430,23 @@
         "level": "A1",
         "unit": "en_a1_u6",
         "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "527072a5969c",
+    "language": "en",
+    "locale": "en-US",
+    "text": "mechanic",
+    "file": "./audio/en/527072a5969c.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
+        "kind": "vocabulary"
       }
     ],
     "levels": [
@@ -2907,6 +4539,91 @@
     ]
   },
   {
+    "id": "52f7f7cc6f8d",
+    "language": "en",
+    "locale": "en-US",
+    "text": "go out",
+    "file": "./audio/en/52f7f7cc6f8d.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "530347b7d0a3",
+    "language": "en",
+    "locale": "en-US",
+    "text": "She studies on Tuesday.",
+    "file": "./audio/en/530347b7d0a3.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "5360c28cc196",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I practice after class.",
+    "file": "./audio/en/5360c28cc196.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "53f0bede7c1e",
+    "language": "en",
+    "locale": "en-US",
+    "text": "take a nap",
+    "file": "./audio/en/53f0bede7c1e.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "54477fefad88",
+    "language": "en",
+    "locale": "en-US",
+    "text": "She doesn’t drink tea.",
+    "file": "./audio/en/54477fefad88.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "5455327f9953",
     "language": "en",
     "locale": "en-US",
@@ -2916,6 +4633,108 @@
       {
         "level": "A1",
         "unit": "en_a1_u9",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "549c6ca8a52f",
+    "language": "en",
+    "locale": "en-US",
+    "text": "January",
+    "file": "./audio/en/549c6ca8a52f.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "54bc19401539",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Does he study tomorrow?",
+    "file": "./audio/en/54bc19401539.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "55051f2531bd",
+    "language": "en",
+    "locale": "en-US",
+    "text": "artist",
+    "file": "./audio/en/55051f2531bd.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "552e9b5ca4f3",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I start work at eight.",
+    "file": "./audio/en/552e9b5ca4f3.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "557dc98d2da0",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Which class do you like?",
+    "file": "./audio/en/557dc98d2da0.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "560f05e0dcad",
+    "language": "en",
+    "locale": "en-US",
+    "text": "We arrive on time.",
+    "file": "./audio/en/560f05e0dcad.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
         "kind": "example"
       }
     ],
@@ -2934,6 +4753,23 @@
         "level": "A1",
         "unit": "en_a1_u5",
         "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "572e4285d549",
+    "language": "en",
+    "locale": "en-US",
+    "text": "We visit family in August.",
+    "file": "./audio/en/572e4285d549.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
+        "kind": "example"
       }
     ],
     "levels": [
@@ -2992,6 +4828,40 @@
     ]
   },
   {
+    "id": "580bda70ab64",
+    "language": "en",
+    "locale": "en-US",
+    "text": "They can run fast.",
+    "file": "./audio/en/580bda70ab64.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "584e4dce70c8",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I can try again.",
+    "file": "./audio/en/584e4dce70c8.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "5929e58a5aa1",
     "language": "en",
     "locale": "en-US",
@@ -3026,6 +4896,23 @@
     ]
   },
   {
+    "id": "5b6583d6c1c2",
+    "language": "en",
+    "locale": "en-US",
+    "text": "March",
+    "file": "./audio/en/5b6583d6c1c2.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "5b8bb3c3093f",
     "language": "en",
     "locale": "en-US",
@@ -3053,6 +4940,23 @@
         "level": "A1",
         "unit": "en_a1_u12",
         "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "5c64513bcd43",
+    "language": "en",
+    "locale": "en-US",
+    "text": "She can close the door.",
+    "file": "./audio/en/5c64513bcd43.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
+        "kind": "example"
       }
     ],
     "levels": [
@@ -3103,6 +5007,23 @@
       {
         "level": "A1",
         "unit": "en_a1_u4",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "5d6200f8cf98",
+    "language": "en",
+    "locale": "en-US",
+    "text": "late",
+    "file": "./audio/en/5d6200f8cf98.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
         "kind": "vocabulary"
       }
     ],
@@ -3196,6 +5117,23 @@
     ]
   },
   {
+    "id": "5e45c38bd8b2",
+    "language": "en",
+    "locale": "en-US",
+    "text": "He helps his patients.",
+    "file": "./audio/en/5e45c38bd8b2.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "5f0b3108257e",
     "language": "en",
     "locale": "en-US",
@@ -3239,6 +5177,23 @@
       {
         "level": "A1",
         "unit": "en_a1_u7",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "5fc7e38bffe0",
+    "language": "en",
+    "locale": "en-US",
+    "text": "open",
+    "file": "./audio/en/5fc7e38bffe0.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
         "kind": "vocabulary"
       }
     ],
@@ -3349,6 +5304,23 @@
     ]
   },
   {
+    "id": "63ce4ac61711",
+    "language": "en",
+    "locale": "en-US",
+    "text": "He manages the office.",
+    "file": "./audio/en/63ce4ac61711.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "64292b1c2b2e",
     "language": "en",
     "locale": "en-US",
@@ -3383,6 +5355,23 @@
     ]
   },
   {
+    "id": "64d8af00c76b",
+    "language": "en",
+    "locale": "en-US",
+    "text": "We don’t eat meat.",
+    "file": "./audio/en/64d8af00c76b.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "64f8483dc47c",
     "language": "en",
     "locale": "en-US",
@@ -3400,6 +5389,40 @@
     ]
   },
   {
+    "id": "6656018ac96d",
+    "language": "en",
+    "locale": "en-US",
+    "text": "always",
+    "file": "./audio/en/6656018ac96d.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "66c2fa4e9e56",
+    "language": "en",
+    "locale": "en-US",
+    "text": "usually",
+    "file": "./audio/en/66c2fa4e9e56.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "6711b9ebf598",
     "language": "en",
     "locale": "en-US",
@@ -3410,6 +5433,23 @@
         "level": "A1",
         "unit": "en_a1_u6",
         "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "673ac872be30",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Do you work today?",
+    "file": "./audio/en/673ac872be30.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
+        "kind": "example"
       }
     ],
     "levels": [
@@ -3443,6 +5483,74 @@
       {
         "level": "A1",
         "unit": "en_a1_u7",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "67b5fa48f92c",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Friday",
+    "file": "./audio/en/67b5fa48f92c.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "6814a21e90f4",
+    "language": "en",
+    "locale": "en-US",
+    "text": "wash",
+    "file": "./audio/en/6814a21e90f4.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "68331b516c70",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I don’t exercise on Sunday.",
+    "file": "./audio/en/68331b516c70.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "689cd037700d",
+    "language": "en",
+    "locale": "en-US",
+    "text": "We arrive late sometimes.",
+    "file": "./audio/en/689cd037700d.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
         "kind": "example"
       }
     ],
@@ -3519,6 +5627,40 @@
     ]
   },
   {
+    "id": "6a1cec45eaf3",
+    "language": "en",
+    "locale": "en-US",
+    "text": "clean",
+    "file": "./audio/en/6a1cec45eaf3.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "6a7279af576c",
+    "language": "en",
+    "locale": "en-US",
+    "text": "This habit is healthy.",
+    "file": "./audio/en/6a7279af576c.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "6ae999552a0d",
     "language": "en",
     "locale": "en-US",
@@ -3529,6 +5671,40 @@
         "level": "A1",
         "unit": "en_a1_u1",
         "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "6b77993c3476",
+    "language": "en",
+    "locale": "en-US",
+    "text": "often",
+    "file": "./audio/en/6b77993c3476.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "6b784c24da0c",
+    "language": "en",
+    "locale": "en-US",
+    "text": "She usually walks to work.",
+    "file": "./audio/en/6b784c24da0c.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
+        "kind": "example"
       }
     ],
     "levels": [
@@ -3550,6 +5726,23 @@
       {
         "level": "A1",
         "unit": "en_a1_u7",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "6c6acebefb01",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I can’t forget this word.",
+    "file": "./audio/en/6c6acebefb01.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
         "kind": "example"
       }
     ],
@@ -3584,6 +5777,23 @@
       {
         "level": "A1",
         "unit": "en_a1_u6",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "6d34e27686cd",
+    "language": "en",
+    "locale": "en-US",
+    "text": "how many",
+    "file": "./audio/en/6d34e27686cd.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
         "kind": "vocabulary"
       }
     ],
@@ -3796,6 +6006,40 @@
     ]
   },
   {
+    "id": "71701bcaa4d7",
+    "language": "en",
+    "locale": "en-US",
+    "text": "skate",
+    "file": "./audio/en/71701bcaa4d7.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "71b21161ffa1",
+    "language": "en",
+    "locale": "en-US",
+    "text": "company",
+    "file": "./audio/en/71b21161ffa1.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "723f69429ba8",
     "language": "en",
     "locale": "en-US",
@@ -3830,6 +6074,23 @@
     ]
   },
   {
+    "id": "72bd566bb0f8",
+    "language": "en",
+    "locale": "en-US",
+    "text": "He works at a hospital.",
+    "file": "./audio/en/72bd566bb0f8.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "72bfb05496f9",
     "language": "en",
     "locale": "en-US",
@@ -3839,6 +6100,40 @@
       {
         "level": "A1",
         "unit": "en_a1_u12",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "72c78537b264",
+    "language": "en",
+    "locale": "en-US",
+    "text": "They have dinner at seven.",
+    "file": "./audio/en/72c78537b264.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "72cd0a82a0c7",
+    "language": "en",
+    "locale": "en-US",
+    "text": "borrow",
+    "file": "./audio/en/72cd0a82a0c7.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
         "kind": "vocabulary"
       }
     ],
@@ -3915,6 +6210,23 @@
     ]
   },
   {
+    "id": "741326f96ab7",
+    "language": "en",
+    "locale": "en-US",
+    "text": "She works in an office.",
+    "file": "./audio/en/741326f96ab7.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "7495c410248c",
     "language": "en",
     "locale": "en-US",
@@ -3932,6 +6244,23 @@
     ]
   },
   {
+    "id": "74b518ed5512",
+    "language": "en",
+    "locale": "en-US",
+    "text": "dance",
+    "file": "./audio/en/74b518ed5512.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "766250612b00",
     "language": "en",
     "locale": "en-US",
@@ -3941,6 +6270,23 @@
       {
         "level": "A1",
         "unit": "en_a1_u5",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "76a4e12c213d",
+    "language": "en",
+    "locale": "en-US",
+    "text": "draw",
+    "file": "./audio/en/76a4e12c213d.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
         "kind": "vocabulary"
       }
     ],
@@ -4000,6 +6346,23 @@
     ]
   },
   {
+    "id": "78cbc77f583d",
+    "language": "en",
+    "locale": "en-US",
+    "text": "dinner",
+    "file": "./audio/en/78cbc77f583d.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "78d0c696aee2",
     "language": "en",
     "locale": "en-US",
@@ -4010,6 +6373,23 @@
         "level": "A1",
         "unit": "en_a1_u10",
         "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "78d3812a702e",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Why does she work here?",
+    "file": "./audio/en/78d3812a702e.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
+        "kind": "example"
       }
     ],
     "levels": [
@@ -4051,6 +6431,23 @@
     ]
   },
   {
+    "id": "7aeb9cc3c09d",
+    "language": "en",
+    "locale": "en-US",
+    "text": "We often play outside.",
+    "file": "./audio/en/7aeb9cc3c09d.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "7b10f38def50",
     "language": "en",
     "locale": "en-US",
@@ -4068,6 +6465,91 @@
     ]
   },
   {
+    "id": "7b202d57f214",
+    "language": "en",
+    "locale": "en-US",
+    "text": "factory",
+    "file": "./audio/en/7b202d57f214.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "7b231a50a498",
+    "language": "en",
+    "locale": "en-US",
+    "text": "available",
+    "file": "./audio/en/7b231a50a498.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "7b81d38e8ab7",
+    "language": "en",
+    "locale": "en-US",
+    "text": "She works as an engineer.",
+    "file": "./audio/en/7b81d38e8ab7.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "7bd313c15fcf",
+    "language": "en",
+    "locale": "en-US",
+    "text": "How many lessons do you have?",
+    "file": "./audio/en/7bd313c15fcf.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "7bed6ef7dd4b",
+    "language": "en",
+    "locale": "en-US",
+    "text": "She grows flowers.",
+    "file": "./audio/en/7bed6ef7dd4b.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "7c225d514e3a",
     "language": "en",
     "locale": "en-US",
@@ -4077,6 +6559,40 @@
       {
         "level": "A1",
         "unit": "en_a1_u10",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "7ca7a4abcc2d",
+    "language": "en",
+    "locale": "en-US",
+    "text": "drink",
+    "file": "./audio/en/7ca7a4abcc2d.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "7d51bb06d82b",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Is she busy now?",
+    "file": "./audio/en/7d51bb06d82b.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
         "kind": "example"
       }
     ],
@@ -4119,6 +6635,23 @@
     ]
   },
   {
+    "id": "7fa4f4435f22",
+    "language": "en",
+    "locale": "en-US",
+    "text": "They visit us every week.",
+    "file": "./audio/en/7fa4f4435f22.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "7fd8a38a9536",
     "language": "en",
     "locale": "en-US",
@@ -4145,6 +6678,23 @@
       {
         "level": "A1",
         "unit": "en_a1_u9",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "801c7cf7f9a4",
+    "language": "en",
+    "locale": "en-US",
+    "text": "We meet on Wednesday.",
+    "file": "./audio/en/801c7cf7f9a4.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
         "kind": "example"
       }
     ],
@@ -4247,6 +6797,23 @@
       {
         "level": "A1",
         "unit": "en_a1_u6",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "818743b967a1",
+    "language": "en",
+    "locale": "en-US",
+    "text": "early",
+    "file": "./audio/en/818743b967a1.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
         "kind": "vocabulary"
       }
     ],
@@ -4374,6 +6941,23 @@
     ]
   },
   {
+    "id": "85777c03b725",
+    "language": "en",
+    "locale": "en-US",
+    "text": "never",
+    "file": "./audio/en/85777c03b725.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "8590bef00672",
     "language": "en",
     "locale": "en-US",
@@ -4383,6 +6967,40 @@
       {
         "level": "A1",
         "unit": "en_a1_u5",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "85f2aea244da",
+    "language": "en",
+    "locale": "en-US",
+    "text": "September",
+    "file": "./audio/en/85f2aea244da.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "8634e5bdfe73",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I can swim.",
+    "file": "./audio/en/8634e5bdfe73.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
         "kind": "example"
       }
     ],
@@ -4442,6 +7060,40 @@
     ]
   },
   {
+    "id": "87a6032f5bd3",
+    "language": "en",
+    "locale": "en-US",
+    "text": "He works at a clinic.",
+    "file": "./audio/en/87a6032f5bd3.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "8812b0e1532f",
+    "language": "en",
+    "locale": "en-US",
+    "text": "at night",
+    "file": "./audio/en/8812b0e1532f.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "882dce509f9d",
     "language": "en",
     "locale": "en-US",
@@ -4459,6 +7111,23 @@
     ]
   },
   {
+    "id": "885534c19d5f",
+    "language": "en",
+    "locale": "en-US",
+    "text": "study",
+    "file": "./audio/en/885534c19d5f.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "885c39aca07c",
     "language": "en",
     "locale": "en-US",
@@ -4469,6 +7138,23 @@
         "level": "A1",
         "unit": "en_a1_u4",
         "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "88f1f8d76941",
+    "language": "en",
+    "locale": "en-US",
+    "text": "He fixes cars.",
+    "file": "./audio/en/88f1f8d76941.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
+        "kind": "example"
       }
     ],
     "levels": [
@@ -4527,6 +7213,23 @@
     ]
   },
   {
+    "id": "89b84d9b20f0",
+    "language": "en",
+    "locale": "en-US",
+    "text": "He can run fast.",
+    "file": "./audio/en/89b84d9b20f0.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "89b8d783289b",
     "language": "en",
     "locale": "en-US",
@@ -4537,6 +7240,23 @@
         "level": "A1",
         "unit": "en_a1_u11",
         "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "89d2100633b8",
+    "language": "en",
+    "locale": "en-US",
+    "text": "He works on Thursday.",
+    "file": "./audio/en/89d2100633b8.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
+        "kind": "example"
       }
     ],
     "levels": [
@@ -4612,6 +7332,23 @@
     ]
   },
   {
+    "id": "8a7d00c10735",
+    "language": "en",
+    "locale": "en-US",
+    "text": "She can dance well.",
+    "file": "./audio/en/8a7d00c10735.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "8a7d8f7e9688",
     "language": "en",
     "locale": "en-US",
@@ -4621,6 +7358,23 @@
       {
         "level": "A1",
         "unit": "en_a1_u3",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "8ab7a30afce9",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I work on Monday.",
+    "file": "./audio/en/8ab7a30afce9.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
         "kind": "example"
       }
     ],
@@ -4697,6 +7451,23 @@
     ]
   },
   {
+    "id": "8cad91f51784",
+    "language": "en",
+    "locale": "en-US",
+    "text": "We don’t visit the museum every week.",
+    "file": "./audio/en/8cad91f51784.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "8cf9f2db1f45",
     "language": "en",
     "locale": "en-US",
@@ -4707,6 +7478,40 @@
         "level": "A1",
         "unit": "en_a1_u3",
         "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "8d237b901c3a",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Can I use your phone?",
+    "file": "./audio/en/8d237b901c3a.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "8d7050ffcf7a",
+    "language": "en",
+    "locale": "en-US",
+    "text": "engineer",
+    "file": "./audio/en/8d7050ffcf7a.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
+        "kind": "vocabulary"
       }
     ],
     "levels": [
@@ -4765,6 +7570,23 @@
     ]
   },
   {
+    "id": "8e73840bbf9c",
+    "language": "en",
+    "locale": "en-US",
+    "text": "understand",
+    "file": "./audio/en/8e73840bbf9c.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "8ef1db5abc32",
     "language": "en",
     "locale": "en-US",
@@ -4774,6 +7596,40 @@
       {
         "level": "A1",
         "unit": "en_a1_u12",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "8fa8a3c2de61",
+    "language": "en",
+    "locale": "en-US",
+    "text": "April",
+    "file": "./audio/en/8fa8a3c2de61.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "8fdd23916e4e",
+    "language": "en",
+    "locale": "en-US",
+    "text": "School ends in June.",
+    "file": "./audio/en/8fdd23916e4e.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
         "kind": "example"
       }
     ],
@@ -4850,6 +7706,23 @@
     ]
   },
   {
+    "id": "9155ef5fde64",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Saturday",
+    "file": "./audio/en/9155ef5fde64.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "9166eeff1e50",
     "language": "en",
     "locale": "en-US",
@@ -4860,6 +7733,23 @@
         "level": "A1",
         "unit": "en_a1_u8",
         "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "917f4414ce22",
+    "language": "en",
+    "locale": "en-US",
+    "text": "She is a doctor.",
+    "file": "./audio/en/917f4414ce22.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
+        "kind": "example"
       }
     ],
     "levels": [
@@ -4962,6 +7852,40 @@
         "level": "A1",
         "unit": "en_a1_u8",
         "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "95ded6837156",
+    "language": "en",
+    "locale": "en-US",
+    "text": "The store opens on Saturday.",
+    "file": "./audio/en/95ded6837156.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "961b9773bf83",
+    "language": "en",
+    "locale": "en-US",
+    "text": "What is the date today?",
+    "file": "./audio/en/961b9773bf83.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
+        "kind": "example"
       }
     ],
     "levels": [
@@ -5105,6 +8029,40 @@
     ]
   },
   {
+    "id": "982aa9d15171",
+    "language": "en",
+    "locale": "en-US",
+    "text": "November",
+    "file": "./audio/en/982aa9d15171.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "984520d831d9",
+    "language": "en",
+    "locale": "en-US",
+    "text": "February is a short month.",
+    "file": "./audio/en/984520d831d9.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "98aadb37083e",
     "language": "en",
     "locale": "en-US",
@@ -5139,6 +8097,74 @@
     ]
   },
   {
+    "id": "99f707ef02f0",
+    "language": "en",
+    "locale": "en-US",
+    "text": "fix",
+    "file": "./audio/en/99f707ef02f0.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "9a251027f792",
+    "language": "en",
+    "locale": "en-US",
+    "text": "She sings well.",
+    "file": "./audio/en/9a251027f792.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "9adc7a1161dd",
+    "language": "en",
+    "locale": "en-US",
+    "text": "August",
+    "file": "./audio/en/9adc7a1161dd.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "9b1959d3eae7",
+    "language": "en",
+    "locale": "en-US",
+    "text": "She grows vegetables.",
+    "file": "./audio/en/9b1959d3eae7.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "9b4e473e4de7",
     "language": "en",
     "locale": "en-US",
@@ -5149,6 +8175,23 @@
         "level": "A1",
         "unit": "en_a1_u5",
         "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "9b941de78eb6",
+    "language": "en",
+    "locale": "en-US",
+    "text": "We relax on the weekend.",
+    "file": "./audio/en/9b941de78eb6.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
+        "kind": "example"
       }
     ],
     "levels": [
@@ -5309,6 +8352,23 @@
     ]
   },
   {
+    "id": "9e91c2c500db",
+    "language": "en",
+    "locale": "en-US",
+    "text": "what time",
+    "file": "./audio/en/9e91c2c500db.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "9f6b7dbb735c",
     "language": "en",
     "locale": "en-US",
@@ -5319,6 +8379,23 @@
         "level": "A1",
         "unit": "en_a1_u10",
         "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "9f7f0875c818",
+    "language": "en",
+    "locale": "en-US",
+    "text": "She calls twice a day.",
+    "file": "./audio/en/9f7f0875c818.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
+        "kind": "example"
       }
     ],
     "levels": [
@@ -5352,6 +8429,23 @@
       {
         "level": "A1",
         "unit": "en_a1_u9",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "9fa859dbc7b9",
+    "language": "en",
+    "locale": "en-US",
+    "text": "October is a busy month.",
+    "file": "./audio/en/9fa859dbc7b9.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
         "kind": "example"
       }
     ],
@@ -5462,6 +8556,23 @@
     ]
   },
   {
+    "id": "a19014620b16",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Are you available today?",
+    "file": "./audio/en/a19014620b16.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "a232ad2937b8",
     "language": "en",
     "locale": "en-US",
@@ -5530,6 +8641,23 @@
     ]
   },
   {
+    "id": "a37d0402cc47",
+    "language": "en",
+    "locale": "en-US",
+    "text": "This question is easy.",
+    "file": "./audio/en/a37d0402cc47.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "a384cff1a369",
     "language": "en",
     "locale": "en-US",
@@ -5539,6 +8667,40 @@
       {
         "level": "A1",
         "unit": "en_a1_u11",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "a3cdaa56c130",
+    "language": "en",
+    "locale": "en-US",
+    "text": "He cooks in a restaurant.",
+    "file": "./audio/en/a3cdaa56c130.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "a41f18cb110c",
+    "language": "en",
+    "locale": "en-US",
+    "text": "visit",
+    "file": "./audio/en/a41f18cb110c.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
         "kind": "vocabulary"
       }
     ],
@@ -5581,6 +8743,23 @@
     ]
   },
   {
+    "id": "a514a4250b80",
+    "language": "en",
+    "locale": "en-US",
+    "text": "He doesn’t sleep late.",
+    "file": "./audio/en/a514a4250b80.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "a5afc8df8baa",
     "language": "en",
     "locale": "en-US",
@@ -5598,6 +8777,23 @@
     ]
   },
   {
+    "id": "a5b42198e3fb",
+    "language": "en",
+    "locale": "en-US",
+    "text": "cashier",
+    "file": "./audio/en/a5b42198e3fb.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "a62f2225bf70",
     "language": "en",
     "locale": "en-US",
@@ -5607,6 +8803,23 @@
       {
         "level": "A1",
         "unit": "en_a1_u5",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "a65265946e25",
+    "language": "en",
+    "locale": "en-US",
+    "text": "speak",
+    "file": "./audio/en/a65265946e25.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
         "kind": "vocabulary"
       }
     ],
@@ -5641,6 +8854,23 @@
       {
         "level": "A1",
         "unit": "en_a1_u8",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "a7ce2b452192",
+    "language": "en",
+    "locale": "en-US",
+    "text": "She paints every day.",
+    "file": "./audio/en/a7ce2b452192.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
         "kind": "example"
       }
     ],
@@ -5751,6 +8981,23 @@
     ]
   },
   {
+    "id": "aa0002a70cd0",
+    "language": "en",
+    "locale": "en-US",
+    "text": "July",
+    "file": "./audio/en/aa0002a70cd0.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "aa8c41330509",
     "language": "en",
     "locale": "en-US",
@@ -5778,6 +9025,23 @@
         "level": "A1",
         "unit": "en_a1_u1",
         "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "aab397b8424d",
+    "language": "en",
+    "locale": "en-US",
+    "text": "The course starts in March.",
+    "file": "./audio/en/aab397b8424d.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
+        "kind": "example"
       }
     ],
     "levels": [
@@ -5836,6 +9100,23 @@
     ]
   },
   {
+    "id": "abdf1839f12f",
+    "language": "en",
+    "locale": "en-US",
+    "text": "We have a break at noon.",
+    "file": "./audio/en/abdf1839f12f.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "ad782ecdac77",
     "language": "en",
     "locale": "en-US",
@@ -5845,6 +9126,23 @@
       {
         "level": "A1",
         "unit": "en_a1_u4",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "ad8167df4b75",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Monday",
+    "file": "./audio/en/ad8167df4b75.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
         "kind": "vocabulary"
       }
     ],
@@ -5955,6 +9253,40 @@
     ]
   },
   {
+    "id": "b05c038edc70",
+    "language": "en",
+    "locale": "en-US",
+    "text": "June",
+    "file": "./audio/en/b05c038edc70.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "b0ad7419aca7",
+    "language": "en",
+    "locale": "en-US",
+    "text": "They finish school at three.",
+    "file": "./audio/en/b0ad7419aca7.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "b0c3069a40e9",
     "language": "en",
     "locale": "en-US",
@@ -5981,6 +9313,40 @@
       {
         "level": "A1",
         "unit": "en_a1_u8",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "b107bd2c9fdd",
+    "language": "en",
+    "locale": "en-US",
+    "text": "how often",
+    "file": "./audio/en/b107bd2c9fdd.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "b11449a34df8",
+    "language": "en",
+    "locale": "en-US",
+    "text": "lesson",
+    "file": "./audio/en/b11449a34df8.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
         "kind": "vocabulary"
       }
     ],
@@ -6040,6 +9406,23 @@
     ]
   },
   {
+    "id": "b1adef71ccbf",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I wake up at six.",
+    "file": "./audio/en/b1adef71ccbf.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "b1e11da2fe27",
     "language": "en",
     "locale": "en-US",
@@ -6066,6 +9449,23 @@
       {
         "level": "A1",
         "unit": "en_a1_u11",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "b3a26856e5d5",
+    "language": "en",
+    "locale": "en-US",
+    "text": "The lesson is short.",
+    "file": "./audio/en/b3a26856e5d5.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
         "kind": "example"
       }
     ],
@@ -6159,6 +9559,57 @@
     ]
   },
   {
+    "id": "b5b694493042",
+    "language": "en",
+    "locale": "en-US",
+    "text": "We can draw animals.",
+    "file": "./audio/en/b5b694493042.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "b6281b75eba9",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I have breakfast at home.",
+    "file": "./audio/en/b6281b75eba9.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "b6300b466645",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I walk to school.",
+    "file": "./audio/en/b6300b466645.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "b6a552dade86",
     "language": "en",
     "locale": "en-US",
@@ -6168,6 +9619,23 @@
       {
         "level": "A1",
         "unit": "en_a1_u3",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "b6c05f4f88ab",
+    "language": "en",
+    "locale": "en-US",
+    "text": "They can climb a tree.",
+    "file": "./audio/en/b6c05f4f88ab.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
         "kind": "example"
       }
     ],
@@ -6186,6 +9654,23 @@
         "level": "A1",
         "unit": "en_a1_u11",
         "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "b7524fb104a1",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I brush my hair.",
+    "file": "./audio/en/b7524fb104a1.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
+        "kind": "example"
       }
     ],
     "levels": [
@@ -6295,6 +9780,23 @@
     ]
   },
   {
+    "id": "b89f90f328fa",
+    "language": "en",
+    "locale": "en-US",
+    "text": "swim",
+    "file": "./audio/en/b89f90f328fa.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "b94ae4f118e0",
     "language": "en",
     "locale": "en-US",
@@ -6305,6 +9807,23 @@
         "level": "A1",
         "unit": "en_a1_u10",
         "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "b96cfac54be6",
+    "language": "en",
+    "locale": "en-US",
+    "text": "forget",
+    "file": "./audio/en/b96cfac54be6.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
+        "kind": "vocabulary"
       }
     ],
     "levels": [
@@ -6338,6 +9857,23 @@
       {
         "level": "A1",
         "unit": "en_a1_u12",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "bbe5bb364fb3",
+    "language": "en",
+    "locale": "en-US",
+    "text": "teach",
+    "file": "./audio/en/bbe5bb364fb3.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
         "kind": "vocabulary"
       }
     ],
@@ -6380,6 +9916,40 @@
     ]
   },
   {
+    "id": "bc7d99615a32",
+    "language": "en",
+    "locale": "en-US",
+    "text": "They never drink coffee.",
+    "file": "./audio/en/bc7d99615a32.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "bc87c943c94f",
+    "language": "en",
+    "locale": "en-US",
+    "text": "rarely",
+    "file": "./audio/en/bc87c943c94f.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "bd3027fa569e",
     "language": "en",
     "locale": "en-US",
@@ -6414,6 +9984,40 @@
     ]
   },
   {
+    "id": "bd7580126b94",
+    "language": "en",
+    "locale": "en-US",
+    "text": "meeting",
+    "file": "./audio/en/bd7580126b94.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "bd8483287459",
+    "language": "en",
+    "locale": "en-US",
+    "text": "well",
+    "file": "./audio/en/bd8483287459.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "be24b50db114",
     "language": "en",
     "locale": "en-US",
@@ -6423,6 +10027,23 @@
       {
         "level": "A1",
         "unit": "en_a1_u7",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "be35ddb1c5f2",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I wash my face.",
+    "file": "./audio/en/be35ddb1c5f2.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
         "kind": "example"
       }
     ],
@@ -6550,6 +10171,23 @@
     ]
   },
   {
+    "id": "c1b89f8476a8",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Wednesday",
+    "file": "./audio/en/c1b89f8476a8.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "c22b5f917834",
     "language": "en",
     "locale": "en-US",
@@ -6601,6 +10239,23 @@
     ]
   },
   {
+    "id": "c29b311fbdec",
+    "language": "en",
+    "locale": "en-US",
+    "text": "How often do they travel?",
+    "file": "./audio/en/c29b311fbdec.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "c2a6b03f190d",
     "language": "en",
     "locale": "en-US",
@@ -6611,6 +10266,23 @@
         "level": "A1",
         "unit": "en_a1_u8",
         "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "c2b57a14f59c",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Swimming is a useful skill.",
+    "file": "./audio/en/c2b57a14f59c.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
+        "kind": "example"
       }
     ],
     "levels": [
@@ -6661,6 +10333,40 @@
       {
         "level": "A1",
         "unit": "en_a1_u6",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "c35b07262fca",
+    "language": "en",
+    "locale": "en-US",
+    "text": "December",
+    "file": "./audio/en/c35b07262fca.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "c3ca5f787365",
+    "language": "en",
+    "locale": "en-US",
+    "text": "sleep",
+    "file": "./audio/en/c3ca5f787365.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
         "kind": "vocabulary"
       }
     ],
@@ -6747,6 +10453,23 @@
         "level": "A1",
         "unit": "en_a1_u1",
         "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "c559d858e5e3",
+    "language": "en",
+    "locale": "en-US",
+    "text": "ride a bike",
+    "file": "./audio/en/c559d858e5e3.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
+        "kind": "vocabulary"
       }
     ],
     "levels": [
@@ -6924,6 +10647,23 @@
     ]
   },
   {
+    "id": "c7c5d759817f",
+    "language": "en",
+    "locale": "en-US",
+    "text": "grow",
+    "file": "./audio/en/c7c5d759817f.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "c7d8a6d722a1",
     "language": "en",
     "locale": "en-US",
@@ -6950,6 +10690,23 @@
       {
         "level": "A1",
         "unit": "en_a1_u1",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "ca45c713eb8c",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I don’t take a nap every day.",
+    "file": "./audio/en/ca45c713eb8c.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
         "kind": "example"
       }
     ],
@@ -7018,6 +10775,40 @@
       {
         "level": "A1",
         "unit": "en_a1_u9",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "cd42169de3fa",
+    "language": "en",
+    "locale": "en-US",
+    "text": "climb",
+    "file": "./audio/en/cd42169de3fa.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "cdaaa12922c0",
+    "language": "en",
+    "locale": "en-US",
+    "text": "clinic",
+    "file": "./audio/en/cdaaa12922c0.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
         "kind": "vocabulary"
       }
     ],
@@ -7111,6 +10902,23 @@
     ]
   },
   {
+    "id": "d01ee20c5e04",
+    "language": "en",
+    "locale": "en-US",
+    "text": "every week",
+    "file": "./audio/en/d01ee20c5e04.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "d09bfa96b41c",
     "language": "en",
     "locale": "en-US",
@@ -7171,6 +10979,23 @@
       {
         "level": "A1",
         "unit": "en_a1_u7",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "d1ce1a31e9e0",
+    "language": "en",
+    "locale": "en-US",
+    "text": "She can speak English.",
+    "file": "./audio/en/d1ce1a31e9e0.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
         "kind": "example"
       }
     ],
@@ -7400,6 +11225,23 @@
     ]
   },
   {
+    "id": "d534c93d97bf",
+    "language": "en",
+    "locale": "en-US",
+    "text": "She drives a bus.",
+    "file": "./audio/en/d534c93d97bf.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "d559d05089f6",
     "language": "en",
     "locale": "en-US",
@@ -7451,6 +11293,40 @@
     ]
   },
   {
+    "id": "d59cc87cb932",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I always eat breakfast.",
+    "file": "./audio/en/d59cc87cb932.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "d5f2e5c77054",
+    "language": "en",
+    "locale": "en-US",
+    "text": "chef",
+    "file": "./audio/en/d5f2e5c77054.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "d62f168fb29b",
     "language": "en",
     "locale": "en-US",
@@ -7460,6 +11336,23 @@
       {
         "level": "A1",
         "unit": "en_a1_u4",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "d652e9938e37",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I don’t drive to work.",
+    "file": "./audio/en/d652e9938e37.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
         "kind": "example"
       }
     ],
@@ -7512,6 +11405,23 @@
         "level": "A1",
         "unit": "en_a1_u2",
         "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "d89455758ecc",
+    "language": "en",
+    "locale": "en-US",
+    "text": "eat",
+    "file": "./audio/en/d89455758ecc.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
+        "kind": "vocabulary"
       }
     ],
     "levels": [
@@ -7587,6 +11497,40 @@
     ]
   },
   {
+    "id": "d9174da4a0a7",
+    "language": "en",
+    "locale": "en-US",
+    "text": "I work on weekdays.",
+    "file": "./audio/en/d9174da4a0a7.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "d93e8eecff3c",
+    "language": "en",
+    "locale": "en-US",
+    "text": "appointment",
+    "file": "./audio/en/d93e8eecff3c.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "d9686fa54df9",
     "language": "en",
     "locale": "en-US",
@@ -7597,6 +11541,23 @@
         "level": "A1",
         "unit": "en_a1_u10",
         "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "da38860cb875",
+    "language": "en",
+    "locale": "en-US",
+    "text": "close",
+    "file": "./audio/en/da38860cb875.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
+        "kind": "vocabulary"
       }
     ],
     "levels": [
@@ -7655,6 +11616,23 @@
     ]
   },
   {
+    "id": "db7c8cf91385",
+    "language": "en",
+    "locale": "en-US",
+    "text": "possible",
+    "file": "./audio/en/db7c8cf91385.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "dc01c6b7487a",
     "language": "en",
     "locale": "en-US",
@@ -7699,6 +11677,23 @@
         "level": "A1",
         "unit": "en_a1_u4",
         "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "dd46602c9801",
+    "language": "en",
+    "locale": "en-US",
+    "text": "How much water do you drink?",
+    "file": "./audio/en/dd46602c9801.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
+        "kind": "example"
       }
     ],
     "levels": [
@@ -7842,6 +11837,23 @@
     ]
   },
   {
+    "id": "df06b147f778",
+    "language": "en",
+    "locale": "en-US",
+    "text": "walk",
+    "file": "./audio/en/df06b147f778.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "df0ab65a0efc",
     "language": "en",
     "locale": "en-US",
@@ -7851,6 +11863,40 @@
       {
         "level": "A1",
         "unit": "en_a1_u11",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "df6ad19037c9",
+    "language": "en",
+    "locale": "en-US",
+    "text": "run",
+    "file": "./audio/en/df6ad19037c9.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "e02b19d07032",
+    "language": "en",
+    "locale": "en-US",
+    "text": "He works in a factory.",
+    "file": "./audio/en/e02b19d07032.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
         "kind": "example"
       }
     ],
@@ -7915,6 +11961,23 @@
     ]
   },
   {
+    "id": "e0f937561436",
+    "language": "en",
+    "locale": "en-US",
+    "text": "dentist",
+    "file": "./audio/en/e0f937561436.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "e13005ee66ec",
     "language": "en",
     "locale": "en-US",
@@ -7924,6 +11987,57 @@
       {
         "level": "A1",
         "unit": "en_a1_u4",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "e17674f762c4",
+    "language": "en",
+    "locale": "en-US",
+    "text": "practice",
+    "file": "./audio/en/e17674f762c4.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "e18a89f9cc5b",
+    "language": "en",
+    "locale": "en-US",
+    "text": "busy",
+    "file": "./audio/en/e18a89f9cc5b.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "e1a1da641894",
+    "language": "en",
+    "locale": "en-US",
+    "text": "He doesn’t stay at home.",
+    "file": "./audio/en/e1a1da641894.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
         "kind": "example"
       }
     ],
@@ -8000,6 +12114,23 @@
     ]
   },
   {
+    "id": "e2b20eabb4ee",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Our routine is simple.",
+    "file": "./audio/en/e2b20eabb4ee.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "e2faa9211ea1",
     "language": "en",
     "locale": "en-US",
@@ -8034,6 +12165,23 @@
     ]
   },
   {
+    "id": "e4ffacba5591",
+    "language": "en",
+    "locale": "en-US",
+    "text": "calendar",
+    "file": "./audio/en/e4ffacba5591.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "e52d514b7c8a",
     "language": "en",
     "locale": "en-US",
@@ -8051,6 +12199,23 @@
     ]
   },
   {
+    "id": "e6427457497f",
+    "language": "en",
+    "locale": "en-US",
+    "text": "office",
+    "file": "./audio/en/e6427457497f.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "e69867ca7d5a",
     "language": "en",
     "locale": "en-US",
@@ -8061,6 +12226,23 @@
         "level": "A1",
         "unit": "en_a1_u9",
         "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "e6f5b267fb6c",
+    "language": "en",
+    "locale": "en-US",
+    "text": "My birthday is in November.",
+    "file": "./audio/en/e6f5b267fb6c.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
+        "kind": "example"
       }
     ],
     "levels": [
@@ -8170,6 +12352,23 @@
     ]
   },
   {
+    "id": "e927d0677c77",
+    "language": "en",
+    "locale": "en-US",
+    "text": "date",
+    "file": "./audio/en/e927d0677c77.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "ea39210a09e7",
     "language": "en",
     "locale": "en-US",
@@ -8204,6 +12403,23 @@
     ]
   },
   {
+    "id": "eb70d1fcdf82",
+    "language": "en",
+    "locale": "en-US",
+    "text": "exercise",
+    "file": "./audio/en/eb70d1fcdf82.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "eb7ada766135",
     "language": "en",
     "locale": "en-US",
@@ -8213,6 +12429,23 @@
       {
         "level": "A1",
         "unit": "en_a1_u12",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "ed04ff4dabf1",
+    "language": "en",
+    "locale": "en-US",
+    "text": "which",
+    "file": "./audio/en/ed04ff4dabf1.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
         "kind": "vocabulary"
       }
     ],
@@ -8248,6 +12481,23 @@
         "level": "A1",
         "unit": "en_a1_u6",
         "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "edc9d366312c",
+    "language": "en",
+    "locale": "en-US",
+    "text": "We exercise once a week.",
+    "file": "./audio/en/edc9d366312c.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
+        "kind": "example"
       }
     ],
     "levels": [
@@ -8391,6 +12641,23 @@
     ]
   },
   {
+    "id": "f1f15a2da93b",
+    "language": "en",
+    "locale": "en-US",
+    "text": "He doesn’t work at night.",
+    "file": "./audio/en/f1f15a2da93b.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "f1fdd46d8d22",
     "language": "en",
     "locale": "en-US",
@@ -8476,6 +12743,23 @@
     ]
   },
   {
+    "id": "f3ba4d993e2d",
+    "language": "en",
+    "locale": "en-US",
+    "text": "cook",
+    "file": "./audio/en/f3ba4d993e2d.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "f3c9adb85c76",
     "language": "en",
     "locale": "en-US",
@@ -8493,6 +12777,40 @@
     ]
   },
   {
+    "id": "f3d6cd28c0db",
+    "language": "en",
+    "locale": "en-US",
+    "text": "They take a shower in the morning.",
+    "file": "./audio/en/f3d6cd28c0db.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "f458ef050c0c",
+    "language": "en",
+    "locale": "en-US",
+    "text": "May",
+    "file": "./audio/en/f458ef050c0c.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u17",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "f534e139cd9b",
     "language": "en",
     "locale": "en-US",
@@ -8502,6 +12820,23 @@
       {
         "level": "A1",
         "unit": "en_a1_u6",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "f55eca2dc03e",
+    "language": "en",
+    "locale": "en-US",
+    "text": "Do you work this afternoon?",
+    "file": "./audio/en/f55eca2dc03e.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
         "kind": "example"
       }
     ],
@@ -8561,6 +12896,23 @@
     ]
   },
   {
+    "id": "f647d5f75b94",
+    "language": "en",
+    "locale": "en-US",
+    "text": "They leave at seven.",
+    "file": "./audio/en/f647d5f75b94.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "f666f82a7b3e",
     "language": "en",
     "locale": "en-US",
@@ -8605,6 +12957,23 @@
         "level": "A1",
         "unit": "en_a1_u8",
         "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "f7956b2763e6",
+    "language": "en",
+    "locale": "en-US",
+    "text": "travel",
+    "file": "./audio/en/f7956b2763e6.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
+        "kind": "vocabulary"
       }
     ],
     "levels": [
@@ -8680,6 +13049,57 @@
     ]
   },
   {
+    "id": "f96364c2176f",
+    "language": "en",
+    "locale": "en-US",
+    "text": "We get up early.",
+    "file": "./audio/en/f96364c2176f.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u13",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "f99abcfae6c3",
+    "language": "en",
+    "locale": "en-US",
+    "text": "twice",
+    "file": "./audio/en/f99abcfae6c3.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u15",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "f9bef9c232ce",
+    "language": "en",
+    "locale": "en-US",
+    "text": "sing",
+    "file": "./audio/en/f9bef9c232ce.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
+        "kind": "vocabulary"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "f9c4b5b48266",
     "language": "en",
     "locale": "en-US",
@@ -8731,6 +13151,23 @@
     ]
   },
   {
+    "id": "fbc44e140388",
+    "language": "en",
+    "locale": "en-US",
+    "text": "When do you study?",
+    "file": "./audio/en/fbc44e140388.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "fbceb88f442c",
     "language": "en",
     "locale": "en-US",
@@ -8765,6 +13202,23 @@
     ]
   },
   {
+    "id": "fc3470e31479",
+    "language": "en",
+    "locale": "en-US",
+    "text": "My schedule is busy.",
+    "file": "./audio/en/fc3470e31479.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u16",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
     "id": "fc6a9e9d7c67",
     "language": "en",
     "locale": "en-US",
@@ -8774,6 +13228,23 @@
       {
         "level": "A1",
         "unit": "en_a1_u12",
+        "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "fc8988f0342b",
+    "language": "en",
+    "locale": "en-US",
+    "text": "We can understand the question.",
+    "file": "./audio/en/fc8988f0342b.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u18",
         "kind": "example"
       }
     ],
@@ -8826,6 +13297,23 @@
         "level": "A1",
         "unit": "en_a1_u2",
         "kind": "example"
+      }
+    ],
+    "levels": [
+      "A1"
+    ]
+  },
+  {
+    "id": "fdda0c46f953",
+    "language": "en",
+    "locale": "en-US",
+    "text": "driver",
+    "file": "./audio/en/fdda0c46f953.mp3",
+    "sources": [
+      {
+        "level": "A1",
+        "unit": "en_a1_u14",
+        "kind": "vocabulary"
       }
     ],
     "levels": [

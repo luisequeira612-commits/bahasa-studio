@@ -11,7 +11,7 @@ Guardi se está convirtiendo en una plataforma multilingüe. Los idiomas del cat
 | Idioma | Estado |
 |---|---|
 | Portugués brasileño (pt-BR) | Disponible: A1, A2, B1 y B2 |
-| Indonesio (id) | Disponible: A1 y A2 |
+| Indonesio (id) | Disponible: A1, A2, B1 y B2 |
 | Inglés estadounidense (en-US) | En desarrollo; el currículo B2 está en revisión editorial y todavía no se publica ni se puede seleccionar |
 | Italiano, francés, alemán, neerlandés, ruso, japonés y coreano | En preparación; todavía no son cursos seleccionables |
 

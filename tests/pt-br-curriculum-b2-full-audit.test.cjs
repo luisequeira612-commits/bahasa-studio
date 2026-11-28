@@ -186,3 +186,57 @@ test('all 40 PT-BR B2 units have complete structure, lesson coverage and valid e
  assert.equal(globalExamples.size,400);
  assert.deepEqual(priorLevelDuplicates,[],'B2 must not repeat A1/A2/B1 terms: '+priorLevelDuplicates.join('; '));
 });
+
+
+test('PT-BR A1-B2 global lexical progression documents every exact repeated target',async()=>{
+ const {loader}=createPilot();
+ const levels=[
+  ['A1',24],['A2',30],['B1',36],['B2',40]
+ ];
+ const loaded=await Promise.all(levels.map(([level,count])=>loader.loadUnits('pt-BR',level,Array.from({length:count},(_,i)=>i+1))));
+ const seen=new Map(),duplicates=[];
+ for(let i=0;i<levels.length;i++){
+  const [level]=levels[i],units=loaded[i].units;
+  for(const unit of units)for(const word of unit.vocab){
+   const key=normalize(word.target),previous=seen.get(key);
+   if(previous)duplicates.push({
+    target:key,first:previous.id,firstUnit:previous.level+'.U'+previous.unit,
+    repeated:word.id,repeatedUnit:level+'.U'+unit.unitNumber,
+    markedForReview:unit.lessons.some(lesson=>(lesson.reviewVocabIds||[]).includes(previous.id))
+   });
+   else seen.set(key,{id:word.id,level,unit:unit.unitNumber});
+  }
+ }
+ const expected=[
+  {target:'barato',first:'ptbr_a1_u10_v06',firstUnit:'A1.U10',repeated:'ptbr_a2_u5_v08',repeatedUnit:'A2.U5',markedForReview:true},
+  {target:'cansado cansada',first:'ptbr_a1_u9_v07',firstUnit:'A1.U9',repeated:'ptbr_a1_u17_v03',repeatedUnit:'A1.U17',markedForReview:true},
+  {target:'caro',first:'ptbr_a1_u10_v07',firstUnit:'A1.U10',repeated:'ptbr_a2_u5_v09',repeatedUnit:'A2.U5',markedForReview:true},
+  {target:'feliz',first:'ptbr_a1_u9_v08',firstUnit:'A1.U9',repeated:'ptbr_a1_u17_v01',repeatedUnit:'A1.U17',markedForReview:true},
+  {target:'ontem',first:'ptbr_a1_u12_v10',firstUnit:'A1.U12',repeated:'ptbr_a2_u1_v01',repeatedUnit:'A2.U1',markedForReview:true},
+  {target:'triste',first:'ptbr_a1_u9_v09',firstUnit:'A1.U9',repeated:'ptbr_a1_u17_v02',repeatedUnit:'A1.U17',markedForReview:true}
+ ];
+ duplicates.sort((a,b)=>a.target.localeCompare(b.target,'pt-BR'));
+ expected.sort((a,b)=>a.target.localeCompare(b.target,'pt-BR'));
+ assert.deepEqual(duplicates,expected,'Every exact lexical reuse across A1-B2 must be intentional and explicitly marked as review');
+ assert.ok(duplicates.every(item=>item.markedForReview),'Repeated terms must reference their original vocabulary ID in reviewVocabIds');
+
+ const [a1,a2,b1,b2]=loaded.map(item=>item.units);
+ const get=(units,number)=>units.find(unit=>unit.unitNumber===number);
+ const b1u8=get(b1,8),b1u23=get(b1,23),b1u31=get(b1,31),b1u34=get(b1,34);
+ assert.ok(b1u8.vocab.some(word=>word.target==='pesquisa aplicada'));
+ assert.ok(b1u8.vocab.some(word=>word.target==='revisão por pares'));
+ assert.ok(b1u23.vocab.some(word=>word.target==='plano de contingência'));
+ assert.ok(b1u31.vocab.some(word=>word.target==='periódico científico'));
+ assert.ok(b1u31.vocab.some(word=>word.target==='repositório institucional'));
+ assert.ok(!b1u31.vocab.some(word=>['pesquisa aplicada','revisão por pares'].includes(word.target)));
+ assert.ok(b1u34.vocab.some(word=>word.target==='avaliação de vulnerabilidade'));
+ assert.ok(!b1u34.vocab.some(word=>word.target==='plano de contingência'));
+ assert.ok(b1u34.lessons.some(lesson=>(lesson.reviewVocabIds||[]).includes('ptbr_b1_u23_v02')));
+
+ const b2u12=get(b2,12),b2u19=get(b2,19),b2u20=get(b2,20),b2u25=get(b2,25),b2u28=get(b2,28);
+ assert.ok(b2u12.lessons.some(lesson=>lesson.grammar.includes('no necesariamente idéntico')&&lesson.grammar.includes('misma proporción')));
+ assert.ok(b2u19.lessons.some(lesson=>lesson.grammar.includes('categoría gramatical')&&lesson.grammar.includes('transparente')));
+ assert.ok(b2u20.lessons.some(lesson=>lesson.grammar.includes('locución fija')&&lesson.grammar.includes('levar em conta')));
+ assert.ok(b2u25.lessons.some(lesson=>lesson.grammar.includes('sustantivo')&&lesson.grammar.includes('Anticipação')));
+ assert.ok(b2u28.lessons.some(lesson=>lesson.grammar.includes('cada fila representa un caso')&&lesson.grammar.includes('hallazgo')));
+});

@@ -330,6 +330,31 @@ test('English B2 U16 inverted-conditional lessons cover all targets and use matc
 });
 
 
+test('English B2 U27 fronting lessons match their vocabulary focus', () => {
+  const unit = loadB2().find((item) => item.unitNumber === 27);
+  assert.ok(unit);
+  const expected = [
+    ['Establecer el tema', ['as for', 'with regard to', 'when it comes to', 'that said']],
+    ['Topicalización de objetos y asuntos', ['this issue', 'the rest of the proposal', 'the main point', 'the problem with that']],
+    ['Marcos de perspectiva y foco', ['as far as I am concerned', 'in terms of', 'for one thing', 'in the first place']],
+    ['Organización y foco evaluativo', ['particularly important', 'even more concerning', 'more importantly', 'equally significant', 'as regards', 'on the other hand']],
+    ['Foco y claridad discursiva', ['what is less clear', 'as a starting point', 'the key question', 'above all']],
+  ];
+  for (let index = 0; index < expected.length; index += 1) {
+    const [title, targets] = expected[index];
+    const lesson = unit.lessons[index];
+    assert.equal(lesson.title, title);
+    assert.deepEqual(lesson.vocabIds.map((id) => unit.vocab.find((word) => word.id === id)?.target), targets);
+    const exercise = lesson.exercises.find((item) => item.type === 'order');
+    assert.ok(exercise);
+    assert.equal(exercise.vocabId, lesson.vocabIds[1]);
+    const word = unit.vocab.find((item) => item.id === exercise.vocabId);
+    assert.ok(word);
+    assert.deepEqual(Array.from(exercise.correctOrder),
+      word.ex.replace(/[.,!?;:]/g, '').trim().split(/\\s+/));
+  }
+});
+
 test('English B2 U15 mixed-conditional lesson themes match their vocabulary', () => {
   const unit = loadB2().find((item) => item.unitNumber === 15);
   assert.ok(unit);

@@ -196,6 +196,13 @@ test('editorially corrected B2 vocabulary examples stay aligned with their targe
     [26, 'little did I know', 'Little did I know that the decision would change everything.', 'Ni me imaginaba que la decisión lo cambiaría todo.'],
     [26, 'little did we expect', 'Little did we expect the project to attract so much attention.', 'Ni por asomo esperábamos que el proyecto atrajera tanta atención.'],
     [38, "it's not ideal", 'The timing is not ideal, but we can make it work.', 'El momento no es ideal, pero podemos hacer que funcione.'],
+    [51, 'to contradict a claim', 'The latest data contradict an earlier claim.', 'Los datos más recientes contradicen una afirmación anterior.'],
+    [52, 'to allocate resources', 'The plan allocates resources to staff training.', 'El plan asigna recursos a la capacitación del personal.'],
+    [52, 'a potential drawback', 'One potential drawback is the additional training time.', 'Un posible inconveniente es el tiempo adicional de capacitación.'],
+    [54, 'to take the minutes', 'Could you take the minutes during the meeting?', '¿Podrías levantar el acta durante la reunión?'],
+    [54, 'to take questions', "We'll take questions at the end of the presentation.", 'Recibiremos preguntas al final de la presentación.'],
+    [55, 'to prevent a recurrence', 'Staff training should help prevent a recurrence.', 'La capacitación del personal debería ayudar a evitar que se repita.'],
+    [57, 'to begin with', 'To begin with, the raw data are collected.', 'Para empezar, se recopilan los datos sin procesar.'],
   ];
 
   for (const [unitNumber, target, example, translation] of expected) {

@@ -447,9 +447,23 @@ test('English B2 U1–U8 lesson and unit sentence exercises match their vocabula
   }
 });
 
-test('English B2 U7–U9 lesson themes match their vocabulary and sentence examples', () => {
+test('English B2 U5–U9 lesson themes match their vocabulary and sentence examples', () => {
   const units = loadB2();
   const cases = [
+    [5, [
+      ['Intenciones y planes personales', ['was going to', 'had planned to', 'intended to', 'was hoping to', 'was thinking of']],
+      ['Expectativas y proyecciones', ['would eventually', 'expected to', 'was unlikely to', 'was certain to', 'would later find out']],
+      ['Previsión e inminencia', ['was about to', 'was due to', 'was on the verge of', 'was meant to']],
+      ['Calendarios y preparación', ['was due for', 'was on track to', 'was set to', 'was preparing to']],
+      ['Planes no realizados y retrospectiva', ['was supposed to', 'never got around to', 'failed to materialize', 'in retrospect']],
+    ]],
+    [6, [
+      ['Afirmaciones y cambios temporales', ['to point out that', 'to claim that', 'to admit that', 'to deny that']],
+      ['Posturas, explicaciones y negaciones', ['to insist that', 'to explain that', 'to accuse someone of', 'to deny having done']],
+      ['Promesas, advertencias e indicaciones', ['to promise to', 'to warn someone that', 'to remind someone to', 'to encourage someone to', 'to recommend doing', 'to urge someone to']],
+      ['Propuestas, preguntas y confirmación', ['to suggest that', 'to wonder whether', 'to inquire whether', 'to confirm that']],
+      ['Síntesis y atribución de declaraciones', ['to regret saying', 'to acknowledge that', 'according to', 'as far as I recall']],
+    ]],
     [7, [
       ['Tendencias, hábitos y propensión', ['to tend to', 'to be prone to', 'to have a habit of', 'to break a habit', 'to take place regularly']],
       ['Hábitos pasados y acciones repetidas', ['used to', 'would often', 'to keep doing', 'to go on doing']],

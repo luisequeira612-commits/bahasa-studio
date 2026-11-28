@@ -85,9 +85,13 @@ No comenzar el idioma siguiente hasta completar A1, A2, B1 y B2 del idioma actua
 - No rellenar unidades con contenido artificial ni inventar vocabulario, ejemplos o explicaciones para alcanzar el número. Reestructurar y distribuir material existente cuando sea pedagógicamente válido; el contenido nuevo de B2 sigue la autorización autónoma del dueño: fuente identificable, comprobación de duplicados, glosa contextual y límites explícitos; no se afirma validación nativa.
 - Esta decisión prevalece sobre contratos de pruebas antiguos que aceptaban 2–3 lecciones, y sobre frases anteriores que declaraban los niveles completos sin verificar este criterio.
 
+## Directiva vigente de inglés en-US (decisión del dueño: 26 nov 2026)
+- El temario A1 de inglés americano (en-US), 32 unidades, está aprobado. Implementar A1 en PRs de 4–8 unidades; no fusionar ninguna PR de inglés hasta que el dueño lo apruebe expresamente. Mantener en.available:false y el curso como «Próximamente» hasta que apruebe la publicación del nivel.
+- Esta directiva específica prevalece sobre la autorización general de fusión automática que aparece en la sección Git. No modifica la secuencia de idiomas ni autoriza cambios a PT-BR u otros cursos.
+
 ## Git
 - Nunca trabajar en main. Una rama por cambio y un pull request.
-- El dueño ha otorgado autorización permanente para crear y fusionar PRs sin aprobación individual. Fusiona únicamente cuando el CI del último commit esté completamente verde y no haya revisiones, comentarios ni problemas pendientes; informa siempre del resultado.
+- La autorización general para crear y fusionar PRs no prevalece sobre instrucciones específicas del dueño: para inglés en-US, no fusionar sin aprobación expresa. Fusiona únicamente cuando el CI del último commit esté completamente verde y no haya revisiones, comentarios ni problemas pendientes; informa siempre del resultado.
 - Si el CI falla, no fusionar: diagnosticar y corregir en la misma rama.
 - Cada PR incluye: qué cambió, archivos tocados, cómo se probó, riesgos.
 - Cada PR actualiza MEMORY.md. Sin excepción.

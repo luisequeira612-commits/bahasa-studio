@@ -1024,3 +1024,23 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Regla obligatoria para cada publicación: en el mismo cambio/PR que habilite y publique un idioma o nivel, actualizar `README.md` con el estado real de disponibilidad, niveles, audio y limitaciones relevantes. Verificar la tabla contra los currículos y el selector/registro de idiomas; no deducir niveles disponibles solo del manifiesto de audio ni de documentación histórica.
 - Añadir/ejecutar una prueba de regresión que compruebe que la tabla del README coincide con los niveles realmente disponibles. No marcar un nivel como disponible antes de que el curso sea seleccionable y esté publicado.
 - Esta regla aplica a todos los idiomas futuros y a nuevas ampliaciones de niveles. Fuente: corrección explícita del usuario y currículos indonesios A1–B2 comprobados con los cargadores `scripts/load-inline-b1-curriculum.mjs`, `scripts/load-inline-b2-curriculum.mjs` y pruebas de preparación; 27 nov 2026.
+
+
+## 2026-11-26 — Inglés americano A1 aprobado; primer bloque en PR
+- El dueño aprobó el temario A1 de en-US (32 unidades) y autorizó iniciar Fase 1. Se implementa en bloques de 4–8 unidades; PR de inglés no se fusiona hasta aprobación explícita posterior. Mantener en.available=false y “Próximamente” hasta aprobación de publicación del nivel.
+- PR #891 U1–U6: 6 unidades y 132 entradas; cinco repeticiones léxicas detectadas en auditoría ampliada y corregidas. (alfabeto/deletreo; saludos y presentaciones; información personal; números/contacto; a/an; singular/plural). 5 lecciones explícitas y 22 entradas por unidad; vocabulario not_checked. El esquema conserva exactamente id,target,esp,ex,exEsp,verification; no se agregan POS/audio ni se modifica IndexedDB v1 o backup JSON v3.
+- Contrato: ejercicios mc y order, 10 ejercicios de unidad + 2 por lección; no se presentan como validación lingüística. No se modifica PT-BR ni otros cursos.
+- Fuentes y límites de licencia: docs/EN_US_A1_SOURCES.md; CEFR-J/NGSL aún requieren trazabilidad por lema antes de afirmar cotejo. Ejemplos originales. Inglés americano (en-US); notas británicas solo cuando contrasten un punto útil.
+- CI del head #891 `0fe8cc5ae807c61cbbeb0d26a72af5cae448cd5f`: regresión #4131 y type checks #253 success. El PR mantiene conflicto de merge con main hasta sincronizar los archivos compartidos.
+- La directiva específica de no fusionar PRs de inglés sin aprobación expresa prevalece sobre reglas generales antiguas de fusión automática.
+
+
+## 2026-11-28 — Inglés A1 sin audio Piper no aprobado
+- El PR inicial #891 contenía un commit automático de Piper con 263 MP3 en-US sin revisión de pronunciación. Se crea esta rama desde el padre del commit de audio para conservar el currículo U1–U6 y excluir todos esos clips.
+- No se selecciona Piper como voz en-US; el audio no forma parte de la publicación curricular hasta que exista una decisión explícita de modelo y validación.
+- `.github/workflows/audio.yml` deja de dispararse en cada push y queda solo con `workflow_dispatch`, para evitar síntesis y commits automáticos.
+
+
+## 2026-11-28 — Inventarios vacíos de audio para inglés A1
+- El Service Worker descubre idiomas con currículo y exige que sus rutas de inventario existan durante la instalación offline. Para el curso en-US sin audio se añadieron `audio/en/manifest.json` vacío y `audio/en/metadata.json` con `audio_hashes: {}`.
+- Estos archivos son solo bootstrap: no contienen clips, hashes inventados ni modelo de voz. El audio en-US sigue sin seleccionar y fuera del alcance de publicación.

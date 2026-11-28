@@ -1,3 +1,17 @@
+## Estado técnico más reciente — 2026-11-28
+
+Esta sección reemplaza los estados de CI anteriores más abajo; esos registros conservan el historial de cada comprobación.
+
+- **A1 #891:** Regression #46105596121 y type checks #46105596115 ahora terminaron `success` en el head `a40cc62a714dd576970bc14bc6844f2d3c7cc6ea`. La PR es mergeable, pero no se ha fusionado.
+- **A1 #892:** sigue `dirty`/no mergeable. La comparación entre los heads de #891 y #892 confirma ramas divergentes: #892 tiene 9 commits propios y está 16 commits detrás de #891. Debe reconciliarse después de integrar #891; no forzar la rama ni cambiar la base para ocultar la dependencia.
+- **B2 #948:** el head documental `f0b173b24ac6609400c6d8849d263e616709e387` tiene type checks y offline quality correctos, pero Regression #46107587919 falló en Phase 5B. La prueba «Aprender review card starts the existing SRS session when due reviews exist» no encontró `#adaptiveRecommendationLearn button` tras 30 segundos. El mismo test había pasado antes en otra suite del mismo job (TAP 155) y falló en Phase 5B (TAP 12), por lo que el indicio actual es una inconsistencia de estado/aislamiento entre pruebas, no un error del currículo inglés. No modificar la interfaz sin aislar la causa.
+- **Muestra editorial:** A1 U16, A2 U19, B1 U25 y B2 U29 permanece cerrada. No abrir otra ronda ni ampliar los no bloqueantes.
+- **Publicación:** no se ha fusionado ningún PR ni habilitado inglés. Aún falta integrar A1–B2 en orden, validar los heads integrados, registrar el manifiesto inglés, habilitarlo y actualizar README en el mismo cambio.
+
+Fuentes: [PR #891](https://github.com/luisequeira612-commits/bahasa-studio/pull/891), [PR #892](https://github.com/luisequeira612-commits/bahasa-studio/pull/892), [PR #948](https://github.com/luisequeira612-commits/bahasa-studio/pull/948), [A1 Regression](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/46105596121), [A1 type checks](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/46105596115), [B2 Regression](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/46107587919).
+
+---
+
 # Inglés — pendientes de revisión no bloqueantes
 
 Estado: lista única de pulido posterior. Estos puntos no bloquean una publicación personal si el contenido no contiene errores que cambien el significado o enseñen algo incorrecto.

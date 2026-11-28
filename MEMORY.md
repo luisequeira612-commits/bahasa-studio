@@ -1033,3 +1033,9 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Fuentes y límites de licencia: docs/EN_US_A1_SOURCES.md; CEFR-J/NGSL aún requieren trazabilidad por lema antes de afirmar cotejo. Ejemplos originales. Inglés americano (en-US); notas británicas solo cuando contrasten un punto útil.
 - CI del head #891 `0fe8cc5ae807c61cbbeb0d26a72af5cae448cd5f`: regresión #4131 y type checks #253 success. El PR mantiene conflicto de merge con main hasta sincronizar los archivos compartidos.
 - La directiva específica de no fusionar PRs de inglés sin aprobación expresa prevalece sobre reglas generales antiguas de fusión automática.
+
+
+## 2026-11-28 — Inglés A1 sin audio Piper no aprobado
+- El PR inicial #891 contenía un commit automático de Piper con 263 MP3 en-US sin revisión de pronunciación. Se crea esta rama desde el padre del commit de audio para conservar el currículo U1–U6 y excluir todos esos clips.
+- No se selecciona Piper como voz en-US; el audio no forma parte de la publicación curricular hasta que exista una decisión explícita de modelo y validación.
+- `.github/workflows/audio.yml` deja de dispararse en cada push y queda solo con `workflow_dispatch`, para evitar síntesis y commits automáticos.

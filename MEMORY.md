@@ -1010,3 +1010,10 @@ Fuente: PR #815/#819/#820, `index.html`, `adaptive-learning.js`, pruebas E2E y A
 - Se añadió al generador una poda limitada a `audio/<idioma>/*.mp3`: elimina únicamente clips cuyo hash ya no está en el manifiesto actual de ese idioma. No toca OPUS, archivos no MP3 ni otros idiomas. Esto mantiene el directorio generado y su inventario sincronizados al cambiar los currículos.
 - Cambio en `tools/generar_audio.py`, commit `a7b6738`; requiere una nueva ejecución del workflow de generación y CI posterior.
 - Fuente: árbol Git de la rama y búsqueda exacta de IDs, 27 nov 2026.
+
+
+## 2026-11-27 — Revisión editorial asistida de inglés B2 U1–U60 (PR #946)
+- La revisión editorial asistida cubre U1–U60: alineación de vocabulario, ejemplos, traducciones españolas, foco de lecciones y bancos de repaso. Se corrigieron asociaciones erróneas en U1/U2 y matices de glosa/ejemplo en U7/U8; las seis unidades de repaso tienen pruebas de asociación.
+- Se añadieron comprobaciones de regresión para U1–U8 y bloques posteriores. El currículo conserva 60 unidades, 300 lecciones, 1.200 actividades y 1.188 objetivos léxicos únicos.
+- PR #946 sigue draft y sin fusionar; inglés B2 permanece oculto/no publicado. Los tests estructurales no certifican naturalidad estadounidense, equivalencia semántica completa ni nivel MCER; la revisión lingüística independiente sigue pendiente.
+- Fuente: PR #946, languages/en/curriculum/b2/ y tests/en-us-b2-curriculum.test.cjs; 27 nov 2026.

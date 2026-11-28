@@ -238,5 +238,5 @@ test('PT-BR A1-B2 global lexical progression documents every exact repeated targ
  assert.ok(b2u25.lessons.some(lesson=>lesson.grammar.includes('sustantivo')&&lesson.grammar.toLocaleLowerCase('pt-BR').includes('antecipação')));
  assert.ok(b2u28.grammar.includes('no es lo mismo que un hallazgo o una conclusión'));
  const b2u28Source=fs.readFileSync(path.join(__dirname,'../languages/pt-BR/curriculum/b2/units-28-30.js'),'utf8');
- assert.ok(b2u28Source.includes('cada fila representa um caso')&&b2u28Source.includes('cada coluna uma variável'));
+ assert.ok(b2u28Source.includes('cada fila representa un caso')&&b2u28Source.includes('cada columna una variable'));
 });

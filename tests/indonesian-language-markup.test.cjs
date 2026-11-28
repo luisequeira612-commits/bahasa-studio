@@ -25,8 +25,18 @@ test('las tarjetas de lección usan el adaptador común y el locale objetivo', (
     assert.doesNotMatch(renderer, /v\.idn|lang="id"/);
 });
 
-test('marca las fichas del diccionario y los bancos de ordenación', () => {
-    assert.match(html, /<strong lang="id">\$\{App\.escapeHtml\(v\.idn\)\}<\/strong>/);
+test('el diccionario usa vocabulario y locale neutrales del curso activo', () => {
+    const start = html.indexOf('renderDict() {');
+    const end = html.indexOf('filterDict() {', start);
+    const renderer = html.slice(start, end);
+    assert.match(renderer, /const language = LanguageManager\.getActiveLanguage\(\)/);
+    assert.match(renderer, /const locale = LanguageManager\.getLocale\(language\)/);
+    assert.match(renderer, /CurriculumLoader\.adaptVocabulary\(rawWord, language\)/);
+    assert.match(renderer, /word\.text/);
+    assert.match(renderer, /word\.translation/);
+    assert.match(renderer, /word\.example/);
+    assert.match(renderer, /AudioEngine\.speak\(this\.dataset\.word\)/);
+    assert.doesNotMatch(renderer, /v\.idn|v\.esp|lang="id"/);
     assert.match(html, /class="word-chip" lang="\$\{App\.escapeHtml\(ex\.targetLocale \|\| 'und'\)\}" data-word=/);
     assert.match(html, /chip\.lang = this\.queue\[this\.stepIndex\]\?\.targetLocale/);
 });
@@ -39,9 +49,14 @@ test('el matching usa el locale activo y pares con campos neutrales', () => {
     assert.doesNotMatch(html, /match-option-btn[^\n]*lang="id"|data-side="idn"/);
 });
 
-test('la frase interactiva aplica el locale de origen y reserva audio para indonesio', () => {
+test('la frase interactiva aplica el locale y el audio del curso activo', () => {
     assert.match(html, /sourceLocale = language === 'es' \? 'es' : LanguageManager\.getLocale\(activeLanguage\)/);
-    assert.match(html, /language !== 'es' && activeLanguage === 'id'/);
+    const start = html.indexOf('const speaker = language !==');
+    const end = html.indexOf('return \'<div class="tap-translation-sentence">', start);
+    const speaker = html.slice(start, end);
+    assert.ok(start >= 0);
+    assert.match(speaker, /language !== 'es'/);
+    assert.doesNotMatch(speaker, /activeLanguage === 'id'/);
 });
 
 test('marca el ejemplo modelo y el término emergente con locale dinámico', () => {
@@ -90,4 +105,29 @@ test('el popup de significado usa texto, traducción y ejemplos con locale diná
     assert.doesNotMatch(indexBuilder, /word\.idn|word\.esp|lang = 'id'/);
     assert.match(html, /termNode\.lang = matches\[0\]\.locale/);
     assert.match(html, /original\.lang = example\.locale/);
+});
+
+test('la ayuda de Palabras nuevas y los ajustes de audio no nombran indonesio de forma fija', () => {
+    assert.match(html, /const languageName = \(LanguageManager\.getLanguage\(language\) \|\| \{\}\)\.name/);
+    assert.match(html, /Toca una palabra en \$\{App\.escapeHtml\(languageName\.toLowerCase\(\)\)\}/);
+    assert.match(html, /<h3>Audio del curso<\/h3>/);
+    assert.match(html, /aria-label="Voz del idioma activo"/);
+    assert.match(html, /Buscar en el idioma del curso o en español/);
+    assert.doesNotMatch(html, /Audio en indonesio|Buscar indonesio o español|Toca una palabra en indonesio/);
+});
+
+test('el tutor API usa el idioma activo y el modo local no muestra reglas indonesias en portugués', () => {
+    assert.match(html, /Tutor conciso de \$\{STUDY_LANGUAGE_LABEL\} en español/);
+    assert.match(html, /activeLanguage !== 'id'/);
+    assert.match(html, /El modo local todavía no tiene explicaciones específicas para/);
+    assert.match(html, /La generación de lecciones personalizadas aún no está adaptada al curso de/);
+});
+
+test('el encabezado, SRS y generador no presuponen indonesio cuando cambia el curso', () => {
+    assert.doesNotMatch(html, /Cambiar idioma de estudio\. Indonesio actual|studyLanguageCurrentName">Indonesio|Indonesio → español/);
+    assert.match(html, /Cambiar idioma de estudio\. ' \+ active\.name \+ ' actual/);
+    assert.match(html, /current\.direction = reverse \? 'es-' \+ activeCode : activeCode \+ '-es'/);
+    assert.match(html, /if \(!reverse\) AudioEngine\.speak\(current\.vocab\.text\)/);
+    assert.match(html, /if \(LanguageManager\.getActiveLanguage\(\) !== 'id'\)/);
+    assert.match(html, /El generador de lecciones aún no está adaptado al curso activo/);
 });

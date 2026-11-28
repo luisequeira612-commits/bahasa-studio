@@ -71,3 +71,28 @@ test('language validation rejects missing required metadata and malformed catalo
     assert.ok(result.errors.includes('locale_required'));
     assert.equal(manager.validateLanguageCatalog(null).valid, false);
 });
+
+test('Brazilian Portuguese declares speech synthesis and a validated pt-PT fallback', () => {
+    const manager = createManager();
+    const portuguese = manager.getLanguage('pt-BR');
+    assert.equal(portuguese.audioMode, 'speechSynthesis');
+    assert.deepEqual(Array.from(portuguese.voiceFallbackLocales), ['pt-PT']);
+    assert.equal(portuguese.testPhrase, 'bom dia');
+    assert.equal(portuguese.audioAvailable, false);
+    assert.equal(portuguese.allowSystemVoiceFallback, true);
+    const invalid = manager.validateLanguageConfig({
+        ...portuguese,
+        audioMode: 'remote-service',
+        voiceFallbackLocales: ['../id']
+    });
+    assert.ok(invalid.errors.includes('audioMode_invalid'));
+    assert.ok(invalid.errors.includes('voiceFallbackLocales_invalid'));
+});
+
+test('language validation rejects non-boolean audio availability and fallback settings', () => {
+    const manager = createManager();
+    const portuguese = manager.getLanguage('pt-BR');
+    const invalid = manager.validateLanguageConfig({ ...portuguese, audioAvailable: 'false', allowSystemVoiceFallback: 'yes' });
+    assert.ok(invalid.errors.includes('audioAvailable_invalid'));
+    assert.ok(invalid.errors.includes('allowSystemVoiceFallback_invalid'));
+});

@@ -15,8 +15,26 @@ window.AudioEngine = {
         return config || { code: 'id', locale: 'id-ID', name: 'indonesio', audioPath: './audio/id/' };
     },
     matchesActiveLanguage(voice) {
-        const languageTag = String(this.getLanguageConfig().locale || 'id-ID').toLowerCase().split('-')[0];
-        return String(voice && voice.lang || '').toLowerCase().split('-')[0] === languageTag;
+        const language = this.getLanguageConfig();
+        const normalizeLocale = locale => String(locale || '').toLowerCase().replace(/_/g, '-');
+        const voiceLocale = normalizeLocale(voice && voice.lang);
+        const fallbackLocales = Array.isArray(language.voiceFallbackLocales) ? language.voiceFallbackLocales : [];
+        if (fallbackLocales.length) {
+            return [language.locale, ...fallbackLocales].some(locale => normalizeLocale(locale) === voiceLocale);
+        }
+        const languageTag = normalizeLocale(language.locale || 'id-ID').split('-')[0];
+        return voiceLocale.split('-')[0] === languageTag;
+    },
+    voicePriority(voice) {
+        const language = this.getLanguageConfig();
+        const preferredLocales = [language.locale, ...(Array.isArray(language.voiceFallbackLocales) ? language.voiceFallbackLocales : [])]
+            .map(locale => String(locale || '').toLowerCase().replace(/_/g, '-'));
+        const exactIndex = preferredLocales.indexOf(String(voice && voice.lang || '').toLowerCase().replace(/_/g, '-'));
+        return exactIndex < 0 ? preferredLocales.length : exactIndex;
+    },
+    getActiveLanguageVoices() {
+        return this.getActiveLanguageVoices()
+            .sort((a, b) => this.voicePriority(a) - this.voicePriority(b));
     },
     voiceKey(voice) {
         return voice.voiceURI || (String(voice.lang || '') + ':' + String(voice.name || ''));
@@ -101,7 +119,7 @@ window.AudioEngine = {
         automatic.value = 'auto';
         automatic.textContent = 'Automática (recomendada)';
         select.appendChild(automatic);
-        this.voices.filter(voice => this.matchesActiveLanguage(voice)).forEach(voice => {
+        this.getActiveLanguageVoices().forEach(voice => {
             const option = document.createElement('option');
             option.value = this.voiceKey(voice);
             option.textContent = voice.name + ' (' + voice.lang + ')';
@@ -117,8 +135,17 @@ window.AudioEngine = {
         const status = document.getElementById('audioVoiceStatus');
         if (!status) return;
         const language = this.getLanguageConfig();
-        const voices = this.voices.filter(voice => this.matchesActiveLanguage(voice));
+        const voices = this.getActiveLanguageVoices();
         const languageName = String(language.name || language.code || 'idioma del curso').toLowerCase();
+        const offlinePreparation = document.getElementById('offlineAudioPreparation');
+        if (offlinePreparation) offlinePreparation.hidden = language.audioAvailable === false;
+        if (language.audioAvailable === false) {
+            const active = this.selectedVoice || this.activeLanguageVoice || voices[0];
+            status.textContent = active
+                ? 'Este curso no tiene grabaciones incluidas. Se usará una voz del dispositivo para ' + languageName + ': ' + active.name + '.'
+                : 'Este curso no tiene grabaciones incluidas. El navegador intentará sintetizar el audio para ' + languageName + '.';
+            return;
+        }
         const manifestPrefix = String(language.code || '') + ':';
         const hasManifestAudio = this.audioManifestLoaded &&
             Array.from(this.audioManifest.keys()).some(key => key.startsWith(manifestPrefix));
@@ -141,7 +168,7 @@ window.AudioEngine = {
             return;
         }
         this.voices = this.synth.getVoices() || [];
-        const languageVoices = this.voices.filter(voice => this.matchesActiveLanguage(voice));
+        const languageVoices = this.getActiveLanguageVoices();
         this.activeLanguageVoice = languageVoices[0] || null;
         this.selectedVoice = languageVoices.find(voice => this.voiceKey(voice) === this.voicePreference) || this.activeLanguageVoice;
         this.renderVoiceOptions();
@@ -210,7 +237,7 @@ window.AudioEngine = {
         const voice = this.selectedVoice || this.activeLanguageVoice;
         this.synth.cancel();
         const utter = new SpeechSynthesisUtterance(text);
-        utter.lang = language.locale || 'id-ID';
+        utter.lang = voice && this.matchesActiveLanguage(voice) ? (voice.lang || language.locale || 'id-ID') : (language.locale || 'id-ID');
         if (voice && this.matchesActiveLanguage(voice)) {
             // A Portuguese (pt-PT) device voice is also a valid fallback for pt-BR.
             utter.voice = voice;
@@ -225,10 +252,10 @@ window.AudioEngine = {
         return true;
     },
     playRecorded(text) {
-        if (typeof Audio !== 'function') return false;
+        const language = this.getLanguageConfig();
+        if (language.audioAvailable === false || typeof Audio !== 'function') return false;
         const id = this.hashText(text);
         if (!id) return false;
-        const language = this.getLanguageConfig();
         const manifestEntry = this.audioManifest.get(language.code + ':' + id);
         const audioPath = manifestEntry ? manifestEntry.file : null;
         if (!audioPath && this.audioManifestLoaded) return false;
@@ -271,6 +298,7 @@ window.AudioEngine = {
         const value = String(text ?? '').trim();
         if (!value) return false;
         this.updateVoiceStatus();
+        if (this.getLanguageConfig().audioMode === 'speechSynthesis') return this.speakWithDeviceVoice(value);
         // Before the manifest is ready, keep the deterministic per-language
         // MP3 path as a fast path. Once loaded, the manifest is authoritative:
         // a missing entry falls back to the device voice instead of probing a
@@ -287,7 +315,9 @@ window.AudioEngine = {
             return false;
         }
         this.refreshVoices();
-        if (status) status.textContent = 'Probando una grabación Piper incluida. No necesitas instalar una voz.';
+        if (status) status.textContent = language.audioMode === 'speechSynthesis'
+            ? 'Probando la voz del dispositivo para ' + String(language.name || language.code).toLowerCase() + '.'
+            : 'Probando una grabación Piper incluida. No necesitas instalar una voz.';
         return this.speak(phrase);
     }
 };

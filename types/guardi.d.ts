@@ -20,6 +20,10 @@ interface GuardiLanguageConfig {
     readonly voiceStatus: GuardiVoiceStatus;
     readonly audioPath: string;
     readonly curriculum: Readonly<Partial<Record<GuardiCefrLevel, string>>>;
+    readonly audioMode?: 'recorded' | 'speechSynthesis';
+    readonly audioAvailable?: boolean;
+    readonly allowSystemVoiceFallback?: boolean;
+    readonly voiceFallbackLocales?: readonly string[];
     readonly testPhrase?: string;
     readonly available: boolean;
 }

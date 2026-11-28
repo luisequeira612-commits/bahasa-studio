@@ -5,8 +5,8 @@
     const STORAGE_KEY = 'guardi_active_language';
     /** @type {Readonly<Record<GuardiLanguageCode, GuardiLanguageConfig>>} */
     const LANGUAGES = Object.freeze({
-        'pt-BR': Object.freeze({ code: 'pt-BR', locale: 'pt-BR', name: 'Portugués', flag: '🇧🇷', piperVoice: 'pt_BR-faber-medium', voiceStatus: 'candidate', audioPath: './audio/pt-BR/', testPhrase: 'olá', curriculum: Object.freeze({ A1: './languages/pt-BR/curriculum/a1/index.js', A2: './languages/pt-BR/curriculum/a2/index.js', B1: './languages/pt-BR/curriculum/b1/index.js', B2: './languages/pt-BR/curriculum/b2/index.js' }), available: true }),
-        en: Object.freeze({ code: 'en', locale: 'en-US', name: 'Inglés', flag: '🇺🇸', piperVoice: 'en_US-lessac-medium', voiceStatus: 'unverified', audioPath: './audio/en/', curriculum: Object.freeze({ A1: './languages/en/curriculum/a1/index.js', A2: './languages/en/curriculum/a2/index.js', B1: './languages/en/curriculum/b1/index.js', B2: './languages/en/curriculum/b2/index.js' }), available: true }),
+        'pt-BR': Object.freeze({ code: 'pt-BR', locale: 'pt-BR', name: 'Portugués', flag: '🇧🇷', piperVoice: 'pt_BR-faber-medium', voiceStatus: 'candidate', audioAvailable: false, allowSystemVoiceFallback: true, audioMode: 'speechSynthesis', voiceFallbackLocales: Object.freeze(['pt-PT']), testPhrase: 'bom dia', audioPath: './audio/pt-BR/', curriculum: Object.freeze({ A1: './languages/pt-BR/curriculum/a1/index.js', A2: './languages/pt-BR/curriculum/a2/index.js', B1: './languages/pt-BR/curriculum/b1/index.js', B2: './languages/pt-BR/curriculum/b2/index.js' }), available: true }),
+        en: Object.freeze({ code: 'en', locale: 'en-US', name: 'Inglés', flag: '🇺🇸', piperVoice: 'en_US-lessac-medium', voiceStatus: 'candidate', audioPath: './audio/en/', curriculum: Object.freeze({}), available: false }),
         it: Object.freeze({ code: 'it', locale: 'it-IT', name: 'Italiano', flag: '🇮🇹', piperVoice: 'it_IT-riccardo-x_low', voiceStatus: 'unverified', audioPath: './audio/it/', curriculum: Object.freeze({}), available: false }),
         fr: Object.freeze({ code: 'fr', locale: 'fr-FR', name: 'Francés', flag: '🇫🇷', piperVoice: 'fr_FR-upmc-medium', voiceStatus: 'candidate', audioPath: './audio/fr/', curriculum: Object.freeze({}), available: false }),
         de: Object.freeze({ code: 'de', locale: 'de-DE', name: 'Alemán', flag: '🇩🇪', piperVoice: 'de_DE-thorsten', voiceStatus: 'unverified', audioPath: './audio/de/', curriculum: Object.freeze({}), available: false }),
@@ -48,6 +48,16 @@
         }
         if (config.testPhrase !== undefined && (typeof config.testPhrase !== 'string' || !config.testPhrase.trim())) {
             errors.push('testPhrase_invalid');
+        }
+        if (config.audioAvailable !== undefined && typeof config.audioAvailable !== 'boolean') errors.push('audioAvailable_invalid');
+        if (config.allowSystemVoiceFallback !== undefined && typeof config.allowSystemVoiceFallback !== 'boolean') errors.push('allowSystemVoiceFallback_invalid');
+        if (config.audioMode !== undefined && !['recorded', 'speechSynthesis'].includes(String(config.audioMode))) {
+            errors.push('audioMode_invalid');
+        }
+        if (config.voiceFallbackLocales !== undefined &&
+            (!Array.isArray(config.voiceFallbackLocales) ||
+                config.voiceFallbackLocales.some(locale => typeof locale !== 'string' || !/^[a-z]{2,3}(?:-[A-Z]{2})?$/.test(locale)))) {
+            errors.push('voiceFallbackLocales_invalid');
         }
         return Object.freeze({ valid: errors.length === 0, errors: Object.freeze(errors) });
     }

@@ -5,8 +5,6 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
-const { loadInlineB1Curriculum } = require('../scripts/load-inline-b1-curriculum.mjs');
-const { loadInlineB2Curriculum } = require('../scripts/load-inline-b2-curriculum.mjs');
 
 const root = path.join(__dirname, '..');
 
@@ -17,7 +15,9 @@ function loadStandalone(filename, globalName) {
   return sandbox.window[globalName];
 }
 
-test('README lists the four Indonesian levels that are actually present in CourseData', () => {
+test('README lists the four Indonesian levels that are actually present in CourseData', async () => {
+  const { loadInlineB1Curriculum } = await import('../scripts/load-inline-b1-curriculum.mjs');
+  const { loadInlineB2Curriculum } = await import('../scripts/load-inline-b2-curriculum.mjs');
   const a1 = loadStandalone('curriculum-a1.js', 'BAHASA_CURRICULUM_A1');
   const a2 = loadStandalone('curriculum-a2.js', 'BAHASA_CURRICULUM_A2');
   const indexSource = fs.readFileSync(path.join(root, 'index.html'), 'utf8');

@@ -192,14 +192,11 @@ window.AudioEngine = {
         return true;
     },
     localizeCourseLabels() {
-        const language = this.getLanguageConfig();
-        const languageName = String(language.name || language.code || 'idioma del curso').toLowerCase();
         const area = document.getElementById('exerciseArea');
         if (area && typeof area.querySelectorAll === 'function') {
             area.querySelectorAll('p').forEach(paragraph => {
-                if (/Toca una palabra en .+? para consultar su significado sin salir de la lección\./i.test(paragraph.textContent || '')) {
-                    const localizedHint = '💡 Toca una palabra en ' + languageName +
-                        ' para consultar su significado sin salir de la lección.';
+                if (/Toca una palabra(?: en .+?)? para consultar su significado sin salir de la lección\./i.test(paragraph.textContent || '')) {
+                    const localizedHint = '💡 Toca una palabra para consultar su significado sin salir de la lección.';
                     if (paragraph.textContent !== localizedHint) paragraph.textContent = localizedHint;
                 }
             });

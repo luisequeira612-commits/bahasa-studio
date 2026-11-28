@@ -85,3 +85,30 @@ test('English A1 vocabulary introduces no duplicate targets across U1-U18',async
   seen.add(key);
  }
 });
+
+
+test('English A1 U16 lesson targets and sentence exercises stay aligned', async () => {
+ const {loader}=createEnglishPilot();
+ const {units}=await loader.loadUnits('en','A1',[13,14,15,16,17,18]);
+ const unit=units.find(item=>item.unitNumber===16);
+ assert.ok(unit);
+ const expected=[
+  ['when','why','question','answer'],
+  ['which','how many','how much','lesson'],
+  ['how often','what time','schedule','meeting','break'],
+  ['appointment','available','busy','free'],
+  ['today','tomorrow','this afternoon','date','calendar']
+ ];
+ for(let index=0;index<expected.length;index++){
+  const lesson=unit.lessons[index];
+  assert.deepEqual(Array.from(lesson.vocabIds,id=>unit.vocab.find(word=>word.id===id)?.target),expected[index]);
+  const exercise=lesson.exercises.find(item=>item.type==='order');
+  const target=unit.vocab.find(word=>word.id===exercise.vocabId);
+  assert.equal(exercise.vocabId,lesson.vocabIds[1]);
+  assert.deepEqual(Array.from(exercise.correctOrder),target.ex.split(' '));
+ }
+ for(const exercise of unit.exercises.filter(item=>item.type==='order')){
+  const target=unit.vocab.find(word=>word.id===exercise.vocabId);
+  assert.deepEqual(Array.from(exercise.correctOrder),target.ex.split(' '));
+ }
+});

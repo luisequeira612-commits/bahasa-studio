@@ -2,15 +2,6 @@ name: Generate multilingual Piper audio
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - 'curriculum-*.js'
-      - 'languages/**/curriculum/**'
-      - 'language-manager.js'
-      - 'tools/audio-voices.json'
-      - 'scripts/export-audio-manifest.mjs'
-      - 'tools/generar_audio.py'
-      - '.github/workflows/audio.yml'
 
 permissions:
   contents: write

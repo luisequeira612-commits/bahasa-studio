@@ -236,5 +236,5 @@ test('PT-BR A1-B2 global lexical progression documents every exact repeated targ
  assert.ok(get(b2,15).lessons.some(lesson=>(lesson.reviewVocabIds||[]).includes('ptbr_b1_u11_v06')));
  assert.ok(get(b2,18).lessons.some(lesson=>(lesson.reviewVocabIds||[]).includes('ptbr_b1_u11_v06')));
  assert.ok(b2u25.lessons.some(lesson=>lesson.grammar.includes('sustantivo')&&lesson.grammar.toLocaleLowerCase('pt-BR').includes('antecipação')));
- assert.ok(b2u28.lessons.some(lesson=>lesson.grammar.includes('cada fila representa um caso')&&lesson.grammar.includes('hallazgo')));
+ assert.ok(b2u28.lessons.some(lesson=>lesson.grammar.includes('cada fila representa um caso')&&lesson.grammar.includes('achado')));
 });

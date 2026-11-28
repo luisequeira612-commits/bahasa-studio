@@ -10,11 +10,13 @@ const loaderSource=fs.readFileSync(path.join(repo,'curriculum-loader.js'),'utf8'
 const manifestSource=fs.readFileSync(path.join(repo,'languages/en/curriculum/a1/index.js'),'utf8');
 const blockSource=fs.readFileSync(path.join(repo,'languages/en/curriculum/a1/units-01-06.js'),'utf8');
 const blockSource2=fs.readFileSync(path.join(repo,'languages/en/curriculum/a1/units-07-12.js'),'utf8');
+const blockSource3=fs.readFileSync(path.join(repo,'languages/en/curriculum/a1/units-13-18.js'),'utf8');
 function createEnglishPilot(){
  const sources={
   './languages/en/curriculum/a1/index.js':manifestSource,
   './languages/en/curriculum/a1/units-01-06.js':blockSource,
-  './languages/en/curriculum/a1/units-07-12.js':blockSource2
+  './languages/en/curriculum/a1/units-07-12.js':blockSource2,
+  './languages/en/curriculum/a1/units-13-18.js':blockSource3
  };
  const window={localStorage:{getItem(){return 'id';},setItem(){}},document:{createElement(){return {};},head:{appendChild(script){
   const source=sources[script.src];
@@ -35,12 +37,12 @@ test('English en-US is registered but remains unavailable until release approval
  assert.equal(loader.resolve('en','A1'),null);
  await assert.rejects(window.LanguageManager.setActiveLanguage('en'),/todavía no está disponible/);
 });
-test('English A1 manifest exposes the authored U1-U12 blocks',async()=>{
+test('English A1 manifest exposes the authored U1-U18 blocks',async()=>{
  const {loader}=createEnglishPilot();
- const curriculum=await loader.loadUnits('en','A1',[1,2,3,4,5,6,7,8,9,10,11,12]);
+ const curriculum=await loader.loadUnits('en','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]);
  assert.equal(curriculum.language,'en');
  assert.equal(curriculum.totalUnits,32);
- assert.deepEqual(Array.from(curriculum.units,u=>u.unitNumber),[1,2,3,4,5,6,7,8,9,10,11,12]);
+ assert.deepEqual(Array.from(curriculum.units,u=>u.unitNumber),[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]);
 });
 test('each English A1 unit has five explicit lessons, 22 new words and 20 supported exercises',async()=>{
  const {loader}=createEnglishPilot();
@@ -74,9 +76,9 @@ test('English A1 curriculum uses the established vocabulary shape without changi
  }
 });
 
-test('English A1 vocabulary introduces no duplicate targets across U1-U12',async()=>{
+test('English A1 vocabulary introduces no duplicate targets across U1-U18',async()=>{
  const {loader}=createEnglishPilot();
- const {units}=await loader.loadUnits('en','A1',[1,2,3,4,5,6,7,8,9,10,11,12]);
+ const {units}=await loader.loadUnits('en','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]);
  const seen=new Set();
  for(const word of units.flatMap(unit=>unit.vocab)){
   const key=word.target.toLocaleLowerCase();
@@ -87,7 +89,7 @@ test('English A1 vocabulary introduces no duplicate targets across U1-U12',async
 
 test('English A1 lesson and unit ordering examples match their vocabulary targets in U7-U12',async()=>{
  const {loader}=createEnglishPilot();
- const {units}=await loader.loadUnits('en','A1',[1,2,3,4,5,6,7,8,9,10,11,12]);
+ const {units}=await loader.loadUnits('en','A1',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]);
  const words=new Map(units.flatMap(unit=>unit.vocab.map(word=>[word.id,word.target.toLocaleLowerCase()])));
  const includesTarget=(sentence,id)=>sentence.toLocaleLowerCase().includes(words.get(id));
  for(const unit of units.filter(item=>item.unitNumber>=7)){
@@ -97,5 +99,32 @@ test('English A1 lesson and unit ordering examples match their vocabulary target
   for(const exercise of unit.exercises.filter(item=>item.type==='order')){
    assert.ok(includesTarget(exercise.correctOrder.join(' '),exercise.vocabId),unit.id+' unit exercise mismatch: '+exercise.vocabId);
   }
+ }
+});
+
+
+test('English A1 U16 lesson targets and sentence exercises stay aligned', async () => {
+ const {loader}=createEnglishPilot();
+ const {units}=await loader.loadUnits('en','A1',[13,14,15,16,17,18]);
+ const unit=units.find(item=>item.unitNumber===16);
+ assert.ok(unit);
+ const expected=[
+  ['when','why','question','answer'],
+  ['which','how many','how much','lesson'],
+  ['how often','what time','schedule','meeting','break'],
+  ['appointment','available','busy','free'],
+  ['today','tomorrow','this afternoon','date','calendar']
+ ];
+ for(let index=0;index<expected.length;index++){
+  const lesson=unit.lessons[index];
+  assert.deepEqual(Array.from(lesson.vocabIds,id=>unit.vocab.find(word=>word.id===id)?.target),expected[index]);
+  const exercise=lesson.exercises.find(item=>item.type==='order');
+  const target=unit.vocab.find(word=>word.id===exercise.vocabId);
+  assert.equal(exercise.vocabId,lesson.vocabIds[1]);
+  assert.deepEqual(Array.from(exercise.correctOrder),target.ex.split(' '));
+ }
+ for(const exercise of unit.exercises.filter(item=>item.type==='order')){
+  const target=unit.vocab.find(word=>word.id===exercise.vocabId);
+  assert.deepEqual(Array.from(exercise.correctOrder),target.ex.split(' '));
  }
 });

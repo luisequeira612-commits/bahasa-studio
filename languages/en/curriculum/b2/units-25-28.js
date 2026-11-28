@@ -80,7 +80,7 @@ lessons:[
 ["on the other hand","por otro lado","On the other hand, the proposal could save time.","Por otro lado, la propuesta podría ahorrar tiempo."],
 ["in the first place","en primer lugar","In the first place, we need accurate information.","En primer lugar, necesitamos información precisa."],
 ["as a starting point","como punto de partida","As a starting point, let's review the original plan.","Como punto de partida, revisemos el plan original."],
-["the key question","la pregunta clave","The key question is whether the system is reliable.","La pregunta clave es si el sistema es fiable."],
+["the key question","la pregunta clave","The key question is whether the system is reliable.","La pregunta clave es si el sistema es confiable."],
 ["above all","sobre todo","Above all, we must keep the process transparent.","Sobre todo, debemos mantener transparente el proceso."]],
 lessons:[
 ["Establecer el tema","Introduce el asunto antes de desarrollar un comentario.","As for, with regard to y as regards establecen el marco temático; no son sujetos gramaticales.",[0,1,2,3],"With regard to your request, we will reply by Friday."],

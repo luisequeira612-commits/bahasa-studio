@@ -234,6 +234,7 @@ window.AudioEngine = {
             if (status) status.textContent = 'Esta frase no tiene una grabación disponible y el navegador no ofrece una voz de respaldo para ' + languageName + '.';
             return false;
         }
+        this.stopCurrentAudio();
         this.refreshVoices();
         const voice = this.selectedVoice || this.activeLanguageVoice;
         this.synth.cancel();

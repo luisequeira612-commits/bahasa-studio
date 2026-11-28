@@ -8,7 +8,7 @@ const rows=[
 ["to be susceptible to","ser susceptible a","Older devices are more susceptible to failure.","Los dispositivos antiguos son más susceptibles a fallos."],
 ["to be subject to","estar sujeto a","All applications are subject to review.","Todas las solicitudes están sujetas a revisión."],
 ["to be inherent in","ser inherente a","Some uncertainty is inherent in the process.","Cierta incertidumbre es inherente al proceso."],
-["to be attributable to","ser atribuible a","The improvement is partly attributable to better training.","La mejora es atribuible en parte a una mejor formación."],
+["to be attributable to","ser atribuible a","The improvement is partly attributable to better training.","La mejora es atribuible en parte a una mejor capacitación."],
 ["to be indicative of","ser indicativo de","A sudden increase may be indicative of a wider problem.","Un aumento repentino puede ser indicativo de un problema más amplio."],
 ["to match","coincidir con","The pattern matches previous findings.","El patrón coincide con hallazgos anteriores."],
 ["to be incompatible with","ser incompatible con","The statement is incompatible with the available evidence.","La afirmación es incompatible con las pruebas disponibles."],
@@ -42,7 +42,7 @@ const refs=[
 ["en_b2_u41_v01","to pose a threat","representar una amenaza","The lack of maintenance poses a serious threat to safety."],
 ["en_b2_u42_v06","to examine","examinar","The department will examine the complaint."],
 ["en_b2_u43_v05","to adhere to","adherirse a / cumplir","All suppliers must adhere to safety regulations."],
-["en_b2_u44_v01","reliability","fiabilidad","System reliability is essential for public services."],
+["en_b2_u44_v01","reliability","confiabilidad","La confiabilidad del sistema es esencial para los servicios públicos."],
 ["en_b2_u45_v01","cost-effective","rentable","The new system is a cost-effective solution for small teams."],
 ["en_b2_u46_v01","to get the ball rolling","poner algo en marcha","Let's get the ball rolling with a short introduction."],
 ["en_b2_u47_v03","to fulfill","cumplir","The team fulfilled its main objective."],
@@ -51,7 +51,7 @@ const refs=[
 ];
 const reviewDefs=[
 ["Colocaciones y phrasal verbs","Recupera combinaciones naturales y verbos con partícula.","Advanced collocations and phrasal verbs with object placement.",[0,1],"The department will examine the complaint."],
-["Preposiciones y formación de palabras","Aplica patrones preposicionales y familias léxicas.","Dependent prepositions, nominalization and derivation.",[2,3],"System reliability is essential for public services."],
+["Preposiciones y formación de palabras","Aplica patrones preposicionales y familias léxicas.","Dependent prepositions, nominalization and derivation.",[2,3],"La confiabilidad del sistema es esencial para los servicios públicos."],
 ["Connotación e idioms","Distingue valoración y expresiones figuradas frecuentes.","Connotation, evaluative language and useful idioms.",[4,5],"Let's get the ball rolling with a short introduction."],
 ["Sinónimos y metáforas","Reconoce diferencias semánticas y metáforas convencionales.","Near-synonyms, collocations and figurative language.",[6,7],"The pilot program laid the groundwork for wider reform."],
 ["Precisión léxica integrada","Evalúa significado, registro y colocación antes de elegir una palabra.","Precision, ambiguity, redundancy and semantic qualification.",[7,8],"It is important to differentiate between correlation and causation."]

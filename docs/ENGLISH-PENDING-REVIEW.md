@@ -1,3 +1,13 @@
+## Diagnóstico ampliado del control E2E — 2026-11-28
+
+- El test Phase 5B «Aprender review card starts the existing SRS session when due reviews exist» no es nuevo ni específico del contenido inglés. Ya apareció en el run #45965883973 del 27 nov; en el segundo intento de ese run, el mismo test **pasó** (TAP 12, 675 ms). En el run #46107587919, el intento 1 falló por timeout de 30 s y el intento 2 volvió a fallar; el intento 3 se acaba de solicitar y está `queued`.
+- La prueba falla al consultar `#adaptiveRecommendationLearn button` después de llamar a `App.renderAdaptiveRecommendation({ dueCount: 18, ... })`. En el mismo job Phase 5B, los tests 1–11 y 13–16 pasan; el resto de pruebas de la suite no muestra fallo. El patrón entre ejecuciones (pasa una vez y falla en otra) apunta a flakiness/estado no determinista en el E2E, pero hasta que un intento actual no pase, la regresión sigue bloqueada.
+- No se cambió el código de interfaz ni el test a ciegas. No modificar este comportamiento hasta tener evidencia que distinga un defecto de producto de una carrera/aislamiento del test.
+
+[Run B2 #46107587919](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/46107587919) · [run previo #45965883973](https://github.com/luisequeira612-commits/bahasa-studio/actions/runs/45965883973).
+
+---
+
 ## Estado técnico más reciente — 2026-11-28
 
 Esta sección reemplaza los estados de CI anteriores más abajo; esos registros conservan el historial de cada comprobación.
